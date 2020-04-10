@@ -23,9 +23,7 @@ public class VariavleDecl {
 		System.out.println(num4);
 		System.out.println(result1/10000000);
 		
-		
-		
-		
-		
+				
+				
 	}
 }
