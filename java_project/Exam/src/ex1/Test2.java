@@ -5,9 +5,9 @@ public class Test2 {
 	public static void main(String[] args) {
 
 		/*
-		 * ¹®Á¦2. ¼ýÀÚ 15¸¦ ÃÑ 5È¸ Ãâ·ÂÇÏ´Â ÇÁ·Î±×·¥À» ÀÛ¼ºÇØ º¸ÀÚ. 
-		 * ´Ü ÃÑ 5È¸¿¡ °ÉÃÄ¼­ Ãâ·ÂÀÌ ÀÌ·ç¾î Á®¾ß ÇÏ°í, 
-		 * ÀÌ¸¦ À§ÇØ¼­ ±¸¼ºÀÌ µÇ´Â ´Ù¼¸ ¹®Àå ¸ðµÎ Â÷ÀÌ°¡ ÀÖ¾î¾ß ÇÑ´Ù.
+		 * ë¬¸ì œ2. ìˆ«ìž 15ë¥¼ ì´ 5íšŒ ì¶œë ¥í•˜ëŠ” í”„ë¡œê·¸ëž¨ì„ ìž‘ì„±í•´ ë³´ìž. 
+		 * ë‹¨ ì´ 5íšŒì— ê±¸ì³ì„œ ì¶œë ¥ì´ ì´ë£¨ì–´ ì ¸ì•¼ í•˜ê³ , 
+		 * ì´ë¥¼ ìœ„í•´ì„œ êµ¬ì„±ì´ ë˜ëŠ” ë‹¤ì„¯ ë¬¸ìž¥ ëª¨ë‘ ì°¨ì´ê°€ ìžˆì–´ì•¼ í•œë‹¤.
 		 * */
 		
 		System.out.println(15);
@@ -19,3 +19,4 @@ public class Test2 {
 	}
 
 }
+

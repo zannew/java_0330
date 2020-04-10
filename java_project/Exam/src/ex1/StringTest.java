@@ -5,13 +5,13 @@ public class StringTest {
 	public static void main(String[] args) {
 
 		double dd = 1D;
-		String a = 7 + " ";		//¹®ÀÚ¿­7°ú " "ÀÌ Ãâ·Â
-		String b = " "+ 7;		//¹®ÀÚ¿­" "°ú 7ÀÌ Ãâ·Â
-		String c = 7 + "";		//¹®ÀÚ¿­ 7 Ãâ·Â
-		String d = ""+ 7;		//¹®ÀÚ¿­ 7 Ãâ·Â
-		String e = ""+"";		//¹®ÀÚ¿­ÀÌÁö¸¸ Ãâ·Â¾øÀ½
-		String f = 7 + 7 +"";	//intÇüÀ¸·Î 7+7 ´õÇÏ±â ¿¬»ê ÈÄ ¹®ÀÚ¿­ Ãâ·Â
-		String g = ""+ 7 + 7;	//¹®ÀÚ¿­·Î º¯È¯ ÈÄ 7°ú 7 ¹®ÀÚ¿­·Î Ãâ·Â
+		String a = 7 + " ";		//ë¬¸ìì—´7ê³¼ " "ì´ ì¶œë ¥
+		String b = " "+ 7;		//ë¬¸ìì—´" "ê³¼ 7ì´ ì¶œë ¥
+		String c = 7 + "";		//ë¬¸ìì—´ 7 ì¶œë ¥
+		String d = ""+ 7;		//ë¬¸ìì—´ 7 ì¶œë ¥
+		String e = ""+"";		//ë¬¸ìì—´ì´ì§€ë§Œ ì¶œë ¥ì—†ìŒ
+		String f = 7 + 7 +"";	//intí˜•ìœ¼ë¡œ 7+7 ë”í•˜ê¸° ì—°ì‚° í›„ ë¬¸ìì—´ ì¶œë ¥
+		String g = ""+ 7 + 7;	//ë¬¸ìì—´ë¡œ ë³€í™˜ í›„ 7ê³¼ 7 ë¬¸ìì—´ë¡œ ì¶œë ¥
 		System.out.println(a);
 		System.out.println(b);
 		System.out.println(c);
@@ -23,3 +23,4 @@ public class StringTest {
 	}
 
 }
+

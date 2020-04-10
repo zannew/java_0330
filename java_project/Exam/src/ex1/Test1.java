@@ -4,9 +4,9 @@ public class Test1 {
 
 	public static void main(String[] args) {
 		/*
-		 * ¹®Á¦ 1. ´ÙÀ½ µÎ ¹®ÀåÀ» Ãâ·ÂÇÏ´Â ÇÁ·Î±×·¥À» ÀÛ¼ºÇØ º¸ÀÚ.
-		 * System.out.println( ¡°2+5=¡± + 2+5 ); 
-		 * System.out.println( ¡°2+5=¡± + (2+5) );
+		 * ë¬¸ì œ 1. ë‹¤ìŒ ë‘ ë¬¸ì¥ì„ ì¶œë ¥í•˜ëŠ” í”„ë¡œê·¸ë¨ì„ ì‘ì„±í•´ ë³´ì.
+		 * System.out.println( â€œ2+5=â€ + 2+5 ); 
+		 * System.out.println( â€œ2+5=â€ + (2+5) );
 		  */
 		
 		System.out.println("2+5 = "+ 2+5);
@@ -14,3 +14,4 @@ public class Test1 {
 	}
 
 }
+

@@ -1,10 +1,11 @@
+
 package ex1;
 
 public class UnicodeChar {
 
 	public static void main(String[] args) {
 
-		char c1 = 'A';	//'A' ¡æ 65·Î º¯°æµÇ°í ´ëÀÔ ¿¬»ê
+		char c1 = 'A';	//'A' â†’ 65ë¡œ ë³€ê²½ë˜ê³  ëŒ€ì… ì—°ì‚°
 		char c2 = 66;	
 		
 		System.out.println(c1);
@@ -12,3 +13,4 @@ public class UnicodeChar {
 	}
 
 }
+

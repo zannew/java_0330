@@ -3,15 +3,16 @@ package ex1;
 public class CastingOperation {
 
 	public static void main(String[] args) {
-		char ch1 ='A';	//¹®ÀÚÅ¸ÀÔÀÇ º¯¼ö ch1¼±¾ğ, ÃÊ±âÈ­ÇØ¼­ 'A'ÀúÀå
+		char ch1 ='A';	//ë¬¸ìíƒ€ì…ì˜ ë³€ìˆ˜ ch1ì„ ì–¸, ì´ˆê¸°í™”í•´ì„œ 'A'ì €ì¥
 		char ch2 = 'Z';
 		
-		int num1 = ch1;	//ch1 char -> int (Çüº¯È¯ ÀÏ¾î³²)
-		int num2 = (int)ch2;	//¸í½ÃÀûÇüº¯È¯
+		int num1 = ch1;	//ch1 char -> int (í˜•ë³€í™˜ ì¼ì–´ë‚¨)
+		int num2 = (int)ch2;	//ëª…ì‹œì í˜•ë³€í™˜
 		
-		System.out.println("¹®ÀÚAÀÇ À¯´ÏÄÚµå °ª:"+num1);	//À¯´ÏÄÚµå °ª ¹®ÀÚ¿­ Ãâ·Â
-		System.out.println("¹®ÀÚZÀÇ À¯´ÏÄÚµå °ª:"+num2);	//À¯´ÏÄÚµå °ª ¹®ÀÚ¿­ Ãâ·Â
+		System.out.println("ë¬¸ìAì˜ ìœ ë‹ˆì½”ë“œ ê°’:"+num1);	//ìœ ë‹ˆì½”ë“œ ê°’ ë¬¸ìì—´ ì¶œë ¥
+		System.out.println("ë¬¸ìZì˜ ìœ ë‹ˆì½”ë“œ ê°’:"+num2);	//ìœ ë‹ˆì½”ë“œ ê°’ ë¬¸ìì—´ ì¶œë ¥
 		
 	}
 
 }
+

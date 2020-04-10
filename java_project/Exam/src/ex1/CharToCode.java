@@ -3,13 +3,14 @@ package ex1;
 public class CharToCode {
 
 	public static void main(String[] args) {
-		char ch = 'A';	//char ch=\u0041';·Î ¹Ù²ãµµ °°´Ù
-		int code =(int)ch; //ch¿¡ ÀúÀåµÈ °ªÀ» intÇüÀ¸·Î º¯È¯ÇØ ÀúÀå
+		char ch = 'A';	//char ch=\u0041';ë¡œ ë°”ê¿”ë„ ê°™ë‹¤
+		int code =(int)ch; //chì— ì €ì¥ëœ ê°’ì„ intí˜•ìœ¼ë¡œ ë³€í™˜í•´ ì €ì¥
 		
-		System.out.println(ch);		//¹®ÀÚÅ¸ÀÔÀ¸·Î Ãâ·Â
-		System.out.println(code);	//intÅ¸ÀÔÀ¸·Î Ãâ·Â
+		System.out.println(ch);		//ë¬¸ìíƒ€ì…ìœ¼ë¡œ ì¶œë ¥
+		System.out.println(code);	//intíƒ€ì…ìœ¼ë¡œ ì¶œë ¥
 		
 		
 	}
 
 }
+

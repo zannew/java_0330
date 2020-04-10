@@ -3,12 +3,13 @@ package ex1;
 public class CodeToChar {
 
 	public static void main(String[] args) {
-		int code =65;	//¶Ç´Â int code = 0x0041;
-		char ch = (char)code;	//¸í½ÃÀûÇüº¯È¯
+		int code =65;	//ë˜ëŠ” int code = 0x0041;
+		char ch = (char)code;	//ëª…ì‹œì í˜•ë³€í™˜
 		
-		System.out.println(code);	//intÅ¸ÀÔÀ¸·Î Ãâ·Â
-		System.out.println(ch);		//¹®ÀÚÅ¸ÀÔÀ¸·Î Ãâ·Â
+		System.out.println(code);	//intíƒ€ì…ìœ¼ë¡œ ì¶œë ¥
+		System.out.println(ch);		//ë¬¸ìíƒ€ì…ìœ¼ë¡œ ì¶œë ¥
 		
 	}
 
 }
+

@@ -3,13 +3,14 @@ package ex1;
 public class SpecialChar {
 
 	public static void main(String[] args) {
-		char single = '\'';			// \'ÇÏ¸é È¬µû¿ÈÇ¥ Ãâ·Â(single = ''';¿Í °°ÀÌ ÇÒ ¼ö ¾ø´Ù)
-		String dblQuote = "\"Hello\"";		// /"ÇÏ¸é °ãµû¿ÈÇ¥ Ãâ·Â
-		String root = "c:\\";			//	\\ÇÏ¸é ¿ª½½·¡½Ã Ãâ·Â
-		System.out.println(single);		//¹®ÀÚÅ¸ÀÔÀ¸·Î Ãâ·Â
-		System.out.println(dblQuote);	//¹®ÀÚ¿­Å¸ÀÔÀ¸·Î Ãâ·Â
-		System.out.println(root);		//¹®ÀÚ¿­Å¸ÀÔÀ¸·Î Ãâ·Â
+		char single = '\'';			// \'í•˜ë©´ í™‘ë”°ì˜´í‘œ ì¶œë ¥(single = ''';ì™€ ê°™ì´ í•  ìˆ˜ ì—†ë‹¤)
+		String dblQuote = "\"Hello\"";		// /"í•˜ë©´ ê²¹ë”°ì˜´í‘œ ì¶œë ¥
+		String root = "c:\\";			//	\\í•˜ë©´ ì—­ìŠ¬ë˜ì‹œ ì¶œë ¥
+		System.out.println(single);		//ë¬¸ìíƒ€ì…ìœ¼ë¡œ ì¶œë ¥
+		System.out.println(dblQuote);	//ë¬¸ìì—´íƒ€ì…ìœ¼ë¡œ ì¶œë ¥
+		System.out.println(root);		//ë¬¸ìì—´íƒ€ì…ìœ¼ë¡œ ì¶œë ¥
 		
 	}
 
 }
+
