@@ -11,7 +11,7 @@ public class DivOp {
 		System.out.println("num1 / num2 = " + num1 / num2);
 		
 		//실수의 나누기 연산
-		System.out.println("num1 / num2 = " + 7f / 3f);
+		System.out.println("num1 / num2 = " + 7.0f / 3.0f);
 		System.out.println("num1 / num2 = " + (float)num1 / num2);
 		
 	}

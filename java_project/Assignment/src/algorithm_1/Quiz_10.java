@@ -5,7 +5,7 @@ public class Quiz_10 {
 		int a = 1;
 		int sum = 0;
 		
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; a+i <= 100; i++) {
 			if((a+i)%2==0) {
 				sum = sum + (a+i)*-1;
 			}else {
