@@ -1,6 +1,6 @@
-package ex;
+package cond_and_loop_1;
 
-public class CondToIE {
+public class Quiz_3 {
 	public static void main(String[] args) {
 	
 	int num1=50;

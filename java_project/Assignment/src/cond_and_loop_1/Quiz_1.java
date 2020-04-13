@@ -1,4 +1,4 @@
-package ex;
+package cond_and_loop_1;
 
 public class Quiz_1 {
 	public static void main(String[] args) {
