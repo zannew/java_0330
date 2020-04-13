@@ -9,7 +9,7 @@ public class Q_4 {
 		  
 		  boolean result = true;
 		  
-		  result = a>b && a>c;
+		  result = a>b && b>c;
 		   
 		  System.out.println(result);	
 

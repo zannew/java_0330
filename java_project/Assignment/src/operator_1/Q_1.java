@@ -7,7 +7,7 @@ public class Q_1 {
 		  int num2=20;
 		  int num3=30;
 		  
-		  num1=num2=num3;
+		  num1=num2=num3;		//대입연산 방향( ← 순서)
 		  
 		  System.out.println(num3);
 		  System.out.println(num2);

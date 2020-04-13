@@ -18,5 +18,16 @@ public class Q_3 {
 		  sum = sum + num2;
 		  System.out.println(sum);
 		  
+//		  int a = 3+6;
+//		  int b = a+9;
+//		  int c = b+12;
+//		  
+//		  System.out.println(a);
+//		  System.out.println(b);
+//		  System.out.println(c);
+//공통부분  → 코드, 메서드 : 클래스를 사용한다. (시간단축)
+//CPU의 성능 : 얼마나 빠르게 사용자의 요청(명령)을 실행하나?
+		  
+		  
 	}
 }
