@@ -1,4 +1,4 @@
-package ex;
+package cond_and_loop_2;
 
 public class Quiz_9 {
 	public static void main(String[] args) {
@@ -15,7 +15,7 @@ public class Quiz_9 {
 		for(int i=0; i < str.length(); i++) {
 		 
 			char num=str.charAt(i);
-			sum +=(int)num+'0';
+			sum +=num-'0';
 			System.out.println(num);
 			
 		}

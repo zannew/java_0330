@@ -13,6 +13,7 @@ public class Quiz_12 {
 			}else {	num++; }
 			
 			if(sum>1000){
+				System.out.println(num+"값을 더했을 때 최초로 1000이 넘어간다.");
 				System.out.println(sum);
 				break;
 			}

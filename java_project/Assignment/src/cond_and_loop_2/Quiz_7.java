@@ -1,4 +1,4 @@
-package ex;
+package cond_and_loop_2;
 
 import java.util.Random;
 
