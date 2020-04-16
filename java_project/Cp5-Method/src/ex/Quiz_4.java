@@ -10,67 +10,28 @@ public class Quiz_4 {
 	
 	public static void main(String[] args) {
 		
-		prime_number(6);
+		for (int i = 0; i <= 100; i++) {
+			if(Quiz_4.prime_number(i)) {
+				
+			System.out.println("1이상 100 이하의 소수 : "+i);
+			
+			}
+		}
 		
 		
 	}
 	
-	static void prime_number(int num) {
+	static boolean prime_number(int num) {
 		
-		boolean result = false;
+		boolean result = true;
 		
-		if(num<=1) {
-			System.out.println(result);
-		
-		for (int i=2; i < num ; i++) {
+		for(int i=1; i<num; i++) {
 			if(num%i==0) {
-				System.out.println(result);
-
+				result = false;
 			}else {
 				result=true;
-				System.out.println(result);
-
 			}
-		}
-		}
-//		System.out.println(result);
-		
-		
-		
-		
-		
-		
-//		if(num%2==0) {
-//			result = false;
-//			System.out.println(result);
-//
-//		}else if(num%3==0) {
-//			result = false;
-//			System.out.println(result);
-//			
-//		}else if(num%5==0) {
-//			result = false;
-//			System.out.println(result);
-//			
-//		}else if(num%7==0){
-//			result = false;
-//			System.out.println(result);
-//			
-//		}else {
-//			result = true;
-//			System.out.println(result);
-//
-//		}
-//	}
-	
-//	static void print_prime() {
-//		
-//		
-//		for (int i=1; i<=100; i++) {
-//			
-//			
-//		}
-//	}
+		}return result;
 	
 	
 	}
