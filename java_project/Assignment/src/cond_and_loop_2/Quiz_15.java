@@ -10,13 +10,14 @@ public class Quiz_15 {
 
 		while(tmp !=0) {
 			for (int i = 1; i < number; i*=10) {
+					
 				result+=tmp%(10*i);
 				System.out.println(i);
 				System.out.println(tmp);
 				tmp-=tmp%(10*i);
+				System.out.println(result);
+				result
 		}
-			number=tmp;
-			System.out.println(result);
 			System.out.println(number);
 			
 //			if(tmp>=number)
