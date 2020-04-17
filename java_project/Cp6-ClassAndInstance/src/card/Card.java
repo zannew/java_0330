@@ -8,7 +8,7 @@ public class Card {
 	String kind = "";
 	int number=0;
 	
-	
+	public Card(){}
 	
 	Card(String type, int num){
 		kind = type;
