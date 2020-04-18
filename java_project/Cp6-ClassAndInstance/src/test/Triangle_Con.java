@@ -17,6 +17,7 @@ public class Triangle_Con {
 	//기본 생성자
 	Triangle_Con(){ }		//한번도 정의 되지 않은 경우만 자동생성
 	
+	//생성자
 	Triangle_Con(int w, int h){
 		width=w;
 		height=h;
