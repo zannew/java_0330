@@ -9,14 +9,14 @@ public class PhoneInfor {
 	static String phoneNum;
 	static String bDay;
 
-	//생성자
+	//생성자 오버로딩
 	PhoneInfor(String name, String number, String bDay){
 		this.name=name;
 		phoneNum=number;
 		this.bDay=bDay;
 	}
 	
-	//생성자(without bDay)
+	//생성자(without bDay) 오버로딩
 	PhoneInfor(String name, String number){
 		this.name=name;
 		phoneNum=number;
