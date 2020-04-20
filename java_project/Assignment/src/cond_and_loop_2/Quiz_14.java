@@ -16,12 +16,13 @@ public class Quiz_14 {
 		count++;
 		System.out.print("1과 100사이의 값을 입력하세요 :");
 		input = s.nextInt(); // 입력받은 값을 변수 input에 저장한다.
-		System.out.println(answer);
 		if(input==answer) {
 			System.out.println("숫자를 맞췄습니다.");
-			System.out.println("시도 횟수 :"+count+"만에 성공");
+			System.out.println("시도 횟수는 :"+count+"번");
 			break;
-		}
+		}else if(input<answer) {
+			System.out.println("더 큰 수를 입력하세요");
+		}else {System.out.println("더 작은 수를 입력하세요");}
 
 		} while(true); // 무한반복문
 		

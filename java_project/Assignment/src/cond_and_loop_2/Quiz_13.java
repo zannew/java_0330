@@ -8,12 +8,12 @@ public class Quiz_13 {
 		char ch = ' ';
 		boolean isNumber = true;
 
-		// 반복문과 charAt(inti)를 이용해서 문자열의 문자를
+		// 반복문과 charAt(int i)를 이용해서 문자열의 문자를
 		// 하나씩 읽어서 검사한다.
 
 		for(int i=0; i < value.length() ;i++) {
 			ch = value.charAt(i);
-			if(ch>=48 && ch<=57) {
+			if(ch>='0' && ch<='9') {
 			}else {
 				isNumber=false;
 			}
@@ -25,6 +25,6 @@ public class Quiz_13 {
 		System.out.println(value+"는 숫자가 아닙니다.");
 		}
 
-	} // end ofmain
+	} // end of main
 
-} // end ofclass
+} // end of class
