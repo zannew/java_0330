@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 public class PhonebookMain {
 	
-	Scanner sc = new Scanner(System.in);	//입력받기위한 객체 생성
+	Scanner sc = new Scanner(System.in);	//입력받기위한 Scanner객체 생성
 	PhoneInfo info;							//PhoneInfo클래스 객체 생성위한 변수
 	PhoneInfo[] pBook;						//PhoneInfo[] 배열을 위한 변수 pBook
-	int cnt;								//배열에 저장된 정보 개수 세는 변수
-	private int i;							//반복문, index를 위한 변수 i
+	int cnt;								//배열에 저장된 정보 개수 카운팅하는 변수
+	private int i;							//반복문, 배열index를 위한 변수 i
 	
 	//생성자
 	public PhonebookMain() {
