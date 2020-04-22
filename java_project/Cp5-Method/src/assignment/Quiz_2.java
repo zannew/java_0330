@@ -1,5 +1,5 @@
-package ex;
-
+package assignment;
+/*주석 : 문제풀이*/
 import java.util.Scanner;
 
 public class Quiz_2 {
@@ -8,9 +8,17 @@ public class Quiz_2 {
 //		이 메서드를 호출하는 main메서드를 정의해 보자. 단 메서드 호출 시 전달되
 //		는 값의 순서에 상관없이 절대값이 계산되어서 출력되어야 한다.
 		
+//		abs(-10,20); 
+		
 		abs(5,-20);
 		
 	}
+	
+//	static void abs(int a, int b) {
+//		  System.out.println(a>=0? a:-a);
+//		  System.out.println(b>=0? b:-b);
+//		 }
+	
 	
 	static void abs(int a, int b) {
 		

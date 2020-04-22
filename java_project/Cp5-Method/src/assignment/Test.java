@@ -1,4 +1,4 @@
-package ex;
+package assignment;
 
 public class Test {
 //a,b,c 라는 int를 받아서 이 세수의 합을 리턴하는 function

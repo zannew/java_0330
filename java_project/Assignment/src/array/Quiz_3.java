@@ -5,7 +5,7 @@ public class Quiz_3 {
 	//메인메서드
 	public static void main(String[] args) {
 		//2차원 배열 생성
-		int[][] ar2 = new int[3][4];
+		int[][] ar2 = new int[10][5];
 		//메서드 호출 - 매개변수로 ar2 입력
 		insertValue(ar2);
 		changeRow(ar2);
@@ -39,6 +39,16 @@ public class Quiz_3 {
 				arr[i][j]=arr[arr.length-1][j];
 				//임시변수에 담았던 첫번째행을 마지막행에 담아준다.
 				arr[arr.length-1][j]=tmp;
+				
+/*문제풀이*/
+//				int[] temp = new int[arr[0].length];
+//
+//			      temp = arr[arr.length-1];
+//			      
+//			      for(int i=arr.length-1; i>0;i--){
+//			        arr[i]=arr[i-1];
+//			      }
+//			      arr[0] = temp;
 				
 				
 				System.out.print("arr["+i+"]["+j+"]"+arr[i][j]+"\t");
