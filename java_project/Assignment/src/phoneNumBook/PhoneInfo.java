@@ -62,6 +62,7 @@ public class PhoneInfo {
 		System.out.println("생일: "+this.birthday);
 	
 	}
+	//매개변수로 받은 문자열과 name변수에 저장된 문자열 비교메서드
 	public boolean checkName(String name) {
 		return this.name.equals(name);
 	}		

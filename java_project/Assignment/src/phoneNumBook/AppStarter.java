@@ -30,18 +30,23 @@ public class AppStarter {
 		
 		switch(selectOpt) {
 		
+		//정보가 담긴 객체를 저장
 		case 1:
 			main.storeInst(main.createInst());
 			break;
+		//이름으로 정보 검색
 		case 2:
 			main.searchName();
 			break;
+		//이름 검색으로 정보 삭제
 		case 3:
 			main.deleteName();
 			break;
+		//저장된 정보 전부 출력
 		case 4:
 			main.showAllInfo();
 			break;
+		//프로그램 종료
 		case 5:
 			return;
 		
