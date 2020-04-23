@@ -8,9 +8,9 @@ public class TestMain {
 		
 		Singleton s = Singleton.getInstance();		//객체를 불러온다
 		s.print();
-		
+		//객체 생성
 		Member member = new Member();
-		
+		//getName(getter)
 		System.out.println(member.getName());
 		
 	}
