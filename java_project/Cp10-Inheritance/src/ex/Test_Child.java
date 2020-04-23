@@ -10,9 +10,7 @@ public class Test_Child extends Test_Parent {
 		//인스턴스 변수 num2에 입력받은 매개변수 저장
 		num2=number2;
 		//
-		add(num+num2);
+		super.add(number+number2);
 	}
-	
-	
 	
 }

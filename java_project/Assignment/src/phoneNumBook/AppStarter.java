@@ -7,7 +7,7 @@ public class AppStarter {
 	public static void main(String[] args) {
 		
 	
-	PhonebookMain main = new PhonebookMain();
+	 PhonebookMain main = new PhonebookMain();
 	
 	
 	

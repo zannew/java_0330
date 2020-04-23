@@ -41,9 +41,9 @@ Project : ver 0.30
 
 public class PhoneInfo {
 
-	String name;
-	String phoneNum;
-	String birthday;
+	private String name;
+	private String phoneNum;
+	private String birthday;
 	
 	//생성자
 	public PhoneInfo(String name, String phoneNum, String bDay) {

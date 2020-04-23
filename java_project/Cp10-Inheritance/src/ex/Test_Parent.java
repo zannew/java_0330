@@ -2,8 +2,7 @@ package ex;
 
 public class Test_Parent {
 
-	int num;
-	
+	private int num;
 	
 	public Test_Parent(int number) {
 
@@ -11,9 +10,8 @@ public class Test_Parent {
 		
 	}
 	void add(int number) {
-		System.out.println(number+number);
+		System.out.println("상위클래스입니다. :"+(number+number));
+		
 	}
-	
-	
 	
 }

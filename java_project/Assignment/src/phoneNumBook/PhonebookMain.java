@@ -5,9 +5,9 @@ import java.util.Scanner;
 public class PhonebookMain {
 	
 	Scanner sc = new Scanner(System.in);	//입력받기위한 Scanner객체 생성
-	PhoneInfo info;							//PhoneInfo클래스 객체 생성위한 변수
-	PhoneInfo[] pBook;						//PhoneInfo[] 배열을 위한 변수 pBook
-	int cnt;								//배열에 저장된 정보 개수 카운팅하는 변수
+	private PhoneInfo info;							//PhoneInfo클래스 객체 생성위한 변수
+	private PhoneInfo[] pBook;						//PhoneInfo[] 배열을 위한 변수 pBook
+	private int cnt;						//배열에 저장된 정보 개수 카운팅하는 변수
 	private int i;							//반복문, 배열index를 위한 변수 i
 	
 	//생성자
@@ -47,7 +47,7 @@ public class PhonebookMain {
 		pBook[cnt]=info;
 		cnt++;
 	}
-	//배열마다 주소값 저장하고 개수 카운팅
+	//배열마다 주소값 저장하고 개수 카운팅(오버로딩)
 	void storeInst() {
 		pBook[cnt]=createInst();
 		cnt++;
@@ -56,7 +56,7 @@ public class PhonebookMain {
 	//저장된 정보 모두 출력 기능
 	void showAllInfo() {
 		
-		for(int i=0;i<cnt;i++) {
+		for(i=0;i<cnt;i++) {
 			pBook[i].showInfo();
 			System.out.println("=================");
 		}
@@ -82,7 +82,7 @@ public class PhonebookMain {
 		
 		int searchIndex=-1;
 		
-		for(int i=0;i<cnt;i++) {
+		for(i=0;i<cnt;i++) {
 			if(pBook[i].checkName(name)) {
 				searchIndex=i;
 				
@@ -104,7 +104,7 @@ public class PhonebookMain {
 		if(searchIndex<0) {
 			System.out.println("삭제하실 이름이 없습니다.");
 		}else {
-			for(int i=0;i<cnt-1;i++) {
+			for(i=0;i<cnt-1;i++) {
 				pBook[i]=pBook[i+1];
 				
 			}cnt--;
