@@ -14,16 +14,29 @@ public class InstanceOf {
 
 	public static void main(String[] args) {
 		
+		
 		Box box1=new Box();
 		Box box2=new PaperBox();
 		Box box3=new GoldPaperBox();
-		PaperBox box4=new PlasticBox();
+		Box box4=new PlasticBox();
+		
+		//배열에 담기
+		Box[] b = new Box[4];
+		b[0]=new Box();
+		b[1]=new PaperBox();
+		b[2]=new GoldPaperBox();
+		b[3]=new PlasticBox();
+		
+		//배열에 담긴 참조변수로 메서드호출
+		for(int i=0;i<b.length;i++) {
+			wrapBox(b[i]);
+		}
 		
 		
-		wrapBox(box1);
-		wrapBox(box2);
-		wrapBox(box3);
-		wrapBox(box4);
+//		wrapBox(box1);
+//		wrapBox(box2);
+//		wrapBox(box3);
+//		wrapBox(box4);
 		
 	}
 	
@@ -31,14 +44,10 @@ public class InstanceOf {
 	
 	public static void wrapBox(Box box) {
 		
-		
 		box.wrap();
 		
-		
 	}
-	
 }
-
 
 class Box{
 	
