@@ -1,4 +1,4 @@
-package phoneNumBook;
+package phoneNumBook_ver_4_1;
 
 /*
  * Version 0.1 전화번호 관리 프로그램. 
@@ -41,25 +41,28 @@ Project : ver 0.30
 
 public class PhoneInfo {
 
-	private String name;
-	private String phoneNum;
-	private String birthday;
+	protected String name;
+	protected String phoneNum;
+	protected String address;
+	protected String email;
 	
 	//생성자
-	public PhoneInfo(String name, String phoneNum, String bDay) {
+	public PhoneInfo(String name, String phoneNum, String address, String email) {
 		this.name=name;
 		this.phoneNum=phoneNum;
-		this.birthday=bDay;
+		this.address=address;
+		this.email=email;
 	}
 	//생성자2(생일없음)
-	public PhoneInfo(String name, String PhoneNum) {
-		this(name, PhoneNum, "입력된 정보가 없음.");
-	}
+//	public PhoneInfo(String name, String PhoneNum) {
+//		this(name, PhoneNum, "입력된 정보가 없음.");
+//	}
 	
 	void showInfo() {
 		System.out.println("이름: "+this.name);
 		System.out.println("전화번호: "+this.phoneNum);
-		System.out.println("생일: "+this.birthday);
+		System.out.println("주소: "+this.address);
+		System.out.println("이메일: "+this.email);
 	
 	}
 	//매개변수로 받은 문자열과 name변수에 저장된 문자열 비교메서드

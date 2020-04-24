@@ -17,11 +17,20 @@ public class Avengers {
 
 class IronMan extends Avengers{
 	
-	String attack;
 	
 	IronMan(String heroName, String action){
 		super(heroName);
-		attack=action;
+//		super.appear();
 	}
 	
 }
+
+class CaptainAmerica extends Avengers{
+
+	CaptainAmerica(String heroName, String action) {
+		super(heroName);
+	}
+	
+}
+
+
