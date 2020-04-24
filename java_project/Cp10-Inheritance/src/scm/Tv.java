@@ -11,4 +11,11 @@ public class Tv extends Product {
 		return "Tv";
 	}
 	
+	void display() {
+		System.out.println("Tv를 시청합니다.");
+	}
+	
+	
+	
+	
 }

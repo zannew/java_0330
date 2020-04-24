@@ -25,6 +25,26 @@ public class ScmMain {
 		products[1]=new Computer(300);
 		products[2]=new Audio(200);
 		
+//		products[0].display();			
+		//명시적 형변환 필요 : 상위타입의 멤버 → 하위타입의 멤버
+		//instanceof 연산자 : p1 instanceof Computer → true of false 
+		//참조변수가 참조하는 인스턴스를 특정클래스 타입으로 형변환 가능한지 판단하는 연산자
+		
+		if(products[0] instanceof Computer) {
+			((Computer)products[0]).programming();
+		}
+		
+		//전달하는 배열에 컴퓨터가 있다면 프로그래밍을 하겠다.
+		for(int i=0; i<products.length;i++) {
+			if(products[0] instanceof Computer) {
+				((Computer)products[0]).programming();
+			}
+		}
+		
+		System.out.println("==========================");
+		System.out.println("==========================");
+		
+		
 		int sumOfPrice=0;
 		int sumOfPoint=0;
 		
@@ -33,8 +53,8 @@ public class ScmMain {
 			sumOfPrice += products[i].price;
 			sumOfPoint += products[i].bonusPoint;
 		}
-		System.out.println("전체 제품의 가격의 합은 : " + sumOfPrice);
-		System.out.println("전체 제품의 포인트 합은 : " + sumOfPoint);
+//		System.out.println("전체 제품의 가격의 합은 : " + sumOfPrice);
+//		System.out.println("전체 제품의 포인트 합은 : " + sumOfPoint);
 		
 		
 		//구매자가 제품을 구매하는 시뮬레이션
@@ -42,19 +62,27 @@ public class ScmMain {
 		Buyer buyer = new Buyer();
 		
 		//제품(객체) 생성
-		Tv product1 = new Tv(300);
-		Computer product2 = new Computer(500);
-		Audio product3 = new Audio(300);
+		Tv product1 = new Tv(200);
+		Computer product2 = new Computer(250);
+		Audio product3 = new Audio(100);
 		
 		//Tv구매
 		buyer.buy(product1);
 		//Computer구매
 		buyer.buy(product2);
 		//Audio구매
-		buyer.buy(p3);
+		buyer.buy(product3);
+		//Computer추가구매
+		buyer.buy(product2);
 		
-		System.out.println("현재 보유금액: "+buyer.money);
-		System.out.println("현재 보유포인트: "+buyer.bonusPoint);
+		
+//		System.out.println("현재 보유금액: "+buyer.money);
+//		System.out.println("현재 보유포인트: "+buyer.bonusPoint);
+		
+		
+		buyer.summary();
+		
+		
 		
 		
 	}

@@ -12,5 +12,7 @@ public class Audio extends Product {
 		return "Audio";
 	}
 	
-	
+	void music() {
+		System.out.println("음악을 듣습니다.");
+	}
 }
