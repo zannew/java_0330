@@ -13,8 +13,11 @@ public class PhoneUnivInfor extends PhoneInfo {
 		
 	}
 	
-	
-	
-	
+	void showDetail() {
+		System.out.println("-----details-----");
+		System.out.println("전공: "+this.major);
+		System.out.println("학년: "+this.year);
+		System.out.println("-----------------");
+	}
 	
 }

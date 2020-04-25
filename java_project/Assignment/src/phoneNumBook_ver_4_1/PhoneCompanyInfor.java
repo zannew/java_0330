@@ -9,7 +9,11 @@ public class PhoneCompanyInfor extends PhoneInfo {
 		super(name, phoneNum, address, email);
 		this.company=company;
 	}
-
+	void showDetail() {
+		System.out.println("-----details-----");
+		System.out.println("직장: "+this.company);
+		System.out.println("-----------------");
+	}
 	
 	
 	

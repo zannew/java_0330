@@ -4,73 +4,100 @@ import java.util.Scanner;
 
 public class PhonebookMain {
 	
-	Scanner sc = new Scanner(System.in);	//입력받기위한 Scanner객체 생성
-	private PhoneInfo info;							//PhoneInfo클래스 객체 생성위한 변수
-	private PhoneInfo[] pBook;						//PhoneInfo[] 배열을 위한 변수 pBook
-	private int numOfInfo;						//배열에 저장된 정보 개수 카운팅하는 변수
-//	private int i;							//반복문, 배열index를 위한 변수 i
+	Scanner kb = new Scanner(System.in);
+	private PhoneInfo info;							//PhoneInfo클래스 변수선언
+	private PhoneInfo[] pBook;						//PhoneInfo[] 변수 pBook 선언
+	private int numOfFriend;						//친구 정보 개수 카운팅  변수 선언
 	
-	//생성자
-	public PhonebookMain() {
-		pBook = new PhoneInfo[100];			//pBook배열의 객체생성
-		cnt=0;								//cnt변수 초기화
+	//생성자 초기화
+	public PhonebookMain(int numOfFriend) {
+		pBook = new PhoneInfo[numOfFriend];			//PhoneInfo[]타입 객체 생성
+		numOfFriend=0;								//numOfFriend변수 초기화
 	}
 	
 	//정보입력하고 객체 생성
-	PhoneInfo createInst() {
-		//info null값으로 초기화
-		info =null;
+	PhoneInfo createInst(int selectOpt2) {
+		//info인스턴스 변수를  null값으로 초기화
+		info =null;									//참조변수 info를  null값으로 초기화
 		
-		System.out.println("저장할 정보를 입력하는 페이지입니다.");
 		
-		System.out.println("이름을 입력하세요 : ");
-		String name=sc.nextLine();
-		
-		System.out.println("전화번호를 입력하세요 : ");
-		String phoneNum=sc.nextLine();
-		
-		System.out.println("주소를 입력하세요 : ");
-		String address=sc.nextLine();
-
-		System.out.println("이메일을 입력하세요 : ");
-		String email=sc.nextLine();
-		
-		info= new PhoneInfo(name, phoneNum,address, email);
-		
-		//입력받은 데이터로 객체 생성 및 참조변수에 저장
-//		if(bDay==null || bDay.isEmpty()) {
-//			info = new PhoneInfo(name, phoneNum,address, email);
-//		}else {
-//			info = new PhoneInfo(name, phoneNum, address, email, major, year);
-//		}
-		
-		return info;
-	}
-
+			//1. 기본 정보 입력
+			System.out.println("저장할 정보 입력단계입니다.");
+			
+			//공통 기본 정보 입력 - 이름, 전화번호, 주소, 이메일
+			System.out.println("이름을 입력하세요 : ");
+			String name=kb.nextLine();
+			
+			System.out.println("전화번호를 입력하세요 : ");
+			String phoneNum=kb.nextLine();
+			
+			System.out.println("주소를 입력하세요 : ");
+			String address=kb.nextLine();
 	
-	//객체 저장 기능
-	void storeInst(PhoneInfo info) {
-		pBook[cnt]=info;
-		cnt++;
+			System.out.println("이메일을 입력하세요 : ");
+			String email=kb.nextLine();
+			
+			//기본정보로 객체생성
+			info=new PhoneInfo(name, phoneNum, address, email);
+
+		
+		//2.대학 친구 정보 입력
+		if(selectOpt2==2) {							
+			
+			System.out.println("전공을 입력하세요 : ");	
+			String major=kb.nextLine();
+			System.out.println("학년을 숫자로 입력하세요 : ");
+			String year=kb.nextLine();
+			
+			//대학 친구 정보로 객체생성
+			info=new PhoneUnivInfor(name, phoneNum, address, email, major, year);
+			
+		}
+		//3. 직장 동료 정보 입력
+		else if(selectOpt2==3) {					
+			
+			System.out.println("직장을 입력하세요 : ");
+			String company=kb.nextLine();
+			
+			//직장 친구 정보로 객체생성
+			info=new PhoneCompanyInfor(name, phoneNum, address, email, company);
+		
+		}
+		//4. 동호회 친구 선택
+		else if(selectOpt2==4) {					
+			
+			System.out.println("동호회 활동명을 입력하세요 : ");
+			String nickname=kb.nextLine();
+			
+			//동호회 친구 정보로 객체생성
+			info=new PhoneSocietyInfor(name, phoneNum, address, email, nickname);
+			
+		}return info;
 	}
-	//배열마다 주소값 저장하고 개수 카운팅(오버로딩)
-	void storeInst() {
-		pBook[cnt]=createInst();
-		cnt++;
+	
+	//정보 담긴 객체 참조변수 배열에 저장
+	void storeInst(PhoneInfo info) {
+		pBook[numOfFriend]=info;
+		numOfFriend++;
+		System.out.println("♠♠♠성공적으로 저장되었습니다.♠♠♠");
 	}
 
 	//저장된 정보 모두 출력 기능
 	void showAllInfo() {
 		
-		for(int i=0;i<cnt;i++) {
+		for(int i=0;i<numOfFriend;i++) {
+			
 			pBook[i].showBasicInfo();
+			pBook[i].showDetail();
+			
 			System.out.println("=================");
 		}
 	}
+	
 	//이름 검색하기
 	void searchName() {
 		System.out.println("검색하실 이름을 입력하세요 >> ");
-		String name=sc.nextLine();
+		String name=kb.nextLine();
 		
 		int searchIndex=searchIndexNum(name);
 		
@@ -79,7 +106,7 @@ public class PhonebookMain {
 			System.out.println("검색하신 이름이 없습니다.");
 		}else {
 			pBook[searchIndex].showBasicInfo();
-
+			pBook[searchIndex].showDetail();
 		}
 	}
 	
@@ -88,7 +115,7 @@ public class PhonebookMain {
 		
 		int searchIndex=-1;
 		
-		for(int i=0;i<cnt;i++) {
+		for(int i=0;i<numOfFriend;i++) {
 			if(pBook[i].checkName(name)) {
 				searchIndex=i;
 				
@@ -102,7 +129,7 @@ public class PhonebookMain {
 	void deleteName() {
 		
 		System.out.println("삭제하실 이름을 입력하세요 >> ");
-		String name=sc.nextLine();
+		String name=kb.nextLine();
 		
 		int searchIndex=searchIndexNum(name);
 		
@@ -110,24 +137,14 @@ public class PhonebookMain {
 		if(searchIndex<0) {
 			System.out.println("삭제하실 이름이 없습니다.");
 		}else {
-			for(int i=0;i<cnt;i++) {
+			for(int i=0;i<numOfFriend;i++) {
 				pBook[searchIndex]=pBook[i];
 				
-			}cnt--;
+			}numOfFriend--;
 			
-			System.out.println("삭제되었습니다.");
+			System.out.println("♠♠♠삭제되었습니다.♠♠♠");
 			
 		}
 		
-		
 	}
-	
-	
-	
-
-
-	
-	
-	
-
 }
