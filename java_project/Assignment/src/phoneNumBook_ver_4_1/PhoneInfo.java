@@ -58,13 +58,20 @@ public class PhoneInfo {
 //		this(name, PhoneNum, "입력된 정보가 없음.");
 //	}
 	
-	void showInfo() {
+	void showBasicInfo() {
 		System.out.println("이름: "+this.name);
 		System.out.println("전화번호: "+this.phoneNum);
 		System.out.println("주소: "+this.address);
 		System.out.println("이메일: "+this.email);
 	
 	}
+	
+	//오버라이딩을 위해 상위클래스에 생성
+	void showDetail() {	}
+	
+	
+	
+	
 	//매개변수로 받은 문자열과 name변수에 저장된 문자열 비교메서드
 	public boolean checkName(String name) {
 		return this.name.equals(name);

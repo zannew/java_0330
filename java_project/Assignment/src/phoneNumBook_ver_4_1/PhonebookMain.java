@@ -7,7 +7,7 @@ public class PhonebookMain {
 	Scanner sc = new Scanner(System.in);	//입력받기위한 Scanner객체 생성
 	private PhoneInfo info;							//PhoneInfo클래스 객체 생성위한 변수
 	private PhoneInfo[] pBook;						//PhoneInfo[] 배열을 위한 변수 pBook
-	private int cnt;						//배열에 저장된 정보 개수 카운팅하는 변수
+	private int numOfInfo;						//배열에 저장된 정보 개수 카운팅하는 변수
 //	private int i;							//반복문, 배열index를 위한 변수 i
 	
 	//생성자
@@ -19,7 +19,7 @@ public class PhonebookMain {
 	//정보입력하고 객체 생성
 	PhoneInfo createInst() {
 		//info null값으로 초기화
-		info=null;
+		info =null;
 		
 		System.out.println("저장할 정보를 입력하는 페이지입니다.");
 		
@@ -29,15 +29,21 @@ public class PhonebookMain {
 		System.out.println("전화번호를 입력하세요 : ");
 		String phoneNum=sc.nextLine();
 		
-		System.out.println("생일을 입력하세요 : ");
-		String bDay=sc.nextLine();
+		System.out.println("주소를 입력하세요 : ");
+		String address=sc.nextLine();
+
+		System.out.println("이메일을 입력하세요 : ");
+		String email=sc.nextLine();
+		
+		info= new PhoneInfo(name, phoneNum,address, email);
 		
 		//입력받은 데이터로 객체 생성 및 참조변수에 저장
-		if(bDay==null || bDay.isEmpty()) {
-			info = new PhoneInfo(name, phoneNum);
-		}else {
-			info = new PhoneInfo(name, phoneNum, bDay);
-		}
+//		if(bDay==null || bDay.isEmpty()) {
+//			info = new PhoneInfo(name, phoneNum,address, email);
+//		}else {
+//			info = new PhoneInfo(name, phoneNum, address, email, major, year);
+//		}
+		
 		return info;
 	}
 
@@ -57,7 +63,7 @@ public class PhonebookMain {
 	void showAllInfo() {
 		
 		for(int i=0;i<cnt;i++) {
-			pBook[i].showInfo();
+			pBook[i].showBasicInfo();
 			System.out.println("=================");
 		}
 	}
@@ -72,7 +78,7 @@ public class PhonebookMain {
 		if(searchIndex<0) {
 			System.out.println("검색하신 이름이 없습니다.");
 		}else {
-			pBook[searchIndex].showInfo();
+			pBook[searchIndex].showBasicInfo();
 
 		}
 	}
