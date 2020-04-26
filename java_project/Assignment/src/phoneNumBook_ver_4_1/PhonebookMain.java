@@ -137,8 +137,8 @@ public class PhonebookMain {
 		if(searchIndex<0) {
 			System.out.println("삭제하실 이름이 없습니다.");
 		}else {
-			for(int i=0;i<numOfFriend;i++) {
-				pBook[searchIndex]=pBook[i];
+			for(int i=searchIndex;i<numOfFriend;i++) {
+				pBook[i]=pBook[i+1];
 				
 			}numOfFriend--;
 			

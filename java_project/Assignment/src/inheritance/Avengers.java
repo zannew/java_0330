@@ -3,34 +3,26 @@ package inheritance;
 public class Avengers {
 
 	String name;
+	String nameOfWeapon;
+	String action;
+	int energy;
 	
-	Avengers(String heroName){
+	Avengers(String heroName, String nameOfWeapon, String action){
 		this.name=heroName;
-		
+		this.nameOfWeapon=nameOfWeapon;
+		this.action=action;
 	}
 	
-	void appear() {
-		System.out.println(this.name+"이(가) 등장했습니다.");
-	
+	void showIntro() {
+		System.out.println("게임을 시작합니다.");
+		 System.out.println("Name Of Hero : "+this.name);
+		 System.out.println("Weapon : "+this.nameOfWeapon);
+		 System.out.println("필살기 : "+this.action);
 	}
+	
+	void showStatement() {}
 }
 
-class IronMan extends Avengers{
-	
-	
-	IronMan(String heroName, String action){
-		super(heroName);
-//		super.appear();
-	}
-	
-}
 
-class CaptainAmerica extends Avengers{
-
-	CaptainAmerica(String heroName, String action) {
-		super(heroName);
-	}
-	
-}
 
 
