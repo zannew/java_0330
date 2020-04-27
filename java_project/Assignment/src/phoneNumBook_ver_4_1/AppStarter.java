@@ -5,12 +5,11 @@ import java.util.Scanner;
 public class AppStarter {
 	
 	
-
 	public static void main(String[] args) {
 		
-	Scanner sc = new Scanner(System.in);
 	//PhonebookMain 객체 생성 및 매개변수 입력
 	PhonebookMain main = new PhonebookMain(100);
+	Scanner sc = new Scanner(System.in);
 
 	
 		while(true) {
@@ -73,6 +72,10 @@ public class AppStarter {
 				
 			}	
 		}
+		
+		
+		
 	}
+	
 	
 }
