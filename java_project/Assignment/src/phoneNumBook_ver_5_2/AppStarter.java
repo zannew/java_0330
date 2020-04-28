@@ -1,10 +1,12 @@
-package phoneNumBook_ver_5_1;
+package phoneNumBook_ver_5_2;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class AppStarter {
 	
 	public static Scanner sc = new Scanner(System.in);
+	
 	
 	public static void main(String[] args) {
 		
@@ -25,10 +27,24 @@ public class AppStarter {
 			System.out.println(Menu.EXIT+". 목록 만들기 종료");
 			System.out.println("----------------");
 			
-			
 			int selectOpt=sc.nextInt();
-			sc.nextLine();
 			int selectOpt2;
+			
+			try {
+//			if(!(selectOpt>0 && selectOpt<7))
+				throw new Exception("정확한 숫자를 입력하세요.");
+			}catch(InputMismatchException e) {
+				System.out.println(e.getMessage());
+				System.out.println("다시 입력하세요.");
+				selectOpt=sc.nextInt();
+			}
+			catch(Exception e) {
+				System.out.println(e.getMessage());
+				System.out.println("다시 입력하세요.");
+				selectOpt=sc.nextInt();
+			}finally {
+				System.out.println("메뉴로 돌아갑니다.");
+			}
 		
 			
 			switch(selectOpt) {
