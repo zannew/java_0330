@@ -31,10 +31,9 @@ public class AppStarter {
 			int selectOpt2;
 			
 			try {
-//			if(!(selectOpt>0 && selectOpt<7))
+			if(!(selectOpt>0 && selectOpt<7))
 				throw new Exception("정확한 숫자를 입력하세요.");
 			}catch(InputMismatchException e) {
-				System.out.println(e.getMessage());
 				System.out.println("다시 입력하세요.");
 				selectOpt=sc.nextInt();
 			}
