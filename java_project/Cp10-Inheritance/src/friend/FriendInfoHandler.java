@@ -3,7 +3,20 @@ package friend;
 import java.util.Scanner;
 
 public class FriendInfoHandler {
+/*2020.04.28 싱글톤처리
+ * 1.manager클래스의 싱글톤 패턴
+생성자 접근제어지시자 : private (목적 : 인스턴스 생성을 금지)
+공동으로 사용할 인스턴스를 생성 : static + private
+만들어놓은 참조변수를 반환하는 메서드 필요 : static + public(외부접근 허용)
 
+ * */
+	//인스턴스를 하나만 가져야하는 상황
+	private static FriendInfoHandler handler = new FriendInfoHandler(100);
+	
+	public static FriendInfoHandler getInstance() {
+		return handler;
+	}
+	
 	// Friend타입의 정보를 저장할 배열을 가진다.
 	// 친구정보를 저장하는 기능
 	// 친구정보의 기본 정보 출력
@@ -16,7 +29,7 @@ public class FriendInfoHandler {
 	Scanner sc;
 	
 	//생성자 초기화 : 저장공간(사이즈)크기를 받아서 배열 생성
-	FriendInfoHandler(int num) {
+	private FriendInfoHandler(int num) {
 		myFriends=new Friend[num];
 		numOfFriend=0;
 		sc = new Scanner(System.in);

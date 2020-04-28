@@ -6,7 +6,7 @@ public class CompanyFriend extends Friend {
 		super(name, phoneNum, addr);
 	}
 	//오버라이딩 완료된 상태
-	void showData() {
+	public void showData() {
 		
 	}
 	

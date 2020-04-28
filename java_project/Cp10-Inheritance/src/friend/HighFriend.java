@@ -10,7 +10,7 @@ public class HighFriend extends Friend{
 	}
 
 	@Override
-	void showData() {
+	public void showData() {
 		showBasicInfo();
 		System.out.println("직업: "+this.work);
 	
