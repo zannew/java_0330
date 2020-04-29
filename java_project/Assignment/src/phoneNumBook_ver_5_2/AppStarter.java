@@ -27,22 +27,23 @@ public class AppStarter {
 			System.out.println(Menu.EXIT+". 목록 만들기 종료");
 			System.out.println("----------------");
 			
-			int selectOpt=sc.nextInt();
+			int selectOpt;
 			int selectOpt2;
 			
 			try {
-			if(!(selectOpt>0 && selectOpt<7))
+				selectOpt=sc.nextInt();
+			if(!(0<selectOpt && selectOpt<=6))
 				throw new Exception("정확한 숫자를 입력하세요.");
 			}catch(InputMismatchException e) {
 				System.out.println("다시 입력하세요.");
-				selectOpt=sc.nextInt();
+//				sc.nextLine();
+				continue;
 			}
 			catch(Exception e) {
 				System.out.println(e.getMessage());
 				System.out.println("다시 입력하세요.");
-				selectOpt=sc.nextInt();
-			}finally {
-				System.out.println("메뉴로 돌아갑니다.");
+//				sc.nextLine();
+				continue;
 			}
 		
 			

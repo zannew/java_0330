@@ -24,7 +24,9 @@ public abstract class PhoneInfo implements Info {
 		System.out.println("이메일 : "+ this.email);
 	}
 	
-	
+	//2020.04.28
+	//수정 내용 : interface구현으로 메서드 오버라이딩 생략
+	//	PhoneInfo클래스 → 추상클래스 
 	//전체 정보 출력메서드(상속 후 오버라이딩을 통해 재구성)
 //	abstract void showAllInfo() {
 //		showBasicInfo();

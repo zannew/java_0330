@@ -16,6 +16,7 @@ public class PhoneCompanyInfo extends PhoneInfo{
 
 	@Override
 	public void showAllInfo() {
+		//super.showAllInfo();	//호출할 수 없는 상태				//2020.04.29
 		super.showBasicInfo(); 		//상위클래스 메서드 호출
 		System.out.println("회사 : "+this.company);
 		System.out.println("부서 : "+this.department);

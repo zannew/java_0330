@@ -2,6 +2,8 @@ package phoneNumBook_ver_5_1;
 
 import java.util.Scanner;
 
+import phoneNumBook_ver_5_1_exception.StringEmptyException;
+
 public class PhonebookManager {
 	
 	//싱글톤 패턴처리
@@ -27,24 +29,46 @@ public class PhonebookManager {
 		//info인스턴스 변수를  null값으로 초기화
 		info =null;									//참조변수 info를  null값으로 초기화
 		
+		String name, phoneNum, address, email;
+		
+		while(true) {
+		
 			//1. 기본 정보 입력
 			System.out.println("저장할 정보 입력단계입니다.");
 			
 			//공통 기본 정보 입력 - 이름, 전화번호, 주소, 이메일
 			System.out.println("이름을 입력하세요 : ");
-			String name=AppStarter.sc.nextLine();
+			name=AppStarter.sc.nextLine();
 			
 			System.out.println("전화번호를 입력하세요 : ");
-			String phoneNum=AppStarter.sc.nextLine();
+			phoneNum=AppStarter.sc.nextLine();
 			
 			System.out.println("주소를 입력하세요 : ");
-			String address=AppStarter.sc.nextLine();
+			address=AppStarter.sc.nextLine();
 	
 			System.out.println("이메일을 입력하세요 : ");
-			String email=AppStarter.sc.nextLine();
+			email=AppStarter.sc.nextLine();
 			
 			//기본정보로 객체생성 - 현재 PhoneInfo클래스 추상클래스이므로 객체 생성불가능
 //			info=new PhoneInfo(name, phoneNum, address, email);
+		
+			//예외 처리
+		
+				
+			try {
+				if(name.trim().isEmpty()
+						|| phoneNum.trim().isEmpty()
+						||address.trim().isEmpty()
+						||email.trim().isEmpty()) {
+					StringEmptyException e = new StringEmptyException("공백은 입력하실 수 없습니다.");
+					throw e;
+				}
+			}catch(StringEmptyException e) {
+				System.out.println(e.getMessage());
+				System.out.println("다시 입력해주세요.");
+				continue;
+			}
+
 		
 		//2.대학 친구 정보 입력
 		if(selectOpt2==Menu.INSERT_UNIV) {							
@@ -74,10 +98,13 @@ public class PhonebookManager {
 			
 			//동호회 친구 정보로 객체생성
 			info=new PhoneSocietyInfor(name, phoneNum, address, email, nickname);
-			
-		}return info;
+			break;
+		}
+		break;
 	}
-	
+		return info;
+		
+	}
 	//정보 담긴 객체 참조변수 배열에 저장
 	void storeInst(PhoneInfo info) {
 		pBook[numOfFriend]=info;
