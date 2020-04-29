@@ -52,9 +52,7 @@ public class PhonebookManager {
 			//기본정보로 객체생성 - 현재 PhoneInfo클래스 추상클래스이므로 객체 생성불가능
 //			info=new PhoneInfo(name, phoneNum, address, email);
 		
-			//예외 처리
-		
-				
+			//예외 처리 - if문 조건 : 문자열값의 공백을 제거해주는 trim,공백 여부 체크해주는 isEmpty메서드
 			try {
 				if(name.trim().isEmpty()
 						|| phoneNum.trim().isEmpty()
