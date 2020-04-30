@@ -94,10 +94,12 @@ public class AppStarter {
 			//1.대학교 친구 정보 저장 및 객체 생성
 			if(selectOpt2==Menu.INSERT_UNIV) {
 				main.storeInst(main.createInst(selectOpt2));
-			//2.직장 친구 정보 저장 및 객체 생성
+			
+				//2.직장 친구 정보 저장 및 객체 생성
 			}else if(selectOpt2==Menu.INSERT_COMPANY) {
 				main.storeInst(main.createInst(selectOpt2));
-			//3.동호회 친구 정보 저장 및 객체 생성
+			
+				//3.동호회 친구 정보 저장 및 객체 생성
 			}else if(selectOpt2==Menu.INSERT_SOCIETY) {
 				main.storeInst(main.createInst(selectOpt2));
 			}

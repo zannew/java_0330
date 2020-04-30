@@ -156,7 +156,6 @@ public class PhoneBookManager {
 		if(searchIndex<0) {
 			System.out.println("찾으시는 이름의 데이터가 존재하지 않습니다.");
 		}else {
-			
 			//삭제 : 검색한 index부터 저장된 위치까지 왼쪽으로 shift처리
 			for(int i=searchIndex;i<cnt-1;i++) {
 				pBooks[i]=pBooks[i+1];
