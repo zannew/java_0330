@@ -16,11 +16,13 @@ public class PhonebookManager {
 	}
 	
 	private PhoneInfo info;							//PhoneInfo클래스 변수선언
-	LinkedList<PhoneInfo> pBook;
+	//제네릭클래스 LinkedList<> PhoneInfo타입 인스턴스 저장할 pBook변수 선언(private)
+	private LinkedList<PhoneInfo> pBook;
 	
 	
 	//생성자 초기화
 	public PhonebookManager(int numOfFriend) {
+		//인스턴스(제네릭클래스)를 PhoneInfo타입 데이터만 저장할 수 있도록 생성
 		pBook=new LinkedList<PhoneInfo>();
 		
 	}
@@ -106,7 +108,7 @@ public class PhonebookManager {
 	}
 	//정보 담긴 객체 참조변수 배열에 저장
 	void storeInst(PhoneInfo info) {
-		
+		//인스턴스 담긴 변수 info를 add메서드 활용, LinkedList pBook에 저장
 		pBook.add(info);
 		
 		System.out.println("♠♠♠성공적으로 저장되었습니다.♠♠♠");
@@ -116,7 +118,7 @@ public class PhonebookManager {
 	void showAllInfo() {
 		
 		for(int i=0;i<pBook.size();i++) {
-			
+			//get메서드 활용, i번째에 담긴 참조변수로 정보보기메서드 호출
 			pBook.get(i).showBasicInfo();
 			pBook.get(i).showDetail();
 			
@@ -135,7 +137,7 @@ public class PhonebookManager {
 		if(searchIndex<0) {
 			System.out.println("검색하신 이름이 없습니다.");
 		}else {
-			
+			//get메서드 활용, searchIndex번째에 담긴 참조변수로 정보보기메서드 호출
 			pBook.get(searchIndex).showBasicInfo();
 			pBook.get(searchIndex).showDetail();
 		}
@@ -145,8 +147,9 @@ public class PhonebookManager {
 	int searchIndexNum(String name) {
 		
 		int searchIndex=-1;
-		
+		//size()메서드 호출해서 List의 크기(요소 담긴 개수)만큼 반복문 작성
 		for(int i=0;i<pBook.size();i++) {
+			//get메서드 활용, i번째에 담긴 참조변수로 네임체크메서드 호출
 			if(pBook.get(i).checkName(name)) {
 				searchIndex=i;
 				
@@ -168,6 +171,7 @@ public class PhonebookManager {
 		if(searchIndex<0) {
 			System.out.println("삭제하실 이름이 없습니다.");
 		}else {
+			//remove메서드 사용해서 검색된 searchIndex번째 요소 삭제
 			pBook.remove(searchIndex);
 			System.out.println("♠♠♠삭제되었습니다.♠♠♠");
 			System.out.println("삭제 확인 후 정보 확인");
@@ -189,6 +193,7 @@ public class PhonebookManager {
 		if(searchIndex<0) {
 			System.out.println("찾으시는 이름이 없습니다.");
 		}else {
+			//get메서드 활용, searchIndex번째에 담긴 참조변수로 getName메서드 호출해서 name받아오기
 			String editName = pBook.get(searchIndex).getName();
 			
 			
@@ -202,7 +207,7 @@ public class PhonebookManager {
 			String email=AppStarter.sc.nextLine();
 			
 			PhoneInfo info=null;
-			
+			//pBook에 담긴 인스턴스 타입이 PhoneUnivInfor타입으로 형변환 가능한지 true OR false
 			if(pBook.get(searchIndex) instanceof PhoneUnivInfor) {
 				System.out.println("수정할 전공을 입력하세요.");
 				String major=AppStarter.sc.nextLine();
@@ -211,18 +216,21 @@ public class PhonebookManager {
 				
 				info=new PhoneUnivInfor(editName, phoneNum, address, email, major, year);
 			
+			//pBook에 담긴 인스턴스 타입이 PhoneCompanyInfor타입으로 형변환 가능한지 true OR false
 			}else if(pBook.get(searchIndex) instanceof PhoneCompanyInfor) {
 				System.out.println("수정할 회사이름을 입력하세요.");
 				String company=AppStarter.sc.nextLine();
 				
 				info=new PhoneCompanyInfor(editName, phoneNum, address, email, company);
 			
+			//pBook에 담긴 인스턴스 타입이 PhoneSocietyInfor타입으로 형변환 가능한지 true OR false
 			}else if(pBook.get(searchIndex) instanceof PhoneSocietyInfor) {
 				System.out.println("수정할 동호회 닉네임을 입력하세요.");
 				String nickName=AppStarter.sc.nextLine();
 			
 				info=new PhoneSocietyInfor(editName, phoneNum, address, email, nickName);
-				
+			
+			//pBook에 담긴 인스턴스 타입이 PhoneInfo타입으로 형변환 가능한지 true OR false
 			}else if(pBook.get(searchIndex) instanceof PhoneInfo) {
 				
 //				info=new PhoneInfo(editName, phoneNum, address, email);
@@ -230,7 +238,9 @@ public class PhonebookManager {
 				
 				
 			}
+			//기존에 수정하려던 searchIndex의 인스턴스 삭제
 			pBook.remove(searchIndex);
+			//searchIndex번째에 인스턴스 info저장
 			pBook.add(searchIndex, info);
 		}
 	}

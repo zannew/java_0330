@@ -1,5 +1,6 @@
 package ex;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -34,6 +35,8 @@ public class LinkedListTest {
 		list.add(new Integer(10));
 		list.add(new Integer(20));
 		list.add(new Integer(30));
+		list.add(0);
+		list.add(1);
 		
 		//데이터의 참조
 		System.out.println("저장된 데이터를 확인합니다.");
@@ -45,12 +48,22 @@ public class LinkedListTest {
 		System.out.println("-----------------------------");
 		
 		//데이터의 삭제
-		list.remove(1);
-		System.out.println("데이터 삭제 후 데이터를 확인합니다.");
-		for(int i=0; i<list.size();i++) {
-			System.out.println(list.get(i));
-		}
+//		list.remove(1);
+//		System.out.println("데이터 삭제 후 데이터를 확인합니다.");
+//		for(int i=0; i<list.size();i++) {
+//			System.out.println(list.get(i));
+//		}
+//		
 		
+		
+		System.out.println("Iterator를 이용한 모든 요소 출력");
+		
+		Iterator<Integer> itr = list.iterator();
+		
+		while(itr.hasNext()) {
+			int num = itr.next();
+			System.out.println(num);
+		}
 		
 	}
 	
