@@ -1,14 +1,17 @@
 package friend;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FriendInfoHandler {
 /*2020.04.28 싱글톤처리
  * 1.manager클래스의 싱글톤 패턴
-생성자 접근제어지시자 : private (목적 : 인스턴스 생성을 금지)
-공동으로 사용할 인스턴스를 생성 : static + private
-만들어놓은 참조변수를 반환하는 메서드 필요 : static + public(외부접근 허용)
-
+		1.생성자 접근제어지시자 : private (목적 : 인스턴스 생성을 금지)
+		2.공동으로 사용할 인스턴스를 생성 : static + private
+		3.만들어놓은 참조변수를 반환하는 메서드 필요 : static + public(외부접근 허용)
+		
+2020.05.01 수정
+배열에 데이터 저장하던 방식 → List이용
  * */
 	//인스턴스를 하나만 가져야하는 상황
 	private static FriendInfoHandler handler = new FriendInfoHandler(100);
@@ -23,15 +26,23 @@ public class FriendInfoHandler {
 	// 친구정보의 상세 정보 출력
 	
 	
-	private Friend[] myFriends;			//Friend타입의 배열 선언
-	private int numOfFriend;			//저장된 친구의 정보 개수
+	//private Friend[] myFriends;			//Friend타입의 배열 선언
+	
+	//List 참조변수
+	private ArrayList<Friend> myFriends;
+	
+	
+	//private int numOfFriend;			//저장된 친구의 정보 개수
 	
 	Scanner sc;
 	
 	//생성자 초기화 : 저장공간(사이즈)크기를 받아서 배열 생성
 	private FriendInfoHandler(int num) {
-		myFriends=new Friend[num];
-		numOfFriend=0;
+		//myFriends=new Friend[num];
+		//numOfFriend=0;
+		
+		//ArrayList 인스턴스 생성
+		myFriends=new ArrayList<Friend>();
 		sc = new Scanner(System.in);
 		
 	}
@@ -43,8 +54,11 @@ public class FriendInfoHandler {
 	//1.배열에 저장하는 기능(Friend타입 참조변수 받는다.)
 	void addFriendInfo(Friend f) {
 		//배열에 저장
-		myFriends[numOfFriend]=f;
-		numOfFriend++;
+		//myFriends[numOfFriend]=f;
+		//numOfFriend++;
+		
+		myFriends.add(f);
+		
 	}
 	//2.사용자에게 데이터를 받아 사용자 요청에 맞는 인스턴스 생성
 	// HighFriend / UnivFriend 각각 필요한 데이터가 다르다. → 분기처리
@@ -92,8 +106,9 @@ public class FriendInfoHandler {
 	void showAllSimpleData() {
 		
 		System.out.println("==============친구의 기본 정보를 출력합니다 ==============");
-		for(int i=0;i<numOfFriend;i++) {
-			myFriends[i].showBasicInfo();
+		for(int i=0;i<myFriends.size();i++) {
+			//myFriends[i].showBasicInfo();
+			myFriends.get(i).showBasicInfo();
 			System.out.println("------------------------------");
 		}
 	}
@@ -102,8 +117,9 @@ public class FriendInfoHandler {
 	void showAllData() {
 		
 		System.out.println("================친구의 모든 정보를 출력합니다==============");
-		for(int i=0;i<numOfFriend;i++) {
-			myFriends[i].showData();
+		for(int i=0;i<myFriends.size();i++) {
+			//myFriends[i].showData();
+			myFriends.get(i).showBasicInfo();
 		}
 		
 	}

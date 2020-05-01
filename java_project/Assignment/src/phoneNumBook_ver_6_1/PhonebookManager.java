@@ -1,4 +1,4 @@
-package phoneNumBook_ver_5_1;
+package phoneNumBook_ver_6_1;
 
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -16,16 +16,11 @@ public class PhonebookManager {
 	}
 	
 	private PhoneInfo info;							//PhoneInfo클래스 변수선언
-	//private PhoneInfo[] pBook;						//PhoneInfo[] 변수 pBook 선언
-	//private int numOfFriend;						//친구 정보 개수 카운팅  변수 선언
 	LinkedList<PhoneInfo> pBook;
 	
 	
 	//생성자 초기화
 	public PhonebookManager(int numOfFriend) {
-		//pBook = new PhoneInfo[numOfFriend];			//PhoneInfo[]타입 객체 생성
-		//numOfFriend=0;								//numOfFriend변수 초기화
-		
 		pBook=new LinkedList<PhoneInfo>();
 		
 	}
@@ -111,8 +106,6 @@ public class PhonebookManager {
 	}
 	//정보 담긴 객체 참조변수 배열에 저장
 	void storeInst(PhoneInfo info) {
-		//pBook[numOfFriend]=info;
-		//numOfFriend++;
 		
 		pBook.add(info);
 		
@@ -123,8 +116,6 @@ public class PhonebookManager {
 	void showAllInfo() {
 		
 		for(int i=0;i<pBook.size();i++) {
-			//pBook[i].showBasicInfo();
-			//pBook[i].showDetail();
 			
 			pBook.get(i).showBasicInfo();
 			pBook.get(i).showDetail();
@@ -144,8 +135,6 @@ public class PhonebookManager {
 		if(searchIndex<0) {
 			System.out.println("검색하신 이름이 없습니다.");
 		}else {
-			//pBook[searchIndex].showBasicInfo();
-			//pBook[searchIndex].showDetail();
 			
 			pBook.get(searchIndex).showBasicInfo();
 			pBook.get(searchIndex).showDetail();
@@ -158,7 +147,6 @@ public class PhonebookManager {
 		int searchIndex=-1;
 		
 		for(int i=0;i<pBook.size();i++) {
-			//if(pBook[i].checkName(name)) {
 			if(pBook.get(i).checkName(name)) {
 				searchIndex=i;
 				
@@ -180,9 +168,6 @@ public class PhonebookManager {
 		if(searchIndex<0) {
 			System.out.println("삭제하실 이름이 없습니다.");
 		}else {
-			//for(int i=0;i<pBook.size();i++) {
-				//pBook[i]=pBook[i+1];
-			//}numOfFriend--;
 			pBook.remove(searchIndex);
 			System.out.println("♠♠♠삭제되었습니다.♠♠♠");
 			System.out.println("삭제 확인 후 정보 확인");
@@ -204,7 +189,6 @@ public class PhonebookManager {
 		if(searchIndex<0) {
 			System.out.println("찾으시는 이름이 없습니다.");
 		}else {
-			//String editName = pBook[searchIndex].getName();
 			String editName = pBook.get(searchIndex).getName();
 			
 			
@@ -219,7 +203,6 @@ public class PhonebookManager {
 			
 			PhoneInfo info=null;
 			
-			//if(pBook[searchIndex] instanceof PhoneUnivInfor) {
 			if(pBook.get(searchIndex) instanceof PhoneUnivInfor) {
 				System.out.println("수정할 전공을 입력하세요.");
 				String major=AppStarter.sc.nextLine();
@@ -246,9 +229,9 @@ public class PhonebookManager {
 				System.out.println("현재 기본정보만 수정불가");
 				
 				
-			}//pBook[searchIndex]=info;
+			}
 			pBook.remove(searchIndex);
-			pBook.add(info);
+			pBook.add(searchIndex, info);
 		}
 	}
 }

@@ -29,8 +29,9 @@ public class PhoneBookManager {
 		String address=sc.nextLine();
 		System.out.println("이메일을 입력하세요.");
 		String email=sc.nextLine();
-	
-		info=new PhoneInfo(name, phoneNum, address, email);
+
+		//기본정보로 객체 생성
+//		info=new PhoneInfo(name, phoneNum, address, email);
 		
 //2020-05-01		
 //		if(bDay==null || bDay.trim().isEmpty()) {
@@ -38,6 +39,42 @@ public class PhoneBookManager {
 //		}else {
 //			info=new PhoneInfo(name, phoneNum, bDay);
 //		}
+		
+		switch(selectOpt2) {
+		
+		case 1:
+			System.out.println("전공을 입력하세요.");
+			String major=sc.nextLine();
+			System.out.println("학년을 입력하세요.");
+			String year=sc.nextLine();
+			
+			info=new PhoneUnivInfo(name, phoneNum, address, email, major, year);
+			break;
+		case 2:
+			System.out.println("회사명을 입력하세요.");
+			String company=sc.nextLine();
+			System.out.println("부서를 입력하세요.");
+			String dept=sc.nextLine();
+			System.out.println("직급을 입력하세요.");
+			String position=sc.nextLine();
+			
+			info=new PhoneCompanyInfo(name, phoneNum, address, email, company, dept, position);
+			break;
+			
+		
+		case 3:
+			System.out.println("동호회 이름을 입력하세요.");
+			String nameOfSociety=sc.nextLine();
+			System.out.println("동호회 닉네임을 입력하세요.");
+			String nickName=sc.nextLine();
+		
+			info=new PhoneSocietyInfo(name, phoneNum, address, email, nameOfSociety, nickName);
+		
+		
+		
+		
+		
+		}
 		
 		return info;
 	}
