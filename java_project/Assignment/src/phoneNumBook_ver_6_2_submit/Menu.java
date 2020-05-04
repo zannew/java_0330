@@ -13,6 +13,4 @@ public interface Menu {
 	int SHOW_ALLINFO=5;
 	int EXIT=6;
 	
-	
-	
 }

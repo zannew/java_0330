@@ -6,7 +6,4 @@ public class BadNumException extends Exception {
 		super(message);
 	}
 
-	
-	
-	
 }
