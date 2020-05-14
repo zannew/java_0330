@@ -9,13 +9,10 @@ public class Friend {
 		myName=name;
 	}
 	
-	
 	@Override
 	public String toString() {
 		return "Friend [myName=" + myName + "]";
 	}
-
-	
 
 
 
