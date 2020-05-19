@@ -1,6 +1,6 @@
---comments
+--2020.05.18
 
-select * from emp;
+select * from dept;
 
 -- 로그인한 계정이 소유한 테이블 확인
 select * from tab;
@@ -19,7 +19,8 @@ desc salgrade;
 select * from emp;
 select * from dept;
 
--- 데이터 검색 및 질의
+-- 데이터 검색 및 질의(새로운 테이블 형식으로 결과 도출)
+
 select ename, sal, deptno, empno--column이름 나열
 from emp -- 테이블이름
 ;
