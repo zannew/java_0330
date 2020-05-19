@@ -167,7 +167,7 @@ order by sal desc, ename
 
 select ename, deptno, sal
 from emp
-order by deptno, ename, 
+order by deptno, ename
 ;
 
 
