@@ -33,19 +33,16 @@ public class InstanceOf {
 		}
 		
 		
-//		wrapBox(box1);
-//		wrapBox(box2);
-//		wrapBox(box3);
-//		wrapBox(box4);
+		wrapBox(box1);
+		wrapBox(box2);
+		wrapBox(box3);
+		wrapBox(box4);
 		
 	}
-	
-	
 	
 	public static void wrapBox(Box box) {
 		
 		box.wrap();
-		
 	}
 }
 
