@@ -25,7 +25,7 @@ CREATE TABLE  Customer (
 CREATE TABLE Orders (
   orderid NUMBER(2) PRIMARY KEY,
   custid  NUMBER(2) REFERENCES Customer(custid),
-  bookid  NUMBER(2) REFERENCES Book(bookid),-- Book 테이블의 기본키 bookid참조
+  bookid  NUMBER(2) REFERENCES Book(bookid),-- Book 테이블의 기본키 bookid참조 → 외래키 공식
   saleprice NUMBER(8) ,
   orderdate DATE
 );

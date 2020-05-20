@@ -1,11 +1,14 @@
 --2020.05.19
 
 -- 특정 데이터를 추출하기 : where절을 이용
--- select 컬럼명 from 테이블명 where 조건(true or false)
+-- select 컬럼명 from 테이블명 where 조건(true or false) → 행단위로 조건 체크
 
--- 전체 사원 중 월 급여가 3000이상인 사원의 dlfma 리스트
+-- 전체 사원 중 월 급여가 3000이상인 사원의 이름 리스트
 
-select empno, ename, sal from emp where sal>=3000;
+select empno, ename, sal 
+from emp 
+where sal>=3000
+;
 
 -- 전체 사원 중 10번 부서의 소속 사원의 이름과 직급을 출력해주세요.
 select ename, job
@@ -117,6 +120,7 @@ where comm not in (300, 500, 1400)
 -- '%S' : S로 끝나는 문자열
 -- '%S%': S를 포함하는 문자열
 
+--검색 시 활용 많음
 --이름이 'F' 로 시작하는 사원
 select *
 from emp
@@ -195,19 +199,33 @@ where price>=20000
 ;
 
 --(3) 박지성의총구매액(박지성의고객번호는1번으로놓고작성)
--- 아직
+select sum(saleprice)
+from orders
+where custid=1
+;
+
 
 --(4) 박지성이구매한도서의수(박지성의고객번호는1번으로놓고작성)
--- 아직
+select custid, count(*)
+from orders
+group by custid
+--where custid=1
+;
 
 
 --2 마당서점의운영자와경영자가요구하는다음질문에대해SQL 문을작성하시오.
 
 --(1) 마당서점도서의총개수
--- 아직
-
+select count(bookid)
+from book
+;
+select *
+from book
+;
 --(2) 마당서점에도서를출고하는출판사의총개수
--- 아직
+select count(distinct publisher)
+from book
+;
 
 --(3) 모든고객의이름, 주소
 select name, address
