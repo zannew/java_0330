@@ -1,20 +1,15 @@
--- 이름: demo_madang.sql
+﻿-- 이름: demo_madang.sql
 -- 설명
 -- madang 스키마를 생성하고 MADANG 서점 실습테이블과 데이터를 입력한다.
 
--- 개체 무결성 제약조건 : 입력 및 수정 시, 중복과 null값이 허용되지 않는다.
-
 CREATE TABLE Book (
-
   bookid      NUMBER(2) PRIMARY KEY,
   bookname    VARCHAR2(40),
   publisher   VARCHAR2(40),
   price       NUMBER(8) 
 );
 
-
 CREATE TABLE  Customer (
-
   custid      NUMBER(2) PRIMARY KEY,  
   name        VARCHAR2(40),
   address     VARCHAR2(50),
@@ -25,7 +20,7 @@ CREATE TABLE  Customer (
 CREATE TABLE Orders (
   orderid NUMBER(2) PRIMARY KEY,
   custid  NUMBER(2) REFERENCES Customer(custid),
-  bookid  NUMBER(2) REFERENCES Book(bookid),-- Book 테이블의 기본키 bookid참조 → 외래키 공식
+  bookid  NUMBER(2) REFERENCES Book(bookid),
   saleprice NUMBER(8) ,
   orderdate DATE
 );
@@ -60,4 +55,3 @@ INSERT INTO Orders VALUES (9, 2, 10, 7000, TO_DATE('2014-07-09','yyyy-mm-dd'));
 INSERT INTO Orders VALUES (10, 3, 8, 13000, TO_DATE('2014-07-10','yyyy-mm-dd'));
 
 COMMIT;
--- commit : 물리적으로 저장해놓고 쓰기 위한 commit
