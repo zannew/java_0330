@@ -199,6 +199,10 @@ where price>=20000
 ;
 
 --★(3) 박지성의총구매액(박지성의고객번호는1번으로놓고작성)
+select * 
+from orders
+where custid=1;
+
 select sum(saleprice)
 from orders
 where custid=1
