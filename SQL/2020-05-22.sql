@@ -43,6 +43,23 @@ from emp
 where deptno in (select distinct deptno from emp where sal>=3000)
 ;
 --ANY,SOME
+--부서번호가 30번인 사원들의 급여 중 가장 작은 값(950)보다 
+--많은 급여를 받는 사원의 이름, 급여를 출력
+--sub
+select min(sal)
+from emp
+where deptno=30
+;
+--complete_1
+select ename, deptno, sal
+from emp
+where sal > (select min(sal)from emp where deptno=30)
+;
+--complete_2
+select ename, deptno, sal
+from emp
+where deptno=30 and sal > any(select sal from emp where deptno=30)
+;
 
 --ALL
 --complete_1
