@@ -1,8 +1,11 @@
---assingment_5
+--assingment_5 : JOIN & SUBQUERY
 
 --1 마당서점의고객이요구하는다음질문에대해SQL 문을작성하시오.
 --(5) 박지성이구매한도서의출판사수
-
+select 
+from orders o, book b, customer c
+where o.bookid=b.bookid and c.custid=o.custid and custid
+;
 
 
 --(6) 박지성이구매한도서의이름, 가격, 정가와판매가격의차이

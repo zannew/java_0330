@@ -74,3 +74,103 @@ where sal > all(select sal from emp where deptno=30)
 ;
 
 --EXIST
+
+
+--ROWNUM : 입력순서의 번호(내장돼있음)
+select rownum, ename
+from emp
+;
+
+--스칼라 부속질의 : 컬럼을 표현
+--마당서점의 고객별 판매액을 보이시오
+--(결과는 고객이름과 고객별 판매액을 출력)
+
+--JOIN(name으로 그룹핑)
+select name, sum(saleprice) "total"
+from orders o, customer c
+where o.custid=c.custid
+group by name
+;
+
+--SUBQUERY(orders테이블 only)
+select o.custid, (select name 
+                from customer c 
+                where o.custid=c.custid)as custom_name, 
+                sum(saleprice) as total
+from orders o
+group by o.custid
+;
+--select (select name 
+                from customer c 
+                where o.custid=c.custid)as custom_name, 
+                sum(saleprice) as total
+from orders o
+group by o.custid
+;
+
+-- INLINE VIEW
+--고객번호가 2 이하인 고객의 판매액을 보이시오
+--(결과는 고객이름과 고객별 판매액 출력)
+select from customer where custid<=2;
+
+select cs.name, sum(saleprice)
+from (select * from customer where custid<=2) cs, orders d
+where cs.custid=d.custid
+group by cs.name
+;
+
+select rownum, ename from emp;
+--급여 탑3 : rownum을 재정렬하고 3순위까지 
+select rownum, ename, empno, sal
+from (select ename, empno, job, deptno, sal from emp order by sal desc)
+where rownum <=3
+;
+
+--평균 주문금액 이하의 주문에 대해서 
+--주문번호와 금액을 보이시오.
+--sub
+select avg(saleprice) from orders;
+--complete
+select orderid, saleprice
+from orders
+where saleprice<=(select avg(saleprice) from orders)
+;
+
+--각 고객의 평균 주문금액보다 큰 금액의 주문 내역에 대해서 
+--주문번호, 고객번호, 금액을 보이시오.
+select avg(saleprice) from orders where custid=1;
+select orderid, custid, o.saleprice
+from orders o
+where saleprice > (select avg(saleprice) from orders a where a.custid=o.custid)
+;
+
+--대한민국에 거주하는 고객에게 판매한 도서의 총판매액을 구하시오.(IN)
+select custid from customer where address like '%대한민국%';
+
+select sum(saleprice)
+from orders
+where custid in (select custid from customer where address like '%대한민국%')
+;
+
+--3번 고객이 주문한 도서의 최고 금액보다 
+--더 비싼 도서를 구입한 주문의 주문번호와 금액을 보이시오.(ALL)
+--select * from orders where custid=3 order by saleprice desc;
+select max(saleprice) from orders where custid=3;
+
+select orderid, saleprice
+from orders
+--where saleprice > all(select saleprice from orders where custid=3)
+where saleprice > (select max(saleprice) from orders where custid=3)
+;
+
+--대한민국에 거주하는 고객에게 
+--판매한 도서의 총 판매액을 구하시 오.(EXIST)
+select * from customer where address like '%대한민국%';
+
+select sum(saleprice)
+from orders o
+where exists(
+select c.custid
+from customer c
+where address like '%대한민국%' and o.custid=c.custid)--행마다 비교
+;
