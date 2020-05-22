@@ -88,10 +88,17 @@ from emp e, emp m
 where e.mgr=m.empno(+)
 order by e.empno desc
 ;
-select *
-from emp e left outer join emp m
+select e.empno, e.ename, m.ename
+from emp e full outer join emp m
 on e.deptno=m.deptno
+where e.mgr=m.empno
+order by e.empno desc
 ;
+select e.ename
+from emp e right outer join emp  p
+on d.deptno=p.deptno
+;
+
 --40. SELF JOIN을 사용하여 지정한 사원의 이름, 부서번호, 지정한 사원과 동일한 부서에서 근무하는 사원을 출력하시오. ( SCOTT )
 
 --41. SELF JOIN을 사용하여 WARD 사원보다 늦게 입사한 사원의 이름과 입사일을 출력하시오.
