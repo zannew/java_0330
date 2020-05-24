@@ -22,11 +22,17 @@ where sal <= (select min(sal) from emp)
 
 --46. 평균급여가 가장 적은 직급의 직급 이름과 직급의 평균을 구하시오.
 
+--ROWNUM
 select rownum, job, avgsal
 from (select job, avg(sal) avgsal from emp group by job order by avg(sal))
 where rownum=1
 ;
---having
+--HAVING
+select e.job, avg(e.sal) 
+from emp e
+group by e.job
+having avg(e.sal) <= all(select avg(m.sal) from emp m group by m.job)
+;
 
 --47. 각 부서의 최소 급여를 받는 사원의 이름, 급여, 부서번호를 표시하시오.
 
@@ -66,7 +72,7 @@ where e.deptno = m.deptno and e.mgr=m.empno)
 
 select e.ename, e.hiredate, e.deptno
 from emp e
-where e.ename not like 'BLAKE' and e.deptno like (select deptno from emp where ename like 'BLAKE');
+where e.ename != 'BLAKE' and e.deptno = (select deptno from emp where ename = 'BLAKE');
 
 --52. 급여가 평균 급여보다 많은 사원들의 사원 번호와 이름을 표시하되 결과를 급여에 대해서 오름차순으로 정렬하시오.
 
@@ -90,31 +96,41 @@ where e.deptno = d.deptno and d.loc='DALLAS'
 ;
 
 --55. KING에게 보고하는 사원의 이름과 급여를 표시하시오.
+select e.ename, e.sal
+from emp e
+where e.mgr = (select m.empno from emp m where m.ename='KING')
+;
 
-select e.ename, e.sal 
-from emp e, emp m 
-where e.mgr=m.empno and m.ename like 'KING';
 
 --56. RESEARCH 부서의 사원에 대한 부서번호, 사원이름 및 담당 업무를 표시하시오.
+
 select e.deptno, e.ename, e.job
-from emp e, dept d
-where e.deptno = d.deptno and d.dname like 'RESEARCH'
+from emp e
+where e.deptno=(select d.deptno from dept d where d.dname='RESEARCH' )
 ;
 
 --57. 평균 월급보다 많은 급여를 받고 
 --이름에 M이 포함된 사원과 같은 부서에서 
 --근무하는 사원의 사원 번호, 이름, 급여를 표시하시오.
+
 select e.empno, e.ename, e.sal
 from emp e
 where sal > (select avg(sal) from emp) 
             and exists (select m.deptno from emp m where m.ename like '%M%');
 
-
 --58. 평균급여가 가장 적은 업무를 찾으시오.
 
+--ROWNUM
 select rownum, job
 from (select job, avg(sal) from emp group by job order by avg(sal))
 where rownum=1
+;
+
+--HAVING
+select e.job, avg(e.sal) 
+from emp e
+group by e.job
+having avg(e.sal) <= all(select avg(m.sal) from emp m group by m.job)
 ;
 
 --59. 담당업무가 MANAGER 인 사원이 소속된 부서와 동일한 부서의 사원을 표시하시오.
@@ -123,4 +139,6 @@ select ename
 from emp
 where deptno in (select deptno from emp where job='MANAGER')
 ;
+
+
 
