@@ -227,7 +227,12 @@ and c.custid = (select custid from customer where name='박지성'))
 
 --(2) 두 개 이상의 서로 다른 출판사에서 도서를 구매한 고객의 이름
 --answer
-
+select c.name, count(distinct publisher)
+from orders o, customer c, book b
+where o.custid=c.custid and o.bookid=b.bookid
+group by c.name
+having count (distinct publisher)>=2
+;
 
 --my answer
 select name
