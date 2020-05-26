@@ -297,7 +297,7 @@ create table emp02 (
 );
 
 --===== 전화번호부( Contact )
--- 대리키 : 일련번호 -> pIdx →기본키가 마땅하지 않을 때..
+-- 대리키 : 일련번호 -> pbIdx →기본키가 마땅하지 않을 때..
 -- 이름, 전화번호, 주소, 이메일 <- 기본정보
 -- 주소값과 이메일은 입력이 없을 때 기본값 입력
 -- 친구의 타입 (카테고리) : univ, com, cafe 세가지 값만 저장 가능
@@ -310,10 +310,10 @@ create table emp02 (
 create table phoneinfo_basic(
     pIdx number(6) constraint phoneinfo_basic_pIdx_pk primary key,
     name varchar2(20) constraint phoneinfo_basic_name_nn not null,
-    phonenum number(20) constraint phoneinfo_basic_phonenum_nn not null,
+    phonenum number(30) constraint phoneinfo_basic_phonenum_nn not null,
     addr varchar2(20) default ' - ',
     email varchar2(20) default ' - ',
-    regdate date default sysdate,
+    regdate date default sysdate,   --not null제약 안걸림, null값 들어올 경우 자동으로 default값 저장
     fr_type varchar2(10) constraint phoneinfo_basic_fr_type_ck check (fr_type in ('univ', 'com', 'cafe'))
 );
 
@@ -326,11 +326,10 @@ create table phoneinfo_univ(
 
 create table phoneinfo_com(
     pIdx number(6) constraint phoneinfo_com_pIdx_pk primary key,
-    companyName varchar2(20) default ' - ' constraint phoneinfo_com_companyName_nn not null,    --null제약걸림, 컬럼지정하지 않을 경우 default값 저장
+    companyName varchar2(20) default ' - ' constraint phoneinfo_com_companyName_nn not null,    --null제약 걸림, 컬럼 지정하지 않을 경우 default값 저장
     dName varchar2(20) default ' - ',   --null제약 안 걸림, null값이 들어올 경우 자동으로 default값 저장
     job varchar2(20) default ' - ',
     fr_ref number(6) constraint phoneinfo_com_fr_ref_fk references phoneinfo_basic(pIdx)
-    
 );
 
 create table phoneinfo_cafe(
@@ -341,22 +340,6 @@ create table phoneinfo_cafe(
     fr_ref number(6) constraint phoneinfo_cafe_fr_ref_fk references phoneinfo_basic(pIdx)
 );
 
-
-rename phonebook_basic to phoneinfo_basic;
-select * from tab;
-rename phonebook_univ to phoneinfo_univ;
-
---insert into emp07 (empno, ename, deptno, gender, sal)
---values (3333, 'TEST', 10, 'F', 2500);
-
-insert into phonebook_basic values(2, '장윤원','0105555555','SEOUL', 'woni@','2020/05/25', 'univ');
-
-select * from phonebook_basic;
-
-alter table phonebook_basic modify(phonenum number(20));
-
-select * from phonebook_basic;
-
 drop table phoneinfo_univ;
 drop table phoneinfo_com;
 drop table phoneinfo_cafe;
@@ -365,16 +348,60 @@ drop table phoneinfo_basic;
 select * from tab;
 purge recyclebin;
 
+select * from phoneinfo_basic;
+
+insert into phoneinfo_basic values(1, '장윤원','0105555555','SEOUL', 'woni@','2020/05/25', '');
+
+insert into phoneinfo_univ values(1, '짱구','0109999999','SEOUL', 'zang9@','', 'univ');
 
 
+--테이블 레벨 : 언더바 사용 지양..(자바와 연동 시..)
 
+create table phoneinfo_basic(
+    pIdx number(6),
+    name varchar2(20) constraint phoneinfo_basic_name_nn not null,
+    phonenum number(30) constraint phoneinfo_basic_phonenum_nn not null,
+    addr varchar2(20) default ' - ',
+    email varchar2(20) default ' - ',
+    regdate date default sysdate,  
+    constraint phoneinfo_basic_pIdx_pk primary key(pIdx)
 
+);
 
+create table phoneinfo_univ(
+    pIdx number(6),
+    major varchar2(20) default ' - ',
+    year number(1) default 1 ,
+    fr_ref number(7) ,
+    constraint phoneinfo_univ_pIdx_pk primary key (pIdx),
+    constraint phoneinfo_univ_year_ck check(year between 1 and 4),
+    constraint phoneinfo_univ_fr_ref_fk foreign key(fr_ref) references phoneinfo_basic(pIdx)
+  
+);
 
+create table phoneinfo_com(
+    pIdx number(6),
+    companyName varchar2(20) default ' - ' constraint phoneinfo_com_companyName_nn not null,  
+    dName varchar2(20) default ' - ',
+    job varchar2(20) default ' - ',
+    fr_ref number(6),
+    constraint phoneinfo_com_pIdx_pk primary key(pIdx),
+    constraint phoneinfo_com_fr_ref_fk foreign key(fr_ref) references phoneinfo_basic(pIdx)
+   
+);
 
+create table phoneinfo_cafe(
+    pIdx number(6),
+    cafeName varchar2(20) default '-' constraint phoneinfo_cafe_cafeName_nn not null,
+    nickName varchar2(10) default '-' constraint phoneinfo_cafe_nickname_nn not null,
+    fr_ref number(6),
+    constraint phoneinfo_cafe_pIdx_pk primary key(pIdx),
+    constraint phoneinfo_cafe_fr_ref_fk foreign key(fr_ref) references phoneinfo_basic(pIdx)
+);
 
+desc user_constraints;
 
-
+select * from user_constraints where table_name='PHONEINFO_BASIC';
 
 
 
