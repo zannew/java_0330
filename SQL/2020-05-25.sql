@@ -310,7 +310,7 @@ create table emp02 (
 create table phoneinfo_basic(
     pIdx number(6) constraint phoneinfo_basic_pIdx_pk primary key,
     name varchar2(20) constraint phoneinfo_basic_name_nn not null,
-    phonenum number(30) constraint phoneinfo_basic_phonenum_nn not null,
+    phonenum varchar2(30) constraint phoneinfo_basic_phonenum_nn not null,
     addr varchar2(20) default ' - ',
     email varchar2(20) default ' - ',
     regdate date default sysdate,   --not null제약 안걸림, null값 들어올 경우 자동으로 default값 저장
@@ -321,7 +321,7 @@ create table phoneinfo_univ(
     pIdx number(6) constraint phoneinfo_univ_pIdx_pk primary key,
     major varchar2(20) default ' - ',
     year number(1) default 1 constraint phoneinfo_univ_year_ck check(year between 1 and 4),
-    fr_ref number(7) constraint phoneinfo_univ_fr_ref_fk references phoneinfo_basic(pIdx)
+    fr_ref number(6) constraint phoneinfo_univ_fr_ref_fk references phoneinfo_basic(pIdx)
 );
 
 create table phoneinfo_com(
@@ -348,31 +348,25 @@ drop table phoneinfo_basic;
 select * from tab;
 purge recyclebin;
 
-select * from phoneinfo_basic;
-
-insert into phoneinfo_basic values(1, '장윤원','0105555555','SEOUL', 'woni@','2020/05/25', '');
-
-insert into phoneinfo_univ values(1, '짱구','0109999999','SEOUL', 'zang9@','', 'univ');
-
-
 --테이블 레벨 : 언더바 사용 지양..(자바와 연동 시..)
 
 create table phoneinfo_basic(
     pIdx number(6),
     name varchar2(20) constraint phoneinfo_basic_name_nn not null,
-    phonenum number(30) constraint phoneinfo_basic_phonenum_nn not null,
+    phonenum varchar2(30) constraint phoneinfo_basic_phonenum_nn not null,
     addr varchar2(20) default ' - ',
     email varchar2(20) default ' - ',
+    fr_type varchar2(10),
     regdate date default sysdate,  
-    constraint phoneinfo_basic_pIdx_pk primary key(pIdx)
-
+    constraint phoneinfo_basic_pIdx_pk primary key(pIdx),
+    constraint phoneinfo_basic_fr_type_ck check (fr_type in ('univ', 'com', 'cafe'))
 );
 
 create table phoneinfo_univ(
     pIdx number(6),
     major varchar2(20) default ' - ',
     year number(1) default 1 ,
-    fr_ref number(7) ,
+    fr_ref number(6) ,
     constraint phoneinfo_univ_pIdx_pk primary key (pIdx),
     constraint phoneinfo_univ_year_ck check(year between 1 and 4),
     constraint phoneinfo_univ_fr_ref_fk foreign key(fr_ref) references phoneinfo_basic(pIdx)
@@ -403,9 +397,101 @@ desc user_constraints;
 
 select * from user_constraints where table_name='PHONEINFO_BASIC';
 
+--===== 전화번호 부( Contact )
+
+-- 대리키 : 일련번호 -> pIdx
+
+-- 이름, 전화번호, 주소, 이메일 <- 기본정보
+
+-- 주소값과 이메일은 입력이 없을 때 기본값 입력
+
+-- 친구의 타입 (카테고리) : univ, com, cafe 세가지 값만 저장 가능
+
+------ 선택 정보
+-- 전공, 학년
+-- 회사이름, 부서이름, 직급
+-- 모임이름, 닉네임
+
+create table contact(
+    pIdx number(4) primary key,
+    name varchar2(10) not null,
+    phonenum number(15) not null,
+    address varchar2(30) default '입력없음',
+    email varchar2(30) default '입력없음',
+    fr_type varchar2(10),
+
+    major varchar2(20),
+    year number(1),
+    companyname varchar(20),
+    dname varchar2(20),
+    job varchar2(20),
+    cafeName varchar2(30),
+    nickName varchar2(20),
+    
+    constraint contact_pIdx_pk primary key(pIdx),
+    constraint contact_fr_type_ck check (fr_type in ('univ','com','cafe'))
+    
+);
 
 
 
 
 
+--1)basic정보 먼저 입력하고 대학 정보 입력
+
+desc phoneinfo_basic;
+desc phoneinfo_univ;
+desc phoneinfo_com;
+desc phoneinfo_cafe;
+select * from phoneinfo_basic;
+select * from phoneinfo_univ;
+select * from phoneinfo_com;
+select * from phoneinfo_cafe;
+truncate table phoneinfo_basic;
+truncate table phoneinfo_univ;
+truncate table phoneinfo_com;
+truncate table phoneinfo_cafe;
+
+
+
+purge recyclebin;
+
+--★★ pidx의 값과 fr_ref의 값이 일치해야 세부정보 저장 가능 
+insert into phoneinfo_basic (pidx, name, phonenum, addr, email, fr_type, regdate)
+values(1, '비버', '01031313131', '서울', 'bieber@naver.com','univ', '2020-01-01');
+
+insert into phoneinfo_univ(pidx, major, year, fr_ref)
+values(1, 'ACCOUNTING', 3, 1);
+---------------------------------------------------------------------------------------------
+insert into phoneinfo_basic (pidx, name, phonenum, addr, email, fr_type)
+values(2, '오랑', '01029292929', '전주', 'orang@naver.com','com');
+
+insert into phoneinfo_com(pidx, companyname, dname, fr_ref)
+values(2, '다음카카오', 'DEVELOPMENT',2);
+---------------------------------------------------------------------------------------------
+insert into phoneinfo_basic (pidx, name, phonenum, email, fr_type)
+values(3, '함미', '01079797979', 'harmony@gmail.com','cafe');
+
+insert into phoneinfo_cafe(pidx, cafename, nickname, fr_ref)
+values(3, '왕초보개발자모임', 'HARMOOI',3);
+
+---------------------------------------------------------------------------------------------
+
+select * from phoneinfo_basic join phoneinfo_univ using(pidx);
+select * from phoneinfo_basic join phoneinfo_com using(pidx);
+select * from phoneinfo_basic join phoneinfo_cafe using(pidx);
+
+--OUTER JOIN(+)
+select * from phoneinfo_basic basic, phoneinfo_univ univ, phoneinfo_com com,phoneinfo_cafe cafe
+where basic.pidx=univ.fr_ref(+) and basic.pidx=com.fr_ref(+) and basic.pidx=cafe.fr_ref(+)
+order by basic.pidx;
+
+--LEFT OUTER JOIN
+select * 
+from phoneinfo_basic basic 
+left outer join phoneinfo_univ univ on basic.pidx=univ.fr_ref 
+left outer join phoneinfo_com com on basic.pidx=com.fr_ref 
+left outer join phoneinfo_cafe cafe on basic.pidx=cafe.fr_ref
+order by basic.pidx
+;
 

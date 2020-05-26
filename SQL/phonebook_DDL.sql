@@ -60,6 +60,118 @@ create table phonebook(
 desc user_constraints;
 select CONSTRAINT_NAME from user_constraints;
 
-select * from user_constraints where table_name='PHONEINFO_BASIC';
+select * from user_constraints where table_name='PHONEBOOK';
 -----------------------------------------------------------------
+
+--입력 SQL 작성
+desc phonebook;
+
+select * from phonebook;
+
+truncate table phonebook;
+
+--기본정보 입력
+--학교 친구 정보 입력
+--회사 친구 정보 입력
+--모임 친구 정보 입력
+
+insert into phonebook (pbidx, pbname, pbnumber, pbaddr, pbmail, pbtype)
+values(1, '짱구', '01044444444', 'SEOUL', 'zzang9@naver.com','univ');
+
+insert into phonebook (pbidx, pbname, pbnumber, pbmajor, pbtype, pbgrade)
+values(2, '짱아', '01055555555', '영문과','univ', 2);
+
+insert into phonebook(pbidx, pbname, pbnumber, pbaddr, pbmail, pbtype, pbcomname, pbcomdept, pbcomjob)
+values (3, '장윤원', '01052255225', 'SEOUL', 'woni@naver.com', 'com', '네이버', 'MANAGEMENT', null);
+
+insert into phonebook(pbidx, pbname, pbnumber, pbaddr, pbmail, pbtype, pbcafename, pbcafenickname)
+values(4, '왜가리', '01022222222', 'NEWYORK', 'gari@gmail.com', 'cafe', '개발자카페', '가리가리');
+
+insert into phonebook 
+values (5, '할미', '01077777777', 'PARIS', 'harmony@gmail.com', 'cafe', '','','','','','스터디카페','MANNHAKDO');
+
+insert into phonebook (pbidx, pbname, pbnumber, pbaddr, pbmail, pbtype, pbmajor, pbgrade)
+values(6, '오랑탄', '01024242424', 'SEOUL', 'orang@naver.com', 'univ', '피아노과', '' );
+
+insert into phonebook (pbidx, pbname, pbnumber, pbtype, pbmajor)
+values(7, '비버', '01031313131', 'univ', '피아노과');
+
+--------------------------------------------------------------------------------------------------------------
+--** 참고코드
+-----------------------------------------------------------------
+-- 정보 입력 SQL 작성
+-----------------------------------------------------------------
+
+desc phonebook;
+
+-- 기본정보 입력
+insert into phonebook 
+(pbidx, pbname, pbnumber, pbaddr, pbmail, pbtype)
+values 
+(1, 'scott', '010-9999-1234', 'SEOUL', 'scott@gmail.com', 'univ')
+;
+
+-- default 입력 처리 pbaddr, pbemail
+insert into phonebook 
+(pbidx, pbname, pbnumber, pbtype)
+values 
+(2, 'king', '010-7777-3333', 'univ')
+;
+
+-- 학교 친구 정보 입력
+insert into phonebook 
+(pbidx, pbname, pbnumber, pbaddr, pbmail, pbtype, pbmajor, pbgrade)
+values 
+(3, 'son', '010-3333-1111', '서울', 'son@gmail.com', 'univ', 'computer', 1)
+;
+
+-- 회사 친구 정보 입력 
+insert into phonebook 
+(pbidx, pbname, pbnumber, pbaddr, pbmail, pbtype, pbcomname, pbcomdept, pbcomjob)
+values 
+(4, '박지성', '010-1234-0000', '런던', 'ji@gmail.com', 'com', 'NAVER', 'SEARCH', 'PROGRAMER')
+;
+
+-- 모임 친구 정보 입력
+insert into phonebook 
+(pbidx, pbname, pbnumber, pbaddr, pbmail, pbtype, pbcafename, pbcafenickname)
+values 
+(5, 'Rain', '010-1111-2222', 'SEOUL', 'rain@gmail.com', 'cafe', 'Campping', 'FirstCamp')
+;
+
+desc phonebook;
+
+select * from phonebook;
+
+
+--------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+-- 정보 출력 질의 
+------------------------------------------------------------------------
+
+-- 1. 기본 정보 출력 질의
+
+select pbidx, pbname, pbnumber from phonebook;
+
+-- 2. 대학 친구 정보 출력 질의
+
+select pbname, pbnumber, pbmajor, pbgrade from phonebook where pbtype='univ';
+
+-- 3. 회사 친구 정보 출력 질의
+
+select pbname, pbnumber, pbcomname, pbcomdept, pbcomjob from phonebook where pbtype='com';
+
+-- 4. 모임 친구 정보 출력 질의
+
+select pbname, pbnumber, pbcafename, pbcafenickname from phonebook where pbtype='cafe';
+
+
+select * from phonebook;
+
+
+
+
+
+
 
