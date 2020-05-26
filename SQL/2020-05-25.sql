@@ -45,7 +45,7 @@ select * from emp01;
 select * from tab;
 desc emp01;
 
---테이블의 복사 : SUBQUERY이용 → 스키마 복사, ROW 복사 (단, 제약조건은 복사되지 않는다.)
+--테이블의 복사 : SUBQUERY이용( as 서브쿼리 ) → 스키마 복사, ROW 복사 (단, 제약조건은 복사되지 않는다.)
 --백업용 사용 多
 create table emp02
 as 
@@ -81,7 +81,7 @@ as select * from emp where 1<0;
 
 select * from emp05;
 
---테이블에 컬럼 추가
+--테이블에 컬럼을 추가
 --alter table 테이블명 add (컬럼이름 컬럼타입 컬럼제약..)
 
 --emp01테이블에 직급(job)컬럼을 추가하자.
@@ -128,7 +128,7 @@ rename emp02 to test_emp;
 select * from tab;
 
 desc dept;
---모든 컬럼에 저장한다면 (컬럼명)생략 가능 ↓
+--모든 컬럼에 저장한다면? (컬럼명)생략 가능 ↓
 insert into dept values (10, 'test', 'SEOUL');
 
 -- 컬럼의 제약 정의는 컬럼정의를 하면서 컬럼 옆에 정의
@@ -141,9 +141,9 @@ insert into dept values (10, 'test', 'SEOUL');
 --create table emp01(
 --    empno number(4),
 --    primary key(empno)
-);
+--);
 --NOT NULL제약 : 컬럼의 값에 null값을 허용하지 않는다.
---컬럼레벨에서만 정의 가능
+--(중요)컬럼레벨에서만 정의 가능
 
 --사원 테이블(EMP02)을 
 --사원번호, 사원명, 직급, 부서번호 4개의 칼럼으로 구성하되 
@@ -232,6 +232,7 @@ select * from emp05;
 --사원번호, 사원명, 직급, 부서번호 4개의 칼럼으로 구성된 테이블을 생성하되 
 --사원번호에 기본 키 제약 조건을 설정해 봅시다.
 --'deptno' 외래키로 제약조건을 설정
+--밑에서 따로 정의하게 되면 어떤 컬럼인지 알 수 없음..(컬럼레벨에서 정의)
 drop table emp06;
 
 create table emp06 (
@@ -262,5 +263,122 @@ create table emp07 (
     sal number(7,2) constraint emp07_sal_ck check(sal between 500 and 5000),
     birthday date default sysdate
 );
-
+--이렇게 하면 default값 저장 안됨
 insert into emp07 values (1111,'TEST',null,10, 'K',6000,null);
+insert into emp07 values (1111,'TEST',null,10, 'K',4000,null);
+insert into emp07 values (1111,'TEST',null,10, 'M',4000,null);
+insert into emp07 values (2222,'TEST',null ,10, 'F',3000,null );
+--컬럼을 지정하고 해당 값들만 넣으면 나머지 설정해뒀던 컬럼은 default값이 저장
+insert into emp07 (empno, ename, deptno, gender, sal)
+values (3333, 'TEST', 10, 'F', 2500);
+
+select * from emp07;
+
+--2020.05.26
+
+--테이블 레벨에서의 제약 조건 정의
+
+--create table emp07 (
+--    empno number(4) ,
+--    ename varchar2(10) not null,    --not null은 컬럼 레벨에서만..
+    --제약의 정의
+--);
+
+drop table emp02;
+
+create table emp02 (
+    empno number(4),
+    ename varchar2(10) constraint emp02_ename_nn not null,
+    job varchar2(10) not null,
+    deptno number(2),
+    constraint emp02_empno_pk primary key(empno),
+    constraint emp02_ename_uk unique(ename),
+    constraint emp02_deptno_fk foreign key(deptno) references dept(deptno) --해당 pk(dept의 deptno)로 정의
+);
+
+--===== 전화번호부( Contact )
+-- 대리키 : 일련번호 -> pIdx →기본키가 마땅하지 않을 때..
+-- 이름, 전화번호, 주소, 이메일 <- 기본정보
+-- 주소값과 이메일은 입력이 없을 때 기본값 입력
+-- 친구의 타입 (카테고리) : univ, com, cafe 세가지 값만 저장 가능
+------ 선택 정보
+-- 전공, 학년
+-- 회사이름, 부서이름, 직급
+-- 모임이름, 닉네임
+
+
+create table phoneinfo_basic(
+    pIdx number(6) constraint phoneinfo_basic_pIdx_pk primary key,
+    name varchar2(20) constraint phoneinfo_basic_name_nn not null,
+    phonenum number(20) constraint phoneinfo_basic_phonenum_nn not null,
+    addr varchar2(20) default ' - ',
+    email varchar2(20) default ' - ',
+    regdate date default sysdate,
+    fr_type varchar2(10) constraint phoneinfo_basic_fr_type_ck check (fr_type in ('univ', 'com', 'cafe'))
+);
+
+create table phoneinfo_univ(
+    pIdx number(6) constraint phoneinfo_univ_pIdx_pk primary key,
+    major varchar2(20) default ' - ',
+    year number(1) default 1 constraint phoneinfo_univ_year_ck check(year between 1 and 4),
+    fr_ref number(7) constraint phoneinfo_univ_fr_ref_fk references phoneinfo_basic(pIdx)
+);
+
+create table phoneinfo_com(
+    pIdx number(6) constraint phoneinfo_com_pIdx_pk primary key,
+    companyName varchar2(20) default ' - ' constraint phoneinfo_com_companyName_nn not null,    --null제약걸림, 컬럼지정하지 않을 경우 default값 저장
+    dName varchar2(20) default ' - ',   --null제약 안 걸림, null값이 들어올 경우 자동으로 default값 저장
+    job varchar2(20) default ' - ',
+    fr_ref number(6) constraint phoneinfo_com_fr_ref_fk references phoneinfo_basic(pIdx)
+    
+);
+
+create table phoneinfo_cafe(
+
+    pIdx number(6) constraint phoneinfo_cafe_pIdx_pk primary key,
+    cafeName varchar2(20) default '-' constraint phoneinfo_cafe_cafeName_nn not null,
+    nickName varchar2(10) default '-' constraint phoneinfo_cafe_nickname_nn not null,
+    fr_ref number(6) constraint phoneinfo_cafe_fr_ref_fk references phoneinfo_basic(pIdx)
+);
+
+
+rename phonebook_basic to phoneinfo_basic;
+select * from tab;
+rename phonebook_univ to phoneinfo_univ;
+
+--insert into emp07 (empno, ename, deptno, gender, sal)
+--values (3333, 'TEST', 10, 'F', 2500);
+
+insert into phonebook_basic values(2, '장윤원','0105555555','SEOUL', 'woni@','2020/05/25', 'univ');
+
+select * from phonebook_basic;
+
+alter table phonebook_basic modify(phonenum number(20));
+
+select * from phonebook_basic;
+
+drop table phoneinfo_univ;
+drop table phoneinfo_com;
+drop table phoneinfo_cafe;
+drop table phoneinfo_basic;
+
+select * from tab;
+purge recyclebin;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
