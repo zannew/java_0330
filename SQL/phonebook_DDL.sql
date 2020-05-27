@@ -283,11 +283,18 @@ where fr_ref=(select pidx from phoneinfo_basic where fr_type='univ' and name='�
 --회사
 delete from phoneinfo_com where fr_ref=2;
 delete from phoneinfo_univ where fr_ref=2;
+delete from phoneinfo_cafe where fr_ref=2;
 delete from phoneinfo_basic where pidx=2;   --on delete cascade : 참조하고 있는 자식 테이블의 모든 행도 삭제
 --학교
 delete from phoneinfo_com where fr_ref=1;
 delete from phoneinfo_univ where fr_ref=1;
+delete from phoneinfo_cafe where fr_ref=1;
 delete from phoneinfo_basic where pidx=1;
+
+delete from phoneinfo_cafe where fr_ref=3;
+delete from phoneinfo_com where fr_ref=3;
+delete from phoneinfo_univ where fr_ref=3;
+delete from phoneinfo_basic where pidx=3;
 --★★끝
 
 --phoneinfo_com 테이블
@@ -305,7 +312,6 @@ where name='오랑'
 --phoneinfo_univ테이블
 delete from phoneinfo_univ
 where fr_ref=(select pidx from phoneinfo_basic where name='비버')
-
 ;
 
 delete from phoneinfo_basic
@@ -330,9 +336,11 @@ select basic.pidx,
         univ.year, 
         com.companyname, 
         com.dname, 
-        com.job 
-from phoneinfo_basic basic, phoneinfo_univ univ, phoneinfo_com com
-where basic.pidx=univ.fr_ref(+) and basic.pidx=com.fr_ref(+)
+        com.job,
+        cafe.cafename,
+        cafe.nickname
+from phoneinfo_basic basic, phoneinfo_univ univ, phoneinfo_com com, phoneinfo_cafe cafe
+where basic.pidx=univ.fr_ref(+) and basic.pidx=com.fr_ref(+) and basic.pidx=cafe.fr_ref(+)
 order by pidx
 ;
 
@@ -352,6 +360,7 @@ where basic.pidx=com.fr_ref;
 
 drop view pb_univ_view;
 drop view pb_com_view;
+drop view pb_cafe_view;
 drop view pb_all_view;
 
 select * from pb_univ_view;
@@ -397,14 +406,14 @@ create sequence pb_basic_idx_seq
 start with 0
 minvalue 0
 ;
-
+drop sequence pb_basic_idx_seq;
 
 --2. com 테이블 seq
 create sequence pb_com_idx_seq
 start with 0
 minvalue 0
 ;
-
+drop sequence pb_com_idx_seq;
 
 
 --3. univ 테이블 seq
@@ -412,10 +421,11 @@ create sequence pb_univ_idx_seq
 start with 0
 minvalue 0
 ;
-
+drop sequence pb_univ_idx_seq;
 
 --4. cafe 테이블 seq
 create sequence pb_cafe_idx_seq
 start with 0
 minvalue 0
 ;
+drop sequence pb_cafe_idx_seq;

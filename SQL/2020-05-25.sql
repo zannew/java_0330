@@ -501,4 +501,4 @@ left outer join phoneinfo_com com on basic.pidx=com.fr_ref
 left outer join phoneinfo_cafe cafe on basic.pidx=cafe.fr_ref
 order by basic.pidx
 ;
-
+rollback;
