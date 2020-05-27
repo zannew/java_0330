@@ -1,5 +1,5 @@
 --2020.05.25
-
+--2020.05.27 insert 정보 추가 시, 시퀀스 추가
 ---------------------------------------------------------------------
 -- DDL : commit없이 바로 물리적 반영되기 때문에 조심! 특정시점에 자동 백업된 데이터만 복구 가능
 --(DML은 transation으로 복구 가능)
@@ -307,6 +307,7 @@ create table emp02 (
 -- 모임이름, 닉네임
 
 
+--  컬럼 레벨
 create table phoneinfo_basic(
     pIdx number(6) constraint phoneinfo_basic_pIdx_pk primary key,
     name varchar2(20) constraint phoneinfo_basic_name_nn not null,
@@ -321,7 +322,7 @@ create table phoneinfo_univ(
     pIdx number(6) constraint phoneinfo_univ_pIdx_pk primary key,
     major varchar2(20) default ' - ',
     year number(1) default 1 constraint phoneinfo_univ_year_ck check(year between 1 and 4),
-    fr_ref number(6) constraint phoneinfo_univ_fr_ref_fk references phoneinfo_basic(pIdx)
+    fr_ref number(6) constraint phoneinfo_univ_fr_ref_fk references phoneinfo_basic(pIdx) on delete cascade
 );
 
 create table phoneinfo_com(
@@ -329,7 +330,7 @@ create table phoneinfo_com(
     companyName varchar2(20) default ' - ' constraint phoneinfo_com_companyName_nn not null,    --null제약 걸림, 컬럼 지정하지 않을 경우 default값 저장
     dName varchar2(20) default ' - ',   --null제약 안 걸림, null값이 들어올 경우 자동으로 default값 저장
     job varchar2(20) default ' - ',
-    fr_ref number(6) constraint phoneinfo_com_fr_ref_fk references phoneinfo_basic(pIdx)
+    fr_ref number(6) constraint phoneinfo_com_fr_ref_fk references phoneinfo_basic(pIdx) on delete cascade
 );
 
 create table phoneinfo_cafe(
@@ -337,7 +338,7 @@ create table phoneinfo_cafe(
     pIdx number(6) constraint phoneinfo_cafe_pIdx_pk primary key,
     cafeName varchar2(20) default '-' constraint phoneinfo_cafe_cafeName_nn not null,
     nickName varchar2(10) default '-' constraint phoneinfo_cafe_nickname_nn not null,
-    fr_ref number(6) constraint phoneinfo_cafe_fr_ref_fk references phoneinfo_basic(pIdx)
+    fr_ref number(6) constraint phoneinfo_cafe_fr_ref_fk references phoneinfo_basic(pIdx)on delete cascade
 );
 
 drop table phoneinfo_univ;
@@ -434,9 +435,6 @@ create table contact(
 );
 
 
-
-
-
 --1)basic정보 먼저 입력하고 대학 정보 입력
 
 desc phoneinfo_basic;
@@ -452,35 +450,44 @@ truncate table phoneinfo_univ;
 truncate table phoneinfo_com;
 truncate table phoneinfo_cafe;
 
-
-
 purge recyclebin;
 
 --★★ pidx의 값과 fr_ref의 값이 일치해야 세부정보 저장 가능 
 insert into phoneinfo_basic (pidx, name, phonenum, addr, email, fr_type, regdate)
-values(1, '비버', '01031313131', '서울', 'bieber@naver.com','univ', '2020-01-01');
+values(PB_BASIC_IDX_SEQ.nextval, '비버', '01031313131', '서울', 'bieber@naver.com','univ', '2020-01-01');
 
 insert into phoneinfo_univ(pidx, major, year, fr_ref)
-values(1, 'ACCOUNTING', 3, 1);
+values(PB_UNIV_IDX_SEQ.nextval, 'ACCOUNTING', 3, pb_basic_idx_seq.currval);
 ---------------------------------------------------------------------------------------------
 insert into phoneinfo_basic (pidx, name, phonenum, addr, email, fr_type)
-values(2, '오랑', '01029292929', '전주', 'orang@naver.com','com');
+values(PB_BASIC_IDX_SEQ.nextval, '오랑', '01029292929', '전주', 'orang@naver.com','com');
 
 insert into phoneinfo_com(pidx, companyname, dname, fr_ref)
-values(2, '다음카카오', 'DEVELOPMENT',2);
+values(PB_COM_IDX_SEQ.nextval, '다음카카오', 'DEVELOPMENT',pb_basic_idx_seq.currval);
 ---------------------------------------------------------------------------------------------
 insert into phoneinfo_basic (pidx, name, phonenum, email, fr_type)
-values(3, '함미', '01079797979', 'harmony@gmail.com','cafe');
+values(PB_BASIC_IDX_SEQ.nextval, '함미', '01079797979', 'harmony@gmail.com','cafe');
 
 insert into phoneinfo_cafe(pidx, cafename, nickname, fr_ref)
-values(3, '왕초보개발자모임', 'HARMOOI',3);
+values(PB_cafe_IDX_SEQ.nextval, '왕초보개발자모임', 'HARMOOI',PB_BASIC_IDX_SEQ.currval);
 
 ---------------------------------------------------------------------------------------------
 
-select * from phoneinfo_basic join phoneinfo_univ using(pidx);
-select * from phoneinfo_basic join phoneinfo_com using(pidx);
-select * from phoneinfo_basic join phoneinfo_cafe using(pidx);
 
+--1.학교 친구 목록 출력
+select * from phoneinfo_basic basic, phoneinfo_univ univ
+where basic.pidx=univ.fr_ref;
+
+--2.회사 친구 목록 출력
+select * from phoneinfo_basic basic, phoneinfo_com com
+where basic.pidx=com.fr_ref;
+
+--3.카페 친구 목록 출력
+select * from phoneinfo_basic basic, phoneinfo_cafe cafe
+where basic.pidx=cafe.fr_ref;
+
+
+--전체 친구 목록 출력
 --OUTER JOIN(+)
 select * from phoneinfo_basic basic, phoneinfo_univ univ, phoneinfo_com com,phoneinfo_cafe cafe
 where basic.pidx=univ.fr_ref(+) and basic.pidx=com.fr_ref(+) and basic.pidx=cafe.fr_ref(+)
