@@ -29,7 +29,7 @@ public class JDBCTest_3 {
 			System.out.println("데이터베이스에 접속했습니다.");
 
 			// 3. SQL로 데이터처리
-			// Statement : Connection 객체의 ㅇ
+			// Statement : Connection 객체로 createStatement메서드 호출
 
 			Statement stmt = conn.createStatement();
 			

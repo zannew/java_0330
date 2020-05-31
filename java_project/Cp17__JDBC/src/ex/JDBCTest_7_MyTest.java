@@ -1,14 +1,18 @@
 package ex;
 
+//3.EMP 테이블에 서 “SCOTT” 사원의 급여(sal) 정보를 1000으로 바꾸는 프로그램을 작성해보자.
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
-public class JDBCTest_1 {
+public class JDBCTest_7_MyTest {
 
 	public static void main(String[] args) {
 
 		Connection conn = null;
+		ResultSet rs=null;
 
 		// 1. DB드라이버 로드
 		try {
@@ -24,16 +28,16 @@ public class JDBCTest_1 {
 			conn = DriverManager.getConnection(url, user, pw);
 			System.out.println("데이터베이스에 접속했습니다.");
 
-			// 트랜잭션 설정
-			conn.setAutoCommit(false);
-
+			Statement stmt = conn.createStatement();
+			
+			String sql = "update emp set sal=1000 where ename='SCOTT'";
+//			update emp
+//			set sal=1000 where ename='scott'
 			
 			// 3. SQL로 데이터처리
-
-			// commit : 처리 완료
-			conn.commit();
-
-			// 4. DB close
+			stmt.executeUpdate(sql);
+			System.out.println("행이 수정되었습니다.");
+			
 			conn.close();
 
 		} catch (ClassNotFoundException e) {
@@ -41,12 +45,6 @@ public class JDBCTest_1 {
 			e.printStackTrace();
 		} catch (SQLException e) {
 
-			try {
-				conn.rollback();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
 			e.printStackTrace();
 
 		}
