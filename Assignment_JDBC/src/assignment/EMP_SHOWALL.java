@@ -53,7 +53,7 @@ public class EMP_SHOWALL {
 
 			stmt = conn.createStatement();
 
-			String sql = "select * from emp";
+			String sql = "select empno, ename, lpad(job,10,'   '), mgr, hiredate, sal, comm, deptno from emp";
 
 			rs = stmt.executeQuery(sql);
 
@@ -63,7 +63,7 @@ public class EMP_SHOWALL {
 
 				System.out.print(rs.getInt(1) + "\t");
 				System.out.print(rs.getString(2) + "\t");
-				System.out.print(rs.getString(3) + "\t\t");
+				System.out.print(rs.getString(3)+ "\t");
 				System.out.print(rs.getInt(4) + "\t");
 				System.out.print(rs.getDate(5) + "\t");
 				System.out.print(rs.getInt(6) + "\t");

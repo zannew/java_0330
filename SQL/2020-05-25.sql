@@ -14,6 +14,8 @@
 -- 컬럼2 : name, 가변문자열 타입, 사이즈는 10
 -- 컬럼3 : birth, 날짜타입, 기본값은 현재 시간
 
+
+
 create table ddl_test(
     no number(3),
     name varchar2(10),

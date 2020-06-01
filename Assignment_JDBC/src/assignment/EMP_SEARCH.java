@@ -62,21 +62,27 @@ public class EMP_SEARCH {
 			String sql = "select * from emp where ename like'%" + ename + "%'";
 
 			rs = stmt.executeQuery(sql);
-			
-			if(rs.next()==false) {
-				System.out.println("검색 결과를 찾을 수 없습니다.");
-			}
-			
-			while (rs.next()) {
 
-				System.out.print(rs.getInt(1) + "\t");
-				System.out.print(rs.getString(2) + "\t");
-				System.out.print(rs.getString(3) + "\t\t");
-				System.out.print(rs.getInt(4) + "\t");
-				System.out.print(rs.getDate(5) + "\t");
-				System.out.print(rs.getInt(6) + "\t");
-				System.out.print(rs.getInt(7) + "\t");
-				System.out.print(rs.getInt(8) + "\n");
+			while (true) {
+
+				if (rs.next()) {
+
+					System.out.print(rs.getInt(1) + "\t");
+					System.out.print(rs.getString(2) + "\t");
+					System.out.print(rs.getString(3) + "\t\t");
+					System.out.print(rs.getInt(4) + "\t");
+					System.out.print(rs.getDate(5) + "\t");
+					System.out.print(rs.getInt(6) + "\t");
+					System.out.print(rs.getInt(7) + "\t");
+					System.out.print(rs.getInt(8) + "\n");
+
+				}
+				
+				if (rs.next() == false) {
+					System.out.println("검색 결과를 찾을 수 없습니다.");
+					return;
+				}
+
 			}
 
 		} catch (

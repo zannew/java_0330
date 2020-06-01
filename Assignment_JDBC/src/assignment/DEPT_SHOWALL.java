@@ -52,7 +52,7 @@ public class DEPT_SHOWALL {
 
 			stmt = conn.createStatement();
 
-			String sql = "select * from dept order by deptno";
+			String sql = "select deptno, lpad(dname,10,'   '), loc from dept order by deptno";
 
 			rs = stmt.executeQuery(sql);
 

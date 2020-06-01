@@ -28,7 +28,6 @@ public class JDBCTest_7 {
 
 		// JDBC 사용 객체
 		Connection conn = null;
-		Statement stmt = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
