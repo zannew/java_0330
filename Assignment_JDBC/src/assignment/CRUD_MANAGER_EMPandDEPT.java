@@ -6,10 +6,6 @@ package assignment;
 	      삭제(사원번호), 
 	      리스트(전체), 
 	      검색(이름)*/
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.Scanner;
 
 public class CRUD_MANAGER_EMPandDEPT {
