@@ -29,7 +29,6 @@ public class DEPT_UPDATE {
 		return dUpdate;
 	}
 	
-//	public static void main(String[] args) {
 	public static void dept_update() {
 
 		Scanner sc = null;

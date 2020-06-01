@@ -29,7 +29,6 @@ public class EMP_DELETE {
 		return eDelete;
 	}
 	
-//	public static void main(String[] args) {
 	public static void emp_delete() {
 		Scanner sc = null;
 
@@ -37,7 +36,7 @@ public class EMP_DELETE {
 		PreparedStatement pstmt = null;
 
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+//			Class.forName("oracle.jdbc.driver.OracleDriver");
 
 			System.out.println("Oracle 드라이버 로드 성공");
 
@@ -60,8 +59,9 @@ public class EMP_DELETE {
 
 			pstmt.setInt(1, empno);
 		
-
 			int resultCnt = pstmt.executeUpdate();
+			
+//			resultCnt로 예외처리(if)
 
 			if (resultCnt > 0) {
 				System.out.println("정상적으로 삭제 ");
@@ -70,9 +70,6 @@ public class EMP_DELETE {
 				System.out.println("다시 시도해주세요.");
 			}
 
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

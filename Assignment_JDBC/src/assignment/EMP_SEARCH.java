@@ -31,7 +31,6 @@ public class EMP_SEARCH {
 		return eSearch;
 	}
 
-//	public static void main(String[] args) {
 	public static void emp_search() {
 		Scanner sc = null;
 
@@ -40,7 +39,8 @@ public class EMP_SEARCH {
 		ResultSet rs = null;
 
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			
+			//Class.forName("oracle.jdbc.driver.OracleDriver");
 
 			System.out.println("Oracle 드라이버 로드 성공");
 
@@ -59,10 +59,21 @@ public class EMP_SEARCH {
 			System.out.println("검색하실 사원의 이름을 입력하세요.");
 			String ename = sc.nextLine();
 
-			String sql = "select * from emp where ename like'%" + ename + "%'";
+			// Mysql
+			// "SELECT * FROM dept WHERE dname LIKE ?"
+			// psmt.setString(1, "%"+name+"%");
+
+			// Oracle
+			// select * from dept where dname like '%'||?||'%'
+
+			String sql = "select empno, ename, lpad(job,10,'   '), mgr, hiredate, sal, comm, deptno"
+					+ " from emp where ename like'%" + ename + "%'";
 
 			rs = stmt.executeQuery(sql);
-
+			
+//			cnt++ 사용해서 검색결과 없음 처리!
+			int searchCnt=0;
+			
 			while (true) {
 
 				if (rs.next()) {
@@ -75,21 +86,15 @@ public class EMP_SEARCH {
 					System.out.print(rs.getInt(6) + "\t");
 					System.out.print(rs.getInt(7) + "\t");
 					System.out.print(rs.getInt(8) + "\n");
-
+					searchCnt++;
 				}
-				
-				if (rs.next() == false) {
+
+				if (searchCnt<1) {
 					System.out.println("검색 결과를 찾을 수 없습니다.");
-					return;
 				}
 
 			}
 
-		} catch (
-
-		ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -29,7 +29,6 @@ public class DEPT_SHOWALL {
 		return dShowAll;
 	}
 	
-//	public static void main(String[] args) {
 	public static void dept_showAll() {
 
 		Connection conn = null;
@@ -37,7 +36,7 @@ public class DEPT_SHOWALL {
 		ResultSet rs = null;
 
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+//			Class.forName("oracle.jdbc.driver.OracleDriver");
 
 			System.out.println("Oracle 드라이버 로드 성공");
 
@@ -67,9 +66,6 @@ public class DEPT_SHOWALL {
 			}
 
 
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

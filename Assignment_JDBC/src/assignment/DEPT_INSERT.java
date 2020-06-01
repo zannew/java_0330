@@ -29,7 +29,6 @@ public class DEPT_INSERT {
 		return dInsert;
 	}
 	
-//	public static void main(String[] args) {
 		public static void dept_insert() {
 
 		Scanner sc = null;
@@ -38,7 +37,7 @@ public class DEPT_INSERT {
 		PreparedStatement pstmt = null;
 
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+//			Class.forName("oracle.jdbc.driver.OracleDriver");
 
 			System.out.println("Oracle 드라이버 로드 성공");
 
@@ -78,9 +77,6 @@ public class DEPT_INSERT {
 				System.out.println("다시 시도해주세요.");
 			}
 
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
