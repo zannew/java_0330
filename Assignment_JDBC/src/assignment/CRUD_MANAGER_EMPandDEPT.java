@@ -76,7 +76,7 @@ public class CRUD_MANAGER_EMPandDEPT {
 
 			case 2:
 
-				// 사원테이블
+				// 부서테이블
 				switch (opt) {
 				case 1:
 					dInsert.dept_insert();
