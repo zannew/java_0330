@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-public class JDBCTest_2 {
+//5. 모든 사원정보를 출력하되 부서정보를 함께 출력하는 프로그램을 작성해보자.
+public class MyTest_JDBCTest_9 {
 
 	public static void main(String[] args) {
 
@@ -20,6 +20,7 @@ public class JDBCTest_2 {
 			System.out.println("Oracle 드라이버 로드 성공");
 
 			String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+//			String url = "jdbc:oracle:thin:@localhost:1524:orcl2";
 			String user = "SCOTT";
 			String pw = "tiger";
 
@@ -28,37 +29,43 @@ public class JDBCTest_2 {
 			System.out.println("데이터베이스에 접속했습니다.");
 
 			// 3. SQL로 데이터처리
-			// Statement : Connection 객체의 ㅇ
 
+			
 			Statement stmt = conn.createStatement();
-
-			String sql = "select * from dept order by deptno";
-
-			// SELECT의 결과는 ResultSet이 받는다.
-			// executeQuery(sql문-String) → ResultSet
+			
+			String sql = "select * from emp e, dept d "
+					+ "where e.deptno=d.deptno";
+					
 			rs = stmt.executeQuery(sql);
-
-			// ResultSet : next(); → 행의 존재 유무 확인 (커서개념)
-			while (rs.next()) {
-//				System.out.print(rs.getInt("deptno") + "\t");
-//				System.out.print(rs.getString("dname") + "\t");
-//				System.out.print(rs.getString("loc") + "\n");
+			
+			while(rs.next()) {
 				
 				System.out.print(rs.getInt(1) + "\t");
 				System.out.print(rs.getString(2) + "\t");
-				System.out.print(rs.getString(3) + "\n");
+				System.out.print(rs.getString(3) + "\t\t");
+				System.out.print(rs.getInt(4) + "\t");
+				System.out.print(rs.getDate(5) + "\t");
+				System.out.print(rs.getInt(6) + "\t");
+				System.out.print(rs.getInt(7) + "\t");
+				System.out.print(rs.getInt(8) + "\t");
+				System.out.print(rs.getString(10) + "\t");
+				System.out.print(rs.getString(11) + "\n");
+				
 			}
-			
 
-			rs.close();
-			stmt.close();
+		
 
 			// 4. DB close
+			
+			rs.close();
+			stmt.close();
 			conn.close();
 
 		} catch (ClassNotFoundException e) {
+
 			e.printStackTrace();
 		} catch (SQLException e) {
+
 			e.printStackTrace();
 
 		}

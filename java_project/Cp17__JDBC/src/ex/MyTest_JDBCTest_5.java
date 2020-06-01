@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-public class JDBCTest_5_MyTest {
+public class MyTest_JDBCTest_5 {
 
 //	1. EMP 테이블에 새로운 사원 정보를 입력하는 프로그램을 작성해보자.
 	
@@ -22,7 +22,8 @@ public class JDBCTest_5_MyTest {
 
 			System.out.println("Oracle 드라이버 로드 성공");
 
-			String url = "jdbc:oracle:thin:@localhost:1524:orcl2";
+			String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+//			String url = "jdbc:oracle:thin:@localhost:1524:orcl2";
 			String user = "SCOTT";
 			String pw = "tiger";
 

@@ -1,17 +1,18 @@
 package ex;
 
+//3.EMP 테이블에 서 “SCOTT” 사원의 급여(sal) 정보를 1000으로 바꾸는 프로그램을 작성해보자.
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-//2. EMP 테이블의 모든 데이터를 출력하는 프로그램을 작성해보자.
-public class JDBCTest_6_MyTest {
+
+public class MyTest_JDBCTest_7 {
 
 	public static void main(String[] args) {
 
 		Connection conn = null;
-		ResultSet rs = null;
+		ResultSet rs=null;
 
 		// 1. DB드라이버 로드
 		try {
@@ -19,7 +20,8 @@ public class JDBCTest_6_MyTest {
 
 			System.out.println("Oracle 드라이버 로드 성공");
 
-			String url = "jdbc:oracle:thin:@localhost:1524:orcl2";
+			String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+//			String url = "jdbc:oracle:thin:@localhost:1524:orcl2";
 			String user = "SCOTT";
 			String pw = "tiger";
 
@@ -27,38 +29,20 @@ public class JDBCTest_6_MyTest {
 			conn = DriverManager.getConnection(url, user, pw);
 			System.out.println("데이터베이스에 접속했습니다.");
 
-			// 3. SQL로 데이터처리
-
-			
 			Statement stmt = conn.createStatement();
 			
-			String sql = "select * from emp";
-					
-			rs = stmt.executeQuery(sql);
+			String sql = "update emp set sal=1000 where ename='SCOTT'";
+//			update emp
+//			set sal=1000 where ename='scott'
 			
-			while(rs.next()) {
-				
-				System.out.print(rs.getInt(1) + "\t");
-				System.out.print(rs.getString(2) + "\t");
-				System.out.print(rs.getString(3) + "\t");
-				System.out.print(rs.getInt(4) + "\t");
-				System.out.print(rs.getDate(5) + "\t");
-				System.out.print(rs.getInt(6) + "\t");
-				System.out.print(rs.getInt(7) + "\t");
-				System.out.print(rs.getInt(8) + "\n");
-				
-			}
-
-		
-
-			// 4. DB close
+			// 3. SQL로 데이터처리
+			stmt.executeUpdate(sql);
+			System.out.println("행이 수정되었습니다.");
 			
-			rs.close();
-			stmt.close();
 			conn.close();
 
 		} catch (ClassNotFoundException e) {
-
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
 

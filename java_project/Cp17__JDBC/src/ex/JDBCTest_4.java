@@ -11,8 +11,9 @@ public class JDBCTest_4 {
 
 		Connection conn = null;
 		Statement stmt = null;
-		// 1. DB드라이버 로드
+
 		try {
+			// 1. DB드라이버 로드 
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
 			System.out.println("Oracle 드라이버 로드 성공");
@@ -32,7 +33,8 @@ public class JDBCTest_4 {
 			
 			String sql = "insert into dept (deptno, dname, loc) "
 					+ "values (60, 'design', 'jeju')";
-
+			
+			//executeUpdate → int 반환
 			int resultCnt = stmt.executeUpdate(sql);
 			
 			System.out.println(resultCnt + "개 행이 입력되었습니다.");
