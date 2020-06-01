@@ -52,13 +52,14 @@ public class DEPT_SHOWALL {
 
 			stmt = conn.createStatement();
 
-			String sql = "select * from dept";
+			String sql = "select * from dept order by deptno";
 
 			rs = stmt.executeQuery(sql);
 
+			System.out.println("============부서테이블============");
+
 			while (rs.next()) {
 
-				System.out.println("============부서테이블============");
 				System.out.print(rs.getInt(1) + "\t");
 				System.out.print(rs.getString(2) + "\t");
 				System.out.print(rs.getString(3) + "\n");

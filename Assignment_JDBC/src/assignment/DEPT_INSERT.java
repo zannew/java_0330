@@ -17,10 +17,8 @@ package assignment;
       검색(부서이름 or 지역)
  * */
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -53,7 +51,7 @@ public class DEPT_INSERT {
 			sc = new Scanner(System.in);
 			conn = DriverManager.getConnection(url, user, pw);
 			System.out.println("데이터베이스에 접속했습니다.");
-//부서번호, 부서이름, 위치
+			
 			System.out.println("새로운 부서의 정보를 입력합니다>>");
 			System.out.println("부서번호를 입력하세요.");
 			int deptno = Integer.parseInt(sc.nextLine());

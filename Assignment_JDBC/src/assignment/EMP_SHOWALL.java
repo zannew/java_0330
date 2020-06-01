@@ -57,12 +57,13 @@ public class EMP_SHOWALL {
 
 			rs = stmt.executeQuery(sql);
 
+			System.out.println("============사원테이블============");
+
 			while (rs.next()) {
 
-				System.out.println("============사원테이블============");
 				System.out.print(rs.getInt(1) + "\t");
 				System.out.print(rs.getString(2) + "\t");
-				System.out.print(rs.getString(3) + "\t");
+				System.out.print(rs.getString(3) + "\t\t");
 				System.out.print(rs.getInt(4) + "\t");
 				System.out.print(rs.getDate(5) + "\t");
 				System.out.print(rs.getInt(6) + "\t");
