@@ -26,10 +26,11 @@ import java.util.Scanner;
 public class EMP_SEARCH {
 
 	private static EMP_SEARCH eSearch = new EMP_SEARCH();
+
 	public static EMP_SEARCH getInstance() {
 		return eSearch;
 	}
-	
+
 //	public static void main(String[] args) {
 	public static void emp_search() {
 		Scanner sc = null;
@@ -58,12 +59,16 @@ public class EMP_SEARCH {
 			System.out.println("검색하실 사원의 이름을 입력하세요.");
 			String ename = sc.nextLine();
 
-			String sql = "select * from emp where ename like'%"+ename+"%'";
+			String sql = "select * from emp where ename like'%" + ename + "%'";
 
 			rs = stmt.executeQuery(sql);
+			
+			if(rs.next()==false) {
+				System.out.println("검색 결과를 찾을 수 없습니다.");
+			}
+			
+			while (rs.next()) {
 
-			while(rs.next()) {
-				
 				System.out.print(rs.getInt(1) + "\t");
 				System.out.print(rs.getString(2) + "\t");
 				System.out.print(rs.getString(3) + "\t\t");
@@ -74,45 +79,41 @@ public class EMP_SEARCH {
 				System.out.print(rs.getInt(8) + "\n");
 			}
 
-		}catch(
+		} catch (
 
-	ClassNotFoundException e)
-	{
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}catch(
-	SQLException e)
-	{
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}finally
-	{
-		if (rs != null) {
-			try {
-				rs.close();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+		ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
-		}
 
-		if (stmt != null) {
-			try {
-				stmt.close();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
-		}
-		if (conn != null) {
-			try {
-				conn.close();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		}
 	}
-}
 
 }

@@ -65,7 +65,12 @@ public class DEPT_SEARCH {
 			
 			rs = stmt.executeQuery(sql);
 
-			System.out.println("입력하신 부서의 이름 또는 위치로 검색합니다.");
+			if(rs.next()==false) {
+				System.out.println("검색 결과를 찾을 수 없습니다.");
+				return;
+			}
+			
+			System.out.println("입력하신 부서의 이름 또는 위치로 검색한 결과입니다>>");
 
 			while(rs.next()) {
 				System.out.print(rs.getInt(1) + "\t");
