@@ -48,3 +48,10 @@ select * from emp where empno=1111;
 
 create index emp01_ename_idx on emp01(ename);
 
+
+select empno, ename, job, e.deptno
+from emp e, dept d
+where e.deptno=d.deptno;
+
+select empno, ename, job, deptno
+from emp e join dept d using(deptno);

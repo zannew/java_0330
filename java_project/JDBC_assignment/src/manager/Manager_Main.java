@@ -1,10 +1,9 @@
 package manager;
 
 import java.util.List;
-
 import java.util.Scanner;
 
-public class Main_Manager {
+public class Manager_Main {
 
 	static Scanner sc = new Scanner(System.in);
 	
@@ -47,7 +46,7 @@ public class Main_Manager {
 					eManager.empManager();
 					break;
 				case 2:
-					dManager.deptManager();//남을 애
+					dManager.deptManager();
 					break;
 
 				

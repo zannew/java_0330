@@ -91,7 +91,7 @@ select * from emp05;
 desc emp01;
 
 alter table emp01 add (job varchar2(10));
-
+select * from user_views;
 desc emp01;
 
 --컬럼의 변경

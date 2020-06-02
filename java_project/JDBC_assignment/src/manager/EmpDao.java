@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class EMPDao {
+public class EmpDao {
 
 	///////////////INSERT
 	public static void emp_insert() {

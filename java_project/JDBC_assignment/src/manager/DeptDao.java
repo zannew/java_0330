@@ -1,5 +1,6 @@
 package manager;
 
+//1 table = 1 DAO
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class DEPTDao {
+public class DeptDao {
 
 	/* conn전달받아서 CRUD 모두 하나의 transaction으로... */
 
@@ -21,53 +22,28 @@ public class DEPTDao {
 	// 데이터베이스 처리까지 포함해서 Model이라고 부름
 	// Model → Service, DAO (only 기능)
 
-	////////////// INSERT
-	public static void dept_insert() {
+	////////////// INSERT(받아서 저장만)
+	public int dept_insert(Dept dept) {
 
 		Scanner sc = null;
-
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		int resultCnt = 0;
 
 		try {
-//		Class.forName("oracle.jdbc.driver.OracleDriver");
-
-			System.out.println("Oracle 드라이버 로드 성공");
-
-			String url = "jdbc:oracle:thin:@localhost:1521:orcl";
-			String user = "SCOTT";
-			String pw = "tiger";
 
 			// 2. 데이터베이스에 접속
-
-			sc = new Scanner(System.in);
-			conn = DriverManager.getConnection(url, user, pw);
-			System.out.println("데이터베이스에 접속했습니다.");
-
-			System.out.println("새로운 부서의 정보를 입력합니다>>");
-			System.out.println("부서번호를 입력하세요.");
-			int deptno = Integer.parseInt(sc.nextLine());
-			System.out.println("부서 이름을 입력하세요.");
-			String dname = sc.nextLine();
-			System.out.println("위치를 입력하세요.");
-			String loc = sc.nextLine();
+			conn = ConnectionProvider.getConnection();
 
 			String sql = "insert into dept " + "values(?, ?, ?)";
 
 			pstmt = conn.prepareStatement(sql);
 
-			pstmt.setInt(1, deptno);
-			pstmt.setString(2, dname);
-			pstmt.setString(3, loc);
+			pstmt.setInt(1, dept.getDeptno());
+			pstmt.setString(2, dept.getDname());
+			pstmt.setString(3, dept.getLoc());
 
-			int resultCnt = pstmt.executeUpdate();
-
-			if (resultCnt > 0) {
-				System.out.println("정상적으로 입력 ");
-				System.out.println(resultCnt + "행이 입력되었습니다.");
-			} else {
-				System.out.println("다시 시도해주세요.");
-			}
+			resultCnt = pstmt.executeUpdate();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -91,46 +67,30 @@ public class DEPTDao {
 				}
 			}
 		}
+		return resultCnt;
 	}
 
-	//////////////////// UPDATE
+	//////////////////// UPDATE(EDIT)
+	public int dept_update(Dept newDept, Connection conn) {
 
-	public static void dept_update() {
-
-		Scanner sc = null;
-
-		Connection conn = null;
+		// Connection conn = null;
 		PreparedStatement pstmt = null;
+		int resultCnt = 0;
 
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-
-			System.out.println("Oracle 드라이버 로드 성공");
-
-			String url = "jdbc:oracle:thin:@localhost:1521:orcl";
-			String user = "SCOTT";
-			String pw = "tiger";
 
 			// 2. 데이터베이스에 접속
+			// conn = ConnectionProvider.getConnection();
 
-			sc = new Scanner(System.in);
-			conn = DriverManager.getConnection(url, user, pw);
-			System.out.println("데이터베이스에 접속했습니다.");
-
-			System.out.println("수정하실 부서의 정보를 입력합니다>>");
-			System.out.println("수정하실 부서의 이름을 입력하세요.");
-			String dname = sc.nextLine();
-			System.out.println("수정하실 부서의 위치를 입력하세요.");
-			String loc = sc.nextLine();
-
-			String sql = "update dept set loc=? where dname=?";
+			String sql = "update dept set dname=?, loc=? where deptno=?";
 
 			pstmt = conn.prepareStatement(sql);
 
-			pstmt.setString(1, loc);
-			pstmt.setString(2, dname);
+			pstmt.setString(1, newDept.getDname());
+			pstmt.setString(2, newDept.getLoc());
+			pstmt.setInt(3, newDept.getDeptno());
 
-			int resultCnt = pstmt.executeUpdate();
+			resultCnt = pstmt.executeUpdate();
 
 			if (resultCnt > 0) {
 				System.out.println("정상적으로 수정 ");
@@ -139,12 +99,15 @@ public class DEPTDao {
 				System.out.println("다시 시도해주세요.");
 			}
 
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			if (conn != null) {
+				try {
+					conn.rollback();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
 		} finally {
 
 			if (pstmt != null) {
@@ -164,48 +127,26 @@ public class DEPTDao {
 				}
 			}
 		}
+		return resultCnt;
 	}
 
 	///////////////// DELETE
 
-	public static void dept_delete() {
-		Scanner sc = null;
+	public int dept_delete(int deptno) {
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		int resultCnt = 0;
 
 		try {
-//			Class.forName("oracle.jdbc.driver.OracleDriver");
 
-			System.out.println("Oracle 드라이버 로드 성공");
-
-			String url = "jdbc:oracle:thin:@localhost:1521:orcl";
-			String user = "SCOTT";
-			String pw = "tiger";
-
-			// 2. 데이터베이스에 접속
-
-			sc = new Scanner(System.in);
-			conn = DriverManager.getConnection(url, user, pw);
-			System.out.println("데이터베이스에 접속했습니다.");
-
-			System.out.println("삭제하실 부서의 번호을 입력하세요.");
-			int deptno = Integer.parseInt(sc.nextLine());
+			conn = ConnectionProvider.getConnection();
 
 			String sql = "delete from dept where deptno=?";
 
 			pstmt = conn.prepareStatement(sql);
-
 			pstmt.setInt(1, deptno);
-
-			int resultCnt = pstmt.executeUpdate();
-
-			if (resultCnt > 0) {
-				System.out.println("정상적으로 삭제 ");
-				System.out.println(resultCnt + "행이 삭제되었습니다.");
-			} else {
-				System.out.println("다시 시도해주세요.");
-			}
+			resultCnt = pstmt.executeUpdate();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -229,14 +170,16 @@ public class DEPTDao {
 				}
 			}
 		}
+		return resultCnt;
 	}
 
-	///////////////// SHOW LIST
-
+	///////////////// SHOW LIST(데이터 처리 로직)
 	public static List<Dept> dept_showAll() {
 
-		// VO : Value Object read only
-		// DTO : Data Transfer Object
+		// VO : Value Object (read only, 참조 온리) getter
+		// DTO : Data Transfer Object getter/setter, toString, equals
+
+		// DAO → 데이터전송 → Manager
 
 		Connection conn = null;
 		Statement stmt = null;
@@ -244,7 +187,6 @@ public class DEPTDao {
 
 		// DAO 클래스 : 직접출력하지 않고 리스트에 저장까지만
 		List<Dept> deptList = new ArrayList<>();
-
 		try {
 
 			conn = ConnectionProvider.getConnection();
@@ -303,52 +245,42 @@ public class DEPTDao {
 	}
 
 	/////////////////// SEARCH
-
-	public static void dept_search() {
-		Scanner sc = null;
+	public static List<Dept> dept_search(String searchName) {
 
 		Connection conn = null;
 		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+
+		List<Dept> list = new ArrayList<Dept>();
 
 		try {
 //			Class.forName("oracle.jdbc.driver.OracleDriver");
 
-			System.out.println("Oracle 드라이버 로드 성공");
-
-			String url = "jdbc:oracle:thin:@localhost:1521:orcl";
-			String user = "SCOTT";
-			String pw = "tiger";
-
 			// 2. 데이터베이스에 접속
 
-			sc = new Scanner(System.in);
-			conn = DriverManager.getConnection(url, user, pw);
+			conn = ConnectionProvider.getConnection();
 			System.out.println("데이터베이스에 접속했습니다.");
 
+			String sql = "select * from dept where dname like '%?%'";// or loc like '%?%'";
+
 			stmt = conn.createStatement();
+			pstmt = conn.prepareStatement(sql);
 
-			System.out.println("검색하실 부서의 이름을 입력하세요.");
-			String dname = sc.nextLine();
-			System.out.println("검색하실 부서의 위치를 입력하세요.");
-			String loc = sc.nextLine();
-
-			String sql = "select * from dept where dname like '%" + dname + "%' or loc like '%" + loc + "%'";
-
-			rs = stmt.executeQuery(sql);
+			pstmt.setString(1, "dname");
+//			pstmt.setString(2, dname);
+			rs = pstmt.executeQuery();
 
 			System.out.println("입력하신 부서의 이름 또는 위치로 검색한 결과입니다>>");
 
 			while (rs.next()) {
 
-				System.out.print(rs.getInt(1) + "\t");
-				System.out.print(rs.getString(2) + "\t");
-				System.out.print(rs.getString(3) + "\n");
+				list.add(new Dept(rs.getInt("deptno"), rs.getString("dname"), rs.getString("loc")));
 
-				if (rs.next() == false) {
-					System.out.println("검색 결과를 찾을 수 없습니다.");
-					return;
-				}
+//				System.out.print(rs.getInt(1) + "\t");
+//				System.out.print(rs.getString(2) + "\t");
+//				System.out.print(rs.getString(3) + "\n");
+
 			}
 
 		} catch (SQLException e) {
@@ -381,6 +313,67 @@ public class DEPTDao {
 				}
 			}
 		}
+		return list;
+	}
+
+	// 서브메서드
+	public int dept_searchCount(String searchName, Connection conn) {
+
+//		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int rowCnt = 0;
+
+		List<Dept> list = new ArrayList<Dept>();
+
+		try {
+			conn = ConnectionProvider.getConnection(); // 저쪽에서 예외던지고 있음
+
+			String sql = "select count(*) from dept where dname=?";
+부적합한 열 이름..
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "dname");
+//			pstmt.setString(2, dname);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				list.add(new Dept(rs.getInt("deptno"), rs.getString("dname"), rs.getString("loc")));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return rowCnt;
+	}
+
+	public Dept deptSearchName(String searchName, Connection conn) {
+		Dept dept = null;
+
+//		Connection conn=null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = ConnectionProvider.getConnection();
+
+			String sql = "select * from dept where dname=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, searchName);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				dept = new Dept(rs.getInt(1), rs.getString(2), rs.getString(3));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return dept;
 	}
 
 //	private static List<Emp> deptList() {}

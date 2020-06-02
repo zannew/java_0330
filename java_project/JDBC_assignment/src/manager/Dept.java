@@ -1,15 +1,15 @@
 package manager;
 
 public class Dept {
-
+	//1.private처리
 	private int deptno;
 	private String dname;
 	private String loc;
 	
-	
+	//2.default생성자 필수
 	public Dept() {}
 	
-	
+	//3.선택 (객체 사용 여부..)
 	public Dept(int deptno, String dname, String loc) {
 		this.deptno = deptno;
 		this.dname = dname;

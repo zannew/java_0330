@@ -4,11 +4,11 @@ import java.util.List;
 
 public class EmpManager {
 
-	EMPDao eDao;
+	EmpDao eDao;
 	int opt;
 
 	public EmpManager() {
-		eDao = new EMPDao();
+		eDao = new EmpDao();
 	}
 
 	public void empManager() {
@@ -16,8 +16,8 @@ public class EmpManager {
 		System.out.println("메뉴를 선택하세요.");
 		System.out.println("1.입력 | 2.수정 | 3.삭제 | 4.리스트보기 | 5.검색 | 6.뒤로가기");
 
-		opt = Main_Manager.sc.nextInt();
-		Main_Manager.sc.nextLine();
+		opt = Manager_Main.sc.nextInt();
+		Manager_Main.sc.nextLine();
 
 		// 사원테이블
 		switch (opt) {
