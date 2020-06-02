@@ -1,15 +1,23 @@
 package phoneBook_ver_7;
 
-//Info인터페이스 상속중
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import phoneNumBook_ver_6_2_submit.PhonebookManager;
+
 public class PhoneInfo {
 
-	private String name;
-	private String phoneNum;
-	private String address;
-	private String email;
-	private String major;
-	private int year;
-	private String companyName;
+	private static int pbidx;
+	private String pbname;
+	private String pbNumber;
+	private String pbaddr;
+	private String pbmail;
+	private String pbmajor;
+	private int pbgrade;
+	private String pbcomName;
 	private String PBType;
 //	private String dept;
 //	private String cafeName;
@@ -17,34 +25,35 @@ public class PhoneInfo {
 	
 	
 	
+
 	
 	//생성자
-	public PhoneInfo(String name, String phoneNum, String address, String email
-					, String major, int year, String companyName, String PBType) {
-		this.name = name;
-		this.phoneNum = phoneNum;
-		this.address = address;
-		this.email = email;
-		this.major = major;
-		this.year = year;
-		this.companyName = companyName;
-		this.PBType=PBType;
-//		this.dept = dept;
-//		this.cafeName = cafeName;
-//		this.nickName = nickName;
+	PhoneInfo(int pbidx, String pbname, String pbNumber, String pbaddr, String pbmail
+					, String pbmajor, int pbgrade, String pbcomName, String PBType) {
+		this.pbidx = pbidx;
+		this.pbname = pbname;
+		this.pbNumber = pbNumber;
+		this.pbaddr = pbaddr;
+		this.pbmail = pbmail;
+		this.pbmajor = pbmajor;
+		this.pbgrade = pbgrade;		this.pbcomName = pbcomName;
+		this.PBType = PBType;
+		
+		
 	}
 
 	
 	
 	void showBasicInfo() {
 		System.out.println("-----친구 정보-----");
-		System.out.println("이름: "+this.name);
-		System.out.println("전화번호: "+this.phoneNum);
-		System.out.println("주소: "+this.address);
-		System.out.println("이메일: "+this.email);
-		System.out.println("전공 : "+this.major);
-		System.out.println("학년 : "+this.year);
-		System.out.println("회사이름 : "+this.companyName);
+		System.out.println("등록번호 : "+this.pbidx);
+		System.out.println("이름: "+this.pbname);
+		System.out.println("전화번호: "+this.pbNumber);
+		System.out.println("주소: "+this.pbaddr);
+		System.out.println("이메일: "+this.pbmail);
+		System.out.println("전공 : "+this.pbmajor);
+		System.out.println("학년 : "+this.pbgrade);
+		System.out.println("회사 : "+this.pbcomName);
 		System.out.println("폰북타입 : "+this.PBType);
 //		System.out.println("부서 : "+this.dept);
 //		System.out.println("카페명 : "+this.cafeName);
@@ -54,38 +63,83 @@ public class PhoneInfo {
 	
 
 	//Getter
-	public String getName() {
-		return name;
-	}
-
-	public String getPhoneNum() {
-		return phoneNum;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public String getEmail() {
-		return email;
+	
+	
+	
+	public static int getPbidx() {
+		
+//		Connection conn = null;
+//		Statement stmt = null;
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		
+//		try {
+//			conn= ConnectionProvider.getConnection();
+//			
+//			stmt=conn.createStatement();
+//			
+//			String sql = "select pbidx from phonebook where pbname=?";
+//			
+//			rs=stmt.executeQuery(sql);
+//			
+//			while(rs.next()) {
+//				
+//				pbidx=rs.getInt("pbidx");
+//				
+//			}
+//			
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		return pbidx;
 	}
 	
-	public String getMajor() {
-		return major;
+	public String getPbname() {
+		return pbname;
 	}
+	
 
-	public int getYear() {
-		return year;
+	public String getPbNumber() {
+		return pbNumber;
 	}
-
-	public String getCompanyName() {
-		return companyName;
+	
+	
+	
+	public String getPbaddr() {
+		return pbaddr;
 	}
+	
+	
+	
+	public String getPbmail() {
+		return pbmail;
+	}
+	
+	
+	
+	public String getPbmajor() {
+		return pbmajor;
+	}
+	
+	
+	
+	public int getPbgrade() {
+		return pbgrade;
+	}
+	
+	
+	
+	public String getPbcomName() {
+		return pbcomName;
+	}
+	
+	
 	
 	public String getPBType() {
 		return PBType;
 	}
-	
 	
 //
 //	public String getDept() {
@@ -101,46 +155,57 @@ public class PhoneInfo {
 //	}
 
 
-
-	
-
-
-
-	
-
-
 	//Setter
-	public void setName(String name) {
-		this.name = name;
+
+
+	public void setPbidx(int pbidx) {
+		this.pbidx = pbidx;
 	}
 
-	public void setPhoneNum(String phoneNum) {
-		this.phoneNum = phoneNum;
-	}
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}		
-
-	public void setMajor(String major) {
-		this.major = major;
+	
+	
+	
+	public void setPbname(String pbname) {
+		this.pbname = pbname;
 	}
 
 
 
-	public void setYear(int year) {
-		this.year = year;
+	public void setPbNumber(String pbNumber) {
+		this.pbNumber = pbNumber;
 	}
 
 
 
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
+	public void setPbaddr(String pbaddr) {
+		this.pbaddr = pbaddr;
 	}
+
+
+
+	public void setPbmail(String pbmail) {
+		this.pbmail = pbmail;
+	}
+
+
+
+	public void setPbmajor(String pbmajor) {
+		this.pbmajor = pbmajor;
+	}
+
+
+
+	public void setPbgrade(int pbgrade) {
+		this.pbgrade = pbgrade;
+	}
+
+
+
+	public void setPbcomName(String pbcomName) {
+		this.pbcomName = pbcomName;
+	}
+	
 	
 	public void setPBType(String pBType) {
 		PBType = pBType;
@@ -168,9 +233,16 @@ public class PhoneInfo {
 
 
 
+
+
+
+
+
+
+
 	//매개변수로 받은 문자열과 name변수에 저장된 문자열 비교메서드
 	public boolean checkName(String name) {
-		return this.name.equals(name);
+		return this.pbname.equals(name);
 	}
 }	
 	

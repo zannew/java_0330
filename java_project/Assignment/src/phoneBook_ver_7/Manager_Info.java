@@ -1,9 +1,12 @@
 package phoneBook_ver_7;
 
 import java.util.List;
+import java.util.Scanner;
 
 //저장, 검색, 삭제, 수정, 모두 보기, 종료
 public class Manager_Info {
+	
+	Scanner sc = new Scanner(System.in);
 
 	Dao_PhoneInfo infoDao = new Dao_PhoneInfo();
 
@@ -12,7 +15,7 @@ public class Manager_Info {
 
 		System.out.println("메뉴를 선택하세요.");
 
-		int choice = MainManager.sc.nextInt();
+		int choice = sc.nextInt();
 
 		switch (choice) {
 
@@ -53,31 +56,31 @@ public class Manager_Info {
 
 		// 공통 기본 정보 입력 - 이름, 전화번호, 주소, 이메일
 		System.out.println("이름을 입력하세요 : ");
-		String name = MainManager.sc.nextLine();
-		MainManager.sc.nextLine();
+		String name = sc.nextLine();
 
 		System.out.println("전화번호를 입력하세요 : ");
-		String phoneNum = MainManager.sc.nextLine();
+		String phoneNum = sc.nextLine();
 
 		System.out.println("주소를 입력하세요 : ");
-		String address = MainManager.sc.nextLine();
+		String address = sc.nextLine();
 
 		System.out.println("이메일을 입력하세요 : ");
-		String email = MainManager.sc.nextLine();
+		String email = sc.nextLine();
 
 		System.out.println("전공을 입력하세요 : ");
-		String major = MainManager.sc.nextLine();
+		String major = sc.nextLine();
 
 		System.out.println("학년을 입력하세요 : ");
-		int year = Integer.parseInt(MainManager.sc.nextLine());
+		int year = Integer.parseInt(sc.nextLine());
 
 		System.out.println("회사명을 입력하세요 : ");
-		String companyName = MainManager.sc.nextLine();
+		String companyName = sc.nextLine();
 		
 		System.out.println("세가지 타입 중 한가지를 입력하세요('com', 'univ', 'cafe')");
-		String PBType=MainManager.sc.nextLine();
-		
-		PhoneInfo info = new PhoneInfo(name, phoneNum, address, email, major, year, companyName, PBType);
+		String PBType=sc.nextLine();
+
+		/////////////////////////////////////////////pbidx 체크
+		PhoneInfo info = new PhoneInfo(infoDao.getPbIdx(name), name, phoneNum, address, email, major, year, companyName, PBType);
 
 		int resultCnt = infoDao.pbInsert(info);
 
@@ -94,7 +97,7 @@ public class Manager_Info {
 	public void pbSearch() {
 
 		System.out.println("검색할 친구의 이름>>");
-		String searchName = MainManager.sc.nextLine();
+		String searchName = sc.nextLine();
 
 		List<PhoneInfo> infoList = infoDao.pbSearch(searchName);
 
@@ -103,13 +106,13 @@ public class Manager_Info {
 		} else {
 
 			for (int i = 0; i < infoList.size(); i++) {
-				System.out.printf("%5s", infoList.get(i).getName());
-				System.out.printf("%10s", infoList.get(i).getPhoneNum());
-				System.out.printf("%10s", infoList.get(i).getAddress());
-				System.out.printf("%10s", infoList.get(i).getEmail());
-				System.out.printf("%10s", infoList.get(i).getMajor());
-				System.out.printf("%5s", infoList.get(i).getYear());
-				System.out.printf("%10s", infoList.get(i).getCompanyName());
+				System.out.printf("%5s", infoList.get(i).getPbname());
+				System.out.printf("%10s", infoList.get(i).getPbNumber());
+				System.out.printf("%10s", infoList.get(i).getPbaddr());
+				System.out.printf("%10s", infoList.get(i).getPbmail());
+				System.out.printf("%10s", infoList.get(i).getPbmajor());
+				System.out.printf("%5s", infoList.get(i).getPbgrade());
+				System.out.printf("%10s", infoList.get(i).getPbcomName());
 				System.out.println("------------------------------------------------");
 			}
 
@@ -121,7 +124,7 @@ public class Manager_Info {
 	public void pbDelete() {
 
 		System.out.println("삭제할 친구의 이름 >>");
-		String searchName = MainManager.sc.nextLine();
+		String searchName = sc.nextLine();
 
 		int resultCnt = infoDao.pbDelete(searchName);
 
@@ -138,13 +141,13 @@ public class Manager_Info {
 
 		System.out.println("수정할 친구의 이름 >>");
 		System.out.println("(이름은 수정되지 않습니다.)");
-		String searchName = MainManager.sc.nextLine();
+		String searchName = sc.nextLine();
 		System.out.println("새로운 전화번호를 입력하세요.");
-		String newPhoneNum = MainManager.sc.nextLine();
+		String newPhoneNum = sc.nextLine();
 		System.out.println("새로운 주소를 입력하세요.");
-		String newAddr = MainManager.sc.nextLine();
+		String newAddr = sc.nextLine();
 		System.out.println("새로운 이메일을 입력하세요.");
-		String newEmail = MainManager.sc.nextLine();
+		String newEmail = sc.nextLine();
 
 		int resultCnt = infoDao.pbEdit(searchName, newPhoneNum, newAddr, newEmail);
 		
@@ -163,14 +166,17 @@ public class Manager_Info {
 		if (infoList != null && !infoList.isEmpty()) {
 
 			for (int i = 0; i < infoList.size(); i++) {
-				System.out.printf("%5s", infoList.get(i).getName());
-				System.out.printf("%10s", infoList.get(i).getPhoneNum());
-				System.out.printf("%10s", infoList.get(i).getAddress());
-				System.out.printf("%10s", infoList.get(i).getEmail());
-				System.out.printf("%10s", infoList.get(i).getMajor());
-				System.out.printf("%5s", infoList.get(i).getYear());
-				System.out.printf("%10s", infoList.get(i).getCompanyName());
+				
+				System.out.printf("%5s", infoList.get(i).getPbname());
+				System.out.printf("%10s", infoList.get(i).getPbNumber());
+				System.out.printf("%10s", infoList.get(i).getPbaddr());
+				System.out.printf("%10s", infoList.get(i).getPbmail());
+				System.out.printf("%10s", infoList.get(i).getPbmajor());
+				System.out.printf("%5s", infoList.get(i).getPbgrade());
+				System.out.printf("%10s", infoList.get(i).getPbcomName());
+				System.out.printf("%10s", infoList.get(i).getPbidx());
 
+			
 			}
 		} else {
 			System.out.println("입력된 데이터가 없습니다.");

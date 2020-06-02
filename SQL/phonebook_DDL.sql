@@ -38,7 +38,7 @@ create table phonebook(
     pbcafeNickname varchar2(50),    -- 닉네임
     
     constraint pb_pbidx_pk PRIMARY KEY (pbidx),
-    CONSTRAINT pb_type_ck check (pbtype in ('univ', 'com', 'cafe') ),
+    constraint pb_type_ck check (pbtype in ('univ', 'com', 'cafe') ),
     constraint pb_grade_ck check (pbgrade between 1 and 4)
 );
 
@@ -429,3 +429,16 @@ start with 0
 minvalue 0
 ;
 drop sequence pb_cafe_idx_seq;
+
+
+================================================
+2020/06/02 폰북 버전7 시퀀스 생성
+================================================
+drop sequence phonebook7_seq;
+
+create sequence phonebook7_seq
+start with 0
+minvalue 0
+;
+
+select phonebook7_seq from phonebook;

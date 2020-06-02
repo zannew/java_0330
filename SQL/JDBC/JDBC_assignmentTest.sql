@@ -8,3 +8,5 @@ update emp
 set sal=1000 where ename='scott';
 
 rollback;
+
+select * from phonebook;
