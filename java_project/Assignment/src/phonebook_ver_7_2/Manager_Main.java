@@ -2,7 +2,7 @@ package phonebook_ver_7_2;
 
 import java.util.Scanner;
 
-public class MainManager {
+public class Manager_Main {
 
 	static Scanner sc = new Scanner(System.in);
 	
@@ -12,7 +12,7 @@ public class MainManager {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		System.out.println("DB 드라이버 로드 완료");
 		
-		Manager_Info infoManager = new Manager_Info();
+		Manager_PhoneInfo infoManager = new Manager_PhoneInfo();
 		
 		
 		while(true) {

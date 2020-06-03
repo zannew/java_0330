@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 //저장(대학,회사, 카페), 검색, 삭제, 수정(대학, 회사,ㅋㅏ페), 모두 보기, 종료
-public class Manager_Info {
+public class Manager_PhoneInfo {
 	
 	Scanner sc = new Scanner(System.in);
 	
@@ -17,7 +17,7 @@ public class Manager_Info {
 	//////// INSERT
 	public void pbInsert() {
 
-		PhoneInfo info=null;
+		Dto_PhoneInfo info=null;
 		
 		String PBType, major, companyName, dept, job, cafeName, nickName;
 		int year;
@@ -56,7 +56,7 @@ public class Manager_Info {
 			job = sc.nextLine();
 			
 			
-			info = new PhoneInfo(pbidx, name, phoneNum, address, email, PBType, companyName, dept, job);
+			info = new Dto_PhoneInfo(pbidx, name, phoneNum, address, email, PBType, companyName, dept, job);
 			
 			//DAO
 			resultCnt = infoDao.pbInsert(info);
@@ -72,7 +72,7 @@ public class Manager_Info {
 			System.out.println("학년을 입력하세요 : ");
 			year = Integer.parseInt(sc.nextLine());
 			
-			info = new PhoneInfo(pbidx, name, phoneNum, address, email, PBType, major, year);
+			info = new Dto_PhoneInfo(pbidx, name, phoneNum, address, email, PBType, major, year);
 			
 			//DAO
 			resultCnt = infoDao.pbInsert(info);
@@ -87,7 +87,7 @@ public class Manager_Info {
 			System.out.println("닉네임을 입력하세요 : ");
 			nickName = sc.nextLine();
 			
-			info = new PhoneInfo(pbidx, name, phoneNum, address, email, PBType, cafeName, nickName);
+			info = new Dto_PhoneInfo(pbidx, name, phoneNum, address, email, PBType, cafeName, nickName);
 			
 			//DAO
 			resultCnt = infoDao.pbInsert(info);
@@ -109,7 +109,7 @@ public class Manager_Info {
 		System.out.println("검색할 친구의 이름>>");
 		String searchName = sc.nextLine();
 
-		List<PhoneInfo> infoList = infoDao.pbSearch(searchName);
+		List<Dto_PhoneInfo> infoList = infoDao.pbSearch(searchName);
 
 		
 		
@@ -190,7 +190,7 @@ public class Manager_Info {
 		if (resultCnt > 0) {
 			System.out.println(resultCnt + "행이 삭제되었습니다.");
 		} else {
-			System.out.println("삭제할 데이터가 없습니다.");
+			System.out.println("삭제할 정보를 찾지 못했습니다.");
 		}
 
 	}
@@ -222,36 +222,107 @@ public class Manager_Info {
 				
 			}else {
 				
-				PhoneInfo info = infoDao.searchName(searchName, conn);
+				Dto_PhoneInfo info = infoDao.searchName(searchName, conn);
 				
 				if(info == null) {
 					System.out.println("수정할 친구의 정보를 찾을 수 없습니당.");
 					return;
 				}
 				
-				System.out.println("새로운 전화번호를 입력하세요.");
+				int editCheckNum = infoDao.searchTypeNum(searchName);
+				
+				
+				System.out.println("새로운 전화번호를 입력하세요 >>");
 				String newPhoneNum = sc.nextLine();
-				System.out.println("새로운 주소를 입력하세요.");
+				System.out.println("새로운 주소를 입력하세요 >>");
 				String newAddr = sc.nextLine();
-				System.out.println("새로운 이메일을 입력하세요.");
+				System.out.println("새로운 이메일을 입력하세요 >>");
 				String newEmail = sc.nextLine();
 				
-				info = new PhoneInfo(info.getPbidx(), 
-									searchName,
-									newPhoneNum, 
-									newAddr, 
-									newEmail, 
-									info.getPBType(),
-									info.getPbmajor(), 
-									info.getPbgrade(), 
-									info.getPbcomName(), 
-									info.getPbComDept(), 
-									info.getPbComJob(),
-									info.getPbcafeName(), 
-									info.getPbNickName());
 				
-				//DAO
-				resultCnt = infoDao.pbEdit(searchName, newPhoneNum, newAddr, newEmail, conn);
+				
+				switch(editCheckNum) {
+				
+				case 1:
+					System.out.println("새로운 회사이름을 입력하세요 >>");
+					String newComName = sc.nextLine();
+					System.out.println("새로운 부서를 입력하세요 >>");
+					String newComDept = sc.nextLine();
+					System.out.println("새로운 직급을 입력하세요 >>");
+					String newComJob = sc.nextLine();
+					
+					//회사
+//					info = new PhoneInfo(info.getPbidx(), 
+//							searchName,
+//							newPhoneNum, 
+//							newAddr, 
+//							newEmail, 
+//							info.getPBType(),
+//							info.getPbmajor(), 
+//							info.getPbgrade(), 
+//							newComName, 
+//							newComDept, 
+//							newComJob,
+//							info.getPbcafeName(), 
+//							info.getPbNickName());
+					
+					//DAO
+					resultCnt = infoDao.pbComEdit(searchName, newPhoneNum, newAddr, newEmail, newComName, newComDept, newComJob, conn);
+					
+					break;
+				case 2:
+					System.out.println("새로운 전공을 입력하세요 >>");
+					String newMajor = sc.nextLine();
+					System.out.println("새로운 학년을 입력하세요 >>");
+					int newGrade = Integer.parseInt(sc.nextLine());
+					
+					//학교
+					info = new Dto_PhoneInfo(info.getPbidx(), 
+							searchName,
+							newPhoneNum, 
+							newAddr, 
+							newEmail, 
+							info.getPBType(),
+							newMajor, 
+							newGrade, 
+							info.getPbcomName(), 
+							info.getPbComDept(), 
+							info.getPbComJob(),
+							info.getPbcafeName(), 
+							info.getPbNickName());
+					
+					//DAO
+					resultCnt = infoDao.pbUnivEdit(searchName, newPhoneNum, newAddr, newEmail, newMajor, newGrade, conn);
+					
+					break;
+				case 3:
+					System.out.println("새로운 동호회 이름을 입력하세요 >>");
+					String newCafeName = sc.nextLine();
+					System.out.println("새로운 닉네임을 입력하세요 >>");
+					String newCafeNickName = sc.nextLine();
+					
+					//동호회
+					
+					info = new Dto_PhoneInfo(info.getPbidx(), 
+							searchName,
+							newPhoneNum, 
+							newAddr, 
+							newEmail, 
+							info.getPBType(),
+							info.getPbmajor(), 
+							info.getPbgrade(), 
+							info.getPbcomName(), 
+							info.getPbComDept(), 
+							info.getPbComJob(),
+							newCafeName, 
+							newCafeNickName);
+					
+					//DAO
+					resultCnt = infoDao.pbCafeEdit(searchName, newPhoneNum, newAddr, newEmail, newCafeName, newCafeNickName, conn);
+					
+					break;
+				}
+				
 			}
 			
 			if(resultCnt<0) {
@@ -269,35 +340,127 @@ public class Manager_Info {
 	//////// SHOWALL(완)-출력 정리해야됨
 	public void pbShowAll() {
 
+		System.out.println("\t\t\t▶친구 정보 보기◀");
+		System.out.println("1.회사 친구 | 2. 대학 친구 | 3. 동호회 친구 | 4. 모두 보기");
+		System.out.println("번호를 선택하세요>>");
+		int opt = Integer.parseInt(sc.nextLine());
+		
 		//DAO
-		List<PhoneInfo> infoList = infoDao.pbShowAll();
-
+		List<Dto_PhoneInfo> infoList = infoDao.pbShowAll();
+		
 		if (infoList != null && !infoList.isEmpty()) {
-
-			System.out.println("\t\t\t\t▶ 전체 친구 목록 보기 ◀");
+		
+		switch(opt) {
+		
+		case 1:
+			System.out.println("\t\t\t\t▶ 회사 친구 목록 보기 ◀");
 			System.out.println("-------------------------------------------------------------------------------------------");
+		
+			
 			
 			for (int i = 0; i < infoList.size(); i++) {
+			
+				if(infoList.get(i).getPBType().equals("com")) {
+					
+					System.out.printf("%2s", infoList.get(i).getPbidx()+"\t");
+					System.out.printf("%5s", infoList.get(i).getPbname()+"\t");
+					System.out.printf("%5s", infoList.get(i).getPbNumber()+"\t");
+					System.out.printf("%-5s", infoList.get(i).getPbaddr()+"\t");
+					System.out.printf("%-20s", infoList.get(i).getPbmail()+"\t");
+					System.out.printf("%-5s", infoList.get(i).getPBType()+"\t");
+					System.out.printf("%5s", infoList.get(i).getPbcomName()+"\t");
+					System.out.printf("%5s", infoList.get(i).getPbComDept()+"\t");
+					System.out.printf("%5s", infoList.get(i).getPbComJob()+"\n");
+				}
+
+			}
+			
+			break;
+		case 2:
+			
+			
+			System.out.println("\t\t\t\t▶ 대학 친구 목록 보기 ◀");
+			System.out.println("-------------------------------------------------------------------------------------------");
+			
+			
+			for (int i = 0; i < infoList.size(); i++) {
+
+				if(infoList.get(i).getPBType().equals("com")) {
+					
+				System.out.printf("%2s", infoList.get(i).getPbidx()+"\t");
+				System.out.printf("%5s", infoList.get(i).getPbname()+"\t");
+				System.out.printf("%5s", infoList.get(i).getPbNumber()+"\t");
+				System.out.printf("%-5s", infoList.get(i).getPbaddr()+"\t");
+				System.out.printf("%-20s", infoList.get(i).getPbmail()+"\t");
+				System.out.printf("%-5s", infoList.get(i).getPBType()+"\t");
+				System.out.printf("%5s", infoList.get(i).getPbmajor()+"\t");
+				System.out.printf("%-2s", infoList.get(i).getPbgrade()+"\n");
+
+				}
+			}
+			break;
+			
+		case 3:
+			
+			System.out.println("\t\t\t\t▶ 동호회 친구 목록 보기 ◀");
+			System.out.println("-------------------------------------------------------------------------------------------");
+
+			for (int i = 0; i < infoList.size(); i++) {
+				
+				if(infoList.get(i).getPBType().equals("com")) {
 				
 				System.out.printf("%2s", infoList.get(i).getPbidx()+"\t");
 				System.out.printf("%5s", infoList.get(i).getPbname()+"\t");
 				System.out.printf("%5s", infoList.get(i).getPbNumber()+"\t");
-				System.out.printf("%5s", infoList.get(i).getPbaddr()+"\t");
-				System.out.printf("%5s", infoList.get(i).getPbmail()+"\t");
-				System.out.printf("%5s", infoList.get(i).getPBType()+"\t");
-				System.out.printf("%5s", infoList.get(i).getPbmajor()+"\t");
-				System.out.printf("%2s", infoList.get(i).getPbgrade()+"\t");
-				System.out.printf("%5s", infoList.get(i).getPbcomName()+"\t");
-				System.out.printf("%5s", infoList.get(i).getPbComDept()+"\t");
-				System.out.printf("%5s", infoList.get(i).getPbComJob()+"\t");
-				System.out.printf("%5s", infoList.get(i).getPbcafeName()+"\t");
+				System.out.printf("%-5s", infoList.get(i).getPbaddr()+"\t");
+				System.out.printf("%-20s", infoList.get(i).getPbmail()+"\t");
+				System.out.printf("%-5s", infoList.get(i).getPBType()+"\t");
+				System.out.printf("%10s", infoList.get(i).getPbcafeName()+"\t");
 				System.out.printf("%5s", infoList.get(i).getPbNickName()+"\n");
+			
+				}	
 				
-
 			}
-			System.out.println("-------------------------------------------------------------------------------------------");
-		} else {
- 		}
+			
+			break;
+			
+		case 4:
+
+				System.out.println("\t\t\t\t▶ 전체 친구 목록 보기 ◀");
+				System.out.println("-------------------------------------------------------------------------------------------");
+				
+				for (int i = 0; i < infoList.size(); i++) {
+					
+					System.out.printf("%2s", infoList.get(i).getPbidx()+"\t");
+					System.out.printf("%5s", infoList.get(i).getPbname()+"\t");
+					System.out.printf("%5s", infoList.get(i).getPbNumber()+"\t");
+					System.out.printf("%-5s", infoList.get(i).getPbaddr()+"\t");
+					System.out.printf("%-20s", infoList.get(i).getPbmail()+"\t");
+					System.out.printf("%5s", infoList.get(i).getPBType()+"\t");
+					System.out.printf("%5s", infoList.get(i).getPbmajor()+"\t");
+					System.out.printf("%-2s", infoList.get(i).getPbgrade()+"\t");
+					System.out.printf("%5s", infoList.get(i).getPbcomName()+"\t");
+					System.out.printf("%5s", infoList.get(i).getPbComDept()+"\t");
+					System.out.printf("%5s", infoList.get(i).getPbComJob()+"\t");
+					System.out.printf("%10s", infoList.get(i).getPbcafeName()+"\t");
+					System.out.printf("%5s", infoList.get(i).getPbNickName()+"\n");
+					
+
+				}
+				System.out.println("-------------------------------------------------------------------------------------------");
+				break;
+			} 
+		
+		
+		}else {
+			System.out.println("저장된 친구의 정보가 없습니다.");
+			return;
+		}
+		
+		
+		
+
+		
 
 	}
 	

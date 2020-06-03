@@ -11,9 +11,10 @@ import java.util.List;
 public class Dao_PhoneInfo {
 
 	int typeNum=0;
-
+	int resultCnt = 0;
+	
 	// 1.입력 완
-	public int pbInsert(PhoneInfo info) {
+	public int pbInsert(Dto_PhoneInfo info) {
 
 		// JDBC 사용 객체
 		Connection conn = null;
@@ -93,13 +94,13 @@ public class Dao_PhoneInfo {
 	}
 
 	// 2.검색 완
-	public List<PhoneInfo> pbSearch(String searchName) {
+	public List<Dto_PhoneInfo> pbSearch(String searchName) {
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		List<PhoneInfo> pbList = new ArrayList<>();
+		List<Dto_PhoneInfo> pbList = new ArrayList<>();
 
 		try {
 			conn = ConnectionProvider.getConnection();
@@ -113,7 +114,7 @@ public class Dao_PhoneInfo {
 
 			while (rs.next()) {
 				
-				pbList.add(new PhoneInfo(rs.getInt("pbidx"), rs.getString("pbname"), rs.getString("pbnumber"),
+				pbList.add(new Dto_PhoneInfo(rs.getInt("pbidx"), rs.getString("pbname"), rs.getString("pbnumber"),
 						rs.getString("pbaddr"), rs.getString("pbmail"), rs.getString("pbtype"), rs.getString("pbmajor"), rs.getInt("pbgrade"),
 						rs.getString("pbcomName"), rs.getString("pbcomdept"), rs.getString("pbcomjob"), rs.getString("pbcafename"), rs.getString("pbcafenickname")));
 
@@ -140,6 +141,7 @@ public class Dao_PhoneInfo {
 					e.printStackTrace();
 				}
 			}
+			
 			if (conn != null) {
 				try {
 					conn.close();
@@ -210,26 +212,29 @@ public class Dao_PhoneInfo {
 
 	}
 
-	// 4.수정 완
-	public int pbEdit(String searchName, String newPhoneNum, String newAddr, String newEmail, Connection conn) {
+	// 4.수정-회사
+	public int pbComEdit(String searchName, String newPhoneNum, String newAddr, String newEmail, String newComName, String newComDept, String newComJob, Connection conn) {
 
-//		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		int resultCnt = 0;
 
 		try {
 			
 			conn = ConnectionProvider.getConnection();
 
-			String sql = "update phonebook set pbnumber=?, pbaddr=?, pbmail=? where pbname=?";
+			String sql = "update phonebook set pbnumber=?, pbaddr=?, pbmail=?, "
+					+ "pbcomname=?, pbcomdept=?, pbcomjob=? "
+					+ "where pbname=?";
 
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, newPhoneNum);
 			pstmt.setString(2, newAddr);
 			pstmt.setString(3, newEmail);
-			pstmt.setString(4, searchName);
+			pstmt.setString(4, newComName);
+			pstmt.setString(5, newComDept);
+			pstmt.setString(6, newComJob);
+			pstmt.setString(7, searchName);
 
 			resultCnt = pstmt.executeUpdate();
 
@@ -269,9 +274,131 @@ public class Dao_PhoneInfo {
 		return resultCnt;
 
 	}
+	//4. 수정-학교
+	public int pbUnivEdit(String searchName, String newPhoneNum, String newAddr, String newEmail, String newMajor, int newGrade, Connection conn) {
+	
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			
+			conn = ConnectionProvider.getConnection();
+
+			String sql = "update phonebook set pbnumber=?, pbaddr=?, pbmail=?, pbmajor=?, pbgrade=? where pbname=?";
+
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, newPhoneNum);
+			pstmt.setString(2, newAddr);
+			pstmt.setString(3, newEmail);
+			pstmt.setString(4, newMajor);
+			pstmt.setInt(5, newGrade);
+			pstmt.setString(6, searchName);
+
+			resultCnt = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+
+		}
+
+		return resultCnt;
+
+	}
+	
+	
+	//4. 수정-동호회
+	public int pbCafeEdit(String searchName, String newPhoneNum, String newAddr, String newEmail, String newCafeName, String newNickName, Connection conn) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			
+			conn = ConnectionProvider.getConnection();
+
+			String sql = "update phonebook set pbnumber=?, pbaddr=?, pbmail=?, "
+					+ "pbcafename=?, pbcafenickname=? "
+					+ "where pbname=?";
+
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, newPhoneNum);
+			pstmt.setString(2, newAddr);
+			pstmt.setString(3, newEmail);
+			pstmt.setString(4, newCafeName);
+			pstmt.setString(5, newNickName);
+			pstmt.setString(6, searchName);
+
+			resultCnt = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+		}
+
+		return resultCnt;
+
+	}
+	
+	
+	
+	
 
 	// 5.전체보기 완
-	public List<PhoneInfo> pbShowAll() {
+	public List<Dto_PhoneInfo> pbShowAll() {
 
 		// VO : Value Object , read only , getter
 		// DTO : Data Transfer Object getter/setter , toString, equals
@@ -281,7 +408,7 @@ public class Dao_PhoneInfo {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		List<PhoneInfo> pbList = new ArrayList<>();
+		List<Dto_PhoneInfo> pbList = new ArrayList<>();
 
 		try {
 			conn = ConnectionProvider.getConnection();
@@ -296,7 +423,7 @@ public class Dao_PhoneInfo {
 
 			while (rs.next()) {
 
-				PhoneInfo info = new PhoneInfo(
+				Dto_PhoneInfo info = new Dto_PhoneInfo(
 												rs.getInt("pbidx"), 
 												rs.getString("pbname"), 
 												rs.getString("pbnumber"),
@@ -422,9 +549,9 @@ public class Dao_PhoneInfo {
 	
 	
 	//////서치 네임메서드
-	public PhoneInfo searchName(String name, Connection conn) {
+	public Dto_PhoneInfo searchName(String name, Connection conn) {
 		
-		PhoneInfo info=null;
+		Dto_PhoneInfo info=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -438,7 +565,7 @@ public class Dao_PhoneInfo {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				info = new PhoneInfo(rs.getInt(1),
+				info = new Dto_PhoneInfo(rs.getInt(1),
 									rs.getString(2),
 									rs.getString(3),
 									rs.getString(4),

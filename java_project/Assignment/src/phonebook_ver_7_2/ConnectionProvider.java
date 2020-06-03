@@ -10,7 +10,7 @@ public class ConnectionProvider {
 		
 		Connection conn = null;
 		
-		String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+		String url = "jdbc:oracle:thin:@localhost:1524:orcl2";
 		String user = "SCOTT";
 		String pw = "tiger";
 
