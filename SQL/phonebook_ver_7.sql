@@ -7,12 +7,6 @@ create sequence phonebook7_seq
 start with 0
 minvalue 0
 ;
-
-
-
-
-
-
 -------------------------------------------------
 --테이블 생성, 확인, 삭제
 -------------------------------------------------
@@ -21,10 +15,8 @@ drop table phonebook;
 select * from phonebook;
 select pbidx from phonebook where pbname='박지성';
 commit;
-===========================================================
+--===========================================================
 --입력예시
-
-
 
 desc phonebook;
 
@@ -67,7 +59,14 @@ desc phonebook;
 
 select * from phonebook;
 
+insert into phonebook (pbidx)
+values (PHONEBOOK7_SEQ.nextval);
 
+commit;
 
+rollback;
+
+delete from phonebook
+where pbname='장윤원';
 
 ===========================================================

@@ -48,9 +48,10 @@ public class Manager_Info {
 
 	}
 
-	//////// INSERT(완)(완)
+	//////// INSERT(완)(완)/일단 입력은 됨..
 	public void pbInsert() {
 
+		
 		// (공통)기본 정보 입력
 		System.out.println("저장할 정보 입력단계입니다.");
 
@@ -79,9 +80,12 @@ public class Manager_Info {
 		System.out.println("세가지 타입 중 한가지를 입력하세요('com', 'univ', 'cafe')");
 		String PBType=sc.nextLine();
 
-		/////////////////////////////////////////////pbidx 체크
-		PhoneInfo info = new PhoneInfo(infoDao.getPbIdx(name), name, phoneNum, address, email, major, year, companyName, PBType);
+		int pbidx = 0;
 
+		/////////////////////////////////////////////pbidx 체크
+		PhoneInfo info = new PhoneInfo(pbidx, name, phoneNum, address, email, major, year, companyName, PBType);
+
+		//DAO
 		int resultCnt = infoDao.pbInsert(info);
 
 		if (resultCnt > 0) {
@@ -93,7 +97,7 @@ public class Manager_Info {
 
 	}
 
-	//////// SEARCH(완)
+	//////// SEARCH(완)-검색은 됨
 	public void pbSearch() {
 
 		System.out.println("검색할 친구의 이름>>");
@@ -105,27 +109,32 @@ public class Manager_Info {
 			System.out.println("입력하신 이름으로 검색한 결과가 없습니다.");
 		} else {
 
+			System.out.println("\t\t\t\t\t▶ 검색한 결과 ◀");
+			System.out.println("-------------------------------------------------------------------------------------------");
 			for (int i = 0; i < infoList.size(); i++) {
-				System.out.printf("%5s", infoList.get(i).getPbname());
-				System.out.printf("%10s", infoList.get(i).getPbNumber());
-				System.out.printf("%10s", infoList.get(i).getPbaddr());
-				System.out.printf("%10s", infoList.get(i).getPbmail());
-				System.out.printf("%10s", infoList.get(i).getPbmajor());
-				System.out.printf("%5s", infoList.get(i).getPbgrade());
-				System.out.printf("%10s", infoList.get(i).getPbcomName());
-				System.out.println("------------------------------------------------");
+				System.out.printf("%2s", infoList.get(i).getPbidx(infoList.get(i).getPbname())+"\t");
+				System.out.printf("%5s", infoList.get(i).getPbname()+"\t");
+				System.out.printf("%10s", infoList.get(i).getPbNumber()+"\t");
+				System.out.printf("%10s", infoList.get(i).getPbaddr()+"\t");
+				System.out.printf("%10s", infoList.get(i).getPbmail()+"\t");
+				System.out.printf("%10s", infoList.get(i).getPbmajor()+"\t");
+				System.out.printf("%2s", infoList.get(i).getPbgrade()+"\t");
+				System.out.printf("%10s", infoList.get(i).getPbcomName()+"\n");
+
 			}
+			System.out.println("-------------------------------------------------------------------------------------------");
 
 		}
 
 	}
 
-	//////// DELETE(완)
+	//////// DELETE(완)-삭제 가능
 	public void pbDelete() {
 
 		System.out.println("삭제할 친구의 이름 >>");
 		String searchName = sc.nextLine();
 
+		//DAO
 		int resultCnt = infoDao.pbDelete(searchName);
 
 		if (resultCnt > 0) {
@@ -136,7 +145,7 @@ public class Manager_Info {
 
 	}
 
-	//////// UPDATE(EDIT)
+	//////// UPDATE(EDIT)-일단 기본정보만 수정
 	public void pbEdit() {
 
 		System.out.println("수정할 친구의 이름 >>");
@@ -149,6 +158,7 @@ public class Manager_Info {
 		System.out.println("새로운 이메일을 입력하세요.");
 		String newEmail = sc.nextLine();
 
+		//DAO
 		int resultCnt = infoDao.pbEdit(searchName, newPhoneNum, newAddr, newEmail);
 		
 		if(resultCnt<0) {
@@ -158,26 +168,29 @@ public class Manager_Info {
 		}
 	}
 
-	//////// SHOWALL(완)
+	//////// SHOWALL(완)-출력 정리해야됨
 	public void pbShowAll() {
 
 		List<PhoneInfo> infoList = infoDao.pbShowAll();
 
 		if (infoList != null && !infoList.isEmpty()) {
 
+			System.out.println("\t\t\t\t▶ 전체 친구 목록 보기 ◀");
+			System.out.println("-------------------------------------------------------------------------------------------");
+			
 			for (int i = 0; i < infoList.size(); i++) {
 				
-				System.out.printf("%5s", infoList.get(i).getPbname());
-				System.out.printf("%10s", infoList.get(i).getPbNumber());
-				System.out.printf("%10s", infoList.get(i).getPbaddr());
-				System.out.printf("%10s", infoList.get(i).getPbmail());
-				System.out.printf("%10s", infoList.get(i).getPbmajor());
-				System.out.printf("%5s", infoList.get(i).getPbgrade());
-				System.out.printf("%10s", infoList.get(i).getPbcomName());
-				System.out.printf("%10s", infoList.get(i).getPbidx());
+				System.out.printf("%2s", infoList.get(i).getPbidx(infoList.get(i).getPbname())+"\t");
+				System.out.printf("%5s", infoList.get(i).getPbname()+"\t");
+				System.out.printf("%10s", infoList.get(i).getPbNumber()+"\t");
+				System.out.printf("%10s", infoList.get(i).getPbaddr()+"\t");
+				System.out.printf("%10s", infoList.get(i).getPbmail()+"\t");
+				System.out.printf("%10s", infoList.get(i).getPbmajor()+"\t");
+				System.out.printf("%2s", infoList.get(i).getPbgrade()+"\t");
+				System.out.printf("%10s", infoList.get(i).getPbcomName()+"\n");
 
-			
 			}
+			System.out.println("-------------------------------------------------------------------------------------------");
 		} else {
 			System.out.println("입력된 데이터가 없습니다.");
 		}

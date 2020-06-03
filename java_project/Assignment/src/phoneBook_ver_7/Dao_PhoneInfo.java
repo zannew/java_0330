@@ -10,9 +10,10 @@ import java.util.List;
 
 public class Dao_PhoneInfo {
 
+	
 	List<PhoneInfo> pbList = new ArrayList<>();
 
-	// 1. 완성
+	// 1. 완성 /일단 전체 입력은 됨
 	public int pbInsert(PhoneInfo info) {
 
 		// JDBC 사용 객체
@@ -32,19 +33,19 @@ public class Dao_PhoneInfo {
 			// pstmt = conn.prepareStatement(SQL 문장)
 
 			String sql = "insert into phonebook (pbidx, pbname, PbNumber, Pbaddr, pbmail, pbmajor, pbgrade, pbcomname, pbtype) "
-					+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					+ "values (PHONEBOOK7_SEQ.nextval, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 			pstmt = conn.prepareStatement(sql);
 
-			pstmt.setInt(1, info.getPbidx());
-			pstmt.setString(2, info.getPbname());
-			pstmt.setString(3, info.getPbNumber());
-			pstmt.setString(4, info.getPbaddr());
-			pstmt.setString(5, info.getPbmail());
-			pstmt.setString(6, info.getPbmajor());
-			pstmt.setInt(7, info.getPbgrade());
-			pstmt.setString(8, info.getPbcomName());
-			pstmt.setString(9, info.getPBType());
+//			pstmt.setInt(1, info.getPbidx());
+			pstmt.setString(1, info.getPbname());
+			pstmt.setString(2, info.getPbNumber());
+			pstmt.setString(3, info.getPbaddr());
+			pstmt.setString(4, info.getPbmail());
+			pstmt.setString(5, info.getPbmajor());
+			pstmt.setInt(6, info.getPbgrade());
+			pstmt.setString(7, info.getPbcomName());
+			pstmt.setString(8, info.getPBType());
 
 //			pstmt.setString(8, info.getDept());
 //			pstmt.setString(9, info.getCafeName());
@@ -132,9 +133,9 @@ public class Dao_PhoneInfo {
 				}
 			}
 
-			if (stmt != null) {
+			if (pstmt != null) {
 				try {
-					stmt.close();
+					pstmt.close();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -154,7 +155,7 @@ public class Dao_PhoneInfo {
 
 	}
 
-	// 3.완
+	// 3.완- 삭제 가능
 	public int pbDelete(String searchName) {
 
 		Connection conn = null;
@@ -166,9 +167,10 @@ public class Dao_PhoneInfo {
 		try {
 			conn = ConnectionProvider.getConnection();
 
-			String sql = "delete from phonebook where name=?";
+			String sql = "delete from phonebook where pbname=?";
 
 			pstmt = conn.prepareStatement(sql);
+			
 			pstmt.setString(1, searchName);
 
 			resultCnt = pstmt.executeUpdate();
@@ -189,7 +191,7 @@ public class Dao_PhoneInfo {
 
 			if (pstmt != null) {
 				try {
-					stmt.close();
+					pstmt.close();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -209,16 +211,16 @@ public class Dao_PhoneInfo {
 
 	}
 
-	// 4.미완
+	// 4.완?
 	public int pbEdit(String searchName, String newPhoneNum, String newAddr, String newEmail) {
 
 		Connection conn = null;
-		Statement stmt = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int resultCnt = 0;
 
 		try {
+			
 			conn = ConnectionProvider.getConnection();
 
 			String sql = "update phonebook set pbnumber=?, pbaddr=?, pbmail=? where pbname=?";
@@ -234,6 +236,34 @@ public class Dao_PhoneInfo {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
 		}
 
 		return resultCnt;
@@ -248,7 +278,6 @@ public class Dao_PhoneInfo {
 
 		Connection conn = null;
 		Statement stmt = null;
-		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		try {
@@ -256,20 +285,27 @@ public class Dao_PhoneInfo {
 
 			stmt = conn.createStatement();
 
-			String sql = "select * from phonebook order by pbname";
+			String sql = "select * from phonebook order by pbidx";
 
 			rs = stmt.executeQuery(sql);
 
 			while (rs.next()) {
 
-				PhoneInfo info = new PhoneInfo(rs.getInt("pbidx"), rs.getString("pbname"), rs.getString("pbnumber"),
-						rs.getString("pdaddr"), rs.getString("pbmail"), rs.getString("pbmajor"), rs.getInt("pbgrade"),
-						rs.getString("pbcomName"), rs.getString("pbtype"));
+				PhoneInfo info = new PhoneInfo(
+												rs.getInt("pbidx"), 
+												rs.getString("pbname"), 
+												rs.getString("pbnumber"),
+												rs.getString("pbaddr"), 
+												rs.getString("pbmail"), 
+												rs.getString("pbmajor"), 
+												rs.getInt("pbgrade"),
+												rs.getString("pbcomName"),
+												rs.getString("pbtype"));
 
 				pbList.add(info);
 
 			}
-
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -306,7 +342,71 @@ public class Dao_PhoneInfo {
 
 	}
 
-	/////////// sequence
+	public static int searchPbidx(String searchName) {
+		
+		Connection conn = null;
+		Statement stmt = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int pbidx=0;
+		
+		try {
+			conn= ConnectionProvider.getConnection();
+			
+			String sql = "select pbidx from phonebook where pbname=?";
+			
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, searchName);
+			
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				pbidx=rs.getInt("pbidx");
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+		}
+		
+		return pbidx;
+		
+		
+	}
+	
+	
+	
+	/////////// sequence /쓰게 될지 말지..?
 
 	public int getPbIdx(String name) {
 

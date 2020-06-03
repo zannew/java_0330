@@ -10,6 +10,7 @@ import phoneNumBook_ver_6_2_submit.PhonebookManager;
 
 public class PhoneInfo {
 
+	
 	private static int pbidx;
 	private String pbname;
 	private String pbNumber;
@@ -64,34 +65,9 @@ public class PhoneInfo {
 
 	//Getter
 	
-	
-	
-	public static int getPbidx() {
+	public static int getPbidx(String searchName) {
 		
-//		Connection conn = null;
-//		Statement stmt = null;
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//		
-//		try {
-//			conn= ConnectionProvider.getConnection();
-//			
-//			stmt=conn.createStatement();
-//			
-//			String sql = "select pbidx from phonebook where pbname=?";
-//			
-//			rs=stmt.executeQuery(sql);
-//			
-//			while(rs.next()) {
-//				
-//				pbidx=rs.getInt("pbidx");
-//				
-//			}
-//			
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		pbidx=Dao_PhoneInfo.searchPbidx(searchName);
 		
 		return pbidx;
 	}
