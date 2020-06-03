@@ -45,10 +45,7 @@ drop table phonebook_com;
 
 ------------------------------
 --시퀀스 삭제
-
 drop sequence phonebook7_3_seq;
-
-
 
 ----------------------------------------
 
