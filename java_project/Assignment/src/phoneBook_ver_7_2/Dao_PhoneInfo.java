@@ -1,4 +1,4 @@
-package phonebook_ver_7_2;
+package phoneBook_ver_7_2;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,15 +23,14 @@ public class Dao_PhoneInfo {
 		int rsCnt = 0;
 
 		try {
-
-			// Connection 객체 생성
+			// Connection 객체 
 			conn = ConnectionProvider.getConnection();
 
 			String sql = "insert into phonebook (pbidx, pbname, PbNumber, Pbaddr, pbmail, pbtype, "
-												+ "pbmajor, pbgrade, "
-												+ "pbcomname, pbcomdept, pbcomjob, "
-												+ "pbcafename, pbcafenickname) "
-												+ "values (PHONEBOOK7_SEQ.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+						+ "pbmajor, pbgrade, "
+						+ "pbcomname, pbcomdept, pbcomjob, "
+						+ "pbcafename, pbcafenickname) "
+						+ "values (PHONEBOOK7_SEQ.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 			pstmt = conn.prepareStatement(sql);
 
@@ -50,10 +49,6 @@ public class Dao_PhoneInfo {
 			
 
 			rsCnt = pstmt.executeUpdate();
-
-			// 4. 데이터베이스 연결 종료
-			// pstmt.close();
-			// conn.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -342,8 +337,8 @@ public class Dao_PhoneInfo {
 			conn = ConnectionProvider.getConnection();
 
 			String sql = "update phonebook set pbnumber=?, pbaddr=?, pbmail=?, "
-					+ "pbcafename=?, pbcafenickname=? "
-					+ "where pbname=?";
+			+ "pbcafename=?, pbcafenickname=? "
+			+ "where pbname=?";
 
 			pstmt = conn.prepareStatement(sql);
 			
@@ -415,7 +410,6 @@ public class Dao_PhoneInfo {
 
 			String sql = "select * from phonebook order by pbidx";
 			
-//			stmt = conn.createStatement();
 			pstmt = conn.prepareStatement(sql);
 
 
@@ -481,7 +475,7 @@ public class Dao_PhoneInfo {
 	}
 
 
-	//폰북타입 찾기 메서드(리턴:숫자)
+	///////////폰북타입 숫자로 찾기 메서드(리턴:int)
 	public int searchTypeNum(String searchName) {
 		
 		Connection conn = null;

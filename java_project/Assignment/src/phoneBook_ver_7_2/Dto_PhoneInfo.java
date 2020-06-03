@@ -1,4 +1,4 @@
-package phonebook_ver_7_2;
+package phoneBook_ver_7_2;
 
 //DTO,VO
 public class Dto_PhoneInfo {
