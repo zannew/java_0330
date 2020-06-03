@@ -12,23 +12,19 @@ public class Dao_PhoneInfo {
 
 	int typeNum=0;
 
-	// 1. 완성 /일단 전체 입력은 됨
+	// 1.입력 완
 	public int pbInsert(PhoneInfo info) {
 
 		// JDBC 사용 객체
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		int resultCnt = 0;
+		int rsCnt = 0;
 
 		try {
 
 			// Connection 객체 생성
 			conn = ConnectionProvider.getConnection();
-
-			// 3. SQL 처리
-			// Statement or PreparedStatement
-			// pstmt = conn.prepareStatement(SQL 문장)
 
 			String sql = "insert into phonebook (pbidx, pbname, PbNumber, Pbaddr, pbmail, pbtype, "
 												+ "pbmajor, pbgrade, "
@@ -38,7 +34,6 @@ public class Dao_PhoneInfo {
 
 			pstmt = conn.prepareStatement(sql);
 
-//			pstmt.setInt(1, info.getPbidx());
 			pstmt.setString(1, info.getPbname());
 			pstmt.setString(2, info.getPbNumber());
 			pstmt.setString(3, info.getPbaddr());
@@ -53,7 +48,7 @@ public class Dao_PhoneInfo {
 			pstmt.setString(12, info.getPbNickName());
 			
 
-			resultCnt = pstmt.executeUpdate();
+			rsCnt = pstmt.executeUpdate();
 
 			// 4. 데이터베이스 연결 종료
 			// pstmt.close();
@@ -93,11 +88,11 @@ public class Dao_PhoneInfo {
 
 		}
 
-		return resultCnt;
+		return rsCnt;
 
 	}
 
-	// 2. 완
+	// 2.검색 완
 	public List<PhoneInfo> pbSearch(String searchName) {
 
 		Connection conn = null;
@@ -159,7 +154,7 @@ public class Dao_PhoneInfo {
 
 	}
 
-	// 3.완- 삭제 가능
+	// 3.삭제 완
 	public int pbDelete(String searchName) {
 
 		Connection conn = null;
@@ -215,10 +210,10 @@ public class Dao_PhoneInfo {
 
 	}
 
-	// 4.완?
-	public int pbEdit(String searchName, String newPhoneNum, String newAddr, String newEmail) {
+	// 4.수정 완
+	public int pbEdit(String searchName, String newPhoneNum, String newAddr, String newEmail, Connection conn) {
 
-		Connection conn = null;
+//		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int resultCnt = 0;
@@ -230,6 +225,7 @@ public class Dao_PhoneInfo {
 			String sql = "update phonebook set pbnumber=?, pbaddr=?, pbmail=? where pbname=?";
 
 			pstmt = conn.prepareStatement(sql);
+			
 			pstmt.setString(1, newPhoneNum);
 			pstmt.setString(2, newAddr);
 			pstmt.setString(3, newEmail);
@@ -274,7 +270,7 @@ public class Dao_PhoneInfo {
 
 	}
 
-	// 5. 완성
+	// 5.전체보기 완
 	public List<PhoneInfo> pbShowAll() {
 
 		// VO : Value Object , read only , getter
@@ -357,69 +353,8 @@ public class Dao_PhoneInfo {
 
 	}
 
-	public static int searchPbidx(String searchName) {
-		
-		Connection conn = null;
-		Statement stmt = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		int pbidx=0;
-		
-		try {
-			conn= ConnectionProvider.getConnection();
-			
-			String sql = "select pbidx from phonebook where pbname=?";
-			
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, searchName);
-			
-			rs=pstmt.executeQuery();
-			
-			while(rs.next()) {
-				
-				pbidx=rs.getInt("pbidx");
-				
-			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
 
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-
-			if (stmt != null) {
-				try {
-					stmt.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-
-		}
-		
-		return pbidx;
-		
-		
-	}
-	
-	/////////폰북타입 찾기 메서드(숫자반환)
+	//폰북타입 찾기 메서드(리턴:숫자)
 	public int searchTypeNum(String searchName) {
 		
 		Connection conn = null;
@@ -482,88 +417,78 @@ public class Dao_PhoneInfo {
 				}
 			}
 		}
-		
 		return typeNum;
-		
-		
 	}
 	
 	
-	////////타입 정하는 메서드(숫자반환)
-//	public int searchTypeNum(String pbtype) {
-//		
-//		if(pbtype.equals("com")) {
-//			typeNum=1;
-//		}else if(pbtype.equals("univ")) {
-//			typeNum=2;
-//		}else if(pbtype.equals("cafe")) {
-//			typeNum=3;
-//		}
-//		
-//		return typeNum;
-//	}
-	
-	
-	/////////// sequence /쓰게 될지 말지..?
-
-	public int getPbIdx(String name) {
-
-		Connection conn = null;
-		Statement stmt = null;
+	//////서치 네임메서드
+	public PhoneInfo searchName(String name, Connection conn) {
+		
+		PhoneInfo info=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		int pbidx = 0;
-
+		
 		try {
-			conn = ConnectionProvider.getConnection();
-
-			stmt = conn.createStatement();
 			
-			String sql = "insert into phonebook (pbidx) "
-					+ "values phonebook7_seq.nextval where pbname=?";
-
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, name);
-
-			rs = stmt.executeQuery(sql);
-
-			while (rs.next()) {
-
-				pbidx = rs.getInt("pbidx");
-
+			String sql = "select * from phonebook where pbname=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				info = new PhoneInfo(rs.getInt(1),
+									rs.getString(2),
+									rs.getString(3),
+									rs.getString(4),
+									rs.getString(5),
+									rs.getString(6),
+									rs.getString(7),
+									rs.getInt(8),
+									rs.getString(9),
+									rs.getString(10),
+									rs.getString(11),
+									rs.getString(12),
+									rs.getString(13));
 			}
-
+			
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-
-			if (stmt != null) {
-				try {
-					stmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-
 		}
-
-		return pbidx;
-
+		
+		return info;
+		
 	}
+	
+	///////서치 카운트메서드
+	public int searchNameCnt(String name, Connection conn) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int existCnt = 0;
+		
+		
+		try {
+			
+			String sql = "select count(*) from phonebook where pbname=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				existCnt= rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return existCnt;
+	}
+	
 
 }
