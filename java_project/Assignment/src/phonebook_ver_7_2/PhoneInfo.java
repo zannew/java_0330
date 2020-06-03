@@ -7,11 +7,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import phoneNumBook_ver_6_2_submit.PhonebookManager;
-
+//DTO
 public class PhoneInfo {
 
 	
-	private static int pbidx;
+	
+	
+	private int pbidx;
 	private String pbname;
 	private String pbNumber;
 	private String pbaddr;
@@ -19,26 +21,72 @@ public class PhoneInfo {
 	private String pbmajor;
 	private int pbgrade;
 	private String pbcomName;
+	private String pbComDept;
+	private String pbComJob;
+	private String pbcafeName;
+	private String pbNickName;
 	private String PBType;
-//	private String dept;
-//	private String cafeName;
-//	private String nickName;
+	
+	//default생성자
+	PhoneInfo(){}
 	
 	
 	
-
-	
-	//생성자
-	PhoneInfo(int pbidx, String pbname, String pbNumber, String pbaddr, String pbmail
-					, String pbmajor, int pbgrade, String pbcomName, String PBType) {
+	//생성자(학교)
+	PhoneInfo(int pbidx, String pbname, String pbNumber, String pbaddr, String pbmail, String pbtype, String pbmajor, int pbgrade){
 		this.pbidx = pbidx;
 		this.pbname = pbname;
 		this.pbNumber = pbNumber;
 		this.pbaddr = pbaddr;
 		this.pbmail = pbmail;
+		this.PBType = pbtype;
 		this.pbmajor = pbmajor;
-		this.pbgrade = pbgrade;		this.pbcomName = pbcomName;
+		this.pbgrade = pbgrade;
+	}
+
+	//생성자(회사)
+	PhoneInfo(int pbidx, String pbname, String pbNumber, String pbaddr, String pbmail, String pbtype, String pbcomname,String pbcomdept, String pbcomjob){
+		this.pbidx = pbidx;
+		this.pbname = pbname;
+		this.pbNumber = pbNumber;
+		this.pbaddr = pbaddr;
+		this.pbmail = pbmail;
+		this.PBType = pbtype;
+		this.pbcomName=pbcomname;
+		this.pbComDept=pbcomdept;
+		this.pbComJob=pbcomjob;
+		
+	}
+	
+	//생성자(동호회)
+	PhoneInfo(int pbidx, String pbname, String pbNumber, String pbaddr, String pbmail, String pbtype, String pbcafename, String pbnickname){
+		this.pbidx = pbidx;
+		this.pbname = pbname;
+		this.pbNumber = pbNumber;
+		this.pbaddr = pbaddr;
+		this.pbmail = pbmail;
+		this.PBType = pbtype;
+		this.pbcafeName=pbcafename;
+		this.pbNickName=pbnickname;
+	}
+	
+	
+	//생성자(전체)
+	PhoneInfo(int pbidx, String pbname, String pbNumber, String pbaddr, String pbmail, String PBType
+					, String pbmajor, int pbgrade, String pbcomName, String pbcomdept, String pbcomjob
+					, String pbcafename, String pbnickname) {
+		this.pbidx = pbidx;
+		this.pbname = pbname;
+		this.pbNumber = pbNumber;
+		this.pbaddr = pbaddr;
+		this.pbmail = pbmail;
 		this.PBType = PBType;
+		this.pbmajor = pbmajor;		this.pbgrade = pbgrade;
+		this.pbcomName = pbcomName;
+		this.pbComDept = pbcomdept;
+		this.pbComJob = pbcomjob;
+		this.pbcafeName = pbcafename;
+		this.pbNickName = pbnickname;
 		
 		
 	}
@@ -65,9 +113,9 @@ public class PhoneInfo {
 
 	//Getter
 	
-	public static int getPbidx(String searchName) {
+	public int getPbidx() {
 		
-		pbidx=Dao_PhoneInfo.searchPbidx(searchName);
+//		pbidx=Dao_PhoneInfo.searchPbidx(searchName);
 		
 		return pbidx;
 	}
@@ -93,16 +141,33 @@ public class PhoneInfo {
 		return pbmail;
 	}
 	
+	public String getPBType() {
+		return PBType;
+	}
 	
+	
+//	public String getPBType(int choice) {
+//		
+//		if(choice==1) {
+//			PBType="com";
+//		}else if(choice==2) {
+//			PBType="univ";
+//		}else if(choice==3) {
+//			PBType="cafe";
+//		}
+//		
+//		return PBType;
+//	}
 	
 	public String getPbmajor() {
 		return pbmajor;
 	}
 	
 	
-	
+//	다른타입일때 디폴트값 1인거 처리해야됨..
 	public int getPbgrade() {
-		return pbgrade;
+		
+		return pbgrade==0 ? 1:pbgrade;
 	}
 	
 	
@@ -113,25 +178,31 @@ public class PhoneInfo {
 	
 	
 	
-	public String getPBType() {
-		return PBType;
-	}
 	
-//
-//	public String getDept() {
-//		return dept;
-//	}
-//
-//	public String getCafeName() {
-//		return cafeName;
-//	}
-//
-//	public String getNickName() {
-//		return nickName;
-//	}
+	public String getPbComDept() {
+		return pbComDept;
+	}
+
+	public String getPbComJob() {
+		return pbComJob;
+	}
+
+	public String getPbcafeName() {
+		return pbcafeName;
+	}
+
+	public String getPbNickName() {
+		return pbNickName;
+	}
+
+	
+	
+	
 
 
 	//Setter
+
+
 
 
 	public void setPbidx(int pbidx) {
@@ -165,6 +236,10 @@ public class PhoneInfo {
 	}
 
 
+	
+	public void setPBType(String pBType) {
+		PBType = pBType;
+	}
 
 	public void setPbmajor(String pbmajor) {
 		this.pbmajor = pbmajor;
@@ -182,39 +257,22 @@ public class PhoneInfo {
 		this.pbcomName = pbcomName;
 	}
 	
-	
-	public void setPBType(String pBType) {
-		PBType = pBType;
+
+	public void setPbComDept(String pbComDept) {
+		this.pbComDept = pbComDept;
 	}
 
-	
-//
-//
-//
-//	public void setDept(String dept) {
-//		this.dept = dept;
-//	}
-//
-//
-//
-//	public void setCafeName(String cafeName) {
-//		this.cafeName = cafeName;
-//	}
-//
-//
-//
-//	public void setNickName(String nickName) {
-//		this.nickName = nickName;
-//	}
+	public void setPbComJob(String pbComJob) {
+		this.pbComJob = pbComJob;
+	}
 
+	public void setPbcafeName(String pbcafeName) {
+		this.pbcafeName = pbcafeName;
+	}
 
-
-
-
-
-
-
-
+	public void setPbNickName(String pbNickName) {
+		this.pbNickName = pbNickName;
+	}
 
 	//매개변수로 받은 문자열과 name변수에 저장된 문자열 비교메서드
 	public boolean checkName(String name) {

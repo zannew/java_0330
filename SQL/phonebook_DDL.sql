@@ -30,7 +30,7 @@ create table phonebook(
     pbmail varchar2(50) default '입력 없음' not null,   -- 이메일
     pbtype varchar2(10) not null,   -- 친구 타입
     pbmajor varchar2(20),           -- 전공
-    pbgrade number(1),              -- 학년
+    pbgrade number(1) default '0',              -- 학년
     pbcomName varchar2(50),         -- 회사이름    
     pbcomDept varchar2(50),         -- 부서이름
     pbcomJob varchar2(20),          -- 직급
@@ -53,7 +53,7 @@ create table phonebook(
     CONSTRAINT pb_type_ck 
         check (pbtype in ('univ', 'com', 'cafe') ),   -- 친구 타입
     pbmajor varchar2(20),           -- 전공
-    pbgrade number(1) 
+    pbgrade number(1) default 1
     constraint pb_grade_ck 
     check (pbgrade between 1 and 4),              -- 학년
     pbcomName varchar2(50),         -- 회사이름    

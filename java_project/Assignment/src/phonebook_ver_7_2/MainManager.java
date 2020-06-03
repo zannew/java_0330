@@ -8,12 +8,11 @@ public class MainManager {
 	
 	public static void main(String[] args) throws ClassNotFoundException {
 		
+		
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		System.out.println("DB 드라이버 로드 완료");
 		
 		Manager_Info infoManager = new Manager_Info();
-		
-		
 		
 		
 		while(true) {
@@ -34,23 +33,21 @@ public class MainManager {
 			
 			case 1:
 				
-				System.out.println("▶ 어떤 친구의 정보를 저장하시겠습니까?");
-				System.out.println("1. univ | 2. com | 3. cafe ");
-				int choice=sc.nextInt();
-				
-				switch(choice) {
-				
-				case 1:
-					infoManager.pbInsert();
-					
-					break;
-				case 2:
-					break;
-				case 3:
-					break;
 				
 				
-				}
+//				switch(choice) {
+//				
+//				case 1:
+//					infoManager.pbInsert();
+//					
+//					break;
+//				case 2:
+//					break;
+//				case 3:
+//					break;
+//				
+//				
+//				}
 				
 				
 				

@@ -10,14 +10,13 @@ import java.util.List;
 
 public class Dao_PhoneInfo {
 
-	
+	int typeNum=0;
 
 	// 1. 완성 /일단 전체 입력은 됨
 	public int pbInsert(PhoneInfo info) {
 
 		// JDBC 사용 객체
 		Connection conn = null;
-		Statement stmt = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int resultCnt = 0;
@@ -31,8 +30,11 @@ public class Dao_PhoneInfo {
 			// Statement or PreparedStatement
 			// pstmt = conn.prepareStatement(SQL 문장)
 
-			String sql = "insert into phonebook (pbidx, pbname, PbNumber, Pbaddr, pbmail, pbmajor, pbgrade, pbcomname, pbtype) "
-					+ "values (PHONEBOOK7_SEQ.nextval, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "insert into phonebook (pbidx, pbname, PbNumber, Pbaddr, pbmail, pbtype, "
+												+ "pbmajor, pbgrade, "
+												+ "pbcomname, pbcomdept, pbcomjob, "
+												+ "pbcafename, pbcafenickname) "
+												+ "values (PHONEBOOK7_SEQ.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 			pstmt = conn.prepareStatement(sql);
 
@@ -41,14 +43,15 @@ public class Dao_PhoneInfo {
 			pstmt.setString(2, info.getPbNumber());
 			pstmt.setString(3, info.getPbaddr());
 			pstmt.setString(4, info.getPbmail());
-			pstmt.setString(5, info.getPbmajor());
-			pstmt.setInt(6, info.getPbgrade());
-			pstmt.setString(7, info.getPbcomName());
-			pstmt.setString(8, info.getPBType());
-
-//			pstmt.setString(8, info.getDept());
-//			pstmt.setString(9, info.getCafeName());
-//			pstmt.setString(10, info.getNickName());
+			pstmt.setString(5, info.getPBType());
+			pstmt.setString(6, info.getPbmajor());
+			pstmt.setInt(7, info.getPbgrade());
+			pstmt.setString(8, info.getPbcomName());
+			pstmt.setString(9, info.getPbComDept());
+			pstmt.setString(10, info.getPbComJob());
+			pstmt.setString(11, info.getPbcafeName());
+			pstmt.setString(12, info.getPbNickName());
+			
 
 			resultCnt = pstmt.executeUpdate();
 
@@ -98,7 +101,6 @@ public class Dao_PhoneInfo {
 	public List<PhoneInfo> pbSearch(String searchName) {
 
 		Connection conn = null;
-		Statement stmt = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
@@ -115,12 +117,13 @@ public class Dao_PhoneInfo {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
+				
 				pbList.add(new PhoneInfo(rs.getInt("pbidx"), rs.getString("pbname"), rs.getString("pbnumber"),
-						rs.getString("pbaddr"), rs.getString("pbmail"), rs.getString("pbmajor"), rs.getInt("pbgrade"),
-						rs.getString("pbcomName"), rs.getString("pbtype")));
+						rs.getString("pbaddr"), rs.getString("pbmail"), rs.getString("pbtype"), rs.getString("pbmajor"), rs.getInt("pbgrade"),
+						rs.getString("pbcomName"), rs.getString("pbcomdept"), rs.getString("pbcomjob"), rs.getString("pbcafename"), rs.getString("pbcafenickname")));
 
 			}
-
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -279,6 +282,7 @@ public class Dao_PhoneInfo {
 
 		Connection conn = null;
 		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		List<PhoneInfo> pbList = new ArrayList<>();
@@ -286,11 +290,13 @@ public class Dao_PhoneInfo {
 		try {
 			conn = ConnectionProvider.getConnection();
 
-			stmt = conn.createStatement();
-
 			String sql = "select * from phonebook order by pbidx";
+			
+//			stmt = conn.createStatement();
+			pstmt = conn.prepareStatement(sql);
 
-			rs = stmt.executeQuery(sql);
+
+			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 
@@ -299,11 +305,17 @@ public class Dao_PhoneInfo {
 												rs.getString("pbname"), 
 												rs.getString("pbnumber"),
 												rs.getString("pbaddr"), 
-												rs.getString("pbmail"), 
+												rs.getString("pbmail"),
+												rs.getString("pbtype"),
 												rs.getString("pbmajor"), 
 												rs.getInt("pbgrade"),
 												rs.getString("pbcomName"),
-												rs.getString("pbtype"));
+												rs.getString("pbcomdept"),
+												rs.getString("pbcomjob"),
+												rs.getString("pbcafename"),
+												rs.getString("pbcafenickname")
+												
+												);
 
 				pbList.add(info);
 
@@ -407,6 +419,89 @@ public class Dao_PhoneInfo {
 		
 	}
 	
+	/////////폰북타입 찾기 메서드(숫자반환)
+	public int searchTypeNum(String searchName) {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String pbtype=null;
+		int typeNum = 0;
+		
+		
+		try {
+			conn=ConnectionProvider.getConnection();
+			
+			String sql = "select pbtype from phonebook where pbname=?";
+			
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, searchName);
+			
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				pbtype=rs.getString("pbtype");
+			}
+			
+			if(pbtype.equals("com")) {
+				typeNum=1;
+			}else if(pbtype.equals("univ")) {
+				typeNum=2;
+			}else if(pbtype.equals("cafe")) {
+				typeNum=3;
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return typeNum;
+		
+		
+	}
+	
+	
+	////////타입 정하는 메서드(숫자반환)
+//	public int searchTypeNum(String pbtype) {
+//		
+//		if(pbtype.equals("com")) {
+//			typeNum=1;
+//		}else if(pbtype.equals("univ")) {
+//			typeNum=2;
+//		}else if(pbtype.equals("cafe")) {
+//			typeNum=3;
+//		}
+//		
+//		return typeNum;
+//	}
 	
 	
 	/////////// sequence /쓰게 될지 말지..?
