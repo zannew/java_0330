@@ -12,9 +12,6 @@ public class Manager_PB {
 
 	AllDAO allDao = new AllDAO();
 	Scanner sc = new Scanner(System.in);
-	Date regDate = null;
-	
-	
 	
 	// 1. 입력
 	public void pbInsert() {
@@ -58,7 +55,7 @@ public class Manager_PB {
 					System.out.println("이메일을 입력하세요 >>");
 					email=sc.nextLine().trim();
 					System.out.println("등록일을 입력하세요 >>");
-					regdate = valueOf(sc.nextLine());
+					regdate = java.sql.Date.valueOf(sc.nextLine());
 					
 					allDto = new AllDTO(pidx, name, phoneNum, addr, email, fr_type, regdate);
 
@@ -82,7 +79,7 @@ public class Manager_PB {
 					System.out.println("이메일을 입력하세요 >>");
 					email=sc.nextLine().trim();
 					System.out.println("등록일을 입력하세요 >>");
-					regdate = valueOf(sc.nextLine());
+					regdate = java.sql.Date.valueOf(sc.nextLine());
 					
 					System.out.println("전공을 입력하세요 : ");
 					major = sc.nextLine();
@@ -114,7 +111,7 @@ public class Manager_PB {
 					System.out.println("이메일을 입력하세요 >>");
 					email=sc.nextLine().trim();
 					System.out.println("등록일을 입력하세요 >>");
-					regdate = valueOf(sc.nextLine());
+					regdate = java.sql.Date.valueOf(sc.nextLine());
 					
 					
 					System.out.println("회사명을 입력하세요 : ");
@@ -246,20 +243,61 @@ public class Manager_PB {
 	public void pbDelete() {
 		
 		Connection conn=null;
+		int resultCnt=0;
 		
 		try {
 			
 			conn = ConnectionProvider.getConnection();
 			
-			conn.setAutoCommit(false);
+//			conn.setAutoCommit(false);
 			
-			System.out.println("삭제할 친구의 이름 >>");
+			System.out.println("삭제할 친구의 이름>>");
 			String searchName = sc.nextLine();
 			
-			//DAO
-			int resultCnt = allDao.infoDelete(searchName, conn);
+			int searchCnt = allDao.searchNameCnt(searchName, conn);
 			
-			conn.commit();
+			if(searchCnt <= 0) {
+				System.out.println("입력하신 이름으로 삭제할 결과가 없습니다.");
+				
+			}else if(searchCnt == 1) {
+				resultCnt = allDao.pbDelete(searchName, conn);
+				
+
+			}else {
+				
+				//DAO
+				List<AllDTO> pbList = allDao.searchInfo(searchName);
+				
+					
+					System.out.println("\t\t\t\t\t▶ 검색한 결과 ◀");
+					System.out.println("-------------------------------------------------------------------------------------------");
+					for (int i = 0; i < pbList.size(); i++) {
+						System.out.printf("%2s", pbList.get(i).getPidx()+"\t");
+						System.out.printf("%5s", pbList.get(i).getName()+"\t");
+						System.out.printf("%5s", pbList.get(i).getPhoneNum()+"\t");
+						System.out.printf("%-5s", pbList.get(i).getAddr()+"\t");
+						System.out.printf("%-20s", pbList.get(i).getEmail()+"\t");
+						System.out.printf("%-5s", pbList.get(i).getFr_type()+"\t");
+						System.out.printf("%-5s", pbList.get(i).getRegdate()+"\t");
+						System.out.printf("%5s", pbList.get(i).getMajor()+"\t");
+						System.out.printf("%-2s", pbList.get(i).getGrade()+"\t");
+						System.out.printf("%5s", pbList.get(i).getComName()+"\t");
+						System.out.printf("%5s", pbList.get(i).getDname()+"\t");
+						System.out.printf("%5s", pbList.get(i).getComJob()+"\n");
+						
+					}
+					
+					System.out.println("삭제하실 정보의 번호를 입력하세요 >>");
+					int selectPidx = Integer.parseInt(sc.nextLine());
+					
+					for (int i = 0; i < pbList.size(); i++) {
+						if(pbList.get(i).getPidx()==selectPidx) {
+							resultCnt = allDao.pidxDelete(selectPidx, conn);
+						}
+					}
+				}  
+				
+//			conn.commit();
 			
 			if (resultCnt > 0) {
 				System.out.println(resultCnt + "행이 삭제되었습니다.");
@@ -493,7 +531,7 @@ public class Manager_PB {
 			
 			for (int i = 0; i < pbList.size(); i++) {
 				
-				if(pbList.get(i).getFr_type().equals("com")) {
+				if(pbList.get(i).getFr_type().equals("univ")) {
 					
 					System.out.printf("%2s", pbList.get(i).getPidx()+"\t");
 					System.out.printf("%5s", pbList.get(i).getName()+"\t");
@@ -547,8 +585,8 @@ public class Manager_PB {
 	
 	
 	//입력날짜 Date타입으로 바꿔주는 메서드
-	private Date valueOf(String nextLine) {
-		return null;
-	}
+//	private Date valueOf(String nextLine) {
+//		return regDate;
+//	}
 
 }

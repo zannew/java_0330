@@ -209,8 +209,8 @@ public class AllDAO {
 	}
 	
 	
-	//3.삭제
-	public int infoDelete(String searchName, Connection conn){
+	//3.삭제 - 이름으로
+	public int pbDelete(String searchName, Connection conn){
 
 		PreparedStatement pstmt = null;
 		int rsCnt = 0;
@@ -240,6 +240,39 @@ public class AllDAO {
 		
 		return rsCnt;
 
+	}
+	
+	//3. 삭제 - pidx로
+	public int pidxDelete(int pidx, Connection conn) {
+		
+		PreparedStatement pstmt = null;
+		int rsCnt = 0;
+
+		try {
+			
+			String sql = "delete from phonebook_basic where pidx=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pidx);
+
+			rsCnt = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		}
+		
+		return rsCnt;
+		
 	}
 	
 	

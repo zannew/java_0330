@@ -1,6 +1,5 @@
 package phoneBook_ver_7_3;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
 
