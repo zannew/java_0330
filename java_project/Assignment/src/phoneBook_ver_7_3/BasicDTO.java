@@ -22,14 +22,14 @@ public class BasicDTO {
 	
 	
 	//생성자(전체)
-	public BasicDTO(int pidx, String name, String phoneNum, String addr, String email, String fr_type, Date regdate) {
+	public BasicDTO(int pidx, String name, String phoneNum, String addr, String email, String fr_type, Date regDate) {
 		this.pidx = pidx;
 		this.name = name;
 		this.phoneNum = phoneNum;
 		this.addr = addr;
 		this.email = email;
 		this.fr_type = fr_type;
-		this.regdate = regdate;
+		this.regdate = regDate;
 	}
 
 	//GETTER
