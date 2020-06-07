@@ -385,7 +385,7 @@ public class Manager_PhoneInfo {
 			
 			for (int i = 0; i < infoList.size(); i++) {
 
-				if(infoList.get(i).getPBType().equals("com")) {
+				if(infoList.get(i).getPBType().equals("univ")) {
 					
 				System.out.printf("%2s", infoList.get(i).getPbidx()+"\t");
 				System.out.printf("%5s", infoList.get(i).getPbname()+"\t");
@@ -407,7 +407,7 @@ public class Manager_PhoneInfo {
 
 			for (int i = 0; i < infoList.size(); i++) {
 				
-				if(infoList.get(i).getPBType().equals("com")) {
+				if(infoList.get(i).getPBType().equals("cafe")) {
 				
 				System.out.printf("%2s", infoList.get(i).getPbidx()+"\t");
 				System.out.printf("%5s", infoList.get(i).getPbname()+"\t");

@@ -12,7 +12,7 @@ public class ConnectionProvider {
 
 //		String url="jdbc:oracle:thin:@주소:포트:데이터베이스이름(SID)";
 //		 주소 : localhost 또는 127.0.0.1
-		String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+		String url = "jdbc:oracle:thin:@localhost:1524:orcl2";
 		String user = "SCOTT";
 		String pw = "tiger";
 
