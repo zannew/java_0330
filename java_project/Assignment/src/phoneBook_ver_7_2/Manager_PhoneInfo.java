@@ -195,7 +195,7 @@ public class Manager_PhoneInfo {
 
 	}
 
-	//////// UPDATE(EDIT)-일단 기본정보만 수정
+	//////// UPDATE(EDIT)
 	public void pbEdit() {
 
 		Connection conn=null;
