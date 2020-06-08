@@ -2,31 +2,43 @@
 <html>
     <head>
         <title>실명확인 회원가입</title>
+        <meta charset="utf-8">
         <style>
             
             body{
-                margin-left: 200px;
-                margin-right: 200px;
+                margin-left: 500px;
+                margin-right: 500px;
                 
-                margin-top: 200px;
+                margin-top: 100px;
+                margin-bottom: 100px;
                 
             }
             
             div{
                  border: 2px solid lightgrey;
-                padding: 20px;
+          
+                padding: 40px;
                 
             }
             
             button{
-                margin-left: 220px;
-                margin-right: 180px;
-/*                padding: 10px;*/
-                padding: 10px;
-                padding-left: 15px;
-                padding-right: 15px;
+                margin-left:200px;
+                margin-right:150px;
+   
+                padding-left: 20px;
+                padding-right: 20px;
+                padding-top: 10px;
+                padding-bottom: 10px;
             }
-        
+            
+            #nameInput{
+                width:300px;
+            }
+            
+            #regInput{
+                width:140px;
+            }
+           
         
         </style>
     
@@ -34,20 +46,33 @@
     <body>
     
         
-        실명확인 회원가입<br><br>
+        <h3>실명확인 회원가입</h3>
         <div>
         
         <input type="radio" name="i-pin"> 아이핀(I-Pin) 
         <input type="radio" name="regNum"> 주민등록번호
+            <br>
+            
+        <table>    
+            <tr>
+                <td>이름</td>
+                <td><input id="nameInput" type="text" name="userName"></td>
+            </tr>
+             <tr>
+                <td><br>주민등록번호</td>
+                <td><br><input id="regInput"type="text" name="regNum1"> - <input id="regInput" type="password" name="regNum2"></td>
+            </tr>
+             <tr>
+                <td colspan="2"><br> <input type="checkbox" name="agreemnet"> 주민등록번호 처리에 동의합니다.</td><br>
+               
+            </tr>
+      
         
-        <p>이름 <input type="text" name="userName"></p>
-        <p>주민등록번호 <input type="text" name="regNum1"> - <input type="password" name="regNum2"></p>
+        </table>
+            
+        <hr><br>
         
-        <input type="checkbox" name="agreemnet"> 주민등록번호 처리에 동의합니다.
-        
-        <hr>
-        
-         <button style="color:white; background-color: green"><b>확인</b></button><br>
+         <button style="color:white; background-color:forestgreen"><b>√ 확인</b></button><br>
     
         </div>
     </body>
