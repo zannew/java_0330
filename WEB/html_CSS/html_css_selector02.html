@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> CSS3 선택자 Selector</title>
+        <meta charset='utf-8'>
+  
+
+        <style>
+            
+            * {
+                color: white;
+            }
+            
+            h1{
+                background-color: black;
+            }
+            
+            p{
+                font-size: 32px;
+                font-style: italic;
+            }
+            
+            h1, p {
+                border: 3px solid blue;
+              
+            }
+            
+            body, h1, p {
+              
+                margin: 0;
+                padding: 0;
+            }
+            
+            /* [아이디 선택자]
+            
+            #아이디{
+            
+            }
+            */
+            
+            #header {
+                width: 300px;
+                background-color: red;
+                margin: 0 auto;
+            }
+            
+            #aside {
+                width:400px;
+                background-color: blue;
+/*margin-top/bottom/left/right*/
+                margin: 10px auto;
+            }
+            
+            #content {
+                width:500px;
+                background-color: green;
+                margin: 0 auto;
+            }
+            
+            
+            li{
+                color: black;
+            }
+            
+            /*[클래스 선택자]
+            
+            . 클래스명{
+            
+            }
+            */
+            
+            .font_color{
+                color: blueviolet;
+            }
+            
+            .font_bold{
+                font-weight:lighter;
+            }
+            /* 태그명.클래스명 {  } : 해당 태그의 클래스만 선택*/
+            li.font_size{
+                font-size: 150%;
+            }
+            
+            div.font_size{
+                font-size: 200%;
+            }
+            
+        
+        </style>
+    </head>
+    <body>
+        
+        <ul>
+            <li class="font_color font_size">사과</li>
+            <li>바나나</li>
+            <li class="font_color font_bold font_size">키위</li>
+            <li class="font_size">감</li>
+        </ul>
+        
+        
+        
+        
+        
+        
+        
+        
+        <hr>
+        
+<!-- 선택자 > 아이디-->
+        
+        <div id="header" class="font_size">header header header header header header header header header header header header header header header header header header header header </div>
+        <div id="aside">aside</div>
+        <div id="content">content</div>
+        
+        
+        
+        
+        
+        
+        
+        <hr>
+    
+        <h1>편의점에서 물건 사면 드론이 5분 만에 배송한다</h1>
+        
+        <p>
+        8일 오전 제주도 GS칼텍스 무수천 주유소에서 20cm 안팎 크기의 드론이 이륙했다. 이곳에서 각각 1.3km와 0.8km 떨어진 펜션과 초등학교에 도시락ㆍ음료ㆍ간식을 배달하는 게 임무였다. 드론들이 주문자에게 상품을 배송하고 다시 주유소로 복귀하는 데 걸린 시간은 5~6분에 불과했다.
+        </p>
+        <p>
+        산업통상자원부와 GS칼텍스는 정부가 추진하는 ‘드론 활용 서비스 시장창출 지원사업’의 일환으로 ‘드론 활용 유통물류혁신 실증 시연 행사’를 개최했다고 8일 밝혔다. 정부는 지난해 4월부터 2022년 말까지 총 352억원의 예산을 투입해 드론을 활용한 서비스 모델 및 기술 개발 등을 지원하고 있다. 이 중 드론 물류 서비스 플랫폼 구축 및 상용화 실증사업에는 182억원이 배정됐다.
+
+        
+        </p>
+    
+    
+    </body>
+</html>
