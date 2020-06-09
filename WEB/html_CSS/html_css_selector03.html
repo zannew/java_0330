@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> CSS3 선택자 Selector</title>
+        <meta charset='utf-8'>
+
+        <style>
+            
+/*
+            속성선택자
+            선택자[속성명] : 특정 속성을 가지는 태그들을 선택
+            ex) input[type]
+            선택자[속성명=속성값] : 특정 속성을 가지며, 특정 값을 가지는 태그들을 선택
+            ex) input[type=text]
+*/
+        
+            input{
+                height:30px;
+                margin:10px auto;
+                
+            }
+            
+            input[type]{
+/*                border:1px solid blue;*/
+            }
+            
+            input[type=text]{
+                background-color:magenta;
+            }
+            
+            input[type=password]{
+                background-color:aquamarine;
+            }
+            
+            img[alt]{
+                width:100px;
+            }
+            
+            img[src$=jpg]{
+                border: 3px solid red;
+            }
+            
+            img[src$=png]{
+                border: 3px solid green;
+            }
+            
+/*
+            후손선택자 : 선택의 범위를 제한
+            
+            선택자 범위안의선택자
+            ex) div h1 {
+                
+            }
+*/
+  
+            #header h1, #header h2 {
+                color: red;
+            }
+            
+            form input{
+/*                width: 100%;*/
+            }
+            
+            
+/*
+            자손선택자 : 바로밑의 태그를 선택
+            선택자 > 선택자
+            ex) div > h1 {
+                
+            }
+*/
+            
+            #header > h1 {
+                background-color:aquamarine;
+            }
+            
+            
+/*
+            동위선택자 : 같은 레벨(형제)의 태그들을 기준으로 선택            
+            + : 바로 뒤의 요소 선택
+            ~ : 같은 레벨의 형재 태그들 중 선택
+*/
+            h3 + h4 {
+                color: blue;
+            }
+            
+            h3 ~ h4.aa {
+                background-color: skyblue;
+            }
+            
+            
+/*tbody는 자동생성*/
+            table>tbody>tr>td {
+                color:red;
+            }
+            
+            
+/*
+            반응선택자 
+            선택자 : hover → 마우스 커서가 선택된 요소의 영역으로 들어갔을 때
+            선택자 : active → 마우스 커서가 선택된 요소를 왼쪽버튼으로 클릭했을 때
+*/
+            
+            h3 {
+                background-color:aqua;
+            }
+            
+            h3:hover {
+                color: red;
+                font-size: 32px;
+                
+            }
+            
+            h3:active {
+                color: blue;
+                font-style:italic;
+            }
+            
+            #myform input {
+                background-color:aliceblue;
+                
+            }
+            
+            #myform input:disabled {
+                background-color: grey;
+            }
+            
+            #myform input:enabled {
+                background-color: bisque;
+            }
+            
+            #myform input[type=checkbox]{
+                width: 30px;
+                height: 30px;
+            }
+            
+             #myform input[type=checkbox]:checked{
+                width: 50px;
+                height: 50px;
+            }
+            
+            #view_menu+div {
+                display:none;
+            }
+            
+            #view_menu:checked+div {
+                display:block;
+            }
+            
+            
+            #nav {
+                overflow:hidden;
+            }
+            
+            #nav>li {
+                list-style:none;
+                float:left;
+                padding:5px 15px;
+            }
+            
+            #nav>li:nth-child(2n+1){
+                background-color: aquamarine;
+            }
+            
+             #nav>li:nth-child(2n){
+                background-color:beige;
+            }
+            
+            #nav>li:first-child{
+/*                border:1px solid grey;*/
+                border-radius: 10px 0 0 10px;
+                
+            }
+            
+            #nav>li:last-child{
+/*                border:1px solid grey;*/
+                border-radius: 0 10px 10px 0;
+            }
+            
+            p::first-letter{
+                font-size: 3em;
+            }    
+            
+            p::first-line {
+                color:forestgreen;
+                font-weight: bold;
+            }
+            
+            p::selection{
+                color:yellow;
+                background-color: black;
+            }
+            
+            
+            a:link{
+                color:cornflowerblue;
+                font-weight: bold;
+                text-decoration: none;
+            }
+            
+            a:hover{
+/*                text-decoration: underline;*/
+            }
+            
+            a:active{
+                color:cornflowerblue;
+            }
+            
+        </style>
+    </head>
+    <body>
+        
+        <h1>Lorem ipsum dolor sit amet</h1> 
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>Aenean ac erat et massa vehicula laoreet consequat et sem. <br>Aenean ac erat et massa vehicula laoreet consequat et sem. </p>
+        
+        
+        <hr>
+        <ul id="nav">
+            <li><a href="#1">home</a></li>
+            <li><a href="#1">company</a></li>
+            <li><a href="#1">service</a></li>
+            <li><a href="#1">products</a></li>
+            <li><a href="#1">notice</a></li>
+            <li><a href="#1">contacts</a></li>
+            <li><a href="#1">eng</a></li>
+        </ul>
+        
+        
+        
+        
+        
+        <hr>
+        <form id="myform">
+            
+            <div>
+                약관 보기 <input type="checkbox" id="view_menu">
+                <div>
+                    <h4>이용 약관</h4>
+                    <p>
+                        문제가 생기면 바로 강퇴됩니다.
+                    </p>
+                </div>
+            </div>
+            
+            <div>
+                약관동의<input type="checkbox" checked>
+            </div>
+            
+            <div>
+                마케팅동의<input type="checkbox">
+            </div>
+            
+            <div>
+                <input type="text">
+            </div>
+            
+            <div>
+                <input type="text" disabled>
+            </div>
+            
+            <div>
+                <input type="text" readonly>
+            </div>
+        
+            <div>
+                <input type="number" required>
+            </div>
+        
+            <input type="submit">
+            
+        </form>
+        
+        
+        
+    
+        <hr>
+        
+        <h4 class="aa">Header - 4</h4>
+        <h3>Header - 3</h3>
+        <h4 class="aa">Header - 4</h4>
+        <h4 class="aa">Header - 4</h4>
+        <h4 class="aa">Header - 4</h4>
+        <h4 class="aa">Header - 4</h4>
+        
+        
+        <hr>
+        <table border="1">
+        
+            <tr>
+                <td>아이디</td>
+                <td><input></td>
+            </tr>
+            <tr>
+                <td>비밀번호</td>
+                <td><input></td>
+            </tr>
+        
+        
+        </table>
+         
+        <hr>
+        
+        <div id="header">
+            
+            <h1 class="title">Title</h1>
+            
+            <div id="navi">
+                <h1>Navigation</h1>
+            
+            </div>
+            
+            <h1>etc..</h1>
+            
+            <h2>h2 tag</h2>
+            
+        </div>
+        
+        <div id="section">
+            
+            <h1 class="title"> Title </h1>
+            
+            <p>안녕하세요</p>
+        
+        </div>
+        
+        <h2>h2 tag</h2>
+        
+        <hr>
+        
+        
+        <h4>Header - 4</h4>
+        
+        <form>
+            <input>
+            <br>
+            <input type="text">
+            <br>
+            <input type="password">
+            <br>
+        </form>    
+            
+        
+        <img src="../images/%ED%95%98%EC%9A%B8.jpg">
+        <img src="../images/%ED%95%98%EC%9A%B8.jpg" alt="하울">
+        
+        <img src="../images/moomin_2.png">
+        <img src="../images/moomin_2.png" alt="moomin">
+        
+    
+    
+    </body>
+</html>
+

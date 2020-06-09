@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CSS 속성</title>
+        <meta charset="utf-8">
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+        
+        <style>
+            
+/*
+            CSS에서 사용하는 단위 : px, %, em
+            px : 절대 단위
+            % : 비율
+            em : 배수
+            
+            16px = 1em = 100%
+            ex) h1의 32px = 2em = 200%
+*/
+            tr:nth-child(1)>td:nth-child(1){
+                font-size: 14px;
+            }
+            tr:nth-child(2)>td:nth-child(1){
+                font-size: 14px;
+            }
+            tr:nth-child(3)>td:nth-child(1){
+                font-size: 14px;
+            }
+            
+            
+            tr:nth-child(1)>td:nth-child(2){
+                font-size: 16px;
+                color:red;
+            }
+            tr:nth-child(1)>td:nth-child(3){
+                font-size: 24px;
+                color:blue;
+            }
+            tr:nth-child(1)>td:nth-child(4){
+                font-size: 32px;
+                color:greenyellow;
+            }
+            
+            
+            tr:nth-child(2)>td:nth-child(2){
+                font-size: 1em;
+                color:#FF0000;
+            }
+            tr:nth-child(2)>td:nth-child(3){
+                font-size: 1.5em;
+                color:#0000FF;
+            }
+            tr:nth-child(2)>td:nth-child(4){
+                font-size: 2em;
+                color:#00FF00;
+            }
+        
+            
+              tr:nth-child(3)>td:nth-child(2){
+                font-size: 100%;
+                  color:rgb(255,0,0);
+            }
+            tr:nth-child(3)>td:nth-child(3){
+                font-size: 150%;
+                color:rgb(0,0,255);
+            }
+            tr:nth-child(3)>td:nth-child(4){
+                font-size: 200%;
+                color:rgb(0,255,0);
+            }
+            
+            body {
+                background-image: url('../images/moomin_1.png');
+/*                background-size:50%;*/
+/*                background-size: 50% 300px;*/
+                background-size: 25%;
+                background-repeat:no-repeat;
+                background-attachment: fixed;
+                background-position: top right;  
+               
+            }
+            
+            hr {
+                border: 0;
+                border-top: thin solid #AAAAAA;
+            }
+            
+            div.box {
+                width:200px;
+                height:200px;
+/*                border:1px solid grey;*/
+            }
+            
+            #box1 {
+                
+                background-color: red;
+                border-width:10px;
+                border-style:solid;
+                border-color: #DDDDDD;
+                
+                padding: 10px;
+                padding-top: 200px;
+                
+                margin: 10px;
+                margin-top: 100px;
+            }
+            
+            #box2 {
+                background-color: blue;
+                border: 1px solid #dddddd;
+/*                border-radius: 100px;*/
+                border-radius: 50%;
+            }
+            
+            #img_1 {
+                border-radius: 50%;
+            }
+            
+            span {
+                border: 1px solid red;
+            }
+            
+            #box {
+                border: 1px solid blue;
+/*                display: none;*/
+                display: inline;
+            }
+            
+            #sp {
+                display: block;
+            }
+            
+            #bg {
+                height: 300px;
+                width: 100%;
+                background-image: url('../images/moomin_2.png');
+                background-size:cover;
+                
+                color: yellow;
+                font-size: 5em;
+                
+                text-align: center;
+                
+                line-height: 300px;
+                
+            }
+            
+            .font_kor {
+                font-family: '궁서체', '돋움', '돋움체';
+                
+               
+            }
+            
+            .font_web {
+                font-family: 'Nanum Gothic', sans-serif;
+                
+            }
+            
+            .font_penscript {
+                font-family: 'Nanum Pen Script', cursive;
+                
+            }
+            
+        </style>
+    </head>
+
+    <body>
+    
+        <div id="bg" class="font_penscript">
+            무민
+        </div>
+        
+        
+        <hr>
+        <span id="sp">Dummy</span>
+        <div id="box">
+            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+        </div>
+        <span>Dummy</span>
+        
+        
+        <hr>
+        <img src="../images/poodle.jpg"id="img_1">
+        
+        <hr>
+        <div class="box" id="box1">
+            
+        RRRR
+        
+        
+        </div>
+        
+        <div class="box" id="box2">
+            
+        
+        
+        
+        </div>
+        
+        <hr>
+        
+        <table border="1">
+            
+            <tr>
+                <td>px</td>
+                <td>HTML5 - 16px</td>
+                <td>HTML5 - 24px</td>
+                <td>HTML5 - 36px</td>
+            </tr>
+            <tr>
+                <td>em</td>
+                <td>HTML5 - 1em</td>
+                <td>HTML5 - 1.5em</td>
+                <td>HTML5 - 2em</td>
+            </tr>
+            <tr>
+                <td>%</td>
+                <td>HTML5 - 100%</td>
+                <td>HTML5 - 150%</td>
+                <td>HTML5 - 200%</td>
+            </tr>
+        </table>
+    
+    
+    </body>
+
+
+</html>
