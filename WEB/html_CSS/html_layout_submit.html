@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>html - submit</title>
+    <meta charset="utf-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+
+        }
+
+
+
+        #entire_wrap {
+            width: 850px;
+            height: 2150px;
+
+            border: 10px solid #666666;
+            border-radius: 5px;
+
+            background-color: white;
+            /*정렬*/
+            margin: 20px auto;
+
+            padding: 10px;
+        }
+
+        #header {
+            width: 800px;
+            height: 100px;
+
+            padding: 10px;
+
+        }
+
+        div.title {
+            padding-left: 20px;
+            padding: 100px auto;
+        }
+
+        #nav {
+
+            overflow: hidden;
+            width: 800px;
+            height: 30px;
+
+            padding: 5px 0;
+
+            border-top: 1px solid #AAA;
+            border-bottom: 1px solid #AAA;
+
+
+        }
+
+        #wrap {
+            width: 800px;
+            overflow: hidden;
+        }
+
+        #aside {
+            padding: 20px 20px;
+
+            width: 120px;
+            height: 1800px;
+            float: right;
+
+        }
+
+        #aside>ul {
+            list-style: none;
+            padding-left: 20px;
+
+        }
+
+        #aside>ul>li {
+            color: dimgrey;
+        }
+
+        #content {
+            width: 680px;
+            height: 1800px;
+
+            padding: 10px 20px;
+
+
+        }
+
+        #footer {
+            width: 800px;
+            height: 100px;
+            
+            font-size: 0.8em;
+            text-align: center;
+        }
+        
+        a {
+            text-decoration-line: none;
+            padding: 0 5px;
+        }
+
+        #nav>#menu>li {
+            float: left;
+            list-style: none;
+
+            margin: 0 10px;
+
+            font-weight: bold;
+
+            line-height: 30px;
+        }
+
+        #nav>#search>li {
+
+            float: right;
+            list-style: none;
+
+            margin: 0;
+        }
+
+
+        input[type=text] {
+            width: 150px;
+            height: 22px;
+
+            border: 1px solid #DDDDDD;
+            border-radius: 20px 0 0 20px;
+
+        }
+
+        input[type=submit] {
+            width: 40px;
+            height: 24px;
+            padding: 3px 3px;
+
+            border: 1px solid #DDDDDD;
+            border-radius: 0 20px 20px 0;
+        }
+
+
+        #poster {
+            float: left;
+          
+            
+        }
+        
+        #cut {
+            width: 50%;
+            height:50%;
+            float: right;
+          
+        }
+
+        .notes {
+            clear: both;
+        }
+        
+        
+        
+    </style>
+</head>
+
+<body>
+
+    <div id="entire_wrap">
+        <div id="header" class="border title">
+            <h1>무민 더 무비</h1>
+            <h3> : Moomins on the Riviera, 2014</h3>
+        </div>
+
+        <div id="nav" class="border">
+            <ul id="menu">
+                <li>줄거리</li>
+                <li>배우 / 제작진</li>
+                <li>예매정보</li>
+                <li>제작노트</li>
+                <li>이벤트</li>
+
+            </ul>
+
+            <ul id="search">
+
+                <li><input type="submit" value="검색"></li>
+                <li><input type="text"></li>
+
+            </ul>
+
+        </div>
+
+        <div id="wrap">
+            <div id="aside" class="border">
+
+                <ul>
+                    <h3>Categories</h3><br>
+                    <li>데이터</li>
+                    <li>데이터</li>
+                    <li>데이터</li>
+                    <li>데이터</li>
+                    <li>데이터</li>
+                    <li>데이터</li>
+                    <li>데이터</li>
+
+                </ul>
+                <br><br>
+
+                <ul>
+                    <h3>최근 글</h3><br>
+                    <li>데이터</li>
+                    <li>데이터</li>
+                    <li>데이터</li>
+                    <li>데이터</li>
+
+                </ul>
+            </div>
+
+            <div id="content" class="border">
+
+                <div class="intro">
+                    <h3>소개글</h3>
+                    <img src="../images/movie_image.jpg" id="poster">
+                    <p>세상에서 가장 깜찍한 무민 가족 등장!
+                        마침내 귀여움이라는 것이 폭발했다!
+                        귀염지수 200%, 포근한 매력의 ‘무민’
+                        소년 같은 순수함을 간직한 ‘무민 파파’
+                        따뜻한 무민 가족의 버팀목 ‘무민 마마’
+                        못 말리는 ‘무민’의 여친 ‘스노크메이든’
+
+                        무민 가족은 골짜기를 벗어나 남쪽 바다로 여행을 떠난다.
+                        두근두근 콩닥콩닥 신나는 바캉스 지금부터 시작~!
+                        그.러.나 이들을 기다리고 있는 것은 예측불허 초특급 사건?!
+
+                        올 여름, 엉뚱하지만 사랑스러운 무민 가족의 바캉스 대소동이 시작된다!<br><br>
+                        세상에서 가장 깜찍한 무민 가족 등장!
+                        마침내 귀여움이라는 것이 폭발했다!
+                        귀염지수 200%, 포근한 매력의 ‘무민’
+                        소년 같은 순수함을 간직한 ‘무민 파파’
+                        따뜻한 무민 가족의 버팀목 ‘무민 마마’
+                        못 말리는 ‘무민’의 여친 ‘스노크메이든’
+
+                        무민 가족은 골짜기를 벗어나 남쪽 바다로 여행을 떠난다.
+                        두근두근 콩닥콩닥 신나는 바캉스 지금부터 시작~!
+                        그.러.나 이들을 기다리고 있는 것은 예측불허 초특급 사건?!
+
+                        올 여름, 엉뚱하지만 사랑스러운 무민 가족의 바캉스 대소동이 시작된다!</p>
+                    <br><br>
+                    
+                    
+                    <h3>제작 노트</h3><br>
+                    <img src="../images/movie_image%20(2).jpg" id="cut">
+                    
+                    <p>PRODUTION NOTE 1
+
+                        웰메이드 2D 애니메이션 '무민 더 무비'
+                        원작의 탄생 배경과 기발한 작품 세계!
+
+                        영화 '무민 더 무비'는 손으로 직접 그린 장편 애니메이션으로 전 연령층을 위한 영화이다. 또한 2014년으로 탄생 100주년을 맞이한 원작자 토베 얀손과 그녀의 오리지널 연재만화, 그리고 그녀의 작품 세계를 사랑하는 수 많은 팬들까지 모두 포함한 무민 월드에 바치는 존경을 담은 작품이기도 하다.<br><br>
+
+                        영화의 원작이 되는 작품인 ‘무민 온 더 리비에라’는 작가 토베 얀손이 엄마와 함께 프랑스의 리비에라에 갔던 경험에서 영감을 받아 창작되었다. 작은 것에서 삶의 기쁨을 찾고 다른 문화에 대한 이해의 중요성과 낙관적 삶의 힘에 대한 매력이 넘치는 영화로 전 세계의 팬들에게 큰 울림을 줄 것으로 기대를 모은다.<br><br> 토베 얀손의 일상생활에 대한 통찰력이 빛을 발하는 ‘무민 시리즈’는 엉뚱하고 기발하면서도 그 속에 놓쳐서는 안될 중요한 메시지를 담고 있는 풍자만화이다. 원작은 환대보다 오래 머무는 염치 없는 손님들, 현대 미술, 영화 배우, 상류 사회의 단면 등을 날카롭게 파헤치고 유머러스하게 풍자하여 전 세계의 성인 독자를 사로잡았으며 오늘 날까지도 반향을 일으키고 있어 '무민 더 무비'에 대한 기대감 역시 더욱 커지고 있다.<br>
+
+                        또한 영화 '무민 더 무비'는 손으로 직접 그린 2D 애니메이션으로 제작되었는데 이 부분은 오리지널 연재만화에서 영감을 얻었다. 배경의 색감을 줄여서 캐릭터를 돋보이게 했으며 원작의 느낌을 세심하게 살리면서도 오늘 날 젊은 관객들에게도 낯설지 않도록 모던함과 세련미를 더했다.</p>
+
+                </div>
+
+               
+            </div>
+
+        </div>
+    
+
+        <hr>
+    <div id="footer" class="border">
+        <a href="https://movie.naver.com/movie/bi/mi/basic.nhn?code=131099">Source By Naver Movie</a>
+        
+        <p><a href="#">이용약관</a> | <a href="#">개인정보처리방침</a> | <a href="#">책임의 한계와 법적고지</a> | <a href="#">영화 고객센터</a><br>
+본 콘텐츠의 저작권은 저작권자 또는 제공처에 있으며, 이를 무단 이용하는 경우 저작권법 등에 따라 법적 책임을 질 수 있습니다.<br>
+
+사업자등록번호 : 220-81-62517통신판매업 신고번호 : 경기성남 제 2006 - 692호 <br>대표이사 : 한성숙사업자등록정보 확인
+주소 : 경기도 성남시 분당구 불정로 6 네이버 그린팩토리<br> 대표전화 : 1588-3820
+
+            <a href="www.naver.com">NAVER</a> Copyright © NAVER Corp. All Rights Reserved.</p>
+        
+    </div>
+
+</div>
+
+</body>
+
+</html>

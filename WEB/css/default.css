@@ -1,5 +1,38 @@
-h1 {
-                color: peachpuff;
-                background-color :mediumvioletred
-            }
-            
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Nanum Gothic', sans-serif;
+    background-color:  beige;
+}
+
+
+#mainWrap {
+    /*표현 영역*/
+    width:898px;
+    height:300px;
+    
+    border:1px solid #666666;
+    border-radius: 5px;
+    
+    background-color: white;
+    
+    /*정렬*/
+    margin: 20px auto;
+    
+    padding: 10px;
+    
+}
+
+header {
+    padding: 15px;
+}
+
+header>h1 {
+    margin-bottom: 10px;
+}
