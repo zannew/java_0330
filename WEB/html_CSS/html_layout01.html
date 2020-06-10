@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> layout : div </title>
+        <meta charset="utf-8">
+        <style>
+        
+            * {
+                margin: 0;
+                padding: 0;
+            }    
+            
+            div.border {
+                border: 1px solid #AAAAAA;
+            }
+            
+            #header {
+                
+                /*표현 영역의 사이즈 설정*/
+                width: 798px;
+                height: 100px;
+                
+                /*배경색*/
+                background-color: #FF0000;
+                
+                /*영역의 수평방향의 중앙 위치*/
+                margin: 0 auto;
+                
+                /*텍스트의 정렬 : 수평과 수직 모두 중앙*/
+                text-align: center;
+                line-height: 100px;
+                
+                /*텍스트 설정*/
+                font-size: 2em;
+                font-weight: bold;
+                color: aliceblue;                        
+            }
+            
+            #nav {
+                 /*표현 영역의 사이즈 설정*/
+                width: 798px;
+                height: 30px;
+                
+                /*배경색*/
+                background-color: green;
+                
+                /*영역의 수평방향의 중앙 위치*/
+                margin: 0 auto;
+                
+                /*텍스트의 정렬 : 수평과 수직 모두 중앙*/
+                text-align: center;
+                line-height: 30px;
+                
+                /*텍스트 설정*/
+                font-size: 1.5em;
+                font-weight: bold;
+                color: aliceblue; 
+            }
+            
+             #wrap {
+                
+                /*표현 영역의 사이즈 설정*/
+                width: 800px;
+                
+                /*영역의 수평방향의 중앙 위치*/
+                margin: 0 auto;
+                
+                /*float 속성의 범위를 현재 영역으로 한정*/
+                overflow: hidden;
+            }
+            
+            #aside {
+                 /*표현 영역의 사이즈 설정*/
+                width: 198px;
+                height: 300px;
+                
+                /*배경색*/
+                background-color: darkviolet;
+                
+                /*영역의 수평방향의 중앙 위치*/
+                margin: 0 auto;
+                
+                /*텍스트의 정렬 : 수평과 수직 모두 중앙*/
+                text-align: center;
+                line-height: 300px;
+                
+                /*텍스트 설정*/
+                font-size: 2em;
+                font-weight: bold;
+                color: aliceblue; 
+                
+                /*수평 방향으로 정렬*/
+                float:left;
+            }
+
+            #content {
+                 /*표현 영역의 사이즈 설정*/
+                width: 598px;
+                height: 300px;
+                
+                /*배경색*/
+                background-color: blue;
+                
+                /*영역의 수평방향의 중앙 위치*/
+/*                margin: 0 auto;*/
+                
+                /*텍스트의 정렬 : 수평과 수직 모두 중앙*/
+                text-align: center;
+                line-height: 300px;
+                
+                /*텍스트 설정*/
+                font-size: 2em;
+                font-weight: bold;
+                color: aliceblue; 
+                
+                float:right;
+                
+            }
+            
+           
+            
+            
+            #footer {
+                 /*표현 영역의 사이즈 설정*/
+                width: 798px;
+                height: 100px;
+                
+                /*배경색*/
+                background-color: grey;
+                
+                /*영역의 수평방향의 중앙 위치*/
+                margin: 0 auto;
+                
+                /*텍스트의 정렬 : 수평과 수직 모두 중앙*/
+                text-align: center;
+                line-height: 100px;
+                
+                /*텍스트 설정*/
+                font-size: 2em;
+                font-weight: bold;
+                color: aliceblue; 
+                
+                /*float 속성 해제*/
+                /*clear: both;*/
+            }
+            
+            
+            
+        </style>
+    </head>
+    <body>
+    
+        <div id="header" class="border">Header</div>
+        
+        <div id="nav" class="border">Navigation</div>
+        
+        <div id="wrap">
+            <div id="aside" class="border">Aside</div>
+            <div id="content" class="border">Content</div>
+        </div>
+            
+        <div id="footer" class="border">Footer</div>
+    
+    </body>
+    
+    
+    
+</html>
