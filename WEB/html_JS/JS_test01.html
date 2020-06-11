@@ -82,28 +82,184 @@
 
         var number;
 
-        alert(number); 
-        alert(number+1);    //값이 없는 경우
+        // alert(number); 
+        // alert(number+1);    //값이 없는 경우
 
-        var stringVar = '문자열';
-        var numberVar = 273;
-        var booleanVar = false;
-        var functionVar = function(){alert('function')};
-        var objectVar = {};
-        var arrayVar = [1,2,3,4,5];
+        var stringVar = '문자열';       //String                 
+        var numberVar = 273;            //number
+        var booleanVar = false;         //boolean   
+        var functionVar = function(){   //function
+            alert('function')};
+        var objectVar = {};             //object
+        var arrayVar = [1,2,3,4,5];     //object-array
 
-        alert(stringVar);
-        alert(numberVar);
-        alert(booleanVar);
-        alert(functionVar);
-        alert(objectVar);
-        alert(arrayVar);
+        // alert(typeof(arrayVar));
 
-        functionVar();
+        if(typeof(booleanVar)!='undefined'){
+
+        }
+        
+        // alert(stringVar);
+        // alert(numberVar);
+        // alert(booleanVar);
+        // alert(functionVar);
+        // alert(objectVar);
+        // alert(arrayVar);
+
+        // functionVar();
+
+        // 복합 대입 연산자 : += -= *= /=
+        
+        //+=
+        var html_str = '';
+        html_str += '<div>\n';
+        html_str += '<h1>인사</h1>\n';
+        html_str += '<p>안녕하세요</p>\n';
+        html_str += '</div>\n';
+
+        alert(html_str);
+
+        document.write(html_str);
+
+        // window.onload = function(){
+        
+        //     //alert : 단순 알림 함수
+        //     //prompt : 사용자의 문자열 입력받는 함수
+        //     var message = prompt('이름을 입력하세요');
+
+        //     //confirm : 사용자의 의사를 입력받는 함수
+        //     var check = confirm('입력된 이름을 사용하시겠습니까?');
+
+        //     var list = '';
+
+        //     list += '<ul>\n';
+        //     if(check){
+        //     list += '   <li>'+message+'</li>\n';    
+        //     }
+        //     list += '   <li>javascript</li>\n';
+        //     list += '   <li>JQuery</li>\n';
+        //     list += '</ul>';
+
+        //     document.body.innerHTML=list;
+
+            
+
+        // }
+        
+        // + 연산의 경우 문자열 우선
+        // alert('1'+2);   //'1'+'2' = 12
+
+        // + 연산자가 아닌 다른 연산의 경우 숫자 연산 우선
+        // alert(7*'5');   //7*5 = 35
+        // alert(7*'n');       //NaN : Not a Number
+
+        
+        // var n = prompt('숫자를 입력해주세요.');
+
+        // alert(typeof(n));
+
+        // // 형변환 함수 : 숫자로 변환 → Number();
+        // var userNumber = Number(n);
+
+        // // alert(n+1);
+
+        // if(userNumber){
+        //     alert(userNumber+1);    //when operation : NaN
+        // }
+
+        // // alert(typeof(userNumber));  //when noticing : OK
+
+
+        // alert(Boolean(0));
+        // alert(Boolean(NaN));
+        // alert(Boolean(''));
+        // alert(Boolean(null));
+        // alert(Boolean(undefined));
+
+        // alert(!!0);         //0 → false
+        // alert(!!NaN);       //NaN → false   
+        // alert(!!'');        //'' → false
+        // alert(!!null);      //null → false
+        // alert(!!undefined); //undefined → false
+
+        
+        //자동형변환 케이스
+        //데이터 일치여부 확인
+        // alert(''==false);
+        // alert(''==0);
+        // alert(0==false);
+        // alert('2'==2);
+        
+        //타입과 데이터 일치여부 확인
+        // alert(''===false);
+        // alert(''===0);
+        // alert(0===false);
+        // alert('2'===2);
+
+
+        //날짜와 시간을 정의하는 객체
+        var now = new Date();
+
+        // alert(now.getHours());
+
+        var msg = prompt('입력');
+            //★★다시
+        // true || alert('논리값이 참입니다.');
+        // false || alert('논리값이 거짓입니다.');
+
+        //null, NaN, ''
+        // msg || alert('!!!!');
+
+        //반복문 : for(초기식; 조건식, 증감식)
+        //배열을 요소를 일괄 참조 사용
+
+        //배열 : 여러개의 변수를 묶음으로 처리
+        //배열의 요소는 어떤 타입이어도 가능!!
+        //배열의 생성 : [ ] 요소의 표현 , 정의 
+        // var arr = [10, 20, 50, 99, 100];
+
+        // for(var i=0; i<arr.length; i++){
+        //     alert(arr[i]);
+        // }
+
+        var arr = [10, 'string', true, function(){}, {}, [1,2]];
+
+        // alert(arr);
+
+        for(var i=0; i<arr.length; i++){
+            // alert(arr[i]);
+        }
+
+        for(var i in arr){
+            // alert(arr[i]);
+        }
+        
+        var randNum = Math.random()*100+1;
+
+        alert(parseInt(randNum));
+
+
+
+
 
     </script>
 </head>
 <body>
-    
+
+    <h1>자바스크립트 예제</h1>
+    <p>잼있는 자바스크립트</p>
+
+
+
 </body>
 </html>
+
+    <script>
+
+        // var html_val = document.body.innerHTML;
+
+        // alert(html_val);
+
+       
+
+    </script>

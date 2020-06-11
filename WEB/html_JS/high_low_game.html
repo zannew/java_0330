@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIGH-LOW game</title>
+
+    <style>
+        #congratsMsg {
+            color:darkorchid;
+
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+    </style>
+    
+</head>
+<body>
+    
+    <h1>★★★ High & Low Game ★★★</h1>
+
+    <p>1부터 100안의 임의의 숫자를 맞혀보세요!</p>
+
+
+</body>
+</html>
+
+<script>
+    
+    var welcomeMsg = '★★★ High & Low Game ★★★\n'+
+                '1부터 100안의 임의의 숫자를 맞혀보세요!';
+    var randNum = parseInt(Math.random()*100+1);
+
+
+    alert(welcomeMsg);
+
+    var msg = prompt('숫자를 입력하세요');
+
+    for(var i=0;i<=10;i++){
+        if(msg==randNum){
+            alert('정답입니다 :-) ');
+            document.write('<h3>정답</h3>\n');
+            document.write('<p>▶\t'+randNum+'</p>\n');
+            document.write('<p id="congratsMsg">★축하합니다~~!<br>'+i+'차시도만에 맞히셨습니다.</p>');
+
+            break;
+            
+        }else{
+            alert('아쉽네요..\n 다시 시도해주세요.');
+
+            if(msg<randNum){
+                alert('더 큰 수를 입력해주세요.');
+                msg = prompt('1부터 100사이의 숫자를 입력하세요');
+                document.write('<h4>'+(i+1)+'차시도</h4>\n');
+                document.write('<p>입력한 숫자 : '+msg+'</p>\n');
+            }else{
+                alert('더 작은 수를 입력해주세요.');
+                msg = prompt('1부터 100사이의 숫자를 입력하세요');
+                document.write('<h4>'+(i+1)+'차시도</h4>\n');
+                document.write('<p>입력한 숫자 : '+msg+'</p>\n');
+            }
+        }
+        if(i==10){
+            alert('다음기회에 다시 도전하세요~~');
+            break;
+        }
+    } 
+
+
+
+</script>
