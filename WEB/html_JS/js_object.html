@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript : Object 객체</title>
+    <script>
+
+        var obj = {};   //기본 객체 생성 (= new Object())
+
+        console.log(typeof(obj));
+
+        var obj = {
+            number : 1555,
+            str:'String',
+            check:false,
+            method:function(){},
+            object:{},
+            arr:[1,2,3]
+        };
+
+
+        console.log(obj.number);
+        console.log(obj);
+        
+        var person = {
+            name: '장윤원',
+            age: 29,
+            hello: function(){
+                alert('안녕하세요. 저는 '+this.name+'입니다.');
+                alert(this.age+'세 입니다.');
+                this.bye();
+            },
+            bye: function(){
+                alert('안녕히가세요');
+            }
+
+        };
+
+        // person.hello();
+
+        //객체에 속성 추가
+        // person.job='player';
+
+        // alert(person.job);
+
+
+        /*생성자 함수*/
+        //new 키워드를 이용해서 객체를 생성
+        // 생성자 함수의 이름은 대문자로 시작
+        function Student(uname, kor_score, math_score, eng_score){
+            this.name=uname;
+            this.kor=kor_score;
+            this.math=math_score;
+            this.eng=eng_score;
+
+            this.getSum=function(){
+                return this.kor+this.math+this.eng;
+            };
+            this.getAvg=function(){
+                return this.getSum()/3;
+            };
+        }
+
+        /*프로토타입*/
+        Student.prototype.getSum = function(){
+            return this.kor+this.math+this.eng;
+        }
+        Student.prototype.getAvg = function(){
+            return this.getSum()/3;
+        }
+
+        var s1 = new Student();
+
+        var students = [];
+
+        students.push(new Student('A1', 90, 100, 60));
+        students.push(new Student('A2', 50, 20, 40));
+        students.push(new Student('A3', 70, 30, 70));
+        students.push(new Student('A4', 70, 90, 90));
+        students.push(new Student('A5', 80, 90, 70));
+        students.push(new Student('A6', 60, 90, 80));
+        students.push(new Student('A7', 90, 80, 60));
+        students.push(new Student('A8', 50, 40, 88));
+        students.push(new Student('A9', 60, 70, 66));
+        students.push(new Student('A10', 20, 60, 67));
+
+        // students[0].kor=9;
+
+        // alert(students[0].kor);
+
+        // students.push({name : 'A1', kor : 90, math : 80, eng : 60});
+        // students.push({name : 'A2', kor : 50, math : 90, eng : 80});
+        // students.push({name : 'A3', kor : 62, math : 60, eng : 96});
+        // students.push({name : 'A4', kor : 82, math : 55, eng : 98});
+        // students.push({name : 'A5', kor : 56, math : 88, eng : 68});
+        // students.push({name : 'A6', kor : 90, math : 48, eng : 73});
+        // students.push({name : 'A7', kor : 80, math : 92, eng : 56});
+        // students.push({name : 'A8', kor : 97, math : 86, eng : 62});
+        // students.push({name : 'A9', kor : 100, math : 94, eng : 77});
+        // students.push({name : 'A10', kor : 66, math : 87, eng : 60});
+
+        //각각의 요소 객체에 동적으로 합을 구하는 메서드를 추가
+        // for(var i=0; i<students.length; i++){
+        //     students[i].getSum = function(){
+        //         return this.kor + this.math + this.eng;
+        //     };
+        // }
+
+        //각각의 요소 객체에 동적으로 평균을 구하는 메서드를 추가
+        // for(var i=0; i<students.length;i++){
+        //     students[i].getAvg = function(){
+        //         return this.getSum()/3;
+        //     }
+        // }
+
+        console.log(students);
+
+        /*배열의 정렬 : sort()*/
+        //array.sort()
+        students.sort(function(left, right){
+            return right.getSum()-left.getSum();
+        });
+
+       students = students.slice(0,3);
+            
+
+        var list = '';
+
+        for(var i=0;i<students.length;i++){
+            list += '<h4>';
+            list += ' 이름 : '+students[i].name;
+            list += ', 총점 : '+students[i].getSum();
+            list += ', 평균 : '+students[i].getAvg();
+            list += '</h4>';
+        }
+
+        document.write(list);
+
+        function Rectangle(w,h){
+            var width=w;
+            var height=h;
+
+            /*getter*/
+            this.getWidth = function(){
+                return width;
+            }
+            /*setter*/
+            this.setWidth = function(w){
+                width=w;
+            }
+            /*getter*/
+            this.getHeight = function(){
+                return height;
+            }
+            /*setter*/
+            this.setHeight = function(h){
+                height=h;
+            }
+
+
+            this.getArea = function(){
+                return width*height;
+            }
+        }
+
+        var rac = new Rectangle(10,4);
+        // alert(rac.getArea());
+        
+        rac.height=-3;
+
+        //unable to use as reference without 'this'
+        // alert(rac.width);
+
+        // alert(rac.getArea());
+
+
+    </script>
+
+
+</head>
+<body>
+    
+</body>
+</html>

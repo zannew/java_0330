@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript : function 함수 </title>
+
+    <script>
+        window.onload = function(){
+            // alert('page load !!');
+        }
+
+        // 함수 : 기능
+        /*   function 함수명 (매개변수) {
+                처리코드;
+            [return [데이터];]
+        } 
+        var 변수명 = function (){
+                처리코드;
+            [return [데이터];]
+        };
+        
+        */
+
+        //숫자 두 개를 받아서  → 매개변수
+        //두 수의 + 연산을 한 후 → 데이터 처리
+        //결과를 반환하는 함수 → return
+        function func_add1(num1, num2){
+            var result = num1 + num2;
+            return result;
+        }
+
+        /*익명함수*/
+        var func_add2 = function(n1, n2){
+            return n1+n2;
+        };
+
+        // alert(func_add1(10,20));
+        // /*익명함수 호출*/
+        // alert(func_add2(100,200));
+
+        //가변 매개변수 :  arguments 배열 이용
+        function sumAll(){
+            //arguments는 가변 매개변수에 전달되는 값들을 배열로 저장하고 있는 변수
+            var output = 0;
+            for(var i=0; i<arguments.length;i++){
+                output += arguments[i];
+                console.log('output + '+arguments[i] + ' => '+ output);
+            }
+            return output;
+        }
+
+        // alert(sumAll(1,2,3,4,5,6,7,8,9,10));
+
+        /*콜백함수 : 매개변수로 전달된 함수*/
+        //정의하는 함수 내부에서 실행할 목적으로 구성
+
+        function callTenTimes(callback){
+
+            if(typeof(callback)=='function'){
+                for(var i=0; i<10; i++){
+                
+                    callback();
+                }
+            }
+        }
+        var cnt = 0;
+
+        var handler = function(){
+            
+            console.log('handler function' + ++cnt);
+        }
+
+        // callTenTimes(handler);
+
+        //javascript의 내장함수
+        //alert(), prompt(), confirm(), ...
+        
+        //setTimeout(callback, milliseconds) 
+        //→ ms이후에 callback 함수 실행
+        //setInterval(callback, milliseconds) 
+        //→ ms간격으로 callback 함수 반복실행
+
+        // var intervalId = setInterval(function(){
+        //     document.body.innerHTML='<h1>'+new Date()+'</h1>';
+        // },1000);
+
+        // setTimeout(function(){
+        //     clearInterval(intervalId);
+        // },1000*10);
+
+        //eval() → 문자열을 코드로 실행해주는 함수
+        var jsCode = '';
+        jsCode += 'var number = 100;';
+        jsCode += 'alert(number);';
+
+        // eval(jsCode);
+
+        //숫자 함수
+        //Number()
+        //parseInt() : 정수로 변환
+        //parseFloat() : 실수로 변환
+
+        var won = '1000원';
+        var dollar = '1.5$';
+
+        console.log('Number() : '+Number(won)+' , '+Number(dollar));
+        console.log('parseInt() : '+parseInt(won)+' , '+parseInt(dollar));
+        console.log('parseFloat() : '+parseFloat(won)+' , '+parseFloat(dollar));
+
+
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,8 +32,12 @@
                 '1부터 100안의 임의의 숫자를 맞혀보세요!';
     var randNum = parseInt(Math.random()*100+1);
 
+    console.log(randNum);    //임의의 숫자 콘솔에서 확인
 
-    alert(welcomeMsg);
+    window.onload = function(){
+        alert(welcomeMsg);  
+    }
+    
 
     var msg = prompt('숫자를 입력하세요');
 
