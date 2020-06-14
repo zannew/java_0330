@@ -14,6 +14,70 @@
         }
 
     </style>
+
+<script>
+    /*20200614 1~100범위 외의 데이터 입력시 예외처리 구현중*/
+    var welcomeMsg = '★★★ High & Low Game ★★★\n'+
+                '1부터 100안의 임의의 숫자를 맞혀보세요!';
+    var randNum = parseInt(Math.random()*100+1);
+
+    confirm(welcomeMsg);
+
+    console.log(randNum);    //임의의 숫자 콘솔에서 확인
+
+    window.onload = function(){
+        alert(welcomeMsg);  
+    }
+    
+        for(var i=0;i<=10;i++){
+
+            var msg = prompt('1부터 100까지의 숫자를 입력해주세요');
+
+    
+        //해당 범위 이외의 내용 입력시 예외처리
+            if(!(msg>=0 && msg<=100)){
+                alert('해당 범위에 맞는 숫자를 입력해주세요');
+                continue;    
+            }else{
+
+
+                //+ 이외의 연산은 자동으로 문자열 형변환
+                if(msg==randNum){
+                    alert('정답입니다 :-) ');
+                    document.write('<h3>정답</h3>\n');
+                    document.write('<p>▶\t'+randNum+'</p>\n');
+                    document.write('<p id="congratsMsg">★축하합니다~~!<br>'+i+'차시도만에 맞히셨습니다.</p>');
+
+                    break;
+                    
+                }else{
+                    alert('아쉽네요..\n 다시 시도해주세요.');
+
+                    if(msg<randNum){
+                        alert('더 큰 수를 입력해주세요.');
+                        msg = prompt('1부터 100사이의 숫자를 입력하세요');
+                        document.write('<h4>'+(i+1)+'차시도</h4>\n');
+                        document.write('<p>입력한 숫자 : '+msg+'</p>\n');
+                    }else{
+                        alert('더 작은 수를 입력해주세요.');
+                        msg = prompt('1부터 100사이의 숫자를 입력하세요');
+                        document.write('<h4>'+(i+1)+'차시도</h4>\n');
+                        document.write('<p>입력한 숫자 : '+msg+'</p>\n');
+                    }
+                }
+                if(i==10){
+                    alert('다음기회에 다시 도전하세요~~');
+                    break;
+                }
+            } 
+
+        }   
+
+    
+
+
+
+</script>
     
 </head>
 <body>
@@ -26,51 +90,3 @@
 </body>
 </html>
 
-<script>
-    
-    var welcomeMsg = '★★★ High & Low Game ★★★\n'+
-                '1부터 100안의 임의의 숫자를 맞혀보세요!';
-    var randNum = parseInt(Math.random()*100+1);
-
-    console.log(randNum);    //임의의 숫자 콘솔에서 확인
-
-    window.onload = function(){
-        alert(welcomeMsg);  
-    }
-    
-
-    var msg = prompt('숫자를 입력하세요');
-
-    for(var i=0;i<=10;i++){
-        if(msg==randNum){
-            alert('정답입니다 :-) ');
-            document.write('<h3>정답</h3>\n');
-            document.write('<p>▶\t'+randNum+'</p>\n');
-            document.write('<p id="congratsMsg">★축하합니다~~!<br>'+i+'차시도만에 맞히셨습니다.</p>');
-
-            break;
-            
-        }else{
-            alert('아쉽네요..\n 다시 시도해주세요.');
-
-            if(msg<randNum){
-                alert('더 큰 수를 입력해주세요.');
-                msg = prompt('1부터 100사이의 숫자를 입력하세요');
-                document.write('<h4>'+(i+1)+'차시도</h4>\n');
-                document.write('<p>입력한 숫자 : '+msg+'</p>\n');
-            }else{
-                alert('더 작은 수를 입력해주세요.');
-                msg = prompt('1부터 100사이의 숫자를 입력하세요');
-                document.write('<h4>'+(i+1)+'차시도</h4>\n');
-                document.write('<p>입력한 숫자 : '+msg+'</p>\n');
-            }
-        }
-        if(i==10){
-            alert('다음기회에 다시 도전하세요~~');
-            break;
-        }
-    } 
-
-
-
-</script>
