@@ -53,6 +53,10 @@
             
 
             var h1 = document.querySelector('#title');
+
+            h1.style.color='navy';
+
+
             //innerHTML : includes tags in the elements
             console.log(h1.innerHTML);
             //innerText : not including tags, only text
@@ -63,10 +67,37 @@
             console.log(h1s[0].value);
             console.log(h1s[1].value);
             
+            var btn_change = document.getElementById('btn');
+            btn_change.onclick = function(){
 
-        }
+                var header = document.getElementById('title');
+                header.style.color='green';
+
+            }
 
 
+            document.getElementById('btn_del').onclick = function(){
+                // casting the child object to delete
+                var h1_del = document.getElementById('title');
+                // casting the parent object to delete
+                var wrap_del = document.getElementById('wrap');
+
+                // delete the child element from the parent element
+                wrap_del.removeChild(h1_del);
+            };
+
+        };
+
+        //able to be called from body.
+        // function change(){
+            
+            // };
+            
+        // able to be called from body.
+        // function delete(){
+
+        // };
+        
 
 
     </script>
@@ -74,12 +105,18 @@
 
 <body>
 
+
+    <div id="wrap">
     <h1 id="title">h1 Tag defined inner html document</h1>
-    <h2 id="title">h2 Tag defined inner html document</h2>
+    <!-- <h2 id="title">h2 Tag defined inner html document</h2> -->
+    </div>
 
     <input type="text" name="job" value="tester" readonly>
     <input type="text" name="job" value="modeler">
-
+    <br>
+    <input type="button" value="change" id="btn">
+    <!-- <input type="button" value="change" id="btn" onclick="change()"> -->
+    <input type="button" value="h1 tag delete" id="btn_del">
 
 
 
