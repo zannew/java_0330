@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Window Object</title>
+    <script>
+
+        // window.open('http://www.naver.com', 'new');
+        // window.open('http://www.daum.net', 
+        //             'new2', 
+        //             'width=500, height=500, location=yes, menubar=yes, status=yes, toolbar=yes');
+
+        // var child = window.open('','','width=300, height=200');
+
+        // child.document.write('<h1>Hello! from parent</h1>');
+
+        var html = '';
+        html+='<img src="https://www.tabido.jp/storage/articles/2565/e7f835a2-ea7a-4c26-b668-3cee348710b2.jpg">';
+        html+='<br>';
+        html+='<input type="button" value="close" onclick="window.close();">';
+        // child.document.write(html);
+
+        alert(location.href);
+
+        console.log(location.href);
+        console.log(location);
+
+        // setTimeout(function(){
+        //     location.href='https://www.naver.com';
+        // },3000);
+
+        window.onload = function(){
+            var html_val = document.getElementById('test').innerText;
+
+            alert(html_val);
+        }
+
+
+
+    </script>
+</head>
+<body>
+    
+    <h1 id="test">Hello</h1>
+    <!-- <script>
+        var html_val = document.getElementById('test').innerText;
+
+        alert(html_val);
+
+    </script> -->
+
+
+</body>
+</html>
