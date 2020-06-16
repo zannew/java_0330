@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Storage</title>
+    <script>
+
+        //문자열 기반의 데이터 저장
+        //저장 장소(용량 4mb) → 브라우저
+        //key-value 형식으로 저장
+        //cookie : 4mb,  Javascript/Server Side 생성
+        //        서버로 요청을 보낼 때 모든 쿠키정보를 함께 전송
+        //         Lifecycle 설정 
+        //localStorage : 25~40mb 사용가능, Lifecycle 없음
+
+        //저장
+        localStorage.setItem('name','장윤원');
+
+        //탐색
+        var saveData = localStorage.getItem('name');
+        
+        console.log('저장된 데이터 : '+saveData);
+        
+        //수정
+        localStorage.setItem('name','짱구');
+        
+        var saveData = localStorage.getItem('name');
+        
+        console.log('저장된 데이터 : '+saveData);
+        
+        //삭제
+        // localStorage.removeItem('name');
+        // var saveData = localStorage.getItem('name');
+        // console.log('저장된 데이터 : '+saveData);
+
+        //전체 삭제
+        localStorage.clear();
+
+        // sessionStorage.setItem('sname','hong');
+        
+
+
+    </script>
+
+</head>
+<body>
+
+    
+</body>
+</html>

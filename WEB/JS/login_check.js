@@ -6,7 +6,7 @@
 //1.<form> Casting
 var form = document.getElementById('loginform');
 
-form.setAttribute('action', 'http://www.naver.com');
+// form.setAttribute('action', 'http://www.naver.com');
 
 //2.onsubmit
 form.onsubmit = function(){

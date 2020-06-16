@@ -1,0 +1,40 @@
+body, div, h1, form {
+                
+    margin:0;
+    padding:0;
+}
+
+h1, h2{
+    margin: 15px;
+}
+
+#form{
+    margin: 10px auto;
+}
+
+#form>td{
+    padding: 10px;
+    border: 2px solid;
+}
+
+#btn_submit{
+    padding: 5px;
+    background-color: bisque;
+    font-weight: bold;
+    color: chocolate;
+    border: 1px solid #EEEEEE;
+}
+
+.label {
+    font-weight: bold;
+    
+}
+
+#memberlist>tbody>tr>td {
+    border: 1px solid;
+    padding: 10px 100px;
+
+    text-align: center;
+    font-weight: bold;
+    
+}
