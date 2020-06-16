@@ -50,14 +50,74 @@
                 //유효성체크
                 if(uid.value==null || uid.value.length<1){
                     alert('Please input your ID again');
+                    uid.focus();
                     return false;
 
                 }
 
+                var pw = document.getElementById('pw');
+                var re_pw = document.getElementById('re-pw');
+
+
+                if(pw.value==null || pw.value.length<1){
+                    alert('Please input your PASSWORD again');
+                    pw.focus();
+                    return false;
+
+                }
+
+                if(re_pw.value==null || re_pw.value.length<1){
+                    alert('Please input your RE-PASSWORD again');
+                    re_pw.focus();
+                    return false;
+
+                }
+
+                if(pw.value != re_pw.value){
+                    alert('PASSWORD and RE-PASSWORD are not matched');
+                }
+
+
+                var agree = document.getElementById('agree');
+
+                console.log(agree.checked);
+
+                if(!agree.checked){
+                    alert('Please check the agreement box');
+                }
+
+                return false;
+
             }
 
-            
 
+            var div1 = document.getElementById('box1');
+            var div2 = document.getElementById('box2');
+            var h1 = document.getElementById('box3');
+
+            
+            
+            // div1.onclick = function(){
+                //     alert('box1-onclick');
+                // }
+            div1.addEventListener('click', function() {
+                alert('box1-onclick');
+            });
+            div2.onclick = function(){
+                alert('box2-onclick');
+            }
+            h1.onclick = function(e){
+                var event = e || window.event;
+                alert('h1-onclick');
+
+                //이벤트의 전달을 막는다.
+                // //IE
+                // event.cancelBubble = true;
+                // //IE이외의 브라우저
+                // if (event.stopPropagation){
+                //     event.stopPropagation();
+                // }
+            }
 
 
 
@@ -70,23 +130,86 @@
 
 
     </script>
+
+    <style>
+        #agree+div {
+            display: none;
+        }
+
+        #agree:checked+div {
+            display: block;
+        }
+
+        .box {
+            border: 3px solid;
+            padding: 10px;
+            height: 30px;
+
+        }
+
+        #box1 {
+            background-color: cadetblue;
+            height: 100px;
+        }
+
+        #box2 {
+            width: 75%;
+            height: 80px;
+            background-color: aqua;
+        }
+
+        #box3 {
+            width: 50%;
+            height: 30px;
+            background-color: yellow;
+        }
+
+    </style>
+
 </head>
 
 <body>
 
+    <div id="box1" class="box" >
+        <div id="box2" class="box">
+
+            <h1 id="box3" class="box" >클릭하세요</h1>
+
+        </div>
+    </div>
+
+
+    <hr>
     <form action="http://www.naver.com" id="my-form">
 
-        <label>ID</label>
-        <input type="text" name="uid" id="uid">
-        
-        <label>PASSWORD</label>
+        <label for="uid">ID</label>
+        <input type="text" name="uid" id="uid" placeholder="Create your ID!">
+        <br>
+
+        <label for="pw">PASSWORD</label>
         <input type="password" name="pw" id="pw">
         <br>
         
-        <label>PASSWORD-re</label>
-        <input type="password" name="pw-re" id="pw-re">
+        <label for="re-pw">RE-PASSWORD</label>
+        <input type="password" name="re-pw" id="re-pw">
         <br>
         
+        <label for="agree">Agreement personal information</label>
+        <input type="checkbox" id="agree" style="display: none;">
+
+        <div>
+            <textarea>
+                개인정보 활용에 대한 안내입니다.
+
+            </textarea>
+
+        </div>
+        <br>
+
+        <label>Check</label>
+        <input type="radio" name="gender" value="1">남
+        <input type="radio" name="gender" value="2">여
+
         
         <input type="submit">
     </form>

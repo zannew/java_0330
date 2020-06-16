@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>
-        </title>
+        <title>Login form</title>
+        <meta charset="utf-8">
         <style>
             
             body, div, h1, form {
@@ -33,22 +33,23 @@
         
         
         </style>
-        <meta charset="utf-8">
+
+
     </head>
     <body>
     
         <h1>회원 로그인</h1>
         <hr>
         
-        <form action="" method="get">
+        <form action="" method="get" id="loginform"> 
         <table id="form">
             <tr>
                 <td>아이디(이메일)</td>
-                <td><input type="text" name="id"><br></td>
+                <td><input type="text" name="id" id="id"><br></td>
             </tr>
             <tr>
                 <td>비밀번호</td>
-                <td><input type="password" name="pw"><br></td>
+                <td><input type="password" name="pw" id="pw"><br></td>
             </tr>
             <tr>
                 <td></td>
@@ -59,9 +60,8 @@
         </table>
         
          </form>
-         
-        
-        
-    
+   
     </body>
 </html>
+
+<script src="../js/login_check.js"></script>
