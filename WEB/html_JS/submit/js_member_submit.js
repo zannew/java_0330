@@ -67,7 +67,7 @@ function createMember(){
     //배열에 데이터 추가
     addMember(new Member(id, pw, name));
 
-    // this.reset()
+    this.reset();
 
     console.log(members);
     alert(members);
