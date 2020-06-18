@@ -38,7 +38,7 @@ function createMember(){
 
 //테이블에 출력 함수
 function displayTable(){
-    var listHtml='';
+    var listHtml='<table class="">';
     listHtml += ''
 }
 

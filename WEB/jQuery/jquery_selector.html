@@ -25,6 +25,7 @@
             var val = $('input:text');
             // alert(val.val());
 
+            //set함수들:val(''); - 오버로딩 case 많음
             // $('input[type=text]').val('hello');
             val.val('change!');
 
@@ -71,10 +72,12 @@
 
             // $('h1').removeClass('title');
 
+            //end() → 이전 filter 풀어줌
             $('h3').css('background-color','orange').filter(':even').css('color','white').end().css('font-weight','100').filter(':odd').css('color','blue');
 
             });
 
+            //parsing...
             var site = '';
             site += '<sites>';
             site += '   <site>';
