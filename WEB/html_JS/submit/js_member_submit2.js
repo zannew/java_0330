@@ -15,7 +15,7 @@ function addMember(member){
     setStorage();
 
     console.log(members);
-    // displayTable();
+    displayTable();
 
 }
 
@@ -28,9 +28,12 @@ function createMember(){
     //배열에 저장함수 콜
     addMember(new Member(id, pw, name));
 
-    console.log(members);
+    document.getElementById('loginForm').reset();
 
-    this.reset();
+    console.log(members);
+    alert(members.value);
+
+    // this.reset();
 
     //form태그 action실행되지 않도록 return false!
     return false;
@@ -38,12 +41,37 @@ function createMember(){
 
 //테이블에 출력 함수
 function displayTable(){
-    var listHtml='<table class="">';
-    listHtml += ''
+    var listHtml='<table class="listTable">';
+    listHtml += '   <tr>';
+    listHtml += '       <th>Index</th>';
+    listHtml += '       <th>ID( 또는 email)</th>';
+    listHtml += '       <th>Password</th>';
+    listHtml += '       <th>Name</th>';
+    listHtml += '       <th>관리</th>';
+    listHtml += '   </tr>';
+
+    for(var i=0; i<members.length;i++){
+        listHtml +='    <tr>';
+        listHtml +='        <td>'+i+'</td>';
+        listHtml +='        <td>'+members[i].id+'</td>';
+        listHtml +='        <td>'+members[i].pw+'</td>';
+        listHtml +='        <td>'+members[i].name+'</td>';
+        listHtml +='        <td><input type="button" value="EDIT"><input type="button" value="DELETE"></td>';
+        listHtml +='    <tr>';
+    }
+
+    listHtml += '</table>';
+
+    var showList = document.getElementById('list');
+    showList.innerHTML = listHtml;
+
 }
 
 
 //수정 출력세팅 함수
+function showToEdit(){
+    
+}
 
 //수정하고 저장 함수
 
@@ -52,4 +80,16 @@ function displayTable(){
 //스토리지 함수
 
 //window.load
+window.onload = function(){
 
+
+
+    //저장된 회원데이터 화면 출력
+    displayTable();
+
+    //입력 폼 casting 하고 onsubmit event!
+    document.getElementById('loginForm').onsubmit = createMember();
+
+
+    
+}

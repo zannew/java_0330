@@ -27,14 +27,14 @@ h1, h2{
 
 .label {
     font-weight: bold;
+    color: red;
     
 }
 
-#memberlist>tbody>tr>td {
-    border: 1px solid;
+.listTable {
+    border: 3px solid;
     padding: 10px 100px;
 
     text-align: center;
-    font-weight: bold;
     
 }
