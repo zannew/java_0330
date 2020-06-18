@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Event</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <style>
+
+        h1 {
+            border: 4px solid black;
+            cursor:pointer;
+        }
+
+        .over {
+            background-color: yellowgreen;
+            color: red;
+        }
+
+        .big {
+            font-size: 2em;
+            font-weight: bold;
+            font-style: italic;
+            border: 3px solid green;
+        }
+
+        .alert {
+            color: red;
+        }
+
+        div.card {
+            width:200px;
+            height:100px;
+            border-radius: 10px;
+            border: 1px solid #DDD;
+
+            margin: 10px;
+            float:left;
+        }
+
+        #form {
+            clear:both;
+        }
+
+        h2 {
+            border: 2px solid;
+        }
+
+
+    </style>
+    <script>
+        $(document).ready(function(){
+
+        //h1영역에 click이벤트 적용
+            $('h1').on('click',function(){
+                $(this).html(function(index, html){
+                    return html+'!';
+                });
+            
+            });
+
+            // setInterval(function(){
+            //     $('h1').last().trigger('click');
+            // },1000);
+
+
+        //jQueryObj.on({ 이벤트타입 : callback함수 });
+            // $('h1').on({
+            //     mouseenter: function(){
+            //         $(this).addClass('over');
+            //     },
+            //     mouseleave: function(){
+            //         $(this).removeClass('over');
+            //     }
+
+            // });
+
+        //hover(); → mouseenter와 mouseleace를 동시에 연결
+                $('h1').hover(function(){
+                    $(this).addClass('over');
+                },function(){
+                    $(this).removeClass('over');
+                });
+
+                
+                
+                /*이벤트메서드*/
+                // $('h1').blur();
+                // $('h1').focus();
+                // $('h1').load();
+                // $('h1').resize();
+                // $('h1').scroll();
+                // $('h1').dblclick();
+                // $('h1').mousedown();
+                // $('h1').mousemove();
+                // $('h1').mouseover();
+                // $('h1').keydown();
+                // $('h1').keypress();
+                // $('h1').keyup();
+                
+                
+                var fIn = function(){
+                    $(this).parent().addClass('big');
+                    $('div.alert').remove();
+                }
+                
+                
+                $('input:text').focusin(function(){
+                    $(this).parent().addClass('big');
+                    $('div.alert').remove();
+                });
+                $('input:text').focusout(function(){
+                    $(this).parent().removeClass('big');
+                    
+                    var uid = $('#uid').val();
+                    if(uid.length<1){
+                        $(this).after('<div class="alert">아이디는 필수항목 입니다.</div>');
+                    }
+                });
+                
+                //이벤트 삭제 : off();
+                // $('h1').off();
+                // $('h1').off('click');
+                $('input:text').off('focusin',fIn);
+
+                $('div.card').click(function(){
+                    var name = $('h1', this).html();
+                    var url = $('p', this).html();
+
+                    alert(name +' : '+url);
+                });
+                
+
+                $('a').click(function(e){
+                    alert(111);
+                    // e.preventDefault();
+
+                    return false;
+                });
+            
+                // $('h2').click(function(){
+                //     var length = $('h2').length;
+                //     var htmlVal = $(this).html();
+
+                //     $('#wrap').append('<h2>'+length+' - '+htmlVal+'</h2>');
+
+                // });
+
+                    $('#wrap').on('click','h2', function(){
+                        var length = $('h2').length;
+                        var htmlVal = $(this).html();
+                        
+                        $('#wrap').append('<h2>'+length+' - '+htmlVal+'</h2>');
+
+                    });
+
+
+
+
+            });
+
+
+            </script>
+</head>
+<body>
+    
+    <div id="wrap">
+        <h2>HEADER</h2>
+    </div>
+
+    <a href="http://www.naver.com">naver</a>
+
+
+    <div class="card">
+        <h1>네이버</h1>
+        <p>www.naver.com</p>
+    </div>
+    <div class="card">
+        <h1>다음</h1>
+        <p>www.daum.net</p>
+    </div>
+    <div class="card">
+        <h1>카카오</h1>
+        <p>www.kakao.com</p>
+    </div>
+
+
+    <div id="form">
+        <input type="text" id="uid">
+    </div>
+    
+    <h1>click!</h1>
+    
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jquery 문서 객체 다루기</title>
+    <title>jQuery 문서 객체 다루기</title>
 
     <style>
         .title {
@@ -17,13 +17,37 @@
             color: yellow;
         } */
 
-        button.rmClass, button.attr {
+        button.rmClass, 
+        button.attr, 
+        button.css, 
+        button.btn{
             padding: 10px;
             font-size: 1.5em;
         }
 
+
         img {
             display: block;
+        }
+
+        div.memo {
+            padding: 10px;
+            border: 1px solid black;
+            margin: 10px;
+            color: blue;
+        }
+
+        #imglist {
+            width: 200px;
+            height: 100px;
+            overflow: hidden;
+        }
+
+        #imglist>img {
+            display: block;
+            width: 200px;
+            height: 100px;
+            float: left;
         }
 
 
@@ -58,28 +82,29 @@
             var btn01 = $('button.attr.string');
             var btn02 = $('button.attr.func');
             var btn03 = $('button.attr.obj');
+            var btn04 = $('button.attr.rm');
 
             
-            // var img01 = $('img:first'); → ok
+        // var img01 = $('img:first'); → ok
             var img01 = $('img').first();
         
             btn01.css('color','red');
             btn02.css('color','blue');
             btn03.css('color','green');
             
-            // string-string
+        // string-string
             btn01.click(function(){
                 img01.attr('src','../images/가루시파.jpg');
             });
 
-            // string-function
+        // string-function
             btn02.click(function(){
                 $('img').attr('height',function(index){
                     return (index+1)*100;
                 });
             });
 
-            // obj { }
+        // obj { }
             btn03.click(function(){
                 $('img:last').attr({
                     src:'../images/movie_image(2).jpg',
@@ -90,7 +115,144 @@
                 });
             });
 
+        //remove Attribute
+            btn04.click(function(){
+                $('img:last').removeAttr('src');
+            });
 
+        //속성값을 컨트롤 : css();
+        //jQuery.css('스타일속성명') : getter → 현재 속성값을 반환
+            var colorVal = $('div.memo').first().css('color');
+            console.log('color value : '+colorVal);
+
+        // css();
+        //jQuery.css('스타일속성명','속성값');
+        //jQuery.css('스타일속성명','함수리턴값');
+        //jQuery.css('스타일속성명',{객체});
+
+            var btn05 = $('button.css.string');
+            var btn06 = $('button.css.func');
+            var btn07 = $('button.css.obj');
+
+        // string-string
+            btn05.click(function(){
+                $('div.memo').css('color','red');
+            });
+
+        //예제를 위한 배열
+            var colors = ['orange','black','green'];
+
+
+        // string-function
+            btn06.click(function(){
+                $('div.memo').css('background-color', function(index){
+                    return colors[index];
+                });//.css('color','white');
+            });
+        // obj { }
+            btn07.click(function(){
+                $('div.memo').last().css({
+                    fontSize: '2em',
+                    fontWeight: 'bold',
+                    borderWidth: function(index){
+                        return (index+1)*10;
+                    }
+                });
+            });
+
+        // jQueryObj.html(); - getter/setter
+        // jQueryObj.text(); - getter/setter
+            var headerDiv = $('div.header');
+
+            console.log('html() : '+headerDiv.html());
+            console.log('text() : '+headerDiv.text());
+
+        //jQueryObj.html(html형식 문자열);    
+            // headerDiv.html('<h3>변경된 문자열입니다.</h3>');
+        //jQueryObj.text(text형식 문자열);    
+            // headerDiv.text('<h3>변경된 문자열입니다.</h3>');
+            
+            var btn08 = $('button.btn.rm:eq(0)');
+            var btn09 = $('button.btn.rm').eq(1);
+
+        // jQueryObj.empty(); : 객체 안의 내용을 지운다.
+            btn08.click(function(){
+                headerDiv.empty();
+            });
+        // jQueryObj.remove(); : 캐스팅된 객체를 삭제.
+            btn09.click(function(){
+                headerDiv.remove();
+            });
+
+            var btn10 = $('button.btn.insert:first');
+            var btn11 = $('button.btn.insert:last');
+            var btn12 = $('button.btn.insert:eq(1)');
+
+            btn10.click(function(){
+
+                var txt = 'body tag의 맨아래에 요소가 추가됩니다.';
+                $('<h1></h1>').html(txt).appendTo('body');
+            });
+            
+            btn11.click(function(){
+
+                var txt = '제목 요소가 추가됩니다.';
+                $('<h3></h3>').html(txt).appendTo('div.header');
+
+
+            });
+
+            btn12.click(function(){
+                //$('<img>').attr('src','../images/movie_image(2).jpg').appendTo('div.header');
+                // $('<img>',{
+                //     src:'../images/movie_image(2).jpg',
+                //     width: 200,
+                //     height: 200
+                // }).appendTo('div.header');
+                // $('<img>',{
+                //     src:'../images/movie_image(2).jpg',
+                //     width: 200,
+                //     height: 200
+                // }).prependTo('div.header');
+                // $('<img>',{
+                //     src:'../images/movie_image(2).jpg',
+                //     width: 200,
+                //     height: 200
+                // }).insertAfter('div.header');
+                // $('<img>',{
+                //     src:'../images/movie_image(2).jpg',
+                //     width: 200,
+                //     height: 200
+                // }).insertBefore('div.header');
+
+        // jQueryObj.append(content, content, content, ...);
+                // $('div.header').append($('<img>',{
+                //     src:'../images/movie_image(2).jpg',
+                //     width: 200,
+                //     height: 200
+                // }),$('<div></div>'));
+                // $('div.header').prepend($('<img>',{
+                //     src:'../images/movie_image(2).jpg',
+                //     width: 200,
+                //     height: 200
+                // }),$('<div></div>'));
+                // $('div.header').after($('<img>',{
+                //     src:'../images/movie_image(2).jpg',
+                //     width: 200,
+                //     height: 200
+                // }),$('<div></div>'));
+                $('div.header').before($('<img>',{
+                    src:'../images/movie_image(2).jpg',
+                    width: 200,
+                    height: 200
+                }),$('<div></div>'));
+
+            });
+
+
+            setInterval(function(){
+                $('#imglist>img:first').appendTo('#imglist');
+            }, 3000);
 
 
         });
@@ -100,7 +262,39 @@
     </script>
 </head>
 <body>
+
+    <div id="imglist">
+        <img src="../images/movie_image.jpg">
+        <img src="../images/movie_image.png">
+        <img src="../images/movie_image(2).jpg">
+    </div>
+
+    <button class="btn insert">body tag에 요소 추가</button>
+    <button class="btn insert">body tag에 이미지요소 추가</button>
+    <button class="btn insert">div.header에 요소 추가</button>
+
+
+    <hr>
+    <button class="btn rm">내용 삭제</button>
+    <!-- 요소전체삭제 -->
+    <button class="btn rm">태그 삭제</button> 
+
+    <hr>
+    <div class="header">
+        <h1>제목입니다.</h1>
+    </div>
+
+    <div class="memo">hello</div>
+    <div class="memo">good to see you!</div>
+    <div class="memo">see you next time :-)</div>
+
+    <button class="css string">string-string</button>
+    <button class="css func">string-func</button>
+    <button class="css obj">object{ }</button>
+    <button class="css rm">removeAttr</button>
+
     
+    <hr>
     <img src="../images/poodle.jpg" height="200">
     <img src="../images/하울.jpg" height="200">
     <img src="../images/moomin_1.png" height="200">
@@ -108,6 +302,7 @@
     <button class="attr string">string-string</button>
     <button class="attr func">string-func</button>
     <button class="attr obj">object{ }</button>
+    <button class="attr rm">removeAttr</button>
 
 
     <hr>
