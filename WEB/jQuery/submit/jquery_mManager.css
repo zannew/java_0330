@@ -1,0 +1,21 @@
+body, h1, form, div {
+    margin: 0;
+    padding: 0;
+}
+
+.header,.sub,.signUpForm {
+    margin: 10px;
+    font-weight: bold;
+}
+
+#regBtn {
+    padding: 15px 35px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+table.showList>tr>td {
+    margin: 0;
+    padding: 0;
+    border: 1px solid;
+}

@@ -31,10 +31,15 @@ h1, h2{
     
 }
 
-.listTable {
+/* #list {
+    border: 1px solid;
+} */
+
+.listTable>tbody>tr>td {
     border: 3px solid;
     padding: 10px 100px;
+    margin: 0 0;
 
-    text-align: center;
+    /* text-align: center; */
     
 }

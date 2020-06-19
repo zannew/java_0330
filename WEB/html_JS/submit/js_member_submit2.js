@@ -31,7 +31,7 @@ function createMember(){
     document.getElementById('loginForm').reset();
 
     console.log(members);
-    alert(members.value);
+    alert(members);
 
     // this.reset();
 
@@ -43,14 +43,14 @@ function createMember(){
 function displayTable(){
     var listHtml='<table class="listTable">';
     listHtml += '   <tr>';
-    listHtml += '       <th>Index</th>';
-    listHtml += '       <th>ID( 또는 email)</th>';
-    listHtml += '       <th>Password</th>';
-    listHtml += '       <th>Name</th>';
-    listHtml += '       <th>관리</th>';
+    listHtml += '       <td>Index</td>';
+    listHtml += '       <td>ID( 또는 email)</td>';
+    listHtml += '       <td>Password</td>';
+    listHtml += '       <td>Name</td>';
+    listHtml += '       <td>관리</td>';
     listHtml += '   </tr>';
 
-    for(var i=0; i<members.length;i++){
+    for(let i=0; i<members.length;i++){
         listHtml +='    <tr>';
         listHtml +='        <td>'+i+'</td>';
         listHtml +='        <td>'+members[i].id+'</td>';
@@ -88,7 +88,7 @@ window.onload = function(){
     displayTable();
 
     //입력 폼 casting 하고 onsubmit event!
-    document.getElementById('loginForm').onsubmit = createMember();
+    document.getElementById('loginForm').onsubmit = createMember;
 
 
     

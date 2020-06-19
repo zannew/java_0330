@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원관리프로그램</title>
+    <link href="jquery_mManager.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script>
+
+        $(document).ready(function(){
+
+            var members = [];
+
+            function Member(memberId, memberPw, memberName){
+                this.id = memberId;
+                this.pw = memberPw;
+                this.name = memberName;
+
+            }
+
+            //객체(id,pw,name) 저장
+            function addMember(member){
+                members.push(member);
+
+                setStorage();                
+                console.log(members);
+
+            }
+
+            function createMember(){
+                // var id = $('#uid').text(function(){
+                //     $(this).val();
+                // });
+
+                var id = $('#uid').val();
+                var pw = $('#upw').val();
+                var name = $('#uname').val();
+
+                // addMember(new Member(id.val(),pw.val(),name.val()));      
+                addMember(new Member(id,pw,name));      
+                
+                $('div.signUpForm').reset();
+
+                alert(members);
+
+                return false;
+            }
+
+            //스토리지저장함수
+            function setStorage(){
+                localStorage.setItem('members',JSON.stringify(members));
+            }
+
+            $('#regBtn').click(function(){
+                var infoText = '';
+                // infoText += '<table class="showList">';
+                infoText += '   <tr>';
+                infoText += '       <td>Index</td>';
+                infoText += '       <td>아이디(이메일)</td>';
+                infoText += '       <td>비밀번호</td>';
+                infoText += '       <td>이름</td>';
+                infoText += '       <td>관리</td>';
+                infoText += '   </tr>';
+                // infoText += '</table>';
+
+                for(let i=0;i<members.length;i++){
+                    infoText +='    <tr>';
+                    infoText +='        <td>'+i+'</td>';
+                    infoText +='        <td>'+members[i].id+'</td>';
+                    infoText +='        <td>'+members[i].pw+'</td>';
+                    infoText +='        <td>'+members[i].name+'</td>';
+                    infoText +='        <td>수정 or 삭제</td>';
+                    infoText +='    </tr>';
+
+                }
+                alert(members);
+                console.log(members);
+
+
+
+
+
+                $('<table></table>').html(infoText).appendTo('div.memberList');
+
+                $('.memberList>table').addClass('showList');
+            });
+
+
+
+
+
+        });
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Member Manager</h1>
+    </div>
+        <hr>
+    <div class="sub">
+        <h2>회원등록</h2>
+    </div>
+        <hr>
+    <div class="signUpForm">
+        <table>
+            <tr>
+                <td>아이디(이메일)</td>
+                <td>비밀번호</td>
+                <td>이름</td>
+                <td rowspan="2"><input type="button" id="regBtn" value="등록"></td>
+            </tr>
+            <tr>
+                <td><input type="text" id="uid"></td>
+                <td><input type="password" id="upw"></td>
+                <td><input type="text" id="uname"></td>
+                
+            </tr>
+
+        </table>
+    </div>
+    
+    <!-- 등록된 회원 리스트 출력 -->
+    <div class="sub">
+        <h2>회원리스트</h2>
+    </div>
+    <div class="memberList"></div>
+        <div></div>
+    
+    <div class="sub editForm">
+        <div>수정테이블 여기로..</div>
+
+    </div>
+    
+    
+    
+    
+    <div></div>
+    
+    <div></div>
+
+
+    
+</body>
+</html>
