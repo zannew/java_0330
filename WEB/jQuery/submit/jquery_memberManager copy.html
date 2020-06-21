@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원관리프로그램 copy</title>
+    <link href="jquery_mManager.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script>
+
+        
+
+        
+        var members = [];
+        
+        function Member(memberId, memberPw, memberName) {
+            this.id = memberId;
+            this.pw = memberPw;
+            this.name = memberName;
+            
+        }
+        
+        
+        //객체(id,pw,name) 저장
+        function addMember(member) {
+            members.push(member);
+            
+            setStorage();
+            console.log(members);
+            
+        }
+
+        function createMember(){
+            var id = $('#uid').val();
+            var pw = $('#upw').val();
+            var name = $('#uname').val();
+            
+            addMember(new Member(id, pw, name));
+        }
+
+        $('#regBtn').click(function(){
+
+            alert('등록버튼 클릭!');
+
+            createMember();
+        });
+        
+        //로컬스토리지저장함수
+        function setStorage(){
+            localStorage.setItem('members',JSON.stringify(members));
+            }
+            
+        function initLocalStorage(){
+            var memberData = localStorage.getItem('members');
+            
+            if(memberData==null){
+                localStorage.setItem('members', JSON.stringify(members));
+                }else{
+                    members = JSON.parse(memberData);
+                }
+        }
+        
+        function createHtml(index){
+            infoHtml = '';
+            infoHtml += '        <td>'+index+'</td>';
+            infoHtml += '        <td>' + members[index].id + '</td>';
+            infoHtml += '        <td>' + members[index].pw + '</td>';
+            infoHtml += '        <td>' + members[index].name + '</td>';
+            infoHtml += '        <td><input type="button" value="수정" id="editBtn" alt="' + index + '"><input type="button" id="delBtn" value="삭제" alt="' + index + '"></td>';
+            
+            return infoHtml;
+            
+        }
+        
+        
+        function showMemberList(){
+            alert('쇼멤버리스트함수입니다.');
+            alert('현재멤버배열의 길이 : ' + members.length);
+            $('.memberList>table>tbody').addClass('showList');
+            
+            
+            for(let i=0; i<members.length;i++){
+                var altVal = $('#editBtn').attr('alt');
+                alert('현재 alt값은 > '+altVal);
+                var infoHtml = createHtml(i);
+                $('<tr></tr>').html(infoHtml).appendTo('tbody.showList');
+                
+            }
+            
+        }
+
+        $(document).ready(function(){
+
+            initLocalStorage();
+            showMemberList();
+            
+            
+
+        });
+        
+        
+
+
+    </script>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>Member Manager</h1>
+    </div>
+    <hr>
+    <div class="sub">
+        <h2 class="title">회원등록</h2>
+    </div>
+    <hr>
+    <div id="signUpForm">
+        <table>
+            <tr>
+                <td>아이디(이메일)</td>
+                <td>비밀번호</td>
+                <td>이름</td>
+                <td rowspan="2"><input type="button" id="regBtn" value="등록"></td>
+            </tr>
+            <tr>
+                <td><input type="text" id="uid"></td>
+                <td><input type="password" id="upw"></td>
+                <td><input type="text" id="uname"></td>
+
+            </tr>
+
+        </table>
+    </div>
+    <!-- 수정할 공간 -->
+    <div class="sub editForm">
+        <h2 class="title">회원 정보 수정</h2>
+        <form id="editArea">
+            <input type="hidden" id="idx" required>
+            <table>
+                <tr>
+                    <td>
+                        <label>아이디</label>
+                        <input type="text" id="eid" placeholder="ID" required>
+                    </td>
+                    <td>
+                        <label>비밀번호</label>
+                        <input type="password" id="epw" placeholder="PASSWORD" required>
+                    </td>
+                    <td>
+                        <label>이름</label>
+                        <input type="text" id="ename" placeholder="NAME" required>
+                    </td>
+                    <td>
+                        <input type="submit" value="수정">
+                    </td>
+                </tr>
+            </table>
+
+        </form>
+
+    </div>
+
+    <!-- 등록회원 리스트 출력 -->
+    <div class="sub">
+        <h2 class="title">회원리스트</h2>
+
+        <!-- <div class="listarea">
+            <h2 class="title">회원 리스트</h2>
+            <div id="list">
+                
+            </div>
+
+        </div> -->
+
+    </div>
+    <div class="memberList">
+        <table>
+            <tbody>
+                <tr id="attr">
+                    <td>Index</td>
+                    <td>아이디(이메일)</td>
+                    <td>비밀번호</td>
+                    <td>이름</td>
+                    <td>관리</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+
+
+    <div></div>
+
+    <div></div>
+
+
+
+</body>
+
+</html>

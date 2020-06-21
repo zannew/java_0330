@@ -86,6 +86,8 @@ function displayTable() {
 // 리스트에서 선택한 회원의 데이터를 수정 폼에 Set
 function editSet(idx){
 
+    alert('수정버튼 입니다.');
+
     // 수정 폼 영역 출력
     document.getElementById('edit').style.display='block';
 

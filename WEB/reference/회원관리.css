@@ -1,0 +1,90 @@
+div, h1, form, header, body {
+    margin:0;
+    padding:0;
+}
+
+header {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #DDD;
+}
+
+header>h1 {
+    margin: 20px;;
+}
+
+#reg, #edit {
+    padding:20px;
+}
+
+#reg td, #edit td {
+    width:150px;
+}
+
+#reg input, #edit input {
+    width:130px;
+}
+
+#reg label, #edit label {
+    display: block;
+    background-color: black;
+    color: floralwhite;
+    padding : 5px;
+}
+
+#reg input[type=submit], #edit input[type=submit]{
+    font-size: 1.2em;
+    font-weight: bold;
+    height:70px;
+}
+
+#reg input, #edit input {
+    padding: 10px;
+}
+
+
+h2.title {
+    border-bottom: 1px solid #DDD;
+    padding : 5px;
+    margin : 10px 0;
+}
+
+#list {
+
+}
+
+div.listarea {
+    padding:20px;
+}
+
+
+.listtable {
+    width : 100%;
+    border : 1px solid lightgray ;
+    border-collapse: collapse;
+    /* 
+    attribute 
+    + separate : 표(table)의 테두리와 셀(td)의 테두리 사이에 간격을 유지.
+    + collapse : 표(table)의 테두리와 셀(td)의 테두리 사이의 간격을 삭제. 
+                 겹치는 부분은 한 줄로 나타냅니다.
+                 !! 테이블의 보더를 한줄포 표기 가능
+    + initial : 기본값으로 설정합니다.
+    + inherit : 부모 요소의 속성값을 상속받습니다. 
+    */
+}
+.listtable td, .listtable th { 
+    border : 1px solid lightgray ;
+    padding:5px;
+}
+
+.listtable th {
+    background-color: black;
+    color: cornsilk;
+}
+
+.listtable td {
+    text-align: center;
+}
+
+#edit {
+    display: none;
+}

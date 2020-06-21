@@ -1,21 +1,106 @@
-body, h1, form, div {
-    margin: 0;
+body, h1, h2, form, div {
+    /* margin: 5% 25%; */
     padding: 0;
+    font-weight: lighter;
+    text-align: center;
+    line-height: 10px;
 }
 
-.header,.sub,.signUpForm {
-    margin: 10px;
+
+body {
+    background-color: rgb(246, 247, 248);
+}
+
+a {
+    color: #333; 
     font-weight: bold;
+    text-decoration: none;
+    padding: 1px;
+    margin: 1px;
+    
+}
+#faceImg {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    /* float: left; */
 }
 
-#regBtn {
+input {
+    /* margin: 5% 10%; */
+    padding: 10px;
+    border-radius: 5px;
+    border-style: none;
+
+}
+
+.header,.sub {
+    margin: 5% 10%;
+    font-weight: bold;
+
+}
+
+#regBtn, #editBtn {
+    background-color: rgb(32, 59, 212);
+    color: white;
     padding: 15px 35px;
     font-size: 1.2em;
-    font-weight: bold;
 }
 
 table.showList>tr>td {
-    margin: 0;
+    /* margin: 10px; */
     padding: 0;
     border: 1px solid;
 }
+
+#memberList, #regList, #editList {
+    margin: 5% 25%;
+    
+}
+
+div.regArea, div.editArea {
+    margin: 0 0;
+    
+}
+table.regTable {
+    margin: 0 auto;
+
+}
+
+th {
+    background-color: rgb(32, 59, 212);
+    color: white;
+    padding: 10px 50px;
+    text-align: center;
+    line-height: normal;
+    border-radius: 5px;
+
+}
+
+
+
+#memberList>table>tbody>tr>td {
+    background-color: rgb(166, 173, 211);
+    color: white;
+    font-weight: bold;
+    margin: 5% 10%;
+    padding: 10px 50px;
+    text-align: center;
+    line-height: normal;
+    border-radius: 5px;
+    border-style: none;
+}
+
+
+
+#attr {
+    /* background-color: rgb(30, 120, 120); */
+    font-weight: bold;
+    /* color: white; */
+    border: 3px dotted black;
+}
+
+div.editArea {
+    display: none;
+}
+
