@@ -16,6 +16,9 @@
 }
 
 #footer_area {
+    width: 1024px;
+    height: 200px;
+    background-color: antiquewhite;
     display: inline;
     margin: 50px 50px;
     padding: 
