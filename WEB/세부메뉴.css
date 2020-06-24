@@ -1,18 +1,21 @@
 /* font-family: 'Nanum Gothic', sans-serif; */
 #wrap {
-    /* margin: 30px; */
-    /* padding: 30px; */
-    width: 1024px;
-    height: 768px;
-
+    margin: 30px;
+    padding: 30px;
+    width: 1004px;
+    height: 758px;
 }
+
 #title_area {
-    margin: 0 auto;
+    width: 1004px;
+    height: 100px;
 }
 
 #content_area {
-    width: 920px;
-    height: 658px;
+    width: 1024px;
+    height: 628px;
+    position: relative;
+    overflow: auto;
 }
 
 #footer_area {
@@ -21,11 +24,10 @@
     background-color: antiquewhite;
     display: inline;
     margin: 50px 50px;
-    padding: 
 }
 
 /* #event_area {
-
+    
 } */
 
 
@@ -33,24 +35,36 @@
     /* display: inline-block; */
     width: 95px;
     height: 95px;
-
+    
 }
+
 
 table.menuOpt {
     margin-bottom: 0px;
+    margin-right: 0px;
     /* padding: 5px 5px; */
     float: right;
     background-color: #696969;
     border: 10px solid #696969;
-    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    
+}
+
+#menuTable {
+    /* position: relative; */
+    overflow: auto;
 }
 
 table.menuSelect {
-    /* margin: 0 auto; */
-    /* margin-top: 0px; */
-    padding: 50px 50px;
-    border: 15px solid #696969;
-    border-radius: 10px;
+    margin-right: 0px;
+    padding: 40px 40px;
+    border: 10px solid #696969;
+    border-top-left-radius: 10px;
+    /* border-top-right-radius: 10px; */
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    /* position: relative; */
 }
 
 table.menuOpt>tbody>tr>td>img {
@@ -64,19 +78,31 @@ table.menuSelect>tbody>tr>td {
     font-family: 'Nanum Gothic', sans-serif;
     text-align: center;
     line-height: normal;
+    /* position: absolute; */
 }
+
+/* table.menuSelect>tbody>tr>td {
+    position: absolute;
+} */
 
 table.menuSelect>tbody>tr>td>img {
     margin: 50px 50px;
     width: 197px;
     height: 127px;
     display: block;
+    position: absolute;
 }
 
 #footer_area>label {
     margin: 50px 50px;
     font-family: 'Nanum Gothic', sans-serif;
     font-weight: bold;
+}
+
+#price {
+    color: red;
+    font-weight: bold;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 
 
