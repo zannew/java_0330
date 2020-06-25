@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>copy</title>
+  <link rel="stylesheet" href="card.css">
+  <link rel="stylesheet" href="waitingMessage.css">
+  <script src="index.js"></script>
+</head>
+
+<body>
+
+  <div id="completeWrap">
+    <div id="wrap01">
+      <div class="card">
+        <br>
+        <h4 style="text-align: center; margin-bottom: 60px;">카드를 리더기에 넣어주세요</h4>
+        <img src="../Foodcourt/img/card.png" class="card">
+
+        <p>카드결제가 완료 되기 전 <br>
+          카드를 빼지마세요.</p>
+
+
+
+        <div class="loading-container">
+          <div class="loading"></div>
+          <div id="loading-text">loading</div>
+        </div>
+
+
+      </div> <!-- 카드팝업div -->
+
+    </div> <!-- wrap -->
+
+
+
+    <!-- Trigger/Open The Modal -->
+    <!-- <button id="myBtn">Open Modal</button> -->
+
+    <!-- The Modal -->
+    <!-- <div id="myModal" class="modal"> -->
+
+      <!-- Modal content -->
+      <!-- <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Some text in the Modal..</p>
+      </div> -->
+
+    <!-- </div> -->
+
+    <div id="wrap02">
+      <div id="pop_waiting">
+          <div class="msg_header">결제</div>
+          <div id="pop_contentArea">
+          <div id="msg_payConfirm">
+              결제가 완료되었습니다.
+          </div>
+
+          <div class="msg_waitingNum emphasis">
+              대기번호 : ??
+          </div>
+          <div id="extraMessage">
+              영수증을 가져가세요<br>제품 수령 시 영수증의 <span class="emphasis">대기번호</span>가 필요합니다.<br>소지 부탁드립니다.
+          </div>
+          <div id="bill_img">
+              <img src="../images/kiosk/bill.png">
+          </div>
+        </div>
+          <div class="msg_footer">
+              <p>이용해주셔서 감사합니다.</p>
+          </div>
+
+      </div>
+  </div>
+
+</div>
+
+
+
+
+</body>
+
+</html>

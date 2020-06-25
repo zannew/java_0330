@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rgba(0,0,0,0.4);
+    width: 1024px;
+    height: 768px;
+    position: relative;
+}
+
+/* #completeWrap {
+    position: absolute;
+} */
+
+#wrap02 {
+    display: none;
+    /* vertical-align: middle; */
+    /* text-align: center; */
+}
+
+#pop_waiting {
+    width: 512px;
+    height: 571px;
+    margin: 0 auto;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin: -200px 0 0 -200px;
+}
+
+div.msg_header {
+    background-color: #ffa500;
+    text-align: center;
+}
+
+#pop_contentArea {
+    background-color: white;
+}
+
+#msg_payConfirm {
+    text-align: center;
+    line-height: 100px;
+}
+
+.emphasis {
+    color: red;
+    font-weight: bold;
+}
+
+div.msg_waitingNum {
+    font-size: 2em;
+    font-family: 'Nanum Gothic', sans-serif;
+    text-align: center;
+    line-height: 120px;
+
+}
+
+#extraMessage {
+    text-align: center;
+    line-height: 20px;
+}
+
+/* #bill_img {
+    width: 10px;
+    height: 10px;
+    line-height: 100px;
+    
+} */
+
+#bill_img>img{
+    /* position: relative; */
+    margin: 50px auto;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+
+}
+
+div.msg_footer>p {
+    text-align: center;
+    background-color: #ffa500;
+
+}
+
+div.msg_footer {
+    /* text-align: center; */
+}
