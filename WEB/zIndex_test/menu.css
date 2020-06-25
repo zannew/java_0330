@@ -1,0 +1,48 @@
+
+        
+        #wrap {
+            position: absolute;
+        }
+        
+        #menuselector {
+            width: 1024px;
+            height: 768px;
+            margin: auto;
+            top: 10px;
+        }
+
+        div.header{
+            text-align: center;
+        }
+        #menulogo{
+            width: 214px;
+            height: 919x;
+        }
+        button{
+            width: 164px;
+            height: 163px;
+        }
+       div.content>button.menu>img{
+           width: 130px;
+           height: 140px;
+       }
+        button.menu{
+            border: 10px solid #696969;
+            margin: 20px 30px 0 50px;
+        }
+
+        div.content{
+           text-align: center;
+        }
+        div.footer>img{
+            width: 55px;
+            height: 52px;
+        }
+        div.footer>img.next{
+            float: right;
+            margin-right: 80px;
+        }
+        div.footer>img.previous{
+            float: left;
+            margin-left: 80px;
+        }
