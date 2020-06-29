@@ -1,0 +1,19 @@
+#total {
+    width: 800px;
+    height: 20px;
+    /* margin-top: 100px; */
+
+    display: inline-block;
+    
+}
+
+#getAmount {
+
+    margin-left: 300px;
+
+}
+
+#getPrice {
+
+    margin-left: 100px;
+}

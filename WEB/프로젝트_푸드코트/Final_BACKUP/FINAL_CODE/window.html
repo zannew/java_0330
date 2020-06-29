@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>WELCOME!!! </title>
+
+  
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
+
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+
+    <!-- <link href="../TEST/side_menu.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="../FINAL_CODE/indexhide.css"> <!--초기 화면, 메뉴선택화면의 장바구니 파트-->
+    <link rel="stylesheet" href="../FINAL_CODE/menu2.css"> <!--메뉴버튼-->
+    <link rel="stylesheet" href="../FINAL_CODE/메뉴선택div버전.css">
+    <link rel="stylesheet" href="../FINAL_CODE/orderlist.css"> <!--최종 결제창-->
+    <link rel="stylesheet" href="../FINAL_CODE/pop.css"> <!--팝업 버튼, 창-->
+    <link rel="stylesheet" href="../FINAL_CODE/menu_side.css"> <!--사이드메뉴-->
+    <link rel="stylesheet" href="../FINAL_CODE/cardPlusWaiting_card.css"> <!--카드 로딩-->
+    <link rel="stylesheet" href="../FINAL_CODE/cardPlusWaiting_wait.css"> <!--영수증-->
+    <!-- <link rel="stylesheet" href="../css_박혜미테스트/menu_side.css"> -->
+
+    <!-- shopping list 추가(장바구니) -->
+    <script src="../FINAL_CODE/shopingList.js"></script>
+
+    <!-- 총 주문수량 및 주문금액 css 추가 -->
+    <link rel="stylesheet" href="../FINAL_CODE/total.css">
+    
+    <!-- 시계 -->
+    <link rel="stylesheet" href="../FINAL_CODE/clock.css">
+    
+
+
+    
+
+</head>
+
+<body>
+
+    <div class="container" id="first"> 
+
+        <div class="header">
+            <img src="../img/food.PNG" id="logo">
+        </div>
+
+
+        <div class="content">
+
+            <button type="button" class="main_button btn js-click-modal" id="hall_btn">
+                
+                <img src="../img/hall.png" id="hall_img">
+                    
+            </button>
+
+            <button type="button" class="main_button btn js-click-modal" id="take_btn">
+                <img src="../img/takeout.png" id="take_img">
+            </button>
+
+                </div>
+                <div class="js-clock">
+                    <h1>00:00</h1>
+                    <span class="js-weather"></span>
+                  </div>
+
+      
+
+
+        
+    <!-- 대분류6개----------------------------------------- -->
+
+
+
+        <div class="modal" id="modal">
+            
+            <div id="wrap">
+                <div class="header"><img src="../img/food.PNG" id="menulogo"></div>
+
+                <div class="content">
+
+                    <button type="button" class="menu js-click-modal_korea" id="koreafood"><img src="../img/korea.PNG" alt="" id="korea"></button>
+                    <button type="button" class="menu js-click-modal_korea" id="japanfood"><img src="../img/japan.PNG" alt="" id="japan"></button>
+                    <button type="button" class="menu js-click-modal_korea" id="chinafood"><img src="../img/china.PNG" alt="" id="china"></button>
+                    <br>
+                    <button type="button" class="menu js-click-modal_korea" id="westemfood"><img src="../img/westem.PNG" alt=""
+                            id="westem"></button>
+                    <button type="button" class="menu js-click-modal_korea" id="asianfood"><img src="../img/asian.PNG" alt="" id="asian"></button>
+                    <button type="button" class="menu js-click-modal_korea" id="dessertfood"><img src="../img/dessert.PNG" alt=""
+                            id="dessert"></button>
+
+                </div>
+
+                <div class="footer" style="text-align: center; margin-top: 50px;">
+                   
+                    <img src="../img/button2.PNG" id="bfbtn" class="js-close-modal previous" style="text-align: center; margin-left: 510px;">
+
+                </div>
+            </div>
+ 
+        </div>
+    </div>
+    
+
+
+
+    
+</div>
+</div>
+   
+
+    <!-- 키오스크 메뉴판시작----------------------------------- -->
+    <div id="wrap_kiosk">
+    <div class="modal">
+   
+        <div id="wrap">
+            <div id="title_area">
+                <img class="close" src="../img/food.PNG">
+                <div class="menuOpt">
+                   <a href="#target_dessert"> <img src="../img/dessert.PNG" id="dessertbtn"></a>
+                   <a href="#target_asian"> <img src="../img/asian.PNG" id="asianbtn"></a>
+                   <a href="#target_westem"> <img src="../img/westem.PNG" id="westembtn"></a>
+                   <a href="#target_china"> <img src="../img/china.PNG" id="chinabtn"></a>
+                    <a href="#target_japan"><img src="../img/japan.PNG" id="japanbtn"></a>
+                 <a href="#target-korea"><img src="../img/korea.PNG" id="koreabtn"></a>
+                </div>
+            </div>
+    
+            <div id="content_area">
+                <div id="menuList">
+                 
+
+                    
+                    <a name="target-korea">
+                        <div class="menuTable" id="korm" style="display: inline;">
+                            <div class="menuSelect" id="kormenu">
+    
+                                <div class="menu_cell">
+                                    <button type="button" class="menu_btn trigger" data-value="한식">
+                                        <img src="../img/한식/bibimbap.jpg" class="menu_img">
+                                        <h3 class="menu_name">돌솥비빔밥</h3>
+                                        <p class="menu_price">8,000원</p>
+                                    </button>
+                                </div>
+    
+                                <div class="menu_cell">
+                                    <button type="button" class="menu_btn trigger" data-value="한식">
+                                        <img src="../img/한식/noodle.png" class="menu_img">
+                                        <h3 class="menu_name">냉면</h3>
+                                        <p class="menu_price">7,000원</p>
+                                    </button>
+                                </div>
+                                <div class="menu_cell">
+                                    <button type="button" class="menu_btn trigger" data-value="한식">
+                                        <img src="../img/한식/soysoup.png" class="menu_img">
+                                        <h3 class="menu_name">된장찌개</h3>
+                                        <p class="menu_price">6,500원</p>
+                                    </button>
+                                </div>
+                                <div class="menu_cell">
+                                    <button type="button" class="menu_btn trigger" data-value="한식">
+                                        <img src="../img/한식/kimchi.png" class="menu_img">
+                                        <h3 class="menu_name">김치찌개</h3>
+                                        <p class="menu_price">6,500원</p>
+                                    </button>
+                                </div>
+                                <div class="menu_cell">
+                                    <button type="button" class="menu_btn trigger" data-value="한식">
+                                        <img src="../img/한식/tofu.png" class="menu_img">
+                                        <h3 class="menu_name">순두부찌개</h3>
+                                        <p class="menu_price">7,000원</p>
+                                    </button>
+                                </div>
+                                <div class="menu_cell">
+                                    <button type="button" class="menu_btn trigger" data-value="한식">
+                                        <img src="../img/한식/set.PNG" class="menu_img">
+                                        <h3 class="menu_name">백반정식</h3>
+                                        <p class="menu_price">12,000원</p>
+                                    </button>
+                                </div>
+                              
+                               
+                             </div>
+    
+                        </div> <!-- <! -- kor-- 끝> -->
+                    </a>
+    
+    
+                    <a name="target_japan">
+                      <div class="menuTable" id="japm" style="display: inline;">
+                        <div class="menuSelect" id="japmenu">
+    
+                            <div class="menu_cell">
+                                <button type="button" class="menu_btn trigger" data-value="일식">
+                                    <img src="../img/일식/일식_규동.png" class="menu_img">
+                                    <h3 class="menu_name">규동</h3>
+                                    <p class="menu_price">10,000원</p>
+                                </button>
+                            </div>
+                            <div class="menu_cell">
+                                <button type="button" class="menu_btn trigger" data-value="일식">
+                                    <img src="../img/일식/일식_닭.png" class="menu_img">
+                                    <h3 class="menu_name">가라아게동</h3>
+                                    <p class="menu_price">7,000원</p>
+                                </button>
+                            </div>
+                            <div class="menu_cell">
+                                <button type="button" class="menu_btn trigger" data-value="일식">
+                                    <img src="../img/일식/일식_돈가스.png" class="menu_img">
+                                    <h3 class="menu_name">돈가스</h3>
+                                    <p class="menu_price">8,000원</p>
+                                </button>
+                            </div>
+                            <div class="menu_cell">
+                                <button type="button" class="menu_btn trigger" data-value="일식">
+                                    <img src="../img/일식/일식_연어.png" class="menu_img">
+                                    <h3 class="menu_name">사케동</h3>
+                                    <p class="menu_price">8,000원</p>
+                                </button>
+                            </div>
+                            <div class="menu_cell">
+                                <button type="button" class="menu_btn trigger" data-value="일식">
+                                    <img src="../img/일식/일식_우동.png" class="menu_img">
+                                    <h3 class="menu_name">우동</h3>
+                                    <p class="menu_price">6,000원</p>
+                                </button>
+                            </div>
+                            <div class="menu_cell">
+                                <button type="button" class="menu_btn trigger" data-value="일식">
+                                    <img src="../img/일식/일식_장어.png" class="menu_img">
+                                    <h3 class="menu_name">우나기동</h3>
+                                    <p class="menu_price">14,000원</p>
+                                </button>
+                            </div>
+                         
+                    </div>
+    
+                    </div> <!-- menuTable_jap끝 -->
+                     </a>
+                    
+                     <a name="target_china">
+                    <div class="menuTable" id="chinam" style="display: inline;">
+                        <div class="menuSelect" id="chinamenu">
+    
+                            <div class="menu_cell">
+                                <button type="button" class="menu_btn trigger" data-value="중식">
+                                    <img src="../img/중식/stirfry.jpg" class="menu_img">
+                                    <h3 class="menu_name">볶음짬뽕</h3>
+                                    <p class="menu_price">7,000원</p>
+                                </button>
+                            </div>
+                            <div class="menu_cell">
+                                <button type="button" class="menu_btn trigger" data-value="중식">
+                                    <img src="../img/중식/maratang.jpg" class="menu_img">
+                                    <h3 class="menu_name">마라탕</h3>
+                                    <p class="menu_price">8,000원</p>
+                                </button>
+                            </div>
+                            <div class="menu_cell">
+                                <button type="button" class="menu_btn trigger" data-value="중식">
+                                    <img src="../img/중식/eggplants.jpg" class="menu_img">
+                                    <h3 class="menu_name">어향가지</h3>
+                                    <p class="menu_price">10,000원</p>
+                                </button>
+                            </div>
+                            <div class="menu_cell">
+                                <button type="button" class="menu_btn trigger" data-value="중식">
+                                    <img src="../img/중식/qquabarou.webp" class="menu_img">
+                                    <h3 class="menu_name">꿔바로우</h3>
+                                    <p class="menu_price">15,000원</p>
+                                </button>
+                            </div>
+                            <div class="menu_cell">
+                                <button type="button" class="menu_btn trigger" data-value="중식">
+                                    <img src="../img/중식/jisamsun.jpg" class="menu_img">
+                                    <h3 class="menu_name">지삼선</h3>
+                                    <p class="menu_price">8,000원</p>
+                                </button>
+                            </div>
+                            <div class="menu_cell">
+                                <button type="button" class="menu_btn trigger" data-value="중식">
+                                    <img src="../img/중식/shirimp.jpg" class="menu_img">
+                                    <h3 class="menu_name">크림새우</h3>
+                                    <p class="menu_price">10,000원</p>
+                                </button>
+                            </div>
+                            
+                    </div>
+    
+                    </div> <!-- menuTable_china끝 -->
+                </a>
+    
+    
+                    <a name="target_westem">
+                    <div class="menuTable westem" style="display: inline;">
+                        <div class="menuSelect" id="chinamenu">
+    
+                            <div class="menu_cell">
+                                <button type="button" class="menu_btn trigger" data-value="양식">
+                                    <img src="../img/양식/등심스테이크.jpg" class="menu_img">
+                                    <h3 class="menu_name">등심스테이크</h3>
+                                    <p class="menu_price">36,000원</p>
+                                </button>
+                            </div>
+                            <div class="menu_cell">
+                                <button type="button" class="menu_btn trigger" data-value="양식">
+                                    <img src="../img/양식/안심스테이크.jpg" class="menu_img">
+                                    <h3 class="menu_name">안심스테이크</h3>
+                                    <p class="menu_price">35,000원</p>
+                                </button>
+                            </div>
+                            <div class="menu_cell">
+                                <button type="button" class="menu_btn trigger" data-value="양식">
+                                    <img src="../img/양식/토마토파스타.jpg" class="menu_img">
+                                    <h3 class="menu_name">토마토파스타</h3>
+                                    <p class="menu_price">19,000원</p>
+                                </button>
+                            </div>
+                            <div class="menu_cell">
+                                <button type="button" class="menu_btn trigger" data-value="양식">
+                                    <img src="../img/양식/크림파스타.jpg" class="menu_img">
+                                    <h3 class="menu_name">크림파스타</h3>
+                                    <p class="menu_price">19,000원</p>
+                                </button>
+                            </div>
+                            <div class="menu_cell">
+                                <button type="button" class="menu_btn trigger" data-value="양식">
+                                    <img src="../img/양식/리코타샐러드.jpg" class="menu_img">
+                                    <h3 class="menu_name">리코타샐러드</h3>
+                                    <p class="menu_price">21,000원</p>
+                                </button>
+                            </div>
+                            <div class="menu_cell">
+                                <button type="button" class="menu_btn trigger" data-value="양식">
+                                    <img src="../img/양식/시저샐러드.jpg" class="menu_img">
+                                    <h3 class="menu_name">시저샐러드</h3>
+                                    <p class="menu_price">19,000원</p>
+                                </button>
+                            </div>
+                            
+                    </div>
+    
+                    </div> <!-- menuTable_westem끝 -->
+                </a>
+    
+    
+                <a name="target_asian">
+                    <div class="menuTable aisan" style="display: inline;">
+                        <div class="menuSelect" id="chinamenu">
+    
+                            <div class="menu_cell">
+                                <button type="button" class="menu_btn trigger" data-value="아시안">
+                                    <img src="../img/아시안/아시안_똠양꿍.png" class="menu_img">
+                                    <h3 class="menu_name">똠양꿍</h3>
+                                    <p class="menu_price">8,000원</p>
+                                </button>
+                            </div>
+                            <div class="menu_cell">
+                                <button type="button" class="menu_btn trigger" data-value="아시안">
+                                    <img src="../img/아시안/아시안_쌀국수.png" class="menu_img">
+                                    <h3 class="menu_name">쌀국수</h3>
+                                    <p class="menu_price">6,000원</p>
+                                </button>
+                            </div>
+                            <div class="menu_cell">
+                                <button type="button" class="menu_btn trigger" data-value="아시안">
+                                    <img src="../img/아시안/아시안_쏨땀.png" class="menu_img">
+                                    <h3 class="menu_name">쏨땀</h3>
+                                    <p class="menu_price">7,500원</p>
+                                </button>
+                            </div>
+                            <div class="menu_cell">
+                                <button type="button" class="menu_btn trigger" data-value="아시안">
+                                    <img src="../img/아시안/아시안_커리.png" class="menu_img">
+                                    <h3 class="menu_name">커리</h3>
+                                    <p class="menu_price">8,000원</p>
+                                </button>
+                            </div>
+                            <div class="menu_cell">
+                                <button type="button" class="menu_btn trigger" data-value="아시안">
+                                    <img src="../img/아시안/아시안_팟타이.png" class="menu_img">
+                                    <h3 class="menu_name">팟타이</h3>
+                                    <p class="menu_price">8,500원</p>
+                                </button>
+                            </div>
+                            <div class="menu_cell">
+                                <button type="button" class="menu_btn trigger" data-value="아시안">
+                                    <img src="../img/아시안/아시안_코코넛.png" class="menu_img">
+                                    <h3 class="menu_name">코코넛</h3>
+                                    <p class="menu_price">3,000원</p>
+                                </button>
+                            </div>
+                            
+                    </div>
+    
+                    </div> <!-- menuTable_asian끝 -->
+                </a>
+
+            <a name="target_dessert">
+                <div class="menuTable dessert" style="display: inline;">
+                    <div class="menuSelect" id="chinamenu">
+
+                        <div class="menu_cell">
+                            <button type="button" class="menu_btn trigger" data-value="디저트">
+                                <img src="../img/디저트/티라미수 (1).png" class="menu_img" id="tiramisu">
+                                <h3 class="menu_name">티라미수</h3>
+                                <p class="menu_price">5,000원</p>
+                            </button>
+                        </div>
+                        <div class="menu_cell">
+                            <button type="button" class="menu_btn trigger" data-value="디저트">
+                                <img src="../img/디저트/팥빙수.png" class="menu_img">
+                                <h3 class="menu_name">팥 빙 수</h3>
+                                <p class="menu_price">6,000원</p>
+                            </button>
+                        </div>
+                        <div class="menu_cell">
+                            <button type="button" class="menu_btn trigger" data-value="디저트">
+                                <img src="../img/디저트/요거트.png" class="menu_img">
+                                <h3 class="menu_name">요 거 트</h3>
+                                <p class="menu_price">4,000원</p>
+                            </button>
+                        </div>
+                        <div class="menu_cell">
+                            <button type="button" class="menu_btn trigger" data-value="디저트">
+                                <img src="../img/디저트/프레즐.png" class="menu_img">
+                                <h3 class="menu_name">프 레 즐</h3>
+                                <p class="menu_price">3,000원</p>
+                            </button>
+                        </div>
+                        <div class="menu_cell">
+                            <button type="button" class="menu_btn trigger" data-value="디저트">
+                                <img src="../img/디저트/쿠키 (2).png" class="menu_img">
+                                <h3 class="menu_name">쿠 키</h3>
+                                <p class="menu_price">2,000원</p>
+                            </button>
+                        </div>
+                        <div class="menu_cell">
+                            <button type="button" class="menu_btn trigger" data-value="디저트">
+                                <img src="../img/디저트/아이스크림.png" class="menu_img">
+                                <h3 class="menu_name">아 이 스 크 림</h3>
+                                <p class="menu_price">5,000원</p>
+                            </button>
+                        </div>
+                        
+                </div>
+
+                </div> <!-- menuTable_dessert끝 -->
+            </a>
+
+
+
+         
+
+
+                </div><!-- menuList-->
+          </div><!-- content area-->
+
+
+
+
+          
+
+          <div id=footer_area>
+            <ul>
+                <li>번호</li>
+                <li>메뉴</li>
+                <li>사이드</li>
+                <li>수량</li>
+                <li>금액</li>
+            </ul>
+            <div id="cartin">
+                <table id="cart_list">
+                </table>
+            </div>
+            <div id="event_area">
+                <input type="button" id="return_startscreen" href="#" value="처음으로" class="close">
+                <input type="button" id="payment" href="#" value="결제하기" class="trigger2">
+            </div>
+            <div id="total">
+                <span id="getAmount">주문 수량 : </span>
+                <span id="getPrice">주문 금액 : </span>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+        </div>   <!--wrap 끝 -->
+    </div> 
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+ <!-- 주문목록 팝업 모달 시작 -->
+    <div class="overlay2" id="overlay2">
+
+
+    
+               
+
+    
+        <div class="order_outside" id="order_outside">
+            <div class="order_inside">
+                <div class='order_header'>
+                    <h1 class='title'><img src='../img/orderlist.png' class='list' width="60px" style="vertical-align: middle"> 주문목록</h1>
+                    <!-- <br> -->
+                    <h3>***내용을 확인해주세요***</h3>
+                    <button type='button' class='hall'>매장</button>
+                    <button type='button' class='togo'>포장</button>
+                </div>
+                <div class='order_header2'>
+                    <br>
+                    <hr>
+                    <ul>
+                        <li>번호</li>
+                        <li>메뉴</li>
+                        <li>사이드</li>
+                        <li>수량</li>
+                        <li>금액</li>
+                    </ul>
+                </div>
+                <div class="order_content" id="order_content" style="overflow: auto;">
+                    <table id="order_list">
+ 
+                    </table>
+                </div>
+                <br>
+                <div class="order_footer">
+                    <table>
+                        <tr>
+                            <span id="getAmountOrder">주문 수량 : </span>
+                            <span id="getPriceOrder">주문 금액 : </span>
+                        </tr>
+                    </table>
+                    <br>
+                    <br>
+                    <button type='button' id= "cancel" class='close2'>결제취소</button>
+                    <button type='button' id="credit" class='credit trigger3'>카드결제</button>
+                </div>
+            </div>
+        </div> <!-- 주문목록팝업div -->
+
+    
+    </div> <!--주문리스트 overlay 모달 끝 -->
+
+
+
+
+
+ <!-- 사이드 팝업 모달 시작 -->
+ <div class="overlay">
+
+
+               
+
+
+        <!-- <div id="wrap"> -->
+            <div id="content_pop_area">
+                <div id="content_pop_background">
+    
+                    <div id="select_menu">
+                        <div id="select_menu_img">
+                            <img src="../img_박혜미테스트/프레즐.png">
+                        </div>
+                        <div id="menu_info">
+                            <h2 class="sub_title">프레즐</h2>
+                            <p class="info">조리시간: 15~20분<br></p>
+                        </div>
+                        <div id="select_count">
+                            <h2 class="side_text">수량</h2>
+                            <input type="number" min="1" max="9999" maxlength="4" oninput="this.value=this.value.slice(0,this.maxLength||1/1);this.value=(this.value   < 1) ? (1/1) : this.value;" value="1">
+                            <h2 class="side_text">가격</h2>
+                            <h2 class="select_menu_price">5,000원</h2>
+                        </div>
+                    </div>
+    
+                    <div id="side_menu">
+                        <h2 class="side_title"> ㅣ 사이드 메뉴</h2>
+                        <div class='side_menu_div' style='display: block;'>
+                            <div>
+                                <button type="button" class="side_menu_btn">
+                                    <img src="../img/디저트/ㅎ사이드음료 (9).png" class="side_menu_img">
+                                    <h3 class="side_menu_name">아메리카노</h3>
+                                    <p class="side_menu_price">2,000원</p>
+                                </button>
+                            </div>
+                            <div>
+                                <button type="button" class="side_menu_btn">
+                                    <img src="../img/디저트/ㅎ사이드음료 (1).png" class="side_menu_img">
+                                    <h3 class="side_menu_name">ICE아메리카노</h3>
+                                    <p class="side_menu_price">2,000원</p>
+                                </button>
+                            </div>
+                            <div>
+                                <button type="button" class="side_menu_btn">
+                                    <img src="../img/디저트/ㅎ사이드음료 (2).png" class="side_menu_img">
+                                    <h3 class="side_menu_name">오렌지주스</h3>
+                                    <p class="side_menu_price">2,000원</p>
+                                </button>
+                            </div>
+                            <div>
+                                <button type="button" class="side_menu_btn">
+                                    <img src="../img/디저트/ㅎ사이드음료 (6).png" class="side_menu_img">
+                                    <h3 class="side_menu_name">콜라/사이다</h3>
+                                    <p class="side_menu_price">1,500원</p>
+                                </button>
+                            </div>
+    
+                        </div>
+
+                        <!-- ////////////////////////////////////////////////////////////// -->
+                        <!-- 한식 side menu start -->
+                        <div class="한식 side_menu_div" style="display: none;">
+                            <div>
+                                <button type="button" class="side_menu_btn">
+                                    <img src="../img/한식/rice.jpg" class="side_menu_img">
+                                    <h3 class="side_menu_name">공기밥</h3>
+                                    <p class="side_menu_price">1,000원</p>
+                                </button>
+                            </div>
+                            <div>
+                                <button type="button" class="side_menu_btn">
+                                    <img src="../img/한식/fish.jpg" class="side_menu_img">
+                                    <h3 class="side_menu_name">고등어 자반</h3>
+                                    <p class="side_menu_price">2,000원</p>
+                                </button>
+                            </div>
+                            <div>
+                                <button type="button" class="side_menu_btn">
+                                    <img src="../img/한식/salted_seafood.jpg" class="side_menu_img">
+                                    <h3 class="side_menu_name">젓갈 3종</h3>
+                                    <p class="side_menu_price">2,500원</p>
+                                </button>
+                            </div>
+                
+                        </div> <!-- side_menu_div end -->
+                        <!-- 한식 side menu end -->
+
+                        <!-- 일식 side menu start -->
+                        <div class="일식 side_menu_div" style="display: none;">
+                            <div>
+                                <button type="button" class="side_menu_btn">
+                                    <img src="../img/일식/일식사이드_미니소바.png" class="side_menu_img">
+                                    <h3 class="side_menu_name">미니소바</h3>
+                                    <p class="side_menu_price">3,000원</p>
+                                </button>
+                            </div>
+                            <div>
+                                <button type="button" class="side_menu_btn">
+                                    <img src="../img/일식/일식사이드_미니우동.png" class="side_menu_img">
+                                    <h3 class="side_menu_name">미니우동</h3>
+                                    <p class="side_menu_price">3,000원</p>
+                                </button>
+                            </div>
+                            <div>
+                                <button type="button" class="side_menu_btn">
+                                    <img src="../img/일식/일식사이드_새우튀김.png" class="side_menu_img">
+                                    <h3 class="side_menu_name">새우튀김</h3>
+                                    <p class="side_menu_price">2,000원</p>
+                                </button>
+                            </div>
+                
+                        </div> <!-- side_menu_div end -->
+                        <!-- 일식 side menu end -->
+
+                        <!-- 중식 side menu start -->
+                        <div class="중식 side_menu_div" style="display: none;">
+                            <div>
+                                <button type="button" class="side_menu_btn">
+                                    <img src="../img/중식/rice.jpg" class="side_menu_img">
+                                    <h3 class="side_menu_name">공기밥</h3>
+                                    <p class="side_menu_price">1,000원</p>
+                                </button>
+                            </div>
+                            <div>
+                                <button type="button" class="side_menu_btn">
+                                    <img src="../img/중식/dumpling.png" class="side_menu_img">
+                                    <h3 class="side_menu_name">군만두</h3>
+                                    <p class="side_menu_price">1,500원</p>
+                                </button>
+                            </div>
+                            <div>
+                                <button type="button" class="side_menu_btn">
+                                    <img src="../img/중식/buns.png" class="side_menu_img">
+                                    <h3 class="side_menu_name">꽃빵</h3>
+                                    <p class="side_menu_price">2,500원</p>
+                                </button>
+                            </div>
+                
+                        </div> <!-- side_menu_div end -->
+                        <!-- 중식 side menu end -->
+
+                        <!-- 양식 side menu start -->
+                        <div class="양식 side_menu_div" style="display: none;">
+                            <div>
+                                <button type="button" class="side_menu_btn">
+                                    <img src="../img/양식/사_감자샐러드.jpg" class="side_menu_img">
+                                    <h3 class="side_menu_name">미니 샐러드</h3>
+                                    <p class="side_menu_price">5,000원</p>
+                                </button>
+                            </div>
+                            <div>
+                                <button type="button" class="side_menu_btn">
+                                    <img src="../img/양식/사_양송이스프.jpg" class="side_menu_img">
+                                    <h3 class="side_menu_name">양송이 스프</h3>
+                                    <p class="side_menu_price">6,000원</p>
+                                </button>
+                            </div>
+                            <div>
+                                <button type="button" class="side_menu_btn">
+                                    <img src="../img/양식/시저샐러드.jpg" class="side_menu_img">
+                                    <h3 class="side_menu_name">시저 샐러드</h3>
+                                    <p class="side_menu_price">4,500원</p>
+                                </button>
+                            </div>
+                
+                        </div> <!-- side_menu_div end -->
+                        <!-- 양식 side menu end -->
+
+                        <!-- 아시안 side menu start -->
+                        <div class="아시안 side_menu_div" style="display: none;">
+                            <div>
+                                <button type="button" class="side_menu_btn">
+                                    <img src="../img/아시안/아시안사이드_고수.png" class="side_menu_img">
+                                    <h3 class="side_menu_name">고수</h3>
+                                    <p class="side_menu_price">500원</p>
+                                </button>
+                            </div>
+                            <div>
+                                <button type="button" class="side_menu_btn ice_americano" value="디저트사이드_ICE아메리캍노" data-value="2000">
+                                    <img src="../img/아시안/아시안사이드_고기완자.png" class="side_menu_img">
+                                    <h3 class="side_menu_name">고기완자</h3>
+                                    <p class="side_menu_price">2,000원</p>
+                                </button>
+                            </div>
+                            <div>
+                                <button type="button" class="side_menu_btn orange_juice" value="디저트사이드_오렌지주스" data-value="2000">
+                                    <img src="../img/아시안/아시안사이드_바질.png" class="side_menu_img">
+                                    <h3 class="side_menu_name">바질</h3>
+                                    <p class="side_menu_price">800원</p>
+                                </button>
+                            </div>
+                
+                        </div> <!-- side_menu_div end -->
+                        <!-- 아시안 side menu end -->
+
+                        <!-- 디저트 side menu start -->
+                        <div class='디저트 side_menu_div' style='display: none;'>
+                            <div>
+                                <button type="button" class="side_menu_btn">
+                                    <img src="../img/디저트/ㅎ사이드음료 (9).png" class="side_menu_img">
+                                    <h3 class="side_menu_name">아메리카노</h3>
+                                    <p class="side_menu_price">2,000원</p>
+                                </button>
+                            </div>
+                            <div>
+                                <button type="button" class="side_menu_btn">
+                                    <img src="../img/디저트/ㅎ사이드음료 (1).png" class="side_menu_img">
+                                    <h3 class="side_menu_name">ICE아메리카노</h3>
+                                    <p class="side_menu_price">2,000원</p>
+                                </button>
+                            </div>
+                            <div>
+                                <button type="button" class="side_menu_btn">
+                                    <img src="../img/디저트/ㅎ사이드음료 (2).png" class="side_menu_img">
+                                    <h3 class="side_menu_name">오렌지주스</h3>
+                                    <p class="side_menu_price">2,000원</p>
+                                </button>
+                            </div>
+                            <div>
+                                <button type="button" class="side_menu_btn">
+                                    <img src="../img/디저트/ㅎ사이드음료 (6).png" class="side_menu_img">
+                                    <h3 class="side_menu_name">콜라/사이다</h3>
+                                    <p class="side_menu_price">1,500원</p>
+                                </button>
+                            </div>
+    
+                        </div>
+                        <!-- 디저트 side menu end -->
+
+
+
+
+                
+                        
+    
+                    </div> <!-- side_menu end -->
+                    
+                    <div id="side_event_area">
+                        <div style="display: inline;"><input type="button" id="side_cancle" href="#" value="취 소"></div>
+                        <input type="button" id="side_ok" href="#" value="확 인"> <!-- 송가람: trigger2 삭제 -->
+                    </div>
+    
+                </div> <!-- content_pop_background end-->
+             </div>   <!-- content_pop_area end -->
+        <!-- </div> -->    <!-- wrap end-->
+
+
+
+
+
+            </div> <!-- overlay end -->
+
+
+
+
+</div> <!--overlay 사이드모달 끝 -->
+
+
+
+
+
+
+
+<div class="overlay3" id="wrap03">
+
+    <div id="wrap01">
+    <div class="card">
+        <br>
+        <h4 style="text-align: center; margin-bottom: 60px;">카드를 리더기에 넣어주세요</h4>
+        <img src="../img/card.png" class="card">
+
+        <p>카드결제가 완료 되기 전 <br>
+          카드를 빼지마세요.</p>
+
+
+
+        <div class="loading-container">
+          <div class="loading"></div>
+          <div id="loading-text">loading</div>
+        </div>
+
+
+      </div> <!-- 카드팝업div -->
+    </div>
+
+
+
+    <!-- Trigger/Open The Modal -->
+    <!-- <button id="myBtn">Open Modal</button> -->
+
+    <!-- The Modal -->
+    <!-- <div id="myModal" class="modal"> -->
+
+    <!-- Modal content -->
+    <!-- <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Some text in the Modal..</p>
+      </div> -->
+
+    <!-- </div> -->
+
+    <!-- 결제 완료 후 대기번호 알림 팝업 -->
+    <div id="wrap02">
+      <div id="pop_waiting">
+        <div class="msg_header">결제</div>
+        <div id="pop_contentArea">
+          <div id="msg_payConfirm">
+            결제가 완료되었습니다.
+          </div>
+
+          <div class="msg_waitingNum emphasis" id="msg_waitingNum">
+            대기번호 : ??
+          </div>
+          <div id="msg_extra">
+            영수증을 가져가세요<br>제품 수령 시 영수증의 <span class="emphasis">대기번호</span>가 필요합니다.<br>소지 부탁드립니다.
+          </div>
+          <div id="img_bill">
+            <img src="../img/bill.png">
+          </div>
+        </div>
+        <div class="msg_footer">
+          <p>이용해주셔서 감사합니다.</p>
+        </div>
+
+      </div>
+
+
+
+
+</div>
+
+</div> <!-- wrap -->
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+        <script src="../FINAL_CODE/indexhide.js"></script> <!--모달-->
+        <script src="../FINAL_CODE/pop.js"></script> 
+        <script src="../FINAL_CODE/cardPlusWaiting.js"></script> <!--카드 로딩 5초-->
+        <script src="../FINAL_CODE/clock.js"></script> <!--시계-->
+        <script src="../FINAL_CODE/weather.js"></script> <!--날씨-->
+        
+</body>
+
+</html>

@@ -1,0 +1,154 @@
+
+/* font-family: 'Nanum Gothic', sans-serif; */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#wrap {
+    /* margin: 30px; */
+    /* padding: 30px; */
+    width: 1024px;
+    height: 768px;
+    border: 1px solid;
+}
+
+#title_area {
+    width: 1024px;
+    height: 100px;
+
+}
+
+#content_area {
+    width: 984px;
+    height: 478px;
+    margin: 0px 20px;
+    padding-right: 0px;
+    overflow: auto;
+
+}
+
+#footer_area {
+    display: inline;
+    margin: 50px 50px;
+
+}
+
+/* #event_area {
+    
+} */
+
+
+#title_area>img {
+    /* display: inline-block; */
+    width: 90px;
+    height: 90px;
+
+    padding-top: 10px;
+    padding-left: 40px;
+    float: left;
+
+
+    
+}
+div.menuOpt {
+
+    margin-top: 20px;
+    margin-bottom: 0px;
+    margin-right: 37px;
+    /* padding: 5px 5px; */
+    float: right;
+    background-color: #696969;
+    border: 10px solid #696969;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    
+}
+
+
+div.menuOpt>a>img {
+    width:80px;
+    height:55px;
+
+    margin: 0px 3px;
+    border-radius: 10px;
+    float: right;
+
+
+}
+
+/* #menuList {
+
+    background-color: rosybrown;
+} */
+
+
+.menuTable {
+    margin-top: 0px;
+    float: right;
+    border: 10px solid #696969;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    overflow: auto;
+    background-color: white;
+
+}
+
+#card{
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+
+div.menuSelect {
+    margin-right: 0px;
+    /* padding: 40px 40px; */
+   
+}
+
+table.menuOpt>tbody>tr>td>img {
+    width:90px;
+    height:70px;
+    border-radius: 5px;
+}
+
+table.menuSelect>tbody>tr>td {
+    font-weight: bold;
+    font-family: 'Nanum Gothic', sans-serif;
+    text-align: center;
+    line-height: normal;
+    position: absolute;
+}
+
+#card {
+    margin: 10px;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    float: left;
+}
+#price {
+    color: red;
+    font-weight: bold;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+div.menuSelect>div>img {
+    margin: 30px 30px;
+    width: 197px;
+    height: 127px;
+    /* display: inline; */
+    /* position: absolute; */
+}
+
+/* #footer_area>label {
+    margin: 50px 50px;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-weight: bold;
+}
+
+
+
+#footer_area>label:nth-child(3) {
+    padding: 0 50px;
+} */

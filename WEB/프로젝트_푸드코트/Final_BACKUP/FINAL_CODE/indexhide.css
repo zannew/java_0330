@@ -1,0 +1,182 @@
+
+  
+  .container {
+    width: 1024px;
+    height: 768px;
+    margin: 0px auto;
+    
+  }
+  
+  #logo{
+    width: 659px;
+    height: 356px;
+  }
+
+  
+  #cartin {
+    width: 700px;
+    margin:20px 30px 10px 30px;
+  
+    height: 100px;
+    float: left;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+  #cart_list {
+    width: 600px;
+    /* height: 150px; */
+    overflow: auto;
+    position:absolute;
+    font-size: 0.8em;
+  }
+
+  /* 장바구니, 테이블 행간격조정 */
+  #cartin>table>tbody>tr>td {
+    padding-bottom: 10px;
+  }
+  
+  #cartin>table>tbody>tr>td:nth-child(4) {
+    padding-left: 50px;
+    text-align: center;
+  }
+
+  #event_area {
+    width: 210px;
+    height: 130px;
+    margin-right: 30px;
+    float:right;
+  }
+  
+  input[type=button] {
+    width:206px;
+    height: 49px;
+    margin: 10px auto;
+    border-radius: 30px;
+    color: azure;
+    font-size: 20px;
+  }
+  
+  #return_startscreen {
+    background-color: dimgray;
+    border: 1px solid dimgray;
+  }
+  
+  #payment {
+    background-color: orange;
+    border: 1px solid orange;
+  }
+  
+  
+  .main_button {
+    background-color: white;
+    border: none;
+  }
+
+
+
+  
+  #hall_btn{  
+    width:168px;
+    height:188px;
+   /* padding-right: 120px; */
+   
+    /* margin-right: 40px; */
+  }
+  #hall_img{
+    width: 105px;
+    height: 140px;
+    /* margin-right: 100px; */
+    margin-bottom: 30px;
+    text-align: left;
+  }
+  
+  #take_btn{
+    width:168px;
+    height:188px;
+    /* padding-right: 120px; */
+    /* margin-left: 50px; */
+  }
+  
+  #take_img{
+    width: 105px;
+    height: 140px;
+    /* margin-right: 110px; */
+    margin-bottom: 30px;
+  }
+  
+  .container > .btn {
+    margin: 60px;
+    padding: 20px 40px;
+    font-size: 30px;
+    border-radius: 40px;
+  }
+  
+  .modal {
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    transition: all 600ms cubic-bezier(0.86, 0, 0.07, 1);
+    top: 100%;
+    position: fixed;
+    left: 0;
+    text-align: left;
+
+  }
+
+  .modal .header {
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    font: 300 24px Lato;
+    position: relative;
+  }
+  .modal .body {
+    padding: 20px;
+    font: 300 16px Lato;
+  }
+  
+ 
+
+
+  #take_btn {
+    background-color: white;
+    padding: 10px 25px;
+    display: inline-block;
+    border: 15px solid dimgray;
+    border-radius: 25px;
+    /* margin: 20px 0; */
+    margin-left: 50px;
+
+    position: relative;
+    transition: all .4s ease;
+    cursor: pointer;
+  }
+
+  #hall_btn {
+    background-color: white;
+    padding: 10px 25px;
+    display: inline-block;
+    border: 15px solid dimgray;
+    border-radius: 25px;
+    /* margin: 20px 0; */
+    margin-right: 50px;
+
+    position: relative;
+    transition: all .4s ease;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .modal-open .modal {
+    top: 0;
+    display: block;
+    
+  }
+  
+

@@ -1,0 +1,120 @@
+body{
+    margin: 0px 400px;
+}
+
+#modal, .modal{
+    width: 1024px;
+    height: 768px;
+    margin: 0px 400px;
+}
+
+#wrap {
+    margin: 0px 300px;
+    position: absolute;
+}
+
+#menuselector {
+    width: 1024px;
+    height: 768px;
+    margin: auto;
+    top: 10px;
+}
+
+div.header{
+    text-align: center;
+}
+#menulogo{
+    width: 214px;
+    height: 919x;
+}
+
+/* button{
+    width: 164px;
+    height: 163px;
+} */
+
+div.content>button.menu>img{
+    width: 144px;
+    height: 146px;
+}
+button.menu{
+    border: 10px solid #696969;
+    margin: 20px 30px 0 50px;
+    border-radius: 3px;
+}
+
+div.content{
+    text-align: center;
+}
+div.footer>img{
+    width: 55px;
+    height: 52px;
+}
+div.footer>img.next{
+    float: right;
+    margin-right: 80px;
+}
+div.footer>img.previous{
+    float: left;
+    margin-left: 80px;
+}
+
+
+/* #side_menu_div button{
+    width: 200px;
+    height: 163px;
+} */
+
+      
+/* 영역 : 상세메뉴 셀 */
+.menu_cell {
+    /* border: 3px solid gray; */
+    margin: 50px;
+
+    text-align: center;
+    float: left;
+   background-color: white;
+}
+
+
+/* 이미지 : 상세메뉴 이미지 */
+.menu_img {
+    /* display: block;
+    width: 305px;
+    height: 160px;
+    margin: 0 auto;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 10px;
+    border-radius: 10px; */
+    background-color: white;
+    width: 197px;
+    height: 127px;
+}
+
+
+
+/* 텍스트 : 상세메뉴 이름 */
+/* .menu_name {
+    font-weight: 100;
+    color: dimgrey;
+    /* margin-bottom: 10px; */
+    margin-right: 20px;
+    padding-bottom: 10px;
+    display: inline;
+}
+
+/* 텍스트 : 상세메뉴 가격 */
+/* .menu_price {
+    font-weight: bold;
+    color: red;
+    margin-bottom: 10px;
+    display: inline;
+} */ */
+
+/* 버튼 : 상세메뉴 선택 */
+.menu_btn {
+    font-size: 1em;
+    border: none;
+    background-color: white;
+}
