@@ -1,4 +1,4 @@
 # java_0330
 
-## examples on the academy's curriculum 
+## Examples on the academy's curriculum 
 
