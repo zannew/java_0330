@@ -9,4 +9,24 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  	<!-- 서블릿 등록 -->
+  	<servlet>
+  		<!-- 서블릿 식별 이름 -->
+  		<servlet-name>testServlet</servlet-name>
+  		<!-- 서블릿 클래스의 이름은 FullName으로 -->
+  		<servlet-class>test.NowServlet</servlet-class>
+  	</servlet>
+  	<!-- 경로 맵핑 -->
+  	<servlet-mapping>
+  		<!--요청에 실행할 서블릿 이름 등록-->
+  		<servlet-name>testServlet</servlet-name>
+  		<!-- http://localhost:8080/web/hello -->
+  		<url-pattern>/hello</url-pattern>
+  	</servlet-mapping>
+  
+  
+  
+  
+  
 </web-app>
