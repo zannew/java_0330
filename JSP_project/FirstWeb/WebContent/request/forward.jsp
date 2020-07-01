@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String name = (String)request.getAttribute("username");
+%>
+<jsp:forward page="myPage/myPage.jsp"></jsp:forward>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +11,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<h1>request 속성 공유 : <%= name %></h1>
 </body>
 </html>
