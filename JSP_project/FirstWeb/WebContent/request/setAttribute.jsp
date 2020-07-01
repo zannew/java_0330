@@ -3,7 +3,7 @@
 <%
 	request.setAttribute("username", "Scott");
 %>
-<<jsp:forward page="forward.jsp"></jsp:forward>
+<jsp:forward page="forward.jsp"></jsp:forward>
 <!DOCTYPE html>
 <html>
 <head>

@@ -3,7 +3,6 @@
 <%
 	String name = (String)request.getAttribute("username");
 %>
-<jsp:forward page="myPage/myPage.jsp"></jsp:forward>
 <!DOCTYPE html>
 <html>
 <head>
