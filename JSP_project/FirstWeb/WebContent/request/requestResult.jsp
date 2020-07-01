@@ -35,6 +35,30 @@
 				%>
 			<!-- = request.getParameter("like") %>--></td>
 		</tr>
+		<tr>
+			<td>요청 메서드</td>
+			<td><%= request.getMethod() %></td>
+		</tr>
+		<tr>
+			<td>쿠키 정보</td>
+			<td>
+				<%
+					//Cookie : getName()→쿠키의 이름, getValue()→이름에 해당하는 value
+					Cookie[] cookies = request.getCookies();
+					for(int i=0;i<cookies.length;i++){
+						out.println(cookies[i].getName()+"="+cookies[i].getValue());
+					}
+				%>
+			</td>
+		</tr>
+		<tr>
+			<td>요청 정보 URL</td>
+			<td>
+				<%= request.getProtocol() %><br>
+				URL : <%= request.getRequestURL() %><br>
+				URI : <%= request.getRequestURI() %>
+			</td>
+		</tr>
 	</table>
 
 </body>
