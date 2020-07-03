@@ -13,7 +13,10 @@
 	<%@ include file="/include/header.jsp"%>
 	
 	<div>
-		index
+		
+		메인입니다 :-)
+		
+		
 	</div>
 	
 	<%@ include file="/include/footer.jsp"%>
