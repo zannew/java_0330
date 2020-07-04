@@ -27,7 +27,6 @@
 	loginChk = true;	
 	
 	}
-	System.out.println("현재 로그인 상태는 : "+loginChk);
 
 	
 	// 4. 응답 처리 : html (분기 login or non-login)
