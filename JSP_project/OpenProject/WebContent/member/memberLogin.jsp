@@ -21,7 +21,7 @@
 	boolean loginChk = false;
 	
 	if(uid.equals(upw)){
-		MemberInfo memberInfo = new MemberInfo(uid, upw, "default", "default@gmail.com");
+		MemberInfo memberInfo = new MemberInfo(uid, upw, "default", "default.jpg");
 	// 3. 로그인 처리 : session에 사용자 정보를 저장
 	session.setAttribute("memberInfo", memberInfo);
 	loginChk = true;	

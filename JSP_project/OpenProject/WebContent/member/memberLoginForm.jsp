@@ -71,14 +71,6 @@
                 <td><input type="password" name="pw" id="pw"><br></td>
             </tr>
             <tr>
-                <td>이름</td>
-                <td><input type="text" name="name" id="name"><br></td>
-            </tr>
-            <tr>
-                <td>이메일</td>
-                <td><input type="text" name="email" id="email"><br></td>
-            </tr>
-            <tr>
                 <td>아이디 저장</td>
                 <td><input type="checkbox" name="checkbox_id" id="checkbox_id" <%= checked %>></td>
             </tr>

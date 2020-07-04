@@ -5,14 +5,14 @@ public class MemberInfo {
 	private String uid;
 	private String upw;
 	private String uname;
-	private String email;
+	private String uphoto;
 	
-	public MemberInfo(String uid, String upw, String uname, String email) {
+	public MemberInfo(String uid, String upw, String uname, String uphoto) {
 		super();
 		this.uid = uid;
 		this.upw = upw;
 		this.uname = uname;
-		this.email = email;
+		this.uphoto = uphoto;
 	}
 
 	public String getUid() {
@@ -27,14 +27,15 @@ public class MemberInfo {
 		return uname;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getUphoto() {
+		return uphoto;
 	}
 
 	@Override
 	public String toString() {
-		return "MemberInfo [uid=" + uid + ", upw=" + upw + ", uname=" + uname + ", email=" + email + "]";
+		return "MemberInfo [uid=" + uid + ", upw=" + upw + ", uname=" + uname + ", uphoto=" + uphoto + "]";
 	}
+
 	
 	
 
