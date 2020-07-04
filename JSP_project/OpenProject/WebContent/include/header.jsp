@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%
 	//로그인 여부 체크! ( session에 memberInfo 객체 )
-	Boolean loginStatus = session.getAttribute("memberInfo")==null?false:true;
+	boolean loginStatus = session.getAttribute("memberInfo")==null?false:true;
 	//String checkId=(String)session.getAttribute("id");
 	
 %>
@@ -12,7 +12,7 @@
 	<% 
 	if(loginStatus){
 	%>
-			<li><a href="<%= request.getContextPath() %>/member/memberLoginForm.jsp">로그아웃</a></li>
+			<li><a href="<%= request.getContextPath() %>/member/logout.jsp">로그아웃</a></li>
 	<% }else { %>
 			<li><a href="<%= request.getContextPath() %>/member/memberLoginForm.jsp">로그인</a></li>
 			

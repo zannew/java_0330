@@ -54,26 +54,24 @@
 <body>
 	<%@ include file="/include/header.jsp"%>
 	
-		<%
-		/*  String idValue=cookieBox.getValue("id");
+		<!-- String idValue=cookieBox.getValue("id");
 		String savedId="";
 		if(idValue!=null){
 			savedId = idValue;
 		}else{
 			savedId = "";
 			
-		} */
+		}
 		
-/* 		String chkId=(String)session.getAttribute("id"); 
- */		
-		/* String checked = "";
+		String chkId=(String)session.getAttribute("id"); 
+ 	
+		String checked = "";
 		if(request.getParameter("checkbox_id").equals("checked")){
 			response.addCookie(CookieBox.createCookie("id", request.getParameter("id"),"/OP/member", 60*60));
 			checked="checked";
 		}else{
 			response.addCookie(CookieBox.createCookie("id", "", "/OP/member", 0));
-		} */
-	%>
+		} -->
 	
 	<div>
 		<h1>로그인</h1>

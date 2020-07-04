@@ -13,20 +13,22 @@
 	// 1. 아이디, 비밀번호 데이터를 먼저 받는다.
 	String uid = request.getParameter("id");
 	String upw = request.getParameter("pw");
-	String uname = request.getParameter("name");
-	String email = request.getParameter("email");
 	String chk = request.getParameter("checkbox_id");
+	
 
 	
 	// 2. 로그인을 위한 비교 : 아이디 비밀번호 문자열 비교
 	boolean loginChk = false;
 	
 	if(uid.equals(upw)){
-		MemberInfo memberInfo = new MemberInfo(uid, upw, uname, email);
+		MemberInfo memberInfo = new MemberInfo(uid, upw, "default", "default@gmail.com");
 	// 3. 로그인 처리 : session에 사용자 정보를 저장
 	session.setAttribute("memberInfo", memberInfo);
 	loginChk = true;	
+	
 	}
+	System.out.println("현재 로그인 상태는 : "+loginChk);
+
 	
 	// 4. 응답 처리 : html (분기 login or non-login)
 	if(loginChk){
@@ -42,14 +44,12 @@
 		}
 		%>
 			<script>
-			//location.href="/myPage/myPage.jsp";
-			location.href="<%= request.getContextPath() %>/member/myPage/myPage.jsp";
+			alert("로그인에 성공하셨습니다. \n 마이페이지로 바로 이동합니다.");
+		location.href= "<%= request.getContextPath()%>/member/myPage/myPage.jsp";
 			</script>
 		<%
-		
-		//response.sendRedirect(rediectUri);
-		
 	} else {
+		
 	%>
 	<script>
 		alert("아이디와 비밀번호를 확인해주세요.");
@@ -60,6 +60,7 @@
 	%>
 	
 <%-- <!DOCTYPE html>
+		//response.sendRedirect(rediectUri);
 <html>
 <head>
 <meta charset="UTF-8">
