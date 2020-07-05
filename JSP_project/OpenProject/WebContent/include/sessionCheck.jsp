@@ -5,7 +5,7 @@
 	if(memberInfo==null){
 		%>
 	<script>
-	alert("사용자 전용 페이지입니다. \n 로그인 해주세요.");		
+	alert("회원 전용 페이지입니다. \n 로그인 해주세요.");		
 		location.href='<%= request.getContextPath()%>/member/memberLoginForm.jsp';
 	</script>
 		<%
