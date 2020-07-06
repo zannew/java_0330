@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/include/sessionCheck.jsp" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	if(memberInfo!=null){
 %>
@@ -10,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>OpenProject 마이페이지</title>
-<link rel="stylesheet" href="<c:url value="/CSS/default.css" context="/OP"/>">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/CSS/default.css">
 <style>
 
 #profile {
@@ -48,32 +47,32 @@ a.btn {
 	</div>
 		<h2>환영합니다!</h2>
 	<br>
-	<h3>▶ ${memberInfo.uid}님의 회원정보</h3>
+	<h3>▶ <%= memberInfo.getUname() %>님의 회원정보</h3>
 	<br>
 	<div class="profile">
 	
 		<table id="profile">
 			<tr>
 				<td>아이디</td>
-				<td>${memberInfo.uid}</td>
+				<td><%= memberInfo.getUid() %></td>
 			</tr>
 			<tr>
 				<td>비밀번호</td>
-				<td>${memberInfo.upw}</td>
+				<td><%= memberInfo.getUpw() %></td>
 			</tr>
 			<tr>
 				<td>이름</td>
-				<td>${memberInfo.uname}</td>
+				<td><%= memberInfo.getUname() %></td>
 			</tr>
 			<tr>
 				<td>사진</td>
-				<td>${memberInfo.uphoto}</td>
+				<td><%= memberInfo.getUphoto() %></td>
 			</tr>
 		</table>
 	</div>
 	
-	<a href="<c:url value="/member/logout.jsp" context="/OP"/>" class="btn logout">로그아웃</a>
-	<a href="<c:url value="/index.jsp" context="/OP"/>" class="btn main">메인으로 가기</a>
+	<a href="<%= request.getContextPath() %>/member/logout.jsp" class="btn logout">로그아웃</a>
+	<a href="<%= request.getContextPath() %>/member/logout.jsp" class="btn main">메인으로 가기</a>
 	
 	
 	<%@ include file="/include/footer.jsp"%>

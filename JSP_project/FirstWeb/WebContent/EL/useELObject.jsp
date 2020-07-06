@@ -34,7 +34,7 @@
 	<h1>request 속성에 저장된 name : <%= request.getAttribute("name") %></h1>	
 	<h1>request 속성에 저장된 name : ${requestScope.name}</h1>	
 	<h1>request 속성에 저장된 name : ${name}</h1>
-	<h4>▶ {속성의영역.속성의 이름} → </h4>
+	<h4>▶ {속성의영역.속성의 이름} → 속성의 영역 생략 가능 → 영역 크기 순서대로 전부 탐색 (※ 속성의 이름 중복 주의)</h4>
 
 	<h1>파라미터 code의 값 : <%= request.getParameter("code") %></h1>
 	<h1>파라미터 code의 값 : ${param.code}</h1>
