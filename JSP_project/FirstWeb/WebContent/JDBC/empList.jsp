@@ -35,7 +35,7 @@
 	
 	
 		// 1. DB 로드
-		Class.forName("oracle.jdbc.driver.OracleDriver");
+		//Class.forName("oracle.jdbc.driver.OracleDriver");
 		
 		// JSP내에서는 지역변수 (초기화필요)
 		Connection conn = null;
