@@ -25,6 +25,6 @@ select * from guestbook_message;
 
 select * from guestbook_message02;
 
-delete from guestbook_message where message_id = 7;
+delete from guestbook_message;
 
 rollback;
