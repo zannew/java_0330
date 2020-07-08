@@ -16,7 +16,6 @@ public class WriteMessageService {
 		return service;
 	}
 	
-	
 	MessageDAO dao = null;
 	
 	public int writeMessage(Message msg) {
@@ -24,7 +23,7 @@ public class WriteMessageService {
 		int result = 0;
 		
 		dao = MessageDAO.getInstance();
-		//
+		// DAO의 메서드에 전달할 Connection
 		Connection conn = null;
 		
 		try {

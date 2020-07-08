@@ -3,7 +3,6 @@ package guestbook.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import guestbook.model.Message;
 
@@ -15,6 +14,8 @@ public class MessageDAO {
 	public static MessageDAO getInstance() {
 		return dao;
 	}
+	
+	
 	public int insertMessage(Connection conn, Message msg) throws SQLException {
 		
 		int resultCnt = 0;

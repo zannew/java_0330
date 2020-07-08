@@ -7,6 +7,7 @@
 <jsp:useBean id="requestMessage" class="guestbook.model.Message" scope="request"/>
 <jsp:setProperty property="*" name="requestMessage"/>
 <%
+
 	WriteMessageService writeService = WriteMessageService.getInstance();
 
 	int result = writeService.writeMessage(requestMessage);
