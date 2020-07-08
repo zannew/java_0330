@@ -45,4 +45,28 @@ public class MessageDAO {
 	}
 	
 	
+	public int deleteMessage(Connection conn, Message msg) throws SQLException {
+		
+		int resultCnt = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = "delete from guestbook_message";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			resultCnt = pstmt.executeUpdate();
+			
+		} finally {
+			
+			if (pstmt != null) {
+				pstmt.close();
+			}
+		}
+		
+		return resultCnt;
+		
+	}
+	
+	
 }

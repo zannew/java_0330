@@ -21,7 +21,7 @@ public class WriteMessageService {
 	// 1. DAO 객체 생성
 	MessageDAO dao = null;
 	
-	// write메서드 생성
+	// 2. write메서드 생성
 	// 어디에 쓰임...???
 	public int writeMessage(Message msg) {
 		
