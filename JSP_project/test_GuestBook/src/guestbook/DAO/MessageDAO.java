@@ -3,6 +3,7 @@ package guestbook.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 import guestbook.model.Message;
 
@@ -44,28 +45,19 @@ public class MessageDAO {
 		return resultCnt;
 	}
 	
-	
-	public int deleteMessage(Connection conn, Message msg) throws SQLException {
+
+	public int selectTotalCount(Connection conn) {
 		
-		int resultCnt = 0;
 		
-		PreparedStatement pstmt = null;
 		
-		String sql = "delete from guestbook_message";
-		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			resultCnt = pstmt.executeUpdate();
-			
-		} finally {
-			
-			if (pstmt != null) {
-				pstmt.close();
-			}
-		}
 		
-		return resultCnt;
-		
+		return 0;
+	}
+
+
+	public List<Message> selectMessageList(Connection conn, int startRow, int endRow) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
