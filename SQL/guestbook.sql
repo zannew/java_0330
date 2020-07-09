@@ -16,15 +16,59 @@ create table guestbook_message02 (
 
 create sequence message_id_seq increment by 1 start with 1;
 
-insert into guestbook_message values (message_id_seq.nextval, 'tester', '123123', 'testmsg');
+insert into guestbook_message values (message_id_seq.nextval, 'tester10', '123123', 'testmsg');
 
 insert into guestbook_message02 values (message_id_seq.nextval, 'tester', '123123', 'testmsg');
 
 
-select * from guestbook_message;
+select rownum, message_id, message from guestbook_message;
+-- 인라인뷰
+select rownum, message_id, message 
+from (select * from guestbook_message order by message_id desc);
 
+select * from guestbook_message;
 select * from guestbook_message02;
 
 delete from guestbook_message;
 
+commit;
+
 rollback;
+
+-- 서브쿼리로 사용
+select rownum, message_id, guest_name, password, message 
+from guestbook_message order by message_id desc;
+
+select rownum, message_id, guest_name, password, message 
+from (
+    select * from guestbook_message order by guestbook_message.message_id desc
+);
+
+-- 2 page : 4~6
+select rownum, message_id, guest_name, password, message 
+from (
+    select * from guestbook_message order by guestbook_message.message_id desc
+) where rownum <=6;
+
+-- DAO로..
+select message_id, guest_name, password, message 
+from (
+    select rownum rnum, message_id, guest_name, password, message 
+    from (
+        select * from guestbook_message order by guestbook_message.message_id desc
+    ) where rownum<=6
+) where rnum>=4
+;
+
+
+
+
+
+
+
+
+
+
+
+
+
