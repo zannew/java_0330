@@ -82,6 +82,7 @@ public class MessageDAO {
 		return list;
 	}
 
+	// not yet
 	public int selectTotalCount(Connection conn) {
 
 		return 0;
