@@ -60,6 +60,10 @@ from (
 ) where rnum>=4
 ;
 
+select count(*) from guestbook_message;
+
+select * from guestbook_message where message_id = 39;
+
 
 
 
