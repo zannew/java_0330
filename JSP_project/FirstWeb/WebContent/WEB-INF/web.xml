@@ -102,6 +102,7 @@
   	<!-- context param 등록(이벤트)/////////////////////////////////////////////////////////////////////////////////////////////////////// -->
   	<context-param>
   		<param-name>uploadPath</param-name>
+  		<!-- <param-value>/file</param-value> -->
   		<param-value>/uploadFile/member/photo</param-value>
   	</context-param>
   
