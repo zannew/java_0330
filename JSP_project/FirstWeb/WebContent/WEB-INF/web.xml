@@ -10,7 +10,7 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
-  	<!-- 서블릿 등록 -->
+  	<!-- 서블릿 등록/////////////////////////////////////////////////////////////////////////////////////////////////////// -->
   	<servlet>
   		<!-- 서블릿 식별 이름 -->
   		<servlet-name>testServlet</servlet-name>
@@ -49,11 +49,8 @@
   		<load-on-startup>1</load-on-startup>
   	</servlet>
   	
-  	
-  	
-  	
   
-  
+  <!-- 에러 페이지 설정////////////////////////////////////////////////////////////////////////////////////////////////////// -->
   <!-- 상태 코드의 에러 페이지 설정 -->
   <error-page>
   	<error-code>404</error-code>
@@ -70,6 +67,43 @@
   	<exception-type>java.lang.NullPointerException</exception-type>
   	<location>/error/error_null.jsp</location>
   </error-page>
+  
+  
+  	<!-- 필터 등록/////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <filter>
+  	<filter-name>loginCheckFilter</filter-name>
+  	<filter-class>filter.LoginFilter</filter-class>
+  </filter>
+  
+  <!-- 다른 매핑 추가 시 똑같은 폼으로 입력 -->
+  <filter-mapping>
+  	<filter-name>loginCheckFilter</filter-name>
+  	<url-pattern>/myPage/*</url-pattern>
+  </filter-mapping>
+  
+  
+  <filter>
+  	<filter-name>encodingFilter</filter-name>
+  	<filter-class>filter.CharacterEncodingFilter</filter-class>
+  </filter>
+  
+   <filter-mapping>
+  	<filter-name>encodingFilter</filter-name>
+  	<url-pattern>/*</url-pattern>		<!-- /* means all request comes to the Filter -->
+  </filter-mapping>
+  
+  
+  
+  	<!-- 리스너 등록/////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  	<listener>
+  		<listener-class>listener.TestContextListener</listener-class>
+  	</listener>
+  
+  	<!-- context param 등록(이벤트)/////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  	<context-param>
+  		<param-name>uploadPath</param-name>
+  		<param-value>/uploadFile/member/photo</param-value>
+  	</context-param>
   
   
   
