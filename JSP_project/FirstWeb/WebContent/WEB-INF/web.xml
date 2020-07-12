@@ -27,7 +27,7 @@
   	</servlet-mapping>
   	
   	<!-- 데이터베이스 드라이버 로드 -->
-  <!-- 	<servlet>
+<!-- 	<servlet>
   		<servlet-name>Loader</servlet-name>
   		<servlet-class>jdbc.Loader</servlet-class>
   		<init-param>

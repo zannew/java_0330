@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<c:if test=""
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +18,7 @@
 		
         <hr>
         
-        <form action="memberReg.jsp" method="post" id="refForm">
+        <form action="memberReg.jsp" method="post" enctype="multipart/form-data">
         <table>
             <tr>
                 <td>아이디(이메일)</td>

@@ -2,40 +2,58 @@ package model;
 //Open Project - MemberInfo.java
 public class MemberInfo {
 	
-	private String uid;
-	private String upw;
-	private String uname;
-	private String uphoto;
+	private String mid;
+	private String mpw;
+	private String mname;
+	private String mphoto;
 	
-	public MemberInfo(String uid, String upw, String uname, String uphoto) {
+	public MemberInfo() {}
+
+	public MemberInfo(String mid, String mpw, String mname, String mphoto) {
 		super();
-		this.uid = uid;
-		this.upw = upw;
-		this.uname = uname;
-		this.uphoto = uphoto;
+		this.mid = mid;
+		this.mpw = mpw;
+		this.mname = mname;
+		this.mphoto = mphoto;
 	}
 
-	public String getUid() {
-		return uid;
+	public String getMid() {
+		return mid;
 	}
 
-	public String getUpw() {
-		return upw;
+	public void setMid(String mid) {
+		this.mid = mid;
 	}
 
-	public String getUname() {
-		return uname;
+	public String getMpw() {
+		return mpw;
 	}
 
-	public String getUphoto() {
-		return uphoto;
+	public void setMpw(String mpw) {
+		this.mpw = mpw;
+	}
+
+	public String getMname() {
+		return mname;
+	}
+
+	public void setMname(String mname) {
+		this.mname = mname;
+	}
+
+	public String getMphoto() {
+		return mphoto;
+	}
+
+	public void setMphoto(String mphoto) {
+		this.mphoto = mphoto;
 	}
 
 	@Override
 	public String toString() {
-		return "MemberInfo [uid=" + uid + ", upw=" + upw + ", uname=" + uname + ", uphoto=" + uphoto + "]";
+		return "MemberInfo [mid=" + mid + ", mpw=" + mpw + ", mname=" + mname + ", mphoto=" + mphoto + "]";
 	}
-
+	
 	
 	
 

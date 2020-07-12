@@ -1,6 +1,6 @@
 <%@page import="service.EmpListService"%>
 <%@page import="dao.EmpDAO"%>
-<%@page import="guestbook.jdbc.ConnectionProvider"%>
+<%@page import="jdbc.ConnectionProvider"%>
 <%@page import="model.Emp"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
