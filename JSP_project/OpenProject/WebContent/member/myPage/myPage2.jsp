@@ -47,26 +47,26 @@ a.btn {
 	</div>
 		<h2>환영합니다!</h2>
 	<br>
-	<h3>▶ <%= memberInfo.getUname() %>님의 회원정보</h3>
+	<h3>▶ <%= memberInfo.getMname() %>님의 회원정보</h3>
 	<br>
 	<div class="profile">
 	
 		<table id="profile">
 			<tr>
 				<td>아이디</td>
-				<td><%= memberInfo.getUid() %></td>
+				<td><%= memberInfo.getMid() %></td>
 			</tr>
 			<tr>
 				<td>비밀번호</td>
-				<td><%= memberInfo.getUpw() %></td>
+				<td><%= memberInfo.getMpw() %></td>
 			</tr>
 			<tr>
 				<td>이름</td>
-				<td><%= memberInfo.getUname() %></td>
+				<td><%= memberInfo.getMname() %></td>
 			</tr>
 			<tr>
 				<td>사진</td>
-				<td><%= memberInfo.getUphoto() %></td>
+				<td><%= memberInfo.getMphoto() %></td>
 			</tr>
 		</table>
 	</div>

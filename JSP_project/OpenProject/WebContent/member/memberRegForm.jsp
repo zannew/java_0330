@@ -22,19 +22,19 @@
         <table>
             <tr>
                 <td>아이디(이메일)</td>
-                <td><input type="text" name="id" id="uid"><br></td>
+                <td><input type="text" name="mid" id="mid"><br></td>
             </tr>
             <tr>
                 <td>비밀번호</td>
-                <td><input type="password" name="pw" id="upw"><br></td>
+                <td><input type="password" name="mpw" id="mpw"><br></td>
             </tr>
             <tr>
                 <td>이름</td>
-                <td><input type="text" name="uname" id="uname"></td>
+                <td><input type="text" name="mname" id="mname"></td>
             </tr>
             <tr>
                 <td>사진</td>
-                <td><input type="file" name="uphoto" id="uphoto"></td>
+                <td><input type="file" name="mphoto" id="mphoto"></td>
             </tr>
             <tr>
                 <td></td>

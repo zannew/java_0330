@@ -89,7 +89,7 @@
   	<context-param>
   		<param-name>uploadPath</param-name>
   		<!-- <param-value>/file</param-value> -->
-  		<param-value>/member/profilePhoto</param-value>
+  		<param-value>/profile/profilePhoto</param-value>
   	</context-param>
   
   
