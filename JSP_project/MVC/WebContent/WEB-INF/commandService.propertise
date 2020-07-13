@@ -1,0 +1,21 @@
+## 메인페이지
+#/index.do=membermanager.member.service.MainPageViewService
+/index.do=java.lang.String
+## 로그인 페이지
+#/member/loginForm.do=membermanager.member.service.MemberLoginFormService
+/member/loginForm.do=java.lang.String
+#/member/login.do=membermanager.member.service.MemberLoginService
+/member/login.do=java.lang.String
+#/member/logout.do=membermanager.member.service.MemberLogoutService
+/member/logout.do=java.lang.String
+## 회원관리
+#/member/memberRegForm.do=membermanager.member.service.MemberRegFormService
+#/member/memberReg.do=membermanager.member.service.MemberRegService
+## 아이디 체크 
+#/member/idCheck.do=membermanager.member.service.MemberIdCheckService
+##/member/memberList.do=
+##/member/memberEditForm.do=
+##/member/memberEdit.do=
+##/member/memberDelete=
+## 회원 전용 페이지
+#/member/mypage/mypage.do=membermanager.member.service.MemberMyPageService
