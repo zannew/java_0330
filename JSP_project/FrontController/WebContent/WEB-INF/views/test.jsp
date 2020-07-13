@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>null_view</title>
+<title>test.jsp</title>
 </head>
 <body>
-	<h1>NULL - 잘못된 요청입니다.</h1>
-	<a href="<%= request.getContextPath() %>/WEB-INF/views/index.jsp">홈으로 가기</a>
+	<h1>${name}</h1>
 </body>
 </html>

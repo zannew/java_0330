@@ -1,11 +1,16 @@
 package controller;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,16 +25,77 @@ import service.Service;
 public class FrontController extends HttpServlet{
 
 	private Map<String, Service> commands = new HashMap<String, Service>(); 
+
 	
 	// 초기화 메서드 생성해서 type별로 객체
 	@Override
-	public void init() throws ServletException {
+	public void init(ServletConfig config) throws ServletException {
+
+		// 1. commandService.propertise(외부 설정) → Propertise : 클래스 정보를 받아온다.
+		// → /index=service.IndexServiceImpl
+		// 2. 클래스 정보의 클래스들을 생성 → 인스턴스(자동)생성
+		// 3. Map에 사용자 요청 command와 인스턴스를 저장
+		
+		// 1. 외부 설정 파일의 내용을 메모리의 데이터로 이동
+		Properties prop = new Properties();
+		
+		FileInputStream fis = null;
+		
+		// 설정파일의 웹 경로
+		String path = "/WEB-INF/commandService.propertise";
+		// 설정파일의 시스템 절대경로
+		String configFile = config.getServletContext().getRealPath(path);
+		
+		try {
+			fis = new FileInputStream(configFile);
+			// properties객체로 파일을 읽어온다.
+			prop.load(fis);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		// keySet : 키값만 가져온다.
+		Iterator itr = prop.keySet().iterator();
+		
+		while(itr.hasNext()) {
+			
+			// 사용자 요청 URI : key값을 받고,
+			String command = (String) itr.next();
+			// 사용자 요청 처리를 위한 클래스 정보 : value(서비스클래스네임)를 가져온다.
+			String serviceClassName = prop.getProperty(command);
+			
+			try {
+				// 인스턴스 생성을 위한 Class객체
+				Class serviceClass = Class.forName(serviceClassName);
+				
+				// 인스턴스 생성
+				Service service = (Service)serviceClass.newInstance(); 
+				
+				commands.put(command, service);
+				System.out.println(command+" = "+service);
+				
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InstantiationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+		
 		// 다형성 사용 : serviceImpl 객체 저장
-		commands.put("/", new IndexServiceImpl());
-		commands.put("/index", new IndexServiceImpl());
-		commands.put("/greeting", new GreetingServiceImpl());
-		commands.put("/date", new DateServiceImpl());
-		commands.put("null", new NullServiceImpl());
+//		commands.put("/", new IndexServiceImpl());
+//		commands.put("/index", new IndexServiceImpl());
+//		commands.put("/greeting", new GreetingServiceImpl());
+//		commands.put("/date", new DateServiceImpl());
+//		commands.put("null", new NullServiceImpl());
 	}
 
 
@@ -59,7 +125,7 @@ public class FrontController extends HttpServlet{
 		Service service = commands.get(type);
 
 		if(service==null) {
-			service = commands.get("null");
+			service = new NullServiceImpl();
 		}
 		
 		// http://localhost:8080/fc/greeting
@@ -84,9 +150,7 @@ public class FrontController extends HttpServlet{
 		RequestDispatcher dispatcher = request.getRequestDispatcher(page);
 		dispatcher.forward(request, response);
 		
-		
 	}
-	
 	
 	// 1. Http의 요청을 받는다 : doGet, doPost();
 		@Override
