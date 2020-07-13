@@ -12,20 +12,20 @@
 	<%-- <c:forEach items="${sessionScope.memberInfo}" var="memberInfo" varStatus="status">
 	</c:forEach> --%>
 
-	<h1 id="header">Open Project</h1>
+	<h1 id="header">OpenProject</h1>
 		<ul id="nav">
-			<li><a href="<c:url value="/member/memberRegForm.jsp" context="/OP"/>">회원가입</a></li>
+			<li><a href="<c:url value="/member/memberRegForm.jsp"/>">회원가입</a></li>
 	<% 
 	if(loginStatus){
 	%>
-			<li><a href="<c:url value="/member/logout.jsp" context="/OP"/>">로그아웃</a></li>
+			<li><a href="<c:url value="/member/logout.jsp"/>">로그아웃</a></li>
 	<% }else { %>
-			<li><a href="<c:url value="/member/memberLoginForm.jsp" context="/OP"/>">로그인</a></li>
+			<li><a href="<c:url value="/member/memberLoginForm.jsp"/>">로그인</a></li>
 			
 	<% } %>
-			<li><a href="<c:url value="/member/myPage/myPage.jsp" context="/OP"/>">마이페이지</a></li>
-			<li><a href="<c:url value="/guestBook/list.jsp" context="/OP"/>">방명록(비회원)</a></li>
-			<li><a href="<c:url value="/board/list.jsp" context="/OP"/>">게시판(회원제)</a></li>
+			<li><a href="<c:url value="/member/myPage/myPage.jsp"/>">마이페이지</a></li>
+			<li><a href="<c:url value="/guestBook/list.jsp"/>">방명록(비회원)</a></li>
+			<li><a href="<c:url value="/board/list.jsp"/>">게시판(회원제)</a></li>
 	</ul>
 
     
