@@ -6,11 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Index</title>
-<%-- <link rel="stylesheet" href="<%= request.getContextPath() %>/CSS/default.css"> --%>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/CSS/default.css">
-<%-- <link rel="stylesheet" href="<c:url value="/CSS/default.css"/>" context="/OPMVC"/> --%>
 <style>
-
 </style>
 </head>
 <body>
