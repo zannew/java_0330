@@ -19,6 +19,13 @@
   	<url-pattern>*.do</url-pattern>
   </servlet-mapping>
   
+  <!-- 커넥션 풀 드라이버 등록 -->
+  <servlet>
+  	<servlet-name>DBCPInit</servlet-name>
+  	<servlet-class>jdbc.DBCPInit</servlet-class>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  
   
   
   

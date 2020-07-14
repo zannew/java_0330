@@ -56,33 +56,38 @@
 	
 	
 	<div>
-		<h1>로그인</h1>
+		<h1 class="subtitle">회원가입</h1>
 		
 		<hr>
-        
-        <form action="memberLogin.jsp" method="post" id="loginform"> 
-        <table id="form">
-            <tr>
-                <td>아이디(이메일)</td>
-                <td><input type="text" name="id" id="id" value="<%= savedId %>"><br></td>
-            </tr>
-            <tr>
-                <td>비밀번호</td>
-                <td><input type="password" name="pw" id="pw"><br></td>
-            </tr>
-            <tr>
-                <td>아이디 저장</td>
-                <td><input type="checkbox" name="checkbox_id" id="checkbox_id" <%= checked %>></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input id="btn_submit"type="submit" value="로그인"></td>
-            </tr>
-            
-        
-        </table>
-        
-         </form>
+		
+		<form action="login.jsp" method="post">
+		
+			<input type="text" name="redirecUri" 
+			
+			value="<%= request.getHeader("referer")%>" style=" width : 50% ;" >			
+			
+			
+			<table class="table">
+				<tr>
+					<td> ID </td>
+					<td> <input type="text" name="uid" value="<%= uidValue%>"> </td>
+				</tr>
+				<tr>
+					<td> PW </td>
+					<td> <input type="password" name="pw"> </td>
+				</tr>				
+				<tr>
+					<td></td>
+					<td> <input type="checkbox" name="remember" value="r" <%= checked %> > 아이디 기억하기  </td>
+				</tr>
+				<tr>
+					<td colspan="2"> <input type="submit" value="로그인"> </td>
+				</tr>
+			</table>
+		
+		</form>
+		
+		
 	</div>
 	
 	<%@ include file="/include/footer.jsp"%>
