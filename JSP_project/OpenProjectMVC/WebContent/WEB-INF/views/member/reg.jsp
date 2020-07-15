@@ -31,9 +31,6 @@
 				
 				<a href="${pageContext.request.contextPath}/member/memberList.do">회원리스트</a>
 				
-				
-				
-			
 			</c:if>
 			
 			<c:if test="${not (result gt 0 && member ne null)}">

@@ -39,8 +39,8 @@
 Flow : Service → DAO → ListView → View
 
 
-
-
+[회원 삭제]
+Flow : Service → DAO → deleteMember → View 
 
 
 
