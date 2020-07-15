@@ -2,7 +2,11 @@ package member.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import member.model.Member;
 
@@ -42,6 +46,182 @@ public class MemberDAO {
 		
 		return resultCnt;
 	}
+
+
+	public int selectById(Connection conn, String id) throws SQLException {
+		
+		int resultCnt = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+		
+			String sql = "select count(*) from member where uid=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+		
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				resultCnt = rs.getInt(1);
+			}
+				
+		} finally {
+			if(pstmt!=null) {
+				pstmt.close();
+			}
+			if(rs!=null) {
+				rs.close();
+			}
+			
+		}
+		
+		
+		
+		return resultCnt;
+	}
+
+	//요기랑
+	public int selectTotalCount(Connection conn) throws SQLException {
+		
+		int resultCnt = 0;
+		
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			stmt = conn.createStatement();
+			String sql = "select count(*) from member";
+			rs = stmt.executeQuery(sql);
+			
+			//한 행만 가져와야할 때
+			if(rs.next()) {
+				resultCnt = rs.getInt(1);
+			}
+		} finally {
+			if(rs!=null) {
+				rs.close();
+			}
+			if(stmt!=null) {
+				stmt.close();
+			}
+		}
+		System.out.println("전체 멤버수 : "+resultCnt);
+		
+		return resultCnt;
+	}
+
+
+	//요기랑
+	public List<Member> selectMemberList(Connection conn, int startRow, int endRow) throws SQLException {
+
+		List<Member> memberList = new ArrayList<Member>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "select * from member limit ?,?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Member member = new Member(rs.getInt("idx"), 
+										rs.getString("uid"), 
+										rs.getString("upw"), 
+										rs.getString("uname"), 
+										rs.getString("uphoto"), 
+										rs.getDate("regdate"));
+				
+				memberList.add(member);
+			}
+			
+		} finally {
+//			if(rs!=null) {
+//				rs.close();
+//			}
+			if(pstmt!=null) {
+				pstmt.close();
+			}
+			
+		}
+		
+		return memberList;
+	}
+
+	public Member selectByIdx(Connection conn, int idx) throws SQLException {
+		
+		int resultCnt = 0;
+		Member member=null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+		
+			String sql = "select * from member where idx=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+		
+			rs = pstmt.executeQuery();
+
+			while(rs.next()) {
+				member = new Member(rs.getInt("idx"), 
+									rs.getString("uid"), 
+									rs.getString("upw"), 
+									rs.getString("uname"), 
+									rs.getString("uphoto"), 
+									rs.getDate("regdate"));
+			}
+				
+		} finally {
+			if(pstmt!=null) {
+				pstmt.close();
+			}
+			if(rs!=null) {
+				rs.close();
+			}
+			
+		}
+		System.out.println(member);
+		return member;
+	}
+	
+
+	public int deleteMember(Connection conn, int idx) throws SQLException {
+		
+		int resultCnt = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		
+		try {
+			String sql="delete from member where idx=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			
+			
+			resultCnt = pstmt.executeUpdate();
+			
+			
+		} finally {
+			if(pstmt!=null) {
+				pstmt.close();
+			}
+			
+		}
+		
+		System.out.println("result : "+resultCnt);
+
+		return resultCnt;
+	}
+
+
+	
+
 	
 	
 	

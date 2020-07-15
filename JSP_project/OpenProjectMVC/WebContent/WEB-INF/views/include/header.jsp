@@ -16,6 +16,9 @@
 		<ul id="nav">
 			<li><a href="${pageContext.request.contextPath}/member/memberRegForm.do">회원가입</a></li>
 			<%-- <li><a href="<c:url value="/member/memberRegForm.do"/>">회원가입</a></li> --%>
+			
+			<li><a href="${pageContext.request.contextPath}/member/memberList.do">회원리스트</a></li>
+			
 	<% 
 	if(loginStatus){
 	%>

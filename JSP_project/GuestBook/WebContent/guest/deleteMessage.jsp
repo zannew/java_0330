@@ -16,8 +16,6 @@
 	// 메시징 다르게 처리
 	request.setAttribute("statusCode", resultCnt);
 	
-	
-	
 
 %>
 

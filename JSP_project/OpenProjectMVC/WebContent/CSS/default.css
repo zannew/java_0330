@@ -10,6 +10,9 @@ body {
 		padding: 10px 10px;
 	}
 
+.subtitle {
+	padding-top: 10px;
+}
 
 #header {
 	padding: 15px 20px;

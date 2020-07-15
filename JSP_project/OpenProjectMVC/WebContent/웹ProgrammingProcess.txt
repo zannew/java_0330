@@ -30,6 +30,13 @@
 	- 1 Service, 1 View
 2. regForm Data 처리
 	- 1 Service, 1 DAO (insert), 1 View
+3. 아이디 체크
+	- 1 Service, 1 DAO (select), View(html 대신 → text) Y | N
+
+
+[회원 리스트]
+
+Flow : Service → DAO → ListView → View
 
 
 

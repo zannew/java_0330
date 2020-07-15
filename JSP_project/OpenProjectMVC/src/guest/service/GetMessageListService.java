@@ -10,7 +10,7 @@ import guestbook.DAO.MessageDAO;
 import guestbook.jdbc.ConnectionProvider;
 import guestbook.model.Message;
 import guestbook.model.MessageListView;
-
+//OPMVC → MemberListServiceImpl.java
 public class GetMessageListService {
 
 	private GetMessageListService() {}
@@ -50,7 +50,9 @@ public class GetMessageListService {
 			if(messageTotalCount>0) {
 				
 				// 시작 행, 마지막 행
-				startRow = (pageNumber-1) * MESSAGE_COUNT_PER_PAGE + 1;
+				//startRow = (pageNumber-1) * MESSAGE_COUNT_PER_PAGE + 1;
+				// mysql : 0번부터 시작 (+1 unnecessary)
+				startRow = (pageNumber-1) * MESSAGE_COUNT_PER_PAGE;
 				endRow = startRow + MESSAGE_COUNT_PER_PAGE - 1;
 				
 				messageList = dao.selectMessageList(conn, startRow, endRow);
