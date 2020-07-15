@@ -7,6 +7,8 @@
 		
 		if(confirm('삭제하시겠습니까?')){
 			return true;
+			
+			location.href = "<c:url value="/member/memberList.do"/>";
 		}
 		
 		return false;
@@ -14,8 +16,22 @@
 	
 
 	alert("${resultMsg}");
-	location.href = "<c:url value="/member/memberList.do"/>";
 
 </script>
 
-<%-- <jsp:forward page="memberList.do"/> --%>
+<jsp:forward page="deleteMemberConfirm.do"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

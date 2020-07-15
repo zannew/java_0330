@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>Index</title>
 <link rel="stylesheet" href="<c:url value="/CSS/default.css"/>"> 
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
 <style>
 
 	span.totalMemberCount {
@@ -29,8 +31,18 @@
 	.currentPage {
 		background-color: yellow;
 	}
+	
+	#chk {
+		display: none;
+		
+	}
+	
+	.delBtn {
+		
+	}
 
 </style>
+
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/include/header.jsp"%>
@@ -55,8 +67,15 @@
 						이름 : ${member.uname}<br>
 						<div>[프로필 사진]</div><img src="<c:url value="${member.uphoto}"/>" id="profile_photo"><br>
 						가입일 : ${member.regdate}<br>
-						<a href="deleteMemberConfirm.do?idx=${member.idx}">삭제</a><a>수정</a>
+						<a href="#?idx=${member.idx}" id="delBtn">삭제</a><a>수정</a>
 						<hr>
+						
+						<div id="chk">
+						
+							감췄다가 나타나게할 영역
+						</div>
+						
+						
 					</div>					
 				</c:forEach>
 			</c:if>
@@ -64,7 +83,7 @@
 			<div class="paging">
 			<c:if test="${listView.pageTotalCount>0}">
 				<c:forEach begin="1" end="${listView.pageTotalCount}" var="num">
-					<a href="memberList.do?page=${num}" ${listView.currentPageNumber eq num ? 'class="currentPage"':''}>[${num}]</a>
+					<a href="memberListConfirm.do?page=${num}" ${listView.currentPageNumber eq num ? 'class="currentPage"':''}>[${num}]</a>
 				
 				</c:forEach>
 			
@@ -82,3 +101,21 @@
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 </body>
 </html>
+<script>
+
+	//var delBtn = document.getElementById("delBtn");
+
+	$(document).ready(function(){
+	
+		$('#delBtn').click(function(){
+		
+			$('#chk').css('display', 'block');
+			
+		}
+		
+	});
+	
+
+
+</script>
+

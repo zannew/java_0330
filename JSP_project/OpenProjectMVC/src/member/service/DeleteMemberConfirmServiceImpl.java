@@ -20,7 +20,7 @@ import member.DAO.MemberDAO;
 import member.model.Member;
 import service.Service;
 
-public class DeleteMemberServiceImpl implements Service {
+public class DeleteMemberConfirmServiceImpl implements Service {
 
 	MemberDAO dao;
 	
@@ -66,7 +66,7 @@ public class DeleteMemberServiceImpl implements Service {
 		request.setAttribute("resultMsg", resultMsg);
 		
 		
-		return "/WEB-INF/views/member/deleteMember.do";
+		return "/WEB-INF/views/member/deleteMemberConfirm.do";
 	}
 
 }
