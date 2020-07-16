@@ -15,7 +15,6 @@ public class EditMemberConfirmServiceImpl implements Service {
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
 
-		
 		return "/WEB-INF/views/member/editMemberConfirm.jsp";
 	}
 

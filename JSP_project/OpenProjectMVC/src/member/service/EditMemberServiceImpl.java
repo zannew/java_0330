@@ -32,9 +32,7 @@ public class EditMemberServiceImpl implements Service {
 		String newPhoto = request.getParameter("newPhoto");
 		int resultCnt = 0;
 		Member member = null;
-		String chkPw = request.getParameter("chkPw");
 		String resultMsg="빈메시지";
-		String returnPath="";
 		
 		Connection conn = null;
 		
@@ -45,9 +43,8 @@ public class EditMemberServiceImpl implements Service {
 			
 			member = dao.selectByIdx(conn, idx);
 			
-			if(member.getUpw().equals(chkPw)) {
 				
-				resultCnt = dao.editMember(conn, idx, newPw, newPhoto);
+			resultCnt = dao.editMember(conn, idx, newPw, newPhoto);
 				
 				if(resultCnt==1) {
 					resultMsg="정상적으로 수정되었습니다.";
@@ -55,15 +52,14 @@ public class EditMemberServiceImpl implements Service {
 					resultMsg="수정하실 회원정보를 찾지 못했습니다.";
 				}
 				
-			} else {		// 비번틀렸을 시(수정불가능)
-				
-				resultMsg="비밀번호가 틀렸습니다.";
-				
-			}
+			System.out.println("editMmeberSerivice입ㄴ디ㅏ.");
+			System.out.println(resultMsg);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		
 		request.setAttribute("resultMsg", resultMsg);
 		
 		return "/WEB-INF/views/member/editMember.jsp";

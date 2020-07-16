@@ -12,14 +12,15 @@
 
 	/* var form = document.getElementById("delForm"); */
 	
-	function check(){
+/* 	function check(){
 		
 		if(confirm('수정하시겠습니까?')){
 			return true;
 		}
 		
 		return false;
-	}
+	} */
+	
 	
 	
 </script>
@@ -30,10 +31,10 @@
 	
 
 	<h3>회원정보를 수정하시려면 비밀번호를 입력해주세요.</h3>
-	<form id="delForm" action="editInfo.do" method="post" onsubmit="return check();">
+	<form id="delForm" action="editInfo.do?idx=${param.idx}" method="post" onsubmit="return check();">
 		비밀번호 <input type="password" name="chkPw">
 		<input type="hidden" name="idx" value="${param.idx}">
-		<input type="submit" value="수정하기">
+		<input type="submit" value="제출하기">
 	</form>
 	
 	

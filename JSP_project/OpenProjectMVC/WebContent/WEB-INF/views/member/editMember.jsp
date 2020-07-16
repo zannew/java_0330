@@ -8,13 +8,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="<c:url value="/CSS/default.css"/>"> 
 <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
-<script>
 
-	alert("${resultMsg}");
-	alert("회원리스트로 돌아갑니다.");
-	location.href="memberList.do";
-	
-</script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/include/header.jsp"%>
@@ -29,6 +23,10 @@
 		<h1>비밀번호가 일치하지 않습니다.</h1>
 	</c:if> --%>
 	
+	<form id="deliveryIdx">
+		<input type="hidden" name="idx" value="${param.idx}">
+	</form>
+	
 	
 	
 	<!-- <a href="memberList.jsp">리스트 보기</a> -->
@@ -38,3 +36,14 @@
 
 </body>
 </html>
+<script>
+
+		
+		alert("${resultMsg}");
+		alert("회원리스트로 돌아갑니다.");
+		location.href="memberList.do";
+		
+
+	
+	
+</script>
