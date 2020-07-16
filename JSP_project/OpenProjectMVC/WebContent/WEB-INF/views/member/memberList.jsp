@@ -32,10 +32,6 @@
 		background-color: yellow;
 	}
 	
-	#chk {
-		display: none;
-		
-	}
 	
 	.delBtn {
 		
@@ -45,8 +41,8 @@
 
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/include/header.jsp"%>
 	
+	<%@ include file="/WEB-INF/views/include/header.jsp"%>
 	
 	<div>
 		<h1 class="subtitle">회원 가입</h1><span class="totalMemberCount">현재 총 회원 수 : ${listView.memberTotalCount} 명</span>
@@ -67,13 +63,9 @@
 						이름 : ${member.uname}<br>
 						<div>[프로필 사진]</div><img src="<c:url value="${member.uphoto}"/>" id="profile_photo"><br>
 						가입일 : ${member.regdate}<br>
-						<a href="#?idx=${member.idx}" id="delBtn">삭제</a><a>수정</a>
+						<a href="deleteMemberConfirm.do?idx=${member.idx}" id="delBtn">삭제</a>
+						<a href="editMemberConfirm.do?idx=${member.idx}" id="editBtn">수정</a>
 						<hr>
-						
-						<div id="chk">
-						
-							감췄다가 나타나게할 영역
-						</div>
 						
 						
 					</div>					
@@ -83,15 +75,13 @@
 			<div class="paging">
 			<c:if test="${listView.pageTotalCount>0}">
 				<c:forEach begin="1" end="${listView.pageTotalCount}" var="num">
-					<a href="memberListConfirm.do?page=${num}" ${listView.currentPageNumber eq num ? 'class="currentPage"':''}>[${num}]</a>
+					<a href="memberList.do?page=${num}" ${listView.currentPageNumber eq num ? 'class="currentPage"':''}>[${num}]</a>
 				
 				</c:forEach>
 			
 			</c:if>
 			
 			</div>
-			
-			
 			
 			
 		
@@ -101,21 +91,5 @@
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 </body>
 </html>
-<script>
 
-	//var delBtn = document.getElementById("delBtn");
-
-	$(document).ready(function(){
-	
-		$('#delBtn').click(function(){
-		
-			$('#chk').css('display', 'block');
-			
-		}
-		
-	});
-	
-
-
-</script>
 

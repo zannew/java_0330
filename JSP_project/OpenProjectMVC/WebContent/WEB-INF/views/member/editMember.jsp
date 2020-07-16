@@ -5,8 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>deleteMessage_view</title>
+<title>Insert title here</title>
 <link rel="stylesheet" href="<c:url value="/CSS/default.css"/>"> 
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
 <script>
 
 	alert("${resultMsg}");
@@ -16,8 +17,7 @@
 </script>
 </head>
 <body>
-
-<%@ include file="/WEB-INF/views/include/header.jsp"%>
+	<%@ include file="/WEB-INF/views/include/header.jsp"%>
 	
 	<%-- <c:if test="${statusCode eq 1}">
 		<h1>회원 계정이 정상적으로 삭제되었습니다.</h1>
@@ -34,6 +34,7 @@
 	<!-- <a href="memberList.jsp">리스트 보기</a> -->
 	
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
-	
+
+
 </body>
 </html>

@@ -25,7 +25,7 @@ public class MemberDAO {
 		int resultCnt = 0;
 		
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO member (uid, upw, uname, uphoto) VALUES (?,?,?,?)";
+		String sql = "INSERT INTO project.member (uid, upw, uname, uphoto) VALUES (?,?,?,?)";
 		
 		try {
 			
@@ -57,7 +57,7 @@ public class MemberDAO {
 		
 		try {
 		
-			String sql = "select count(*) from member where uid=?";
+			String sql = "select count(*) from project.member where uid=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 		
@@ -92,7 +92,7 @@ public class MemberDAO {
 		
 		try {
 			stmt = conn.createStatement();
-			String sql = "select count(*) from member";
+			String sql = "select count(*) from project.member";
 			rs = stmt.executeQuery(sql);
 			
 			//한 행만 가져와야할 때
@@ -122,7 +122,7 @@ public class MemberDAO {
 		ResultSet rs = null;
 		
 		try {
-			String sql = "select * from member limit ?,?";
+			String sql = "select * from project.member limit ?,?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
@@ -162,7 +162,7 @@ public class MemberDAO {
 		
 		try {
 		
-			String sql = "select * from member where idx=?";
+			String sql = "select * from project.member where idx=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, idx);
 		
@@ -197,27 +197,51 @@ public class MemberDAO {
 		
 		PreparedStatement pstmt = null;
 		
-		
 		try {
-			String sql="delete from member where idx=?";
+			String sql="delete from project.member where idx=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, idx);
 			
-			
 			resultCnt = pstmt.executeUpdate();
-			
 			
 		} finally {
 			if(pstmt!=null) {
 				pstmt.close();
 			}
-			
 		}
 		
 		System.out.println("result : "+resultCnt);
 
 		return resultCnt;
 	}
+
+	public int editMember(Connection conn, int idx, String newPw, String newPhoto) throws SQLException {
+		
+		
+		int resultCnt = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql="update project.member set upw=?, uphoto=? where idx=?"; 
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, newPw);
+			pstmt.setString(2, newPhoto);
+			pstmt.setInt(3, idx);
+			
+			resultCnt = pstmt.executeUpdate();
+			
+		} finally {
+			
+			if(pstmt!=null) {
+				pstmt.close();
+			}
+			
+		}
+		return resultCnt;
+	}
+
+
 
 
 	

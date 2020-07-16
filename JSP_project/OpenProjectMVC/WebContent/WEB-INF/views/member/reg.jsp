@@ -12,6 +12,12 @@
 	a {
 		margin: 10px 10px;
 	}
+	
+	#congratsMsg {
+		color: green;
+		
+	}
+	
 </style>
 </head>
 <body>
@@ -24,8 +30,10 @@
 		<h3>
 			
 			<c:if test="${result gt 0 && member ne null}">
-				<div>
-					회원가입 완료
+				<div id="congratsMsg">
+					<h2>▶ 축하합니다 ◀</h2>
+					<h2>회원가입이 정상적으로 처리되었습니다.</h2>
+	
 				</div>
 				<br><br>
 				

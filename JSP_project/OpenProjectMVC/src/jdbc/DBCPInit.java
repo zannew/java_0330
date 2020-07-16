@@ -42,6 +42,7 @@ private void initConnectionPool() {
 		//String jdbcDriver = "jdbc:oracle:thin:@localhost:1521:orcl";
 		//String jdbcDriver = "jdbc:oracle:thin:@localhost:1524:orcl2";
 		String jdbcDriver = "jdbc:mysql://localhost:3306/project?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC";
+		//String jdbcDriver = "jdbc:mysql://aia.cedoxb9y9mdk.ap-northeast-2.rds.amazonaws.com:3306/project?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC";
 		String username = "bit";
 		String pw = "bit";
 		

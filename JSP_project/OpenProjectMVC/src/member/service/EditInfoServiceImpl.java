@@ -1,14 +1,18 @@
 package member.service;
 
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import jdbc.ConnectionProvider;
 import member.DAO.MemberDAO;
+import member.model.Member;
 import service.Service;
 
-public class DeleteMemberConfirmServiceImpl implements Service {
+public class EditInfoServiceImpl implements Service {
 
 	MemberDAO dao;
 	
@@ -16,7 +20,7 @@ public class DeleteMemberConfirmServiceImpl implements Service {
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
 
 		
-		return "/WEB-INF/views/member/deleteMemberConfirm.jsp";
+		return "/WEB-INF/views/member/editInfo.jsp";
 	}
 
 }

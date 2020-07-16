@@ -20,59 +20,54 @@ import member.DAO.MemberDAO;
 import member.model.Member;
 import service.Service;
 
-public class DeleteMemberServiceImpl implements Service {
+public class EditMemberServiceImpl implements Service {
 
 	MemberDAO dao;
 	
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
 
-		
 		int idx = Integer.parseInt(request.getParameter("idx"));
+		String newPw = request.getParameter("newPw");
+		String newPhoto = request.getParameter("newPhoto");
 		int resultCnt = 0;
 		Member member = null;
 		String chkPw = request.getParameter("chkPw");
 		String resultMsg="빈메시지";
+		String returnPath="";
 		
 		Connection conn = null;
 		
 		try {
 			
 			conn = ConnectionProvider.getConnection();
-			dao = MemberDAO.getInstance();
-			
+			dao=MemberDAO.getInstance();
 			
 			member = dao.selectByIdx(conn, idx);
 			
-			System.out.println("upw : "+member.getUpw());
-			System.out.println("chkpw : "+chkPw);
-			
-			//1. 입력했던 비밀번호가  맞는지 아닌지 분기 처리
-			//2. 맞으면 삭제 진행 아니면 틀림 메시지주기
 			if(member.getUpw().equals(chkPw)) {
-
-				resultCnt = dao.deleteMember(conn, idx);
+				
+				resultCnt = dao.editMember(conn, idx, newPw, newPhoto);
 				
 				if(resultCnt==1) {
-					resultMsg="정상적으로 삭제되었습니다.";
+					resultMsg="정상적으로 수정되었습니다.";
 				} else {
-					resultMsg="삭제하실 회원정보가 없습니다.";
+					resultMsg="수정하실 회원정보를 찾지 못했습니다.";
 				}
-			} else {
+				
+			} else {		// 비번틀렸을 시(수정불가능)
+				
 				resultMsg="비밀번호가 틀렸습니다.";
+				
 			}
-			
-			
-			//System.out.println(resultMsg);
-			
+
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		request.setAttribute("resultMsg", resultMsg);
 		
+		return "/WEB-INF/views/member/editMember.jsp";
 		
-		return "/WEB-INF/views/member/deleteMember_view.jsp";
 	}
 
 }
