@@ -187,6 +187,7 @@ public class MemberDAO {
 			
 		}
 		System.out.println(member);
+		
 		return member;
 	}
 	

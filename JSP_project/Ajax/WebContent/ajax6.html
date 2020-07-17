@@ -34,7 +34,7 @@
 
 		$('#my-form').submit(function(){
 			
-			var param1 = $(this).serialize();
+			var param1 = $(this).serialize();	//1 instance 정보 모두 출력
 			$('#wrap').append('<h1>'+param1+'</h1>');
 			
 			var param2 = $(this).serializeArray();

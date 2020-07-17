@@ -19,13 +19,21 @@ public class EditInfoServiceImpl implements Service {
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
 
+		String idxchk="";
 		
-		System.out.println("idx : "+request.getParameter("idx"));
+		if(request==null) {
+			idxchk="null이에요";
+		}
+		
+		//System.out.println("idx : "+request.getParameter("idx"));
+		System.out.println("idx : "+idxchk);
+		//int idx = Integer.parseInt(request.getParameter("idx"));
 		int idx = Integer.parseInt(request.getParameter("idx"));
+		
 		Member member = null;
 		String chkPw = request.getParameter("chkPw");
 		String resultMsg="빈메시지";
-		int resultStatus=0;
+		String resultStatus="status 디폴트!";
 		
 		System.out.println("editInfoService입니다.");
 		
@@ -41,7 +49,7 @@ public class EditInfoServiceImpl implements Service {
 			if(member.getUpw().equals(chkPw)) {
 				
 				resultMsg="회원정보 수정을 진행합니다.";
-				resultStatus=1;
+				resultStatus="ok";
 				
 			} else {		// 비번틀렸을 시(수정불가능)
 				
@@ -51,6 +59,7 @@ public class EditInfoServiceImpl implements Service {
 
 			System.out.println(resultMsg);
 			System.out.println(resultStatus);
+			System.out.println("입력한 비번 : "+chkPw);
 
 			
 		} catch (SQLException e) {

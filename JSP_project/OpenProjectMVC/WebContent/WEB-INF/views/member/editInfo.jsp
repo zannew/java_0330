@@ -33,10 +33,12 @@
 
 	alert("${resultMsg}");
 	
+	var copiedIdx = "${param.idx}";
+	
 	//function nextStep(){
 		//수정 가능
-		if("${resultStatus}"==1){
-			location.href="<c:url value="/member/editInfo.do?idx=0"/>";
+		if("${resultStatus}"=="ok"){
+			location.href="<c:url value="/member/editInfo.do"/>";
 		//비번 틀림 - 수정 불가능
 		} else {
 			alert("회원리스트로 돌아갑니다.");
@@ -48,3 +50,4 @@
 
 	
 </script>
+

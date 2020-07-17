@@ -27,9 +27,8 @@ public class MemberListServiceImpl implements Service {
 	
 	MemberDAO dao;
 	
-	
-	
-	
+	// 한 페이지에 표현할 회원의 수
+	private final int MEMBER_COUNT_PER_PAGE = 3;
 	
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
@@ -40,13 +39,14 @@ public class MemberListServiceImpl implements Service {
 		
 		List<Member> memberList = null;
 		
+		
+		
 		try {
 			
 			conn=ConnectionProvider.getConnection();
 			dao=MemberDAO.getInstance();
 			
-			// 한 페이지에 표현할 회원의 수
-			final int MEMBER_COUNT_PER_PAGE=3;
+			
 			
 			// 전체 회원 수 
 			int memberTotalCount = dao.selectTotalCount(conn);

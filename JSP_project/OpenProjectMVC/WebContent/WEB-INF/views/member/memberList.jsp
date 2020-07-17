@@ -48,11 +48,6 @@
 		<h1 class="subtitle">회원 가입</h1><span class="totalMemberCount">현재 총 회원 수 : ${listView.memberTotalCount} 명</span>
 		<hr>
 		<h3>
-		
-			<c:if test="${not empty listView}">
-				
-			
-			</c:if>
 			
 			<c:if test="${not empty listView.memberList}">
 				
