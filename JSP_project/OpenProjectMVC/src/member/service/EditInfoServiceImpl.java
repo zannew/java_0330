@@ -30,6 +30,7 @@ public class EditInfoServiceImpl implements Service {
 		//int idx = Integer.parseInt(request.getParameter("idx"));
 		int idx = Integer.parseInt(request.getParameter("idx"));
 		
+		String path="";
 		Member member = null;
 		String chkPw = request.getParameter("chkPw");
 		String resultMsg="빈메시지";
@@ -50,10 +51,13 @@ public class EditInfoServiceImpl implements Service {
 				
 				resultMsg="회원정보 수정을 진행합니다.";
 				resultStatus="ok";
+				path="/WEB-INF/views/member/editInfo.jsp";
 				
 			} else {		// 비번틀렸을 시(수정불가능)
 				
 				resultMsg="비밀번호가 틀렸습니다.";
+				resultStatus="wrong";
+				path="/WEB-INF/views/member/memberList.jsp";
 				
 			}
 
@@ -68,8 +72,6 @@ public class EditInfoServiceImpl implements Service {
 		
 		request.setAttribute("resultMsg", resultMsg);
 		request.setAttribute("resultStatus", resultStatus);
-		
-		
 		
 		return "/WEB-INF/views/member/editInfo.jsp";
 	}

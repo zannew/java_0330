@@ -16,11 +16,15 @@
 	
 	<h3>수정할 정보를 입력해주세요.</h3>
 	
-	<form id="editForm" action="editMember.do" method="post" onsubmit="return nextStep();">
+	<form id="editForm" action="editMember.do?idx=${param.idx}" method="post" onsubmit="return nextStep();">
 		<input type="hidden" name="idx" value="${param.idx}">
 		▶ 새 비밀번호 <input type="password" name="newPw"><br>
 		▶ 새 프로필 사진 <input type="file" name="newPhoto"><br>
 		<input type="submit" value="수정하기">
+		
+		<%-- <c:redirect url="editMember.do">
+			<c:param name="idx" value="${param.idx}"/>
+		</c:redirect> --%>
 	
 	</form>
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
@@ -29,25 +33,5 @@
 </body>
 </html>
 
-<script>
 
-	alert("${resultMsg}");
-	
-	var copiedIdx = "${param.idx}";
-	
-	//function nextStep(){
-		//수정 가능
-		if("${resultStatus}"=="ok"){
-			location.href="<c:url value="/member/editInfo.do"/>";
-		//비번 틀림 - 수정 불가능
-		} else {
-			alert("회원리스트로 돌아갑니다.");
-			location.href="<c:url value="/member/memberList.do"/>";
-		}
-		
-		
-	//}
-
-	
-</script>
 

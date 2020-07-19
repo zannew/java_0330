@@ -31,12 +31,10 @@
 	
 
 	<h3>회원정보를 수정하시려면 비밀번호를 입력해주세요.</h3>
-	<form id="delForm" action="editInfo.do" method="post" onsubmit="return check();">
+	<form id="delForm" action="editInfo.do?idx=${param.idx}" method="post" onsubmit="return check();">
 		비밀번호 <input type="password" name="chkPw">
 		<input type="hidden" name="idx" value="${param.idx}">
-		<c:redirect url="editInfo.do">
-			<c:param name="idx" value="${param.idx}"/>
-		</c:redirect>
+		
 		<input type="submit" value="제출하기">
 	</form>
 	
@@ -47,3 +45,26 @@
 
 </body>
 </html>
+<script>
+
+	alert("resultMsg : ${resultMsg}");
+	
+	var copiedIdx = "${param.idx}";
+	alert("param.idx = "+copiedIdx);
+	alert("resultStatus는 "+"${resultStatus}");
+	
+	//function nextStep(){
+		//수정 가능
+		if("${resultStatus}".equals("ok")){
+			location.href="<c:url value="/member/editMember.do"/>";
+		//비번 틀림 - 수정 불가능
+		} else {
+			alert("회원리스트로 돌아갑니다.");
+			location.href="<c:url value="/member/memberList.do"/>";
+		}
+		
+		
+	//}
+
+	
+</script>

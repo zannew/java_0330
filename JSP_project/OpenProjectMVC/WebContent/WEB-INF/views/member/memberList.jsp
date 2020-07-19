@@ -45,7 +45,7 @@
 	<%@ include file="/WEB-INF/views/include/header.jsp"%>
 	
 	<div>
-		<h1 class="subtitle">회원 가입</h1><span class="totalMemberCount">현재 총 회원 수 : ${listView.memberTotalCount} 명</span>
+		<h1 class="subtitle">회원 리스트</h1><span class="totalMemberCount">현재 총 회원 수 : ${listView.memberTotalCount} 명</span>
 		<hr>
 		<h3>
 			

@@ -8,19 +8,22 @@
 </head>
 <body>
 	아이디를 입력하세요 >
-	<input type="text" id="uid" value=""><span id="checkmsg"></span>
+	<input type="text" id="uid" value="">
+	<input type="button" id="idcheck" value="중복확인">
+	<span id="checkmsg"></span>
+	
 </body>
 </html>
 <script>
 	
 	$(document).ready(function(){
 		
-		$('#uid').focusout(function(){
+		$('#idcheck').click(function(){
 			
 			$.ajax({
 				url: 'idCheck.jsp',
 				type: 'GET',			// GET & POST - (form tag), PUT & DELETE - (js or jquery)
-				data: { uid: $(this).val() },
+				data: { uid: $('#uid').val() },
 				success: function(data){
 					
 					if(data=="Y"){
