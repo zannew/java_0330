@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<style></style>
+</head>
+<body>
+	<h1>나의 강의실</h1>
+	<form id="classList">
+		<table>
+			<thead>
+				<tr>
+					<th>강의번호</th>
+					<th>시간</th>
+					<th>강의명</th>
+					<th>강의실</th>
+				</tr>
+			</thead>
+			<tbody id="classListTbody">
+				
+			</tbody>
+		</table>
+	
+	</form>
+	
+	
+</body>
+</html>
+<script>
+	
+	$(document).ready(function(){
+		// url에 받아올 데이터 주소
+		$.getJSON('data_json_LMS.jsp', function(data){
+			//data와 각각 어떻게 처리할지 함수 정의
+			/* $.each(data, function(key, value){
+				
+				$('body').append('<h1>강의번호 : '+value.classIdx+', 시간 : '+value.startTime+', 강의명: '+value.className+', 강의실: '+value.classRoom+'</h1>');		
+				
+			}); */
+				html = '';
+			
+			for(key in data){
+				
+				html +='	<tr>';
+				html +='		<td>'+data[key].classIdx+'</td>';
+				html +='		<td>'+data[key].startTime+'</td>';
+				html +='		<td>'+data[key].className+'</td>';
+				html +='		<td>'+data[key].classRoom+'</td>';
+				html +='	</tr>';
+				
+				
+				$('#classListTbody').empty();
+				$('#classListTbody').html(html);
+			}
+			
+		});
+		
+	});
+	
+	
+</script>

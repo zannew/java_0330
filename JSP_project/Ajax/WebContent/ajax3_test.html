@@ -1,16 +1,22 @@
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<style></style>
+<style>
+	table {
+		border: 1px solid;
+	}
+</style>
 </head>
 <body>
-	아이디를 입력하세요 >
+	<!-- 아이디를 입력하세요 >
 	<input type="text" id="uid" value="">
 	<input type="button" id="idcheck" value="중복확인">
-	<span id="checkmsg"></span>
+	<span id="checkmsg"></span> -->
+	
+	
+	
 	
 </body>
 </html>
@@ -18,10 +24,10 @@
 	
 	$(document).ready(function(){
 		
-		$('#idcheck').click(function(){
+		$('td').click(function(){
 			
 			$.ajax({
-				url: 'idCheck.jsp',
+				url: 'classTest.jsp',
 				type: 'GET',			// GET & POST - (form tag), PUT & DELETE - (js or jquery)
 				data: { uid: $('#uid').val() },
 				success: function(data){
