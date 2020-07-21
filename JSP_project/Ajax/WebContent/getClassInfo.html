@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+</head>
+<body>
+
+	<div id="classListBody"></div>
+
+
+</body>
+</html>
+<script>
+
+	$(document).ready(function() {
+
+		$.getJSON('data_json_LMS.jsp', function() {
+
+			html = '';
+
+			for (key in data) {
+
+				html += '	<div>';
+				html += '		<div>' + data[key].classIdx + '</div>';
+				html += '		<div>' + data[key].startTime + '</div>';
+				html += '		<div>' + data[key].className + '</div>';
+				html += '		<div>' + data[key].classRoom + '</div>';
+				html += '	</div>';
+
+				$('#classListBody').empty();
+				$('#classListBody').html(html);
+			}
+
+		});
+
+	});
+</script>
