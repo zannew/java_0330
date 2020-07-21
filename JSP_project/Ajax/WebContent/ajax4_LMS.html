@@ -4,10 +4,35 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<style></style>
+<style>
+
+	#a {
+        width: '50%';
+        height: 100px;
+        border: 3px solid;
+        overflow: auto;
+      }
+      
+     #classInfo {
+     
+     	border: 1px solid;
+     	background-color: yellow;
+     	
+     } 
+     
+     tr {
+     	background-color: grey;
+     }
+      
+      
+</style>
 </head>
 <body>
 	<h1>나의 강의실</h1>
+	
+	<p><button id='open'>세부정보</button><button id='close'>닫기</button></p>
+	
+	<div id="a">
 	<form id="classList">
 		<table>
 			<thead>
@@ -25,12 +50,27 @@
 	
 	</form>
 	
+    </div>
 	
 </body>
 </html>
 <script>
 	
 	$(document).ready(function(){
+		
+		 $( '#open' ).click( function() {
+	          $( '#a' ).animate( {
+	            width: '50%',
+	            height: '300px'
+	          } );
+	        } );
+	           $( '#close' ).click( function() {
+	          $( '#a' ).animate( {
+	            width: '50%',
+	            height: '100px'
+	          } );
+	        } );
+		
 		// url에 받아올 데이터 주소
 		$.getJSON('data_json_LMS.jsp', function(data){
 			//data와 각각 어떻게 처리할지 함수 정의
@@ -43,12 +83,12 @@
 			
 			for(key in data){
 				
-				html +='	<tr>';
-				html +='		<td>'+data[key].classIdx+'</td>';
-				html +='		<td>'+data[key].startTime+'</td>';
-				html +='		<td>'+data[key].className+'</td>';
-				html +='		<td>'+data[key].classRoom+'</td>';
-				html +='	</tr>';
+				html +='		<tr>';
+				html +='			<div>'+data[key].classIdx+'</td>';
+				html +='			<td>'+data[key].startTime+'</td>';
+				html +='			<td>'+data[key].className+'</td>';
+				html +='			<td>'+data[key].classRoom+'</td>';
+				html +='		</tr>';
 				
 				
 				$('#classListTbody').empty();

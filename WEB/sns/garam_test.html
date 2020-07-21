@@ -1,0 +1,58 @@
+<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+<a id="send-to-btn" href="#" onclick="sendTo();">
+  <img src="//k.kakaocdn.net/14/dn/btqc6xrxbuT/7VJk7YSWITkz9K9pbXEffk/o.jpg" />
+</a>
+<script type="text/javascript">
+	// 웹 플랫폼 도메인 등 초기화한 앱의 설정이 그대로 적용됩니다.
+	// 초기화한 앱에 현재 도메인이 등록되지 않은 경우 에러가 발생합니다.
+    Kakao.init('28acda8ed9c06d820ed355f6085698ed');
+	function sendTo() {
+		// getAccessToken : 로그인이 되어있는지 확인한다
+		if(!Kakao.Auth.getAccessToken()){
+			// 로그인
+			Kakao.Auth.login({
+				success: function() {
+					// API 요청
+					Kakao.API.request({
+						// 나에게 보내기 API 주소
+						url: '/v2/api/talk/memo/send',
+						data: {
+							// 커스텀 템플릿 아이디
+							template_id: 32861,
+							// templateArgs: {"title": "Kakao msg forwarded from the web","description": "AIA semi-final project"}
+						},
+						success: function(res) {
+							alert('msg success: ' + JSON.stringify(res))},
+						fail: function(err) {
+							alert('msg error: ' + JSON.stringify(err))},
+					})
+				},
+				fail: function(err) {
+		        	alert('failed to login: ' + JSON.stringify(err))},
+			})
+		}
+		// 로그인이 되어있으면 메세지 전송으로 넘어감
+		else{
+			Kakao.Auth.login({
+				//scope: 'PROFILE,TALK_MESSAGE',
+				//scope: 'talk_message',
+				success: function() {
+					Kakao.API.request({
+						url: '/v2/api/talk/memo/send',
+						data: {
+							template_id: 32861,
+							//templateArgs: {"title": "Kakao msg forwarded from the web","description": "AIA semi-final project"}
+						},
+						success: function(res) {
+							alert('msg success: ' + JSON.stringify(res))},
+						fail: function(err) {
+							alert('msg error: ' + JSON.stringify(err))},
+					})
+				},
+				fail: function(err) {
+		        	alert('failed to login: ' + JSON.stringify(err))},
+			})
+		}
+	};
+</script>

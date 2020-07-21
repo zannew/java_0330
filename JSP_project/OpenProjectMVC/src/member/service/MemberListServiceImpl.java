@@ -40,7 +40,6 @@ public class MemberListServiceImpl implements Service {
 		List<Member> memberList = null;
 		
 		
-		
 		try {
 			
 			conn=ConnectionProvider.getConnection();

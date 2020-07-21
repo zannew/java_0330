@@ -5,8 +5,7 @@
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
-  
-  <!-- FrontController Servlet 등록 -->
+    <!-- FrontController Servlet 등록 -->
   <servlet>
   	<servlet-name>FrontController</servlet-name>
   	<servlet-class>controller.FrontController</servlet-class>
@@ -27,6 +26,7 @@
   </servlet>
   
   
+
   
   
   
