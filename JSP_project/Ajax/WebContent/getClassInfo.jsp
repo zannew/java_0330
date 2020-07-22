@@ -28,8 +28,9 @@
 <body>
 
 	<div id="wrap">
-		<div id="classList"></div>
-		<div id="details"></div>
+			<div id="details">
+		</div>
+		
 	</div>
 	
 	
@@ -144,20 +145,33 @@
 	
 	function showDetail(cIdx){
 		
+		$('#details').css('display', 'block');
+		
 		$('#classList').animate({
 			width: '50%',
 			height: '300px'
 		}, 1500);
 		
 		$.ajax({ 
+			
 			url: 'new_data_json.jsp',
 			type: 'GET',
-			data: { idx: cIdx},
-			success: function(data) {
-			    var e = $(data).find('cRoom').find('contents');
-			    $('#details').html(e);
-				alert(e);
+			data: {idx: cIdx},
+			dataType: 'json',
+			contentType: 'application/json',
+			success: function(data){
+				var param2 = $(data).serializeArray();
+			//[0]은 name, [1]은 price
+			$('#details').text(param2[4].value);
+/* 			success: function(data) {
+			    var e = $(data).find('idx').find('contents');
+			    $('#details').html(JSON.stringify(e));
+				alert("e : "+e);
+			} */
+			
+			alert('param2 : '+param2);
 			}
+				
 		});	
 		
 		alert('cIdx : '+cIdx);
@@ -166,6 +180,19 @@
 	}
 	
 	function hideDetail(idx){
+		
+		$('#wrap').on('click','#close', function(){
+			
+			$('#classList').animate({
+				width: '50%',
+				height: '100px'
+			});
+			
+		});
+		
+		$('#details').css('display', 'none');
+		
+		
 		
 				
 	}
@@ -179,21 +206,23 @@
 			$.each(data, function(key, value){
 				
 				var idx = value.idx;
-				var addStr1='<input type="button" value="자세히보기" id="open';
+				var addStr1='<div id="classList">'; 
+				addStr1+='<input type="button" value="자세히보기" id="open';
 				//addStr1+=idx;
-				addStr1+='" onClick="showDetail(\'';
+				addStr1+='" onclick="showDetail(\'';
 				addStr1+=idx;
 				addStr1+='\')">';
+				addStr1+='</div>';
 				alert(addStr1);
 				var addStr2='<input type="button" value="닫기" id="close';
 				//addStr2+=idx;
-				addStr2+='" onClick="hideDetail(\'';
+				addStr2+='" onclick="hideDetail(\'';
 				addStr2+=idx;
 				addStr2+='\')">';
 				//alert(addStr);
-				$('#classList').append('<span>'+value.idx+'</span>'
-						+'<span>'+value.time+'</span>'
-						+'<span>'+value.cName+'</span>'
+				$('#wrap').append('<div>'+value.idx+'</div>'
+						+'<div>'+value.time+'</div>'
+						+'<div>'+value.cName+'</div>'
 						/* +'<span>'+value.cRoom+'</span>' */
 						/* +'<div>'+value.contents+'</div>' */
 						+addStr1
@@ -225,7 +254,7 @@
 				width: '50%',
 				height: '300px'
 			});
-		})
+		});
 		
 		$('#wrap').on('click','#close', function(){
 			
@@ -233,7 +262,7 @@
 				width: '50%',
 				height: '100px'
 			});
-		})
+		});
 		
 		
 
