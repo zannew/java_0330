@@ -27,7 +27,11 @@
 </head>
 <body>
 
-	<div id="classList"></div>
+	<div id="wrap">
+		<div id="classList"></div>
+		<div id="details"></div>
+	</div>
+	
 	
 	<form>
 		<table>
@@ -121,8 +125,9 @@
 			</tr>
 		</table>
 		
+		
 	</form>
-	<input type="button" value="자세히보기" id="open"><input type="button" value="닫기" id="close">
+	<!-- <input type="button" value="자세히보기" id="open"><input type="button" value="닫기" id="close"> -->
 	
 
 
@@ -130,19 +135,73 @@
 </html>
 <script>
 
+
+	function test(idx){
+		alert("test");		
+	}
+	
+	var toggle=false;
+	
+	function showDetail(cIdx){
+		
+		$('#classList').animate({
+			width: '50%',
+			height: '300px'
+		}, 1500);
+		
+		$.ajax({ 
+			url: 'new_data_json.jsp',
+			type: 'GET',
+			data: { idx: cIdx},
+			success: function(data) {
+			    var e = $(data).find('cRoom').find('contents');
+			    $('#details').html(e);
+				alert(e);
+			}
+		});	
+		
+		alert('cIdx : '+cIdx);
+		toggle=true;
+		
+	}
+	
+	function hideDetail(idx){
+		
+				
+	}
+
+
+
 	$(document).ready(function() {
 		
 		 $.getJSON('new_data_json.jsp', function(data){
 			//data와 각각 어떻게 처리할지 함수 정의
 			$.each(data, function(key, value){
 				
+				var idx = value.idx;
+				var addStr1='<input type="button" value="자세히보기" id="open';
+				//addStr1+=idx;
+				addStr1+='" onClick="showDetail(\'';
+				addStr1+=idx;
+				addStr1+='\')">';
+				alert(addStr1);
+				var addStr2='<input type="button" value="닫기" id="close';
+				//addStr2+=idx;
+				addStr2+='" onClick="hideDetail(\'';
+				addStr2+=idx;
+				addStr2+='\')">';
+				//alert(addStr);
 				$('#classList').append('<span>'+value.idx+'</span>'
-										+'<span>'+value.time+'</span>'
-										+'<span>'+value.cName+'</span>'
-										+'<span>'+value.cRoom+'</span>'
-										+'<div>'+value.contents+'</div>'
-										+'<input type='+"button"+' value='+"자세히보기"+' id='+"open"+' onclick='+"여기에메서드"+'>'
-										+'<input type='+"button"+' value='+"닫기"+' id='+"close"+' onclick='+"여기에메서드"+'>'); 				
+						+'<span>'+value.time+'</span>'
+						+'<span>'+value.cName+'</span>'
+						/* +'<span>'+value.cRoom+'</span>' */
+						/* +'<div>'+value.contents+'</div>' */
+						+addStr1
+						+addStr2);
+				
+				
+				
+								
 				//$('body').append('<h1>제품 : '+value.name+', 가격 : '+value.price+'</h1>');		
 				
 			});
@@ -160,30 +219,22 @@
 			  }
 			});*/
 		 
-		
-		/* $('#open').on({
-				click: function(){
-					$('#classList').animate({width : '50%',	height : '300px'});
-				
-				});
+		$('#wrap').on('click','#open', function(){
 			
-		$('#close').on(
-				click: function(){
-					$('#classList').animate({width: '50%', height: '100px'});
-				}
-		}); */
-		$('#open').click(function() {
 			$('#classList').animate({
-				width : '50%',
-				height : '300px'
+				width: '50%',
+				height: '300px'
 			});
-		});
-		$('#close').click(function() {
+		})
+		
+		$('#wrap').on('click','#close', function(){
+			
 			$('#classList').animate({
-				width : '50%',
-				height : '100px'
+				width: '50%',
+				height: '100px'
 			});
-		});
+		})
+		
 		
 
 	 	/* $.getJSON('new_data_json.jsp', function() {
@@ -210,6 +261,10 @@
 
 	});
 	
+	
+	
+	
+	
 	window.onload= function(){
 		
 		var openBtn = document.getElementById('open');
@@ -221,6 +276,14 @@
 			document.getElementById("classList").style.backgroundColor="red";
 			
 		}
+		
+		closeBtn.onclick = function(){
+			
+			document.getElementById("classList").style.backgroundColor="yellow";
+			
+		}
+		
+		
 		
 		
 		
