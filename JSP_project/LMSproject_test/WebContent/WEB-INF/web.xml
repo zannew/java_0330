@@ -3,10 +3,28 @@
   <display-name>LMSproject_test</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+      <!-- FrontController Servlet 등록 -->
+  <servlet>
+  	<servlet-name>FrontController</servlet-name>
+  	<servlet-class>controller.FrontController</servlet-class>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>FrontController</servlet-name>
+  	<!-- <url-pattern>/</url-pattern> -->
+  	<url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 커넥션 풀 드라이버 등록 -->
+  <servlet>
+  	<servlet-name>DBCPInit</servlet-name>
+  	<servlet-class>dbcp.DBCPInit</servlet-class>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  
 </web-app>

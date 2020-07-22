@@ -1,4 +1,4 @@
-<%@page import="service.MemberRegService"%>
+<%@page import="lms.service.MemberRegService"%>
 <%@page import="java.io.File"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="org.apache.commons.fileupload.FileItem"%>

@@ -218,8 +218,7 @@
 		
 		openBtn.onclick = function(){
 			
-			document.getElementById("classList").style.backgroundColor="red";
-			
+			classList.css('background-color','red');
 		}
 		
 		

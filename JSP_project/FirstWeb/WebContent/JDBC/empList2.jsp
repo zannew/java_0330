@@ -1,4 +1,4 @@
-<%@page import="service.EmpListService"%>
+<%@page import="lms.service.EmpListService"%>
 <%@page import="dao.EmpDAO"%>
 <%@page import="jdbc.ConnectionProvider"%>
 <%@page import="model.Emp"%>

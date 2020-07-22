@@ -122,7 +122,11 @@
 		</table>
 		
 	</form>
+	
+	
 	<input type="button" value="자세히보기" id="open"><input type="button" value="닫기" id="close">
+	
+	
 	
 
 
@@ -139,10 +143,15 @@
 				$('#classList').append('<span>'+value.idx+'</span>'
 										+'<span>'+value.time+'</span>'
 										+'<span>'+value.cName+'</span>'
-										+'<span>'+value.cRoom+'</span>'
-										+'<div>'+value.contents+'</div>'
-										+'<input type='+"button"+' value='+"자세히보기"+' id='+"open"+' onclick='+"여기에메서드"+'>'
-										+'<input type='+"button"+' value='+"닫기"+' id='+"close"+' onclick='+"여기에메서드"+'>'); 				
+										+'<div>'+value.cRoom+'</div>'
+										/* +'<span>'+value.day+'</span>'
+										+'<span>'+value.startTime+'</span>'
+										+'<span>'+value.endTime+'</span>'
+										+'<span>'+value.totalPer+'</span>'
+										+'<span>'+value.applyPer+'</span>'
+										+'<span>'+value.tIdx+'</span>' */
+										+'<input type='+"button"+' value='+"자세히보기"+' id='+"open"+'>'
+										+'<input type='+"button"+' value='+"닫기"+' id='+"close"+'>'); 				
 				//$('body').append('<h1>제품 : '+value.name+', 가격 : '+value.price+'</h1>');		
 				
 			});
@@ -209,49 +218,4 @@
 		}); */
 
 	});
-	
-	window.onload= function(){
-		
-		var openBtn = document.getElementById('open');
-		var closeBtn =  document.getElementById('close');
-		var classList = document.getElementById('classList');
-		
-		openBtn.onclick = function(){
-			
-			document.getElementById("classList").style.backgroundColor="red";
-			
-		}
-		
-		
-		
-		
-		
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 </script>
