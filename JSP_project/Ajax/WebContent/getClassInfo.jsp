@@ -169,11 +169,12 @@
 	}
 	
 	
+	 
 	
-	function addCart(cIdx, sIdx){
+	function addCart(cIdx, sIdx, cTime, cName, cRoom){
 				//경로 : 내가 받아올 데이터가 있는 경로
-				//선택한 강의 리스트에 showoff
-			 	$.getJSON('new_data_json.jsp', function(data){
+				//받아온 내용들 args로 받아서 선택한 강의 리스트에 showoff (굳이 ajax안함)
+			 	/* $.getJSON('new_data_json.jsp', function(data){
 			 		
 			 		$.each(data, function(key, value){
 			 			if(value.idx==cIdx){
@@ -186,16 +187,22 @@
 			 			alert(str1);
 							$('#courseCart').append(str1); 
 			 			}
-			 	})
+			 		})
+			 	}) */
 			 	
+			 	var str='';
+				str+='<div>';
+				str+='강의번호 : '+cIdx;
+				str+='강의명 : '+cName;
+				str+='강의실 : '+cRoom;
+				str+='</div>';
 			 	
+			 	$('#courseCart').append(str);
 			 	
-			 	
-			 })
 			 
 			//+클릭하면 바로 db에 mycourse에 저장(cidx, sidx)	 
 			//경로 : 보낼 경로
-			$.ajax({
+			/* $.ajax({
 				
 				url : 'courseList.do',
 				type: 'post',
@@ -205,7 +212,7 @@
 				success: 
 					alert("강의가 리스트에 저장되었습니다.")
 						
-			})
+			}) */
 			 
 	}
 	
@@ -258,44 +265,50 @@
 		
 		alert('jqeury');
 		
-		var sIdx = ${session.sIdx};
+		var sIdx = 1;
 		
 		
 		 $.getJSON('new_data_json.jsp', function(data){
 			//data와 각각 어떻게 처리할지 함수 정의
 			$.each(data, function(key, value){
 				
-				var idx = value.idx;
-				var className="classList"+idx;
-				alert("clasNAme : "+className);
-				var addStr1='<div class="'+className+'"';
+				var cIdx = value.idx;
+				var cTime = value.time;
+				var cRoom = value.cRoom;
+				var cName = value.cName;
+				var contents = value.contents;
+
+				var classParam="classList"+cIdx;
+				alert("clasNAme : "+classParam);
+				var addStr1='<div class="'+classParam+'"';
 				addStr1+=' id="classListArea';
-				addStr1+=idx;
+				addStr1+=cIdx;
 				addStr1+='">';
-				addStr1+='<span> 강의 번호 : '+value.idx+'</span>';
-				addStr1+='<span> 강의 시간 : '+value.time+'</span>';
-				addStr1+='<span> 강의명 : '+value.cName+'</span>';
+				addStr1+='<div> 강의 번호 : '+cIdx;
+				addStr1+='강의 시간 : '+cTime;
+				addStr1+='강의명 : '+cName+'</div>';
 				addStr1+='';
 				addStr1+='';
 				addStr1+='<input type="button" value="자세히보기" id="open';
 				//addStr1+=idx;
 				addStr1+='" onclick="showDetail(\'';
-				addStr1+=idx;
+				addStr1+=cIdx;
 				addStr1+='\')">';
 				//alert(addStr1);
 				var addStr2='<input type="button" value="닫기" id="close';
 				//addStr2+=idx;
 				addStr2+='" onclick="hideDetail(\'';
-				addStr2+=idx;
+				addStr2+=cIdx;
 				addStr2+='\')">';
 				addStr2+='<input type="image" src="/plusIcon.png" alt="추가" onclick="addCart(\'';
-				addStr2+=idx, sIdx;
+				addStr2+=cIdx, sIdx, cTime, cName, cRoom;
 				addStr2+='\')">';
 				addStr2+='<input type="image" src="/minusIcon.png" alt="빼기" onclick="removeCart(\'';
-				addStr2+=idx;
+				addStr2+=sIdx;
 				addStr2+='\')">';
 				addStr2+='</div>';
 				//alert(addStr);
+				
 				$('#classListArea').append(
 						/* +'<span>'+value.cRoom+'</span>' */
 						/* +'<div>'+value.contents+'</div>' */
