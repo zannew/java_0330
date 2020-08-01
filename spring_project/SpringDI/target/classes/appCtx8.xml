@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- @Autowired를 활성화 시키기 위한 설정 -->
+	<context:annotation-config></context:annotation-config>
+	<!-- 해당 패키지("di") 안에 있는 @component를 스캔해서 빈 객체로 등록  -->
+	<context:component-scan base-package="di"></context:component-scan>
+
+</beans>
