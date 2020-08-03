@@ -1,4 +1,4 @@
-package guest.model;
+package guest.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import guestbook.model.Message;
+import guest.model.Message;
 
 public class MessageDAO {
 

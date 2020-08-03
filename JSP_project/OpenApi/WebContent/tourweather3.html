@@ -9,14 +9,15 @@
 <script>
 	var apiURL = 'tourweather.jsp';
 	var params = {
-			serviceKey : '7SfUZOq52SpD4qLwR2jTusLrmCPg3R4Io3gDfvTUjTkMyDrR6sD9O3sCmy%2BesjmLaG8fYt3vstEIpHB8c4iX0Q%3D%3D',
+			serviceKey : 'x2N9Qe5Vb52EDuOVKenHJZF%2B%2BCU3epjcuJYodB4PbrLNU6pZkbfTR8Y%2FqHDCGKoecEszyp5Mhtk0zirdj6B%2FlA%3D%3D',
 			pageNo : 1,
 			numOfRows : 10,
 			dataType : 'XML',
-			CURRENT_DATE : '2020071623',
+			CURRENT_DATE : '2020080220',
 			HOUR : 24,
 			COURSE_ID : 1
 	}
+	
 	$(document).ready(function(){
 		$.ajax({
 			url : 'tourweather.jsp',
@@ -25,8 +26,14 @@
 			dataType : 'XML',
 			contentType: 'text/xml; charset=utf-8',
 			success : function(data){
-				$('body').html(new XMLSerializer().serializeToString(data));
 				
+				$(data).find('item').each(function(index, item){
+					var caname = $(this).find('courseAreaName').text();
+					var cname = $(this).find('courseName').text();
+					
+					$('body').append('<div>'+caname+cname+'</div>');
+				});
+				//$('body').html(new XMLSerializer().serializeToString(data));
 			},
 			error:function(request,status,error){
 			    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);

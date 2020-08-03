@@ -6,10 +6,10 @@ import java.util.Collections;
 import java.util.List;
 
 
-import guestbook.DAO.MessageDAO;
-import guestbook.jdbc.ConnectionProvider;
-import guestbook.model.Message;
-import guestbook.model.MessageListView;
+import guest.DAO.MessageDAO;
+import jdbc.ConnectionProvider;
+import guest.model.Message;
+import guest.model.MessageListView;
 //OPMVC → MemberListServiceImpl.java
 public class GetMessageListService {
 

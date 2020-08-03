@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import guest.DAO.MessageDAO;
-import guest.jdbc.ConnectionProvider;
+import jdbc.ConnectionProvider;
 import guest.model.Message;
 
 public class DeleteMessageService {

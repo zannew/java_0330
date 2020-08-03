@@ -3,9 +3,9 @@ package guest.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import guestbook.DAO.MessageDAO;
-import guestbook.jdbc.ConnectionProvider;
-import guestbook.model.Message;
+import guest.DAO.MessageDAO;
+import jdbc.ConnectionProvider;
+import guest.model.Message;
 
 public class WriteMessageService {
 
