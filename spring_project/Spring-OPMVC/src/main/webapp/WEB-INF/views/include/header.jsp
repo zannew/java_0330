@@ -14,7 +14,7 @@
 
 	<h1 id="header">OpenProject</h1>
 		<ul id="nav">
-			<li><a href="<c:url value='/member/memberRegForm'/>">회원가입</a></li>
+			<li><a href="<c:url value='/member/memberReg'/>">회원가입</a></li>
 			<%-- <li><a href="${pageContext.request.contextPath}/member/memberRegForm.do">회원가입</a></li> --%>
 			<%-- <li><a href="<c:url value="/member/memberRegForm.do"/>">회원가입</a></li> --%>
 			
@@ -24,8 +24,8 @@
 	if(loginStatus){
 	%>
 			<li><a href="<c:url value="/member/logout.jsp"/>">로그아웃</a></li>
-	<% }else { %>
-			<li><a href="<c:url value="/member/memberLoginForm.jsp"/>">로그인</a></li>
+	<% } else { %>
+			<li><a href="<c:url value="/member/login"/>">로그인</a></li>
 			
 	<% } %>
 			<li><a href="<c:url value="/member/myPage/myPage.jsp"/>">마이페이지</a></li>

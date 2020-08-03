@@ -9,6 +9,13 @@
 		<param-value>/WEB-INF/spring/root-context.xml</param-value>
 	</context-param>
 	
+	<!-- 파일 업로드 경로 : 회원 가입 시 회원 사진 업로드 경로 -->
+	<context-param>
+		<param-name>memberUploadPath</param-name>
+		<param-value>/upload/users</param-value>
+	</context-param>
+	
+	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -29,5 +36,12 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
+	<!-- 일단 등록 -->
+	<servlet>
+		<servlet-name>DBCPInit</servlet-name>
+		<servlet-class>com.op.mvc.jdbc.DBCPInit</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
 
 </web-app>

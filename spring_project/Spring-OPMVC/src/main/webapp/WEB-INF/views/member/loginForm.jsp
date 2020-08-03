@@ -7,16 +7,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Login</h1>
-	<form action="" method="get">
+	<h1>Login Form</h1>
+	<form method="post">
 		<table>
 			<tr>
 				<td>아이디</td>
-				<td>${login.uid}</td>
+				<td><input type="text" name="uid"></td>
 			</tr>
 			<tr>
 				<td>비밀번호</td>
-				<td>${login.upw}</td>
+				<td><input type="password" name="upw"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="submit" value="로그인"></td>
 			</tr>
 		</table>
 	</form>
