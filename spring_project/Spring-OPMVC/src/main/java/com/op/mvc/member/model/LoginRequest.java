@@ -6,6 +6,9 @@ public class LoginRequest {
 	//변수명과 입력 파라미터 이름과 일치해야함
 	private String uid;
 	private String upw;
+	//0805
+	private String redirecUri;
+	private String remember;
 	
 	
 	public String getUid() {
@@ -22,6 +25,18 @@ public class LoginRequest {
 	}
 	
 	
+	public String getRedirecUri() {
+		return redirecUri;
+	}
+	public void setRedirecUri(String redirecUri) {
+		this.redirecUri = redirecUri;
+	}
+	public String getRemember() {
+		return remember;
+	}
+	public void setRemember(String remember) {
+		this.remember = remember;
+	}
 	@Override
 	public String toString() {
 		return "LoginRequest [uid=" + uid + ", upw=" + upw + "]";

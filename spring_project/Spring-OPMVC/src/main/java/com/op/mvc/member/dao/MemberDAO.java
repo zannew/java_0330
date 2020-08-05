@@ -86,6 +86,40 @@ public class MemberDAO {
 		
 		return resultCnt;
 	}
+	
+	//0805추가
+	public Member selectByIdpw(Connection conn, String uid, String pw) throws SQLException {
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs;	
+			Member member = null;
+			
+			try {
+				String sql = "select * from project.member where uid=? and upw=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, uid);
+				pstmt.setString(2, pw);
+				
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					member = new Member();
+					member.setIdx(rs.getInt("idx"));
+					member.setUid(rs.getString("uid"));
+					member.setUpw(rs.getString("upw"));
+					member.setUname(rs.getString("uname"));
+					member.setUphoto(rs.getString("uphoto"));
+				}
+				
+			} finally {
+				if(pstmt != null) {
+					pstmt.close();
+				}
+			}
+			
+			return member;
+		}
+	
 
 	//요기랑
 	public int selectTotalCount(Connection conn) throws SQLException {

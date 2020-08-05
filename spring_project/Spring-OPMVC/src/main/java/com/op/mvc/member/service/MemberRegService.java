@@ -7,23 +7,36 @@ import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.op.mvc.jdbc.ConnectionProvider;
 import com.op.mvc.member.dao.MemberDAO;
+import com.op.mvc.member.dao.MemberDAOInterface;
+import com.op.mvc.member.dao.MybatisMemberDAO;
 import com.op.mvc.member.model.Member;
 import com.op.mvc.member.model.MemberRegRequest;
 
 @Service
 public class MemberRegService {
 
-	@Autowired
-	MemberDAO dao;
+//	@Autowired
+//	MemberDAO dao;
+	
+//	@Autowired
+//	MybatisMemberDAO dao;
 
+	private MemberDAOInterface dao;
+	
+	@Autowired
+	private SqlSessionTemplate sessionTemplate;
+	
 	public int memberReg(HttpServletRequest request, MemberRegRequest regRequest) {
 
+		
+		dao = sessionTemplate.getMapper(MemberDAOInterface.class);
 		
 		// 1. 파일 업로드 - 사진 (binary file) : 특정 경로에 사진을 저장
 		// 2. 사용자 데이터를 받기 - uid, upw, uname, photo
@@ -33,13 +46,10 @@ public class MemberRegService {
 
 		// 데이터베이스에 입력할 데이터 변수
 		Member member = regRequest.toMember(); 
-		Connection conn = null;
+		
+		System.out.println("입력 전 idx ▶ "+member.getIdx());
 
 		try {
-			
-			
-
-			conn = ConnectionProvider.getConnection();
 			
 			MultipartFile fileItem = regRequest.getPhoto();
 			
@@ -67,17 +77,20 @@ public class MemberRegService {
 		
 			member.setUphoto(newFileName);
 
-			result = dao.insertMember(conn, member);
+			//result = dao.insertMember(conn, member); mybatis에서 conn 필요 없음
+			result = dao.insertMember(member);
+			
+			System.out.println("입력 후 idx ▶ "+ member.getIdx());
 			
 			
-		} catch(SQLException e) {
-			e.printStackTrace();
 		} catch (IllegalStateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			
 		}
 		
 

@@ -1,30 +1,29 @@
 package com.op.mvc.member.controller;
 
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.op.mvc.member.model.MemberRegRequest;
 import com.op.mvc.member.service.MemberListService;
 
+@Controller
 public class MemberListController {
 
 	@Autowired
 	MemberListService listService;
 	
 	//요청한 url
-	@RequestMapping(method=RequestMethod.POST)
-	public String getMemberReg(MemberRegRequest regRequest, HttpServletRequest request,  Model model) {
+	@RequestMapping("/member/memberList")
+	public String getMemberList(HttpServletRequest request, HttpServletResponse response, Model model) throws SQLException {
 		
+		model.addAttribute("listView", listService.getView(request, response));
 		
-		System.out.println("controller확인용 : "+regRequest);
-		
-		model.addAttribute("result", listService.memberReg(request, regRequest));
-		
-		return "member/memberReg";
+		return "member/memberList";
 	}
 	
 	

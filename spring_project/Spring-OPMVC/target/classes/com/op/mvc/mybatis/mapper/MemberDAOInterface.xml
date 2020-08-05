@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.op.mvc.member.dao.MemberDAOInterface">
+
+
+	<!-- select의 결과를 객체에 바인딩 해주는 Map : db테이블에 컬럼명과 Beans의 변수의 이름이 틀린 경우 바인딩 필요 -->
+	<resultMap type="com.op.mvc.member.model.Member" id="resultMember">
+		<id property="idx" column="idx"/>
+		<result property="uid" column="uid"/>
+		<result property="upw" column="upw"/>
+		<result property="uname" column="uname"/>
+		<result property="uphoto" column="uphoto"/>
+	</resultMap>
+	
+	
+	
+	<!-- selectByIdpw -->
+	<select id="selectByIdpw" resultType="com.op.mvc.member.model.Member">
+	
+		select * from project.member where uid=#{param1} and upw=#{param2}
+		
+	</select>
+	
+	<!-- selectTotalCount : trying... -->
+	<select id="selectTotalCount" resultType="com.op.mvc.member.model.Member">
+		select count(*) from project.member
+	</select>
+	
+	<!-- selectByKeyword -->
+	
+	<!-- 검색 : id, name, id or name
+		map.put("searchType", "id") name, both
+		map.put("keyword", "cool") -->
+	
+	<!-- map → HashMap -->	
+	<select id="totalCount" parameterType="map" resultType="int">
+		<!-- #{search.searchType} -->
+		select count(*) from project.member
+		
+		<where>
+			<!-- where안쪽  비어있으면 where구문 만들지 않음 -->
+			<if test="searchType!=null">
+				<if test="searchType=='both'">
+					<include refid="whereID"/>
+					<include refid="whereName"/>				
+				</if>
+				<if test="searchType=='id'">
+					<include refid="whereID"/>
+				</if>
+				<if test="searchType=='name'">
+					<include refid="whereName"/>				
+				</if>
+			</if>
+		</where>
+	</select>	
+	
+	
+	<select id="selectList" parameterType="map" resultMap="resultMember">
+	
+		select * from project.member
+		
+		<include refid="listSearch"/>
+		
+		limit #{startRow}, #{count}
+		
+	</select>
+	
+	
+	<sql id="listSearch">
+		<where>
+			<if test="searchType=='both'">
+				<include refid="whereID"/>
+				<include refid="whereName"/>
+			</if>
+			<if test="searchType=='id'">
+				<include refid="whereID"/>
+			</if>
+			<if test="searchType=='name'">
+				<include refid="whereName"/>
+			</if>
+		</where>
+	</sql>
+		
+	<!-- <select id="selectByKeyword" parameterType="map" resultMap="resultMember">
+		select * from project.member
+		<where>
+			<if test="searchType != null and keyword != null">
+				<if test="searchType == 'both'">
+					uid like concat('%',#{keyword},'%') or uname like concat('%',#{keyword},'%')
+					where가 or을 생략해줌
+					<include refid="whereID"/>
+					<include refid="whereName"/>
+				</if>	
+				<if test="searchType == 'id'">
+					uid like concat('%',#{keyword},'%')
+					<include refid="whereID"/>
+				</if>	
+				<if test="searchType == 'name'">
+					uname like concat('%',#{keyword},'%')
+					<include refid="whereName"/>
+				</if>	
+			</if>
+		</where>
+	</select> -->
+	
+		<!-- <where>가 or을 생략해줌 -->
+	<sql id="whereID">
+		or uid like concat('%',#{keyword},'%')
+	</sql>
+	<sql id="whereName">
+		or uname like concat('%',#{keyword},'%')
+	</sql>
+	
+	
+	<!-- useGeneratedKeys="true" : 해당 인스턴스의 idx값 자동 증가 -->
+	<insert id="insertMember" parameterType="com.op.mvc.member.model.Member" 
+			useGeneratedKeys="true" keyProperty="idx">
+		INSERT INTO project.member (uid, upw, uname, uphoto) 
+		VALUES (#{uid},#{upw},#{uname},#{uphoto})
+		
+	</insert>
+	
+	
+	
+
+
+</mapper>

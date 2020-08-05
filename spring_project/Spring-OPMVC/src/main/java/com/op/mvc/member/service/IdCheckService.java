@@ -9,12 +9,16 @@ import org.springframework.stereotype.Service;
 
 import com.op.mvc.jdbc.ConnectionProvider;
 import com.op.mvc.member.dao.MemberDAO;
+import com.op.mvc.member.dao.MybatisMemberDAO;
 
 @Service
 public class IdCheckService {
 
 	@Autowired
 	MemberDAO dao;
+	
+//	@Autowired
+//	MybatisMemberDAO dao;
 	
 	public String IdCheck(String uid) {
 		

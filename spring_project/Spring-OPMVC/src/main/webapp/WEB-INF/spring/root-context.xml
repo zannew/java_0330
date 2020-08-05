@@ -28,6 +28,25 @@
 	</bean>
 	
 	
+	<!-- 0805 등록 -->
+	<!-- sqlSessionFactory 생성
+	
+	myBatis-spring : sqlSessionfactoryBean
+	
+	: dataSource 설정, mapper 설정 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+			p:dataSource-ref="dataSource"
+			p:mapperLocations="classpath:com/op/mvc/mybatis/mapper/*.xml">
+	</bean>
+	
+	<!-- mybatis를 이용하는 Template클래스 필요
+	:	sqlSessionTemplate
+	 -->
+	 <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	 	<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
+	 </bean>
+	
+	
 	
 		
 </beans>

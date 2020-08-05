@@ -2,13 +2,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-	<title>Home</title>
+<title>Home</title>
+<link rel="stylesheet" href='<c:url value="css/default.css"/>'>
+<!-- <link rel="stylesheet" href="default.css"> -->
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/include/header.jsp"%>
 	
 	
-	<h1>메인~</h1>
+	<h1>메인gkgk</h1>
 
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 </body>

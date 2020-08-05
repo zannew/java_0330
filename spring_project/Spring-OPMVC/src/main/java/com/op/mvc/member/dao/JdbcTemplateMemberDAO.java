@@ -21,68 +21,24 @@ import com.op.mvc.member.model.Member;
 @Repository
 public class JdbcTemplateMemberDAO {
 
+
 	@Inject
-	JdbcTemplate jdbcTemplate;
-	
-	//요기랑
-	public int selectTotalCount(Connection conn) throws SQLException {
+	JdbcTemplate jdbcTemplate ;
 
-//		int resultCnt=0;
-//		String sql = "select count(*) from project.member";
-//		resultCnt = jdbcTemplate.queryForObject(sql, Integer.class);
-//		return resultCnt;
-		
-		//한줄로가능
+	public int selectTotalCount() throws SQLException {
 		return jdbcTemplate.queryForObject("select count(*) from project.member", Integer.class);
-		
 	}
 
-
-	//요기랑
-	public List<Member> selectMemberList(Connection conn, int startRow, int endRow) throws SQLException {
-
-		//List<Member> memberList = new ArrayList<Member>();
-		//String sql = "select * from project.member limit ?,?";
-		//객체 생성할때 매개변수 순서 지키기
-		//memberList = jdbcTemplate.query(sql, new Object[] {startRow, endRow}, new MemberRowMapper());
-		//return memberList;
+	public List<Member> selectList(int startRow, int count) throws SQLException {
 		
-		return jdbcTemplate.query("select * from project.member limit ?,?", new Object[] {startRow, endRow}, new MemberRowMapper());
 		
-	}
-
-
-	public int deleteMember(Connection conn, int idx) throws SQLException {
+//		List<Member> memberList = new ArrayList<Member>();
+//		String sql = "select * from project.member order by uname limit ?, ?";
+//		memberList = jdbcTemplate.query(sql,new Object[] {startRow, count}, new MemberRowMapper());
+//		return memberList;
 		
-		int resultCnt = 0;
+		return jdbcTemplate.query("select * from project.member order by uname limit ?, ?",new Object[] {startRow, count}, new MemberRowMapper());
 		
-		PreparedStatement pstmt = null;
-		
-		try {
-			String sql="delete from project.member where idx=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, idx);
-			
-			resultCnt = pstmt.executeUpdate();
-			
-		} finally {
-			if(pstmt!=null) {
-				pstmt.close();
-			}
-		}
-		
-		System.out.println("result : "+resultCnt);
-
-		return resultCnt;
-	}
-
-
-
-
-
-	
-
-	
-	
+	}		
 	
 }

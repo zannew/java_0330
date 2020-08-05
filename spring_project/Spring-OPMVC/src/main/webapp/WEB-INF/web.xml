@@ -38,10 +38,10 @@
 	</servlet-mapping>
 	
 	<!-- DBCP 등록 -->
-	<!-- <servlet>
+	<servlet>
 		<servlet-name>DBCPInit</servlet-name>
 		<servlet-class>com.op.mvc.jdbc.DBCPInit</servlet-class>
 		<load-on-startup>1</load-on-startup>
-	</servlet> -->
+	</servlet>
 
 </web-app>
