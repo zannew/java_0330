@@ -74,6 +74,7 @@
 						가입일 : ${member.regdate}<br>
 						<a href="deleteMemberConfirm.do?idx=${member.idx}" id="delBtn">삭제</a>
 						<a href="editMemberConfirm.do?idx=${member.idx}" id="editBtn">수정</a>
+						<a href="view/${member.idx}" id="infoBtn">상세정보</a>
 						<hr>
 						
 						

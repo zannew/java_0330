@@ -1,16 +1,15 @@
-package com.op.mvc.member.model;
+package com.aia.rest.model;
 
-//sql로 받음 : DB에서 받아옴
-import java.sql.Date;
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Member {
 	
-	private int idx;
+	private Integer idx;
 	private String uid;
-	@JsonIgnore
+	@JsonIgnore			// 필드에서 무시될 수 있는 속성에 사용
 	private String upw;
 	private String uname;
 	private String uphoto;
@@ -35,7 +34,6 @@ public class Member {
 		this.uphoto = uphoto;
 		this.regdate = regdate;
 	}
-	
 	
 
 	public int getIdx() {
@@ -77,6 +75,7 @@ public class Member {
 	public void setUphoto(String uphoto) {
 		this.uphoto = uphoto;
 	}
+	
 
 	public Date getRegdate() {
 		return regdate;
@@ -85,18 +84,14 @@ public class Member {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
-	
-	// java.sql.Date → java.util.Date 변환	
-	@JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss", timezone = "Asia/Seoul")
-	public java.util.Date getToDate(){		//${member.toDate}
-		return new java.util.Date(regdate.getTime());	// getTime() : 기준 날짜이후 밀리세컨단위 long타입으로 리턴
-	}
+
 
 	@Override
 	public String toString() {
 		return "Member [idx=" + idx + ", uid=" + uid + ", upw=" + upw + ", uname=" + uname + ", uphoto=" + uphoto
 				+ ", regdate=" + regdate + "]";
 	}
-		
+	
+	
 	
 }

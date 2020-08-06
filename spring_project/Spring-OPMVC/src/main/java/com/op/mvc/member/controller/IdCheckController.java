@@ -17,7 +17,9 @@ public class IdCheckController {
 	
 	//요청 매핑 (해당 주소로 처리할 메서드이다.)
 	@RequestMapping("/member/idCheck")
+	
 	// 리턴 객체를 HTTP응답으로 전송
+	// 메서드의 반환 데이터를 뷰의 데이터로 사용
 	@ResponseBody
 	public String idCheck(@RequestParam("uid") String uid) {
 		

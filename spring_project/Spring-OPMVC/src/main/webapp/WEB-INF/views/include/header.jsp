@@ -19,6 +19,8 @@
 			<%-- <li><a href="<c:url value="/member/memberRegForm.do"/>">회원가입</a></li> --%>
 			
 			<li><a href="<c:url value='/member/memberList'/>">회원리스트</a></li>
+			<li><a href="<c:url value='/member/memberList.xml'/>">회원리스트-XML</a></li>
+			<li><a href="<c:url value='/member/memberList.json'/>">회원리스트-JSON</a></li>
 			
 	<% 
 	if(loginStatus){

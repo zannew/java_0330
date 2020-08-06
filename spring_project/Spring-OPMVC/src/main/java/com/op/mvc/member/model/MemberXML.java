@@ -3,30 +3,32 @@ package com.op.mvc.member.model;
 //sql로 받음 : DB에서 받아옴
 import java.sql.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-public class Member {
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlType;
+// xml타입을 위한 bean생성
+// 멤버를 반환해주는 클래스 별도로 필요 - MemberXmlList.java
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name="", propOrder= {"idx", "uid", "upw", "uname","uphoto","regdate"})
+public class MemberXML {
 	
 	private int idx;
 	private String uid;
-	@JsonIgnore
 	private String upw;
 	private String uname;
 	private String uphoto;
-	@JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss", timezone = "Asia/Seoul")
 	private Date regdate;
 	
 	//default constructor
-	public Member() {}
+	public MemberXML() {}
 	
 	// MemberRegRequest를 Member객체로 받아오기 위한 contructor
-	public Member(String uid, String upw, String uname) {
+	public MemberXML(String uid, String upw, String uname) {
 		this(0, uid, upw, uname, null, null);
 	}
 	
 	//constructor
-	public Member(int idx, String uid, String upw, String uname, String uphoto, Date regdate) {
+	public MemberXML(int idx, String uid, String upw, String uname, String uphoto, Date regdate) {
 		super();
 		this.idx = idx;
 		this.uid = uid;
@@ -87,7 +89,6 @@ public class Member {
 	}
 	
 	// java.sql.Date → java.util.Date 변환	
-	@JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss", timezone = "Asia/Seoul")
 	public java.util.Date getToDate(){		//${member.toDate}
 		return new java.util.Date(regdate.getTime());	// getTime() : 기준 날짜이후 밀리세컨단위 long타입으로 리턴
 	}

@@ -15,6 +15,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="uphoto" column="uphoto"/>
 	</resultMap>
 	
+	<!--0806추가  -->
+	<select id="selectTotalListXml" resultType="com.op.mvc.member.model.MemberXML">
+		select * from project.member order by idx desc
+	</select>
+	
+	<select id="selectTotalList" resultMap="resultMember">
+		select * from project.member order by idx desc
+	</select>
+	
+	
+	<!--0806추가  -->
+	<select id="selectByIdx" resultType="com.op.mvc.member.model.Member">
+		select * from project.member where idx=#{idx}
+	</select>
+	
 	
 	
 	<!-- selectByIdpw -->
@@ -35,10 +50,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		map.put("searchType", "id") name, both
 		map.put("keyword", "cool") -->
 	
-	<!-- map → HashMap -->	
+	<!-- map → HashMap 0805 -->	
 	<select id="totalCount" parameterType="map" resultType="int">
 		<!-- #{search.searchType} -->
 		select count(*) from project.member
+		
+	
 		
 		<where>
 			<!-- where안쪽  비어있으면 where구문 만들지 않음 -->
@@ -57,7 +74,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 	</select>	
 	
-	
+	<!-- 0805 -->
 	<select id="selectList" parameterType="map" resultMap="resultMember">
 	
 		select * from project.member
@@ -69,6 +86,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	
+	<!-- 0805 -->
 	<sql id="listSearch">
 		<where>
 			<if test="searchType=='both'">
@@ -106,9 +124,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 	</select> -->
 	
-		<!-- <where>가 or을 생략해줌 -->
+	<!-- <where>가 or을 생략해줌 -->
 	<sql id="whereID">
 		or uid like concat('%',#{keyword},'%')
+		<!-- or uid like concat('%#{keyword}%')	▶ error : 문자열로 인식 -->
 	</sql>
 	<sql id="whereName">
 		or uname like concat('%',#{keyword},'%')
@@ -128,3 +147,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 </mapper>
+
+
+
+	<!-- 0806 <![CDATA[ idx<10 and idx>1]]> : available only in .xml(꺽쇠를 태그로 인식하지 않게!) -->
+	
+	
+	
