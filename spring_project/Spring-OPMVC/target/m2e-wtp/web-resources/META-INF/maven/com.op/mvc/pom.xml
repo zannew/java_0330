@@ -126,7 +126,10 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- ### 데이터 베이스 사용 설정 1. Mysql Connector 2. commons-dbcp2 3. commons-pool2 
+		<!-- ### 데이터 베이스 사용 설정 
+			1. Mysql Connector 
+			2. commons-dbcp2 
+			3. commons-pool2 
 			4. commons-logging -->
 		<!-- mysql-connector-java -->
 		<dependency>

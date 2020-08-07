@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace 필수 : interface의 fullname으로 설정 -->
+<!-- sql 설정 : select, insert, delete, update 태그들 → sql문 / 반환타입 / 파라미터타입 -->
+<mapper namespace="com.aia.mm.dao.MemberDao">
+
+	<!-- 전체 회원 리스트 -->
+	<select id="selectList" resultType="com.aia.mm.model.Member">
+		select * from project.member order by idx desc
+	</select>
+	
+	<!-- 회원 가입 -->
+	<insert id="insertMember" parameterType="com.aia.mm.model.Member">
+		insert into project.member (uid, upw, uname, uphoto) values (#{uid}, #{upw}, #{uname}, #{uphoto})
+	</insert>
+	
+	<!-- 회원 한 명 셀렉트 -->
+	<select id="selectByIdx" resultType="com.aia.mm.model.Member">
+		select * from project.member where idx=#{idx}
+	</select>
+	
+	<!-- 회원 정보 수정 -->
+	<update id="editMember" parameterType="com.aia.mm.model.Member">
+		update project.member set upw=#{upw}, uname=#{uname}, uphoto=#{uphoto} where idx=#{idx}
+	</update>
+	
+	<delete id="deleteMember">
+		delete from project.member where idx=#{idx}
+	</delete>
+	
+</mapper>
