@@ -8,5 +8,8 @@
 </head>
 <body>
 
+	<h1>요청을 처리하는 과정에서 예외(NullPointerException)가 발생했습니다.</h1>
+
+
 </body>
 </html>

@@ -33,6 +33,14 @@
 		</beans:property>
 	</beans:bean>
 	
+	 <!-- Interceptor 설정 0810 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/member/mypage/**"/>
+			<beans:bean class="com.op.mvc.interceptor.AuthCheckInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
 	
 	<context:component-scan base-package="com.op.mvc" />
 	

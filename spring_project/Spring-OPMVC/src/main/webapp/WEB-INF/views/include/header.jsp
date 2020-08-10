@@ -22,15 +22,16 @@
 			<li><a href="<c:url value='/member/memberList.xml'/>">회원리스트-XML</a></li>
 			<li><a href="<c:url value='/member/memberList.json'/>">회원리스트-JSON</a></li>
 			
-	<% 
-	if(loginStatus){
-	%>
-			<li><a href="<c:url value="/member/logout.jsp"/>">로그아웃</a></li>
-	<% } else { %>
-			<li><a href="<c:url value="/member/login"/>">로그인</a></li>
-			
-	<% } %>
-			<li><a href="<c:url value="/member/myPage/myPage.jsp"/>">마이페이지</a></li>
+		<c:if test="${!empty loginInfo}">
+			<li><a href="<c:url value="/login/logout"/>">로그아웃</a></li>
+		</c:if>
+		
+		<c:if test="${empty loginInfo}">
+			<li><a href="<c:url value="/login/login"/>">로그인</a></li>
+		</c:if>
+		
+		
+			<li><a href="<c:url value="/member/mypage/mypage"/>">마이페이지</a></li>
 			<li><a href="<c:url value="/guestBook/list.jsp"/>">방명록(비회원)</a></li>
 			<li><a href="<c:url value="/board/list.jsp"/>">게시판(회원제)</a></li>
 	</ul>

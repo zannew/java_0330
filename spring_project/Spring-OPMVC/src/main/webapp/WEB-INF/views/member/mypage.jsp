@@ -10,23 +10,14 @@
 </head>
 <body>
 
-	<%@ include file="/WEB-INF/views/include/header.jsp"%>
-	
-	<h1>Login</h1>
-	<form action="" method="get">
-		<table>
-			<tr>
-				<td>아이디</td>
-				<td>${loginInfo.uid}</td>
-			</tr>
-			<%-- <tr>
-				<td>비밀번호</td>
-				<td>${upw}</td>
-			</tr> --%>
-		</table>
-	</form>
-	
-	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
-	
+	<%@ include file="/WEB-INF/views/include/header.jsp" %>
+
+	<div>
+	${loginInfo}
+	</div>
+
+	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
+
+
 </body>
 </html>

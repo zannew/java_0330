@@ -67,6 +67,14 @@ public class MemberEditRequest {
 	
 	@Override
 	public String toString() {
+		
+		System.out.println("idx : "+idx);
+		System.out.println("uid : "+uid);
+		System.out.println("upw : "+upw);
+		System.out.println("uname : "+uname);
+		System.out.println("photo : "+photo.getOriginalFilename());
+		
+		
 		return "MemberEditRequest [idx=" + idx + ", uid=" + uid + ", upw=" + upw + ", uname=" + uname + ", photo="
 				+ photo.getOriginalFilename() + ", oldFile=" + oldFile + "]";
 	}
