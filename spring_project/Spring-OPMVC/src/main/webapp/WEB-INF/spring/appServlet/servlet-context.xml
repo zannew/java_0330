@@ -41,6 +41,14 @@
 		</interceptor>
 	</interceptors>
 	
+	<!-- 단방향 암호화 클래스  bean 등록 0811-->
+	<beans:bean id="sha256" class="com.op.mvc.util.Sha256"/>
+	
+	<!-- 양방향 암호화 클래스  bean (constructor로) 등록 0811-->
+	<beans:bean id="aes256Util" class="com.op.mvc.util.AES256Util">
+		<beans:constructor-arg value="0000000000000001"/>
+	</beans:bean>
+	
 	
 	<context:component-scan base-package="com.op.mvc" />
 	
