@@ -33,6 +33,10 @@ public class MemberRegService {
 	@Autowired
 	private SqlSessionTemplate sessionTemplate;
 	
+	//2020.08.11 변경
+	@Autowired
+	private MailSenderService mailService;
+	
 	public int memberReg(HttpServletRequest request, MemberRegRequest regRequest) {
 
 		
@@ -81,6 +85,11 @@ public class MemberRegService {
 			result = dao.insertMember(member);
 			
 			System.out.println("입력 후 idx ▶ "+ member.getIdx());
+			
+
+			// 메일 발송
+			// 2020.08.11 변경
+			mailService.send(member.getUid(), member.getCode());
 			
 			
 		} catch (IllegalStateException e) {

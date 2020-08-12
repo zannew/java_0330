@@ -168,14 +168,14 @@ public class MemberDAO {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				Member member = new Member(rs.getInt("idx"), 
-										rs.getString("uid"), 
-										rs.getString("upw"), 
-										rs.getString("uname"), 
-										rs.getString("uphoto"), 
-										rs.getDate("regdate"));
-				
-				memberList.add(member);
+					Member member = new Member();
+					member.setIdx(rs.getInt("idx"));
+					member.setUid(rs.getString("uid"));
+					member.setUpw(rs.getString("upw"));
+					member.setUname(rs.getString("uname"));
+					member.setUphoto(rs.getString("uphoto"));
+					
+					memberList.add(member);
 			}
 			
 		} finally {
@@ -193,39 +193,33 @@ public class MemberDAO {
 
 	public Member selectByIdx(Connection conn, int idx) throws SQLException {
 		
-		int resultCnt = 0;
-		Member member=null;
+
+		Member member = null;
 		
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+		ResultSet rs;	
 		
 		try {
-		
 			String sql = "select * from project.member where idx=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, idx);
-		
+			
 			rs = pstmt.executeQuery();
-
-			while(rs.next()) {
-				member = new Member(rs.getInt("idx"), 
-									rs.getString("uid"), 
-									rs.getString("upw"), 
-									rs.getString("uname"), 
-									rs.getString("uphoto"), 
-									rs.getDate("regdate"));
-			}
-				
-		} finally {
-			if(pstmt!=null) {
-				pstmt.close();
-			}
-			if(rs!=null) {
-				rs.close();
+			
+			if(rs.next()) {
+				member = new Member();
+				member.setIdx(rs.getInt("idx"));
+				member.setUid(rs.getString("uid"));
+				member.setUpw(rs.getString("upw"));
+				member.setUname(rs.getString("uname"));
+				member.setUphoto(rs.getString("uphoto"));
 			}
 			
+		} finally {
+			if(pstmt != null) {
+				pstmt.close();
+			}
 		}
-		System.out.println(member);
 		
 		return member;
 	}

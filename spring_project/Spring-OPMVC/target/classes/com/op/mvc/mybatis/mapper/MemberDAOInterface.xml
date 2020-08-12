@@ -11,8 +11,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<id property="idx" column="idx"/>
 		<result property="uid" column="uid"/>
 		<result property="upw" column="upw"/>
-		<result property="uname" column="uname"/>
-		<result property="uphoto" column="uphoto"/>
+		<!-- <result property="uname" column="uname"/>
+		<result property="uphoto" column="uphoto"/> -->
 	</resultMap>
 	
 	<!--0806추가  -->
@@ -142,7 +142,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 	</insert>
 	
+	<!-- 0812 : 이메일 인증 -->
+	<update id="verify">
+		update project.member set verify='Y' 
+		where uid=#{param1} and code=#{param2} 
+	</update>
 	
+	<select id="selectMemberById" resultMap="resultMember">
+		select * from project.member where uid=#{id}
+	</select>
+		
 	
 
 

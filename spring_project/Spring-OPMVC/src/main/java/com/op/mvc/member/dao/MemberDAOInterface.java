@@ -32,5 +32,11 @@ public interface MemberDAOInterface {
 	
 //	trying....
 	public int selectTotalCount();
+	
+	// 0812
+	public int verify(String id, String code);
+	
+	// 0812
+	public Member selectMemberById(String email);
 
 }
