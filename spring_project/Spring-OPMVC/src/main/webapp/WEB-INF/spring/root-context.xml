@@ -9,7 +9,7 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
 	<!-- <mvc:interceptors>
-	servlet-context.xml대신 여기서 등록 가능
+	servlet-context.xml대신 여기서도 등록 가능
 	</mvc:interceptors> -->
 	
 	<!-- 0804 hikari등록 -->
