@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 0804 hikari등록 -->
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
+		p:driverClassName="com.mysql.cj.jdbc.Driver"
+		p:jdbcUrl="jdbc:mysql://aia.cedoxb9y9mdk.ap-northeast-2.rds.amazonaws.com:3306/project?serverTimezone=UTC"
+		p:username="admin"
+		p:password="aiaadmin">
+	</bean>
+		
+	<!-- 0804 등록 -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"
+		p:dataSource-ref="dataSource">
+	</bean>
+		
+	<!-- sqlSessionFactory 생성
+	
+	myBatis-spring : sqlSessionfactoryBean
+	
+	: dataSource 설정, mapper 설정 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+			p:dataSource-ref="dataSource"
+			p:mapperLocations="/WEB-INF/mapper/*.xml">
+	</bean>
+	
+	<!-- mybatis를 이용하는 Template클래스 필요
+	:	sqlSessionTemplate
+	 -->
+	 <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	 	<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
+	 </bean>	
+</beans>

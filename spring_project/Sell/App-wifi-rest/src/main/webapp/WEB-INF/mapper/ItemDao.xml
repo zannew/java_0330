@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wifi.sell.dao.ItemDao">
+
+	<!-- select의 결과를 객체에 바인딩 해주는 Map : db테이블에 컬럼명과 Beans의 변수의 이름이 틀린 경우 바인딩 필요 -->
+	<!-- 로그인시 필요?? -->
+	<resultMap type="com.wifi.sell.model.Item" id="resultItem">
+		<id property="iIdx" column="iIdx"/>
+		<result property="id" column="id"/>
+		<result property="pw" column="pw"/>
+	</resultMap>
+
+	<!-- 전체 공구 리스트 -->
+	<select id="selectList" resultType="com.wifi.sell.model.Item">
+		select * from project.item
+	</select>
+
+	<!-- 특정 공구 셀렉트 -->
+	<select id="selectByIidx" resultType="com.wifi.sell.model.Item">
+		select * from project.item where iIdx=#{iIdx}
+	</select>
+	
+	<!-- 검색어로 공구 리스트 셀렉트 -->
+	<select id="selectListByKeyword" parameterType="map" resultType="resultItem">
+		select * from project.item
+		
+		<include refid="listSearch" />
+
+		limit #{startRow}, #{count}
+	</select>
+	
+	<sql id="listSearch">
+
+		<where>
+			<if test="searchType != null">
+				<if test="searchType == 'title'">
+					<include refid="whereTitle" />
+				</if>
+			</if>
+		</where>
+
+	</sql>
+	
+	<sql id="whereTitle">
+		or title like concat('%',#{keyword},'%')
+
+	</sql>
+
+
+	<!-- 공구 등록  -->
+	<insert id="insertItem" parameterType="com.wifi.sell.model.Item">
+		insert into project.item (title, price, countM, countW, receive, addr, location, content, photo, state, viewCount, category, midx) 
+		values (#{title}, #{price}, #{countM}, #{countW}, #{receive}, #{addr}, #{location}, #{content}, #{photo}, #{state}, #{viewCount}, #{category}, #{midx})
+	</insert>
+	
+	<!-- 공구 삭제 : state값 변경 (삭제 상태값은 아직 미정, 임의로 10 입력) -->
+	<update id="deleteItem" parameterType="com.wifi.sell.model.Item">
+		update project.item set state=10 where iIdx=#{iIdx}
+	</update>
+
+	<!-- selectByKeyword -->
+	
+	<!-- map → HashMap 0816 -->	
+	<select id="totalCount" parameterType="map" resultType="int">
+		<!-- #{search.searchType} -->
+		select count(*) from project.item
+		
+		<where>
+			<!-- where안쪽  비어있으면 where구문 만들지 않음 -->
+			<if test="searchType!=null">
+				<if test="searchType=='title'">
+					<include refid="whereTitle"/>
+				</if>
+			</if>
+		</where>
+	</select>	
+	
+	<!-- 0816 : 구현중-->
+	<select id="selectList_search" parameterType="map" resultMap="resultItem">
+	
+		select * from project.item
+		
+		<include refid="listSearch"/>
+		limit #{startRow}, #{count}
+	</select>
+	
+	
+	<!-- 0816 -->
+	<sql id="listSearch">
+		<where>
+			<if test="searchType=='title'">
+				<include refid="whereTitle"/>
+			</if>
+		</where>
+	</sql>
+	
+	<!-- <where>가 or을 생략해줌 -->
+	<sql id="whereTitle">
+		or title like concat('%',#{keyword},'%')
+		<!-- or uid like concat('%#{keyword}%')	▶ error : 문자열로 인식 -->
+	</sql>
+	
+
+
+</mapper>

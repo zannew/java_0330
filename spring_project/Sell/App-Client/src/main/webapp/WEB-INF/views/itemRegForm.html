@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>공구등록폼</h1>
+
+	<form id="regForm" onsubmit="return false;">
+
+	공구글제목 : <input type="text" name="title" id="title" required><br>
+	가격 : <input type="number" name="price" id="price" required><br>
+	공구인원 : <input type="number" name="countM" id="countM" min="0" required><br>
+	수령날짜시각 : <input type="datetime-local" id="receive" name="receive" required><br>
+	판매처주소 : <input type="text" name="addr" id="addr" required><br>
+	판매처위치 : <input type="text" name="location" id="location"><br>
+	내용 : <input type="text" name="content" id="content"><br>
+	사진 : <input type="file" name="photo" id="photo"><br>
+	공구상태 : <input type="number" name="state" id="state" required><br>
+	분류1 : <select id="category">
+				<option value="0">과일</option>
+				<option value="1">육고기</option>
+				<option value="2">채소</option>
+				<option value="3">생필품</option>
+				<option value="4">기타</option>
+		</select><br>
+	게시자idx : <input type="number" name="midx" id="midx"><br>
+	<input type="submit" value="공구등록" onclick="regSubmit(); ">
+	<input type="reset">
+
+
+	</form>
+	
+<script>
+
+
+
+
+</script>
+	
+</body>
+</html>
