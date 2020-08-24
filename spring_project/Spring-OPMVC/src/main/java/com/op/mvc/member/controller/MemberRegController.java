@@ -50,21 +50,6 @@ public class MemberRegController {
 		
 		
 		System.out.println("controller확인용 : "+regRequest);
-	
-//		System.out.println("SHA암호화 (단방향)");
-//		System.out.println("암호화된 pw : "+sha256.encrypt(regRequest.getUpw()));
-//		System.out.println("사이즈 : "+sha256.encrypt(regRequest.getUpw()).length());
-//		
-//		System.out.println("============================================================");
-//		System.out.println("AES암호화 (양방향)");
-//		System.out.println("암호화된 pw : "+aes256Util.encrypt(regRequest.getUpw()));
-//		System.out.println("사이즈 : "+aes256Util.encrypt(regRequest.getUpw()).length());
-//		
-//		System.out.println("============================================================");
-//		System.out.println("Spring security 암호화");
-//		System.out.println("암호화된 pw : "+passwordEncoder.encode(regRequest.getUpw()));
-//		System.out.println("사이즈 : "+passwordEncoder.encode(regRequest.getUpw()).length());
-		
 		
 		model.addAttribute("result", regService.memberReg(request, regRequest));
 		
