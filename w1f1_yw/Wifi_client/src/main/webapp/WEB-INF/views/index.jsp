@@ -24,27 +24,31 @@
       <source src="http://shortcodelic1.manuelmasiacsasi.netdna-cdn.com/themes/geode/wp-content/uploads/2014/04/milky-way-river-1280hd.mp4.mp4" type="video/mp4">
     </video>
     
-    <div class="box">
-      <h1>Login</h1>
       
       <c:if test="${empty loginInfo}">
-			<div>
-				<form method="POST">
-					<a href="${kakaoUrl}" id="linkToLogin"><img id="loginBtn" src=<c:url value="resources/images/kakao_login_medium_narrow.png"/>/></a>				
-				</form>			
-			</div>
+	    <div class="box">
+	      <h1>Login</h1>
+				<div>
+					<form method="POST">
+						<a href="${kakaoUrl}" id="linkToLogin"><img id="loginBtn" src=<c:url value="resources/images/kakao_login_medium_narrow.png"/>/></a>				
+					</form>			
+				</div>
+	      <p>추가정보를  입력하시려면? <span>추가정보 입력</span></p>
+	    </div>
+	    
+	    
 		</c:if>
 		<c:if test="${!empty loginInfo}">
 			<div>
-				<a href=${logoutUrl}>로그아웃</a>			
+				<a href=${logoutUrl}>로그아웃</a>
+				<h1>접속한 유저 : ${loginInfo}</h1>
+				<h1>아이디 출력 : ${loginInfo.id}</h1>			
 			</div>
 		</c:if>
       
       
       
       
-      <p>Not a member? <span>Sign Up</span></p>
-    </div>
     
   </div>
 </div>

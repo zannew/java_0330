@@ -54,6 +54,7 @@ public class KakaoLoginService {
 		POSTPARAMS.add(new BasicNameValuePair("client_id", "99ffb3979d63e105be37c6521fa33a53")); // REST API KEY 
 		POSTPARAMS.add(new BasicNameValuePair("redirect_uri", "http://localhost:8080/wifi/kakaoLogin")); // 리다이렉트 URI 
 		POSTPARAMS.add(new BasicNameValuePair("code", autorize_code)); // 로그인 과정중 얻은 code 값 
+		POSTPARAMS.add(new BasicNameValuePair("client_secret", "fKBuMkBWgF1Q3FTUZPCA34PKrn2kwU7C"));
 		
 		/* 
 		 * 보안 강화 : 추가적 코드???
@@ -104,9 +105,11 @@ public class KakaoLoginService {
 			ObjectMapper mapper = new ObjectMapper(); 
 			returnNode = mapper.readTree(response.getEntity().getContent()); 
 			
-		} catch (ClientProtocolException e) { e.printStackTrace(); 
+		} catch (ClientProtocolException e) { 
+			e.printStackTrace(); 
 		
-		} catch (IOException e) { e.printStackTrace(); 
+		} catch (IOException e) { 
+			e.printStackTrace(); 
 		
 		} finally { // clear resources 
 				
