@@ -33,6 +33,17 @@ public class Member {
 	}
 	
 	//constructor
+	public Member(int idx, String uid, String upw, String uname, String uphoto, Date regdate) {
+		this.idx = idx;
+		this.uid = uid;
+		this.upw = upw;
+		this.uname = uname;
+		this.uphoto = uphoto;
+		this.regdate = regdate;
+		// 2020.08.11 추가
+		getRandomSting();
+	}
+	//constructor
 	public Member(int idx, String uid, String upw, String uname, String uphoto, String code, Date regdate) {
 		this.idx = idx;
 		this.uid = uid;
