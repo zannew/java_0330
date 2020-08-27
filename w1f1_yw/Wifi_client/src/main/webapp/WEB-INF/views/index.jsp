@@ -7,12 +7,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="<c:url value="/resources/css/default.css"/>">
 <link rel="stylesheet" href="<c:url value="/resources/css/login.css"/>">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 </head>
 <body>
 
 <img class="main_image container" src=<c:url value="resources/images/pexels-bach-hanzo-3551355.jpg"/>/>
+
+	<%@ include file="/WEB-INF/views/include/header.jsp" %>
+
+
 
       <c:if test="${empty loginInfo}">
 	    <div class="box container">
@@ -23,8 +28,8 @@
 					</form>			
 				</div>
 	      <p>추가정보를  입력하시려면? <span>추가정보 입력</span></p>
-	    </div>
 	    
+	    </div>
 	    
 		</c:if>
 		<c:if test="${!empty loginInfo}">
@@ -35,23 +40,12 @@
 			</div>
 		</c:if>
     
-  </div>
-	
-	
-	
-	<div>
 		
-		<c:if test="${!empty loginInfo}">
-			<h1>접속한 유저 : ${loginInfo}</h1>		
-			<h1>아이디 확인 : ${loginInfo.id}</h1>
-		</c:if>
-	</div>
-
 
 </body>
 </html>
 <script>
-	alert('카카오 로그인 페이지입니다.');
+	alert('메인페이지입니다.');
 	
 
 	var promises = [];

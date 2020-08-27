@@ -22,7 +22,7 @@ public class Member {
 	}
 	
 	public Member(String id, String name, String addr, String phone) {
-		this(0, id, name, addr, phone, 0);
+		this(0, id, name, addr, phone, 1);
 	}
 
 	public int getMidx() {

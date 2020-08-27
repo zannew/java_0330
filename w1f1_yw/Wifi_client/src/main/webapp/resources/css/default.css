@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+div.header_area {
+	padding: 15px 20px;
+	position: relative;
+}
+
+#nav {
+	border-bottom: 1px solid #ddd;
+	border-top: 1px solid #ddd;
+	overflow: hidden;
+	list-style: none;
+	position: relative;
+}
+
+#nav>li {
+	float: left;
+	padding: 5px 20px;
+	position: relative;
+	
+}
+
+
+
+.main_image { 
+	/* Set rules to fill background */
+ 	min-height: 100%; min-width: 1024px;
+  	/* Set up proportionate scaling */
+   	width: 100%; height: auto;
+    /* Set up positioning */
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    opacity:0.2;
+}

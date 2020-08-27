@@ -4,6 +4,8 @@ import com.wifi.login.model.Member;
 
 public interface MemberDao {
 
-	public Member selectById(String id);
+	Member selectById(String id);	
+
+	int insertMember(Member member);
 	
 }

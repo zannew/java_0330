@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+		
+	<!-- HikariCP 데이터베이스 커넥션 풀 dataSource 설정 -->
+	<bean id="dataSource" 
+		class="com.zaxxer.hikari.HikariDataSource"
+		p:driverClassName="com.mysql.cj.jdbc.Driver" 
+		p:jdbcUrl="jdbc:mysql://wifi-member.cqjud1dl4kah.ap-northeast-2.rds.amazonaws.com/wifi?autoReconnect=true" 
+		p:username="test"
+		p:password="test"
+		>
+	</bean>			
+		
+	<!-- 
+		mybatis-spring 의 SqlSessionFactoryBean을 사용한 SqlSessionFactory 생성
+		
+		mybatis-spring : SqlSessionFactoryBean
+		=> dataSource 설정 / mapper 설정
+	-->
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean"
+		p:dataSource-ref="dataSource"
+		p:mapperLocations="/WEB-INF/mapper/*.xml"
+		>
+	</bean>
+	
+	<!--
+		mybatis를 이용하는 template 클래스 
+		 => SqlSessionTemplate 클래스 설정 
+	-->
+	
+	<bean id="sqlSession" 
+		class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+	
+	<!-- MyBatis 트랜젹션 관리자 설정 -->
+	<bean id="transactionManager"
+	class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource">
+		<ref bean="dataSource" />
+		</property>
+	</bean>
+	
+	<!-- namespaces에서 tx 속성 체크 -->
+	<tx:annotation-driven transaction-manager="transactionManager"  />
+	
+	<!-- 트랜잭션 처리 끝 -->	
+		
+</beans>

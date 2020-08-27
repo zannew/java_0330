@@ -104,3 +104,7 @@ hs_err_pid*
 # End of https://www.gitignore.io/api/java,eclipse
 *.exe
 spring_project/TestModule-WFProject/target/m2e-wtp/web-resources/META-INF/maven/com.wifi/mvc/pom.properties
+spring_project/Sell/App-wifi-rest/target/m2e-wtp/web-resources/META-INF/maven/com.rest/wifi/pom.properties
+spring_project/Sell/App-wifi-rest/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+w1f1_yw/Wifi_client/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+w1f1_yw/Wifi_client/target/m2e-wtp/web-resources/META-INF/maven/com.wifi/app/pom.properties

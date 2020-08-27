@@ -9,7 +9,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from wifi.member where id=#{id}
 	</select>
 
-
+	<insert id="insertMember" parameterType="com.wifi.login.model.Member">
+		insert into wifi.member (id, name, addr, phone) values (#{id},#{name},#{addr},#{phone})
+	</insert>
 
 
 
