@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 필수 : interface의 full name으로 설정 -->
+<mapper namespace="com.wifi.order.dao.ItemDao">
+	
+	<!-- in item page  =======================================-->
+
+	
+	<!-- 참여신청 : 대기인원 추가 -->
+	<update id="addWait">
+		update wifi.item set count_w=count_w+1 where iidx=#{iidx}
+	</update>
+	
+	<!-- 참여취소 : 대기인원 빼기 -->
+	<update id="delWait">
+		update wifi.item set count_w=count_w-1 where iidx=#{iidx}
+	</update>
+	
+	<!-- aside 공구참여현황 =======================================-->
+
+	<!-- 0818 윤원 추가  =================================================-->
+	
+	<resultMap type="com.wifi.order.model.MyItem" id="resultItem">
+		<id property="iidx" column="iidx"/>
+	</resultMap>
+	<resultMap type="com.wifi.order.model.MySell" id="resultSell">
+		<id property="midx" column="midx"/>
+	</resultMap>
+
+
+	<!-- 특정 공구 셀렉트 -->
+	<select id="selectByIidx" resultType="com.wifi.order.model.Item">
+		select * from wifi.item where iIdx=#{iidx}
+	</select>
+	
+	<!-- 해당 공구 상세보기 시 조회수 증가 -->
+	<update id="increaseViewCount">
+		update wifi.item set view_count=view_count+1 where iidx=#{iidx}
+	</update>
+	
+	
+	<!-- 게시자의 midx : 0821 -->
+	<select id="selectMidx" resultType="int">
+	
+		select midx from wifi.item where iIdx=#{iidx}
+		
+	</select>
+	
+	<!-- 검색어로 공구 리스트 셀렉트 -->
+	<select id="totalCount" parameterType="map" resultType="int">
+	
+		select count(*) from wifi.myitem
+		
+		<include refid="listSearch" />
+		
+	</select>
+	<select id="totalSellCount" parameterType="map" resultType="int">
+	
+		select count(*) from wifi.mysell
+		
+		<include refid="listSearch" />
+		
+	</select>
+	
+	<!-- 공구 리스트 -->
+	<select id="selectList" parameterType="map" resultMap="resultItem">
+	
+		select * from wifi.myitem 
+		
+		<include refid="listSearch" />
+		
+		limit #{startRow}, #{count}
+		
+	</select>
+	
+	<select id="selectSellList" parameterType="map" resultMap="resultSell">
+	
+		select * from wifi.mysell 
+		
+		<include refid="listSearch" />
+		
+		limit #{startRow}, #{count}
+		
+	</select>
+
+
+	<sql id="listSearch">
+
+		<where>
+			<if test="searchType != null">
+				<if test="searchType == 'title'">
+					<include refid="whereTitle" />
+				</if>
+				<if test="searchType == 'category'">
+					<include refid="whereCategory" />
+				</if>
+				<if test="searchType == 'regDate'">
+					<include refid="whereRegDate" />
+				</if>
+				
+			</if>
+			
+			<if test="istate != null">
+				<if test="istate == 0">
+					<include refid="whereIstate" />
+				</if>
+				<if test="istate == 1">
+					<include refid="whereIstate" />
+				</if>
+				
+			</if>
+			
+			
+			<if test="midx != null">
+				<include refid="whereMidx" />
+			</if>
+			
+			
+			
+		</where>
+
+	</sql>
+
+
+	<sql id="whereTitle">
+	
+		and title like concat ('%',#{keyword},'%')
+
+	</sql>
+	<sql id="whereCategory">
+	
+		and category=#{keyword}
+
+	</sql>
+	<sql id="whereRegDate">
+	
+		and order by  ('%',#{keyword},'%') desc
+
+	</sql>
+	<sql id="whereIstate">
+	
+		and istate=#{istate}
+
+	</sql>
+	<sql id="whereMidx">
+	
+		and midx=#{midx}
+
+	</sql>
+	<sql id="increase">
+	
+		and midx=#{midx}
+
+	</sql>
+	
+
+
+
+	<!-- 공구 등록 ok  -->
+
+	<insert id="insertItem" parameterType="com.wifi.order.model.Item">
+		insert into wifi.item (title, price, count_m, count_w, receive, addr, location, content, photo, state, view_count, category, midx) 
+		values (#{title}, #{price}, #{count_m}, #{count_w}, #{receive}, #{addr}, #{location}, #{content}, #{photo}, #{state}, #{view_count}, #{category}, #{midx})
+	</insert>
+	
+
+	<!-- 공구 삭제 ok : state값 변경 (삭제 상태값은 아직 미정, 임의로 10 입력) -->
+
+	<update id="deleteItem_update" parameterType="com.wifi.order.model.Item">
+		update wifi.item set state=10 where iIdx=#{iidx}
+	</update>
+
+	<delete id="deleteItem">
+		delete from wifi.item where iIdx=#{iidx}
+	</delete>
+
+	<!-- selectByKeyword -->
+	
+	
+	<!-- 0818 윤원 추가  =================================================-->
+
+</mapper>
+
+
+
+
+
+

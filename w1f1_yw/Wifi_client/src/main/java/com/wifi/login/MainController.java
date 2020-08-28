@@ -12,7 +12,7 @@ public class MainController {
 	@RequestMapping("/index")
 	public String main(Locale locale, Model model) {
 		
-		return "index";
+		return "main";
 	}
 	
 	
