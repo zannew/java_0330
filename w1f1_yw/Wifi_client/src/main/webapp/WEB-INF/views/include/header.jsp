@@ -14,7 +14,7 @@
 		<ul id="nav">
 			<li>
 			<c:if test="${!empty loginInfo}">
-				<a href="<c:url value="/items/itemList"/>">공구리스트</a>
+				<a href="<c:url value="/itemList"/>">공구리스트</a>
 			</c:if>
 			<c:if test="${empty loginInfo}">
 			<a href="<c:url value="${kakaoUrl}" />" id="login_btn">공구리스트</a>
