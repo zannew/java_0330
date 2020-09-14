@@ -13,8 +13,7 @@
 </head>
 <body>
 
-<img class="main_image container" src=<c:url value="resources/images/pexels-bach-hanzo-3551355.jpg"/>/>
-
+<%@ include file="/WEB-INF/views/include/background.jsp" %>	
 	<%@ include file="/WEB-INF/views/include/header.jsp" %>
 
 

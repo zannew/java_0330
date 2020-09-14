@@ -14,14 +14,17 @@
 		<ul id="nav">
 			<li>
 			<c:if test="${!empty loginInfo}">
-				<a href="<c:url value="/itemList"/>">공구리스트</a>
+				<a href="<c:url value="/items/itemList"/>">공구리스트</a>
 			</c:if>
 			<c:if test="${empty loginInfo}">
 			<a href="<c:url value="${kakaoUrl}" />" id="login_btn">공구리스트</a>
 			</c:if>
 			
 			<c:if test="${!empty loginInfo}">
-				<li><a href="<c:url value="/login/logout"/>"><button id="logout_btn">로그아웃</button></a></li>
+				<a href="<c:url value="/login/logout" />" id="logout_btn">로그아웃</a>
+			</c:if>
+			<c:if test="${!empty loginInfo}">
+				<a href="<c:url value="/items/regItem" />" id="reg_btn">공구올리기</a>
 			</c:if>
 		</ul>
 	
@@ -39,6 +42,7 @@
 		$('#login_btn').click(function(){
 			
 			alert("로그인이 필요합니다.");
+			location.href="index";
 			
 		});
 		

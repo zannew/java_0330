@@ -19,7 +19,7 @@
 </head>
 <body>
 
-	<img class="main_image container" src=<c:url value="resources/images/pexels-bach-hanzo-3551355.jpg"/>/>
+	<%@ include file="/WEB-INF/views/include/background.jsp" %>
 
 	<h1>RegForm..</h1>
 	<h3>전화번호</h3>
@@ -44,11 +44,6 @@
 		      <label for="phone">전화번호:</label>
 		      <input type="text" class="form-control" id="phone" placeholder="전화번호를 입력하세요." name="phone">
 		    </div>
-		<!--     <div class="form-group form-check">
-		      <label class="form-check-label">
-		        <input class="form-check-input" type="checkbox" name="recommend"> 추천공구 등록
-		      </label>
-		    </div> -->
 		    <input type="submit" value="가입하기" class="btn btn-primary">
 		  </form>
 	</div>

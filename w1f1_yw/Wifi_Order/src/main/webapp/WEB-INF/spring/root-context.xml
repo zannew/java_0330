@@ -9,9 +9,9 @@
 		<!-- hikari등록 -->
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
 		p:driverClassName="com.mysql.cj.jdbc.Driver"
-		p:jdbcUrl="jdbc:mysql://aia.cedoxb9y9mdk.ap-northeast-2.rds.amazonaws.com:3306/project?serverTimezone=UTC"
-		p:username="admin"
-		p:password="aiaadmin">
+		p:jdbcUrl="jdbc:mysql://aia.cedoxb9y9mdk.ap-northeast-2.rds.amazonaws.com:3306/wifi?serverTimezone=Asia/Seoul"
+		p:username="bit"
+		p:password="bit">
 	</bean>
 	
 	<!-- 0804 등록 -->

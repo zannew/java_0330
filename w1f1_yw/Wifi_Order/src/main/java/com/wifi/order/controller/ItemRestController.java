@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wifi.order.model.Item;
@@ -83,6 +84,7 @@ public class ItemRestController {
 	
 	// 공구 등록 결과 반환
 	@PostMapping		// POST방식으로 들어올 때만 처리하는 메서드 : POST| /items
+	@ResponseBody
 	public int regItem(ItemRegRequest regRequest, HttpServletRequest request) {
 		
 		System.out.println("In Controller - regRequest ▶ "+ regRequest);
@@ -94,8 +96,10 @@ public class ItemRestController {
 	@DeleteMapping("/{iidx}")
 	public int deleteItem(@PathVariable("iidx") int iidx) {
 		
-		
 		return deleteService.deleteItem(iidx);
 	}
+	
+	// 추천공구 등록 가능여부 체크 기능  0907
+	
 	
 }

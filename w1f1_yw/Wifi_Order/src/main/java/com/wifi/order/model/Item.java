@@ -31,8 +31,20 @@ public class Item {
 
 	// ItemRegRequest에서 객체로 변환하기 위한 생성자(iIdx, regdate없음)
 
-	public Item(String title, int price, int count_m, int count_w, Timestamp receive, String addr, String location,
-			String content, int state, int view_count, int category, int midx) {
+	public Item(
+			String title, 
+			int price, 
+			int count_m, 
+			int count_w, 
+			Timestamp receive, 
+			String addr, 
+			String location,
+			String content, 
+			int state, 
+			int view_count, 
+			int category, 
+			int midx
+			) {
 		this(0, title, price, count_m, count_w, null, receive, addr, 
 				location, content, null, state, view_count, category, midx);
 	}

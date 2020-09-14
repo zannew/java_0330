@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 필수 : interface의 full name으로 설정 -->
+<mapper namespace="com.wifi.comment.dao.CommentDao">
+
+	<!-- 댓글 리스트 -->
+	<select id="listComment"
+		resultType="com.wifi.comment.model.Comment">
+		select * from project.comment
+	</select>
+
+	<!-- 댓글 등록 -->
+	<insert id="insertComment"
+		parameterType="com.wifi.comment.model.Comment">
+		insert into project.comment (content) values
+		(#{content})
+	</insert>
+
+	<!-- 댓글 수정 -->
+	<update id="editComment"
+		parameterType="com.wifi.comment.model.Comment">
+		update project.comment
+		set content=#{content}
+		where
+		cidx=#{cidx}
+	</update>
+
+	<!-- 댓글 삭제 -->
+	<delete id="deleteComment">
+		delete from project.comment where cidx=#{cidx}
+	</delete>
+
+	<!-- 댓글 선택 -->
+	<select id="selectCommentByCidx"
+		resultType="com.wifi.comment.model.Comment">
+		select * from project.comment where cidx=#{cidx}
+	</select>
+
+	<!-- 댓글 개수 -->
+	<select id="countBoardList" resultType="Integer">
+		select count(*) from project.comment
+	</select>
+
+	<select id="selectBoardList" resultType="hashmap" parameterType="hashmap">
+    <![CDATA[
+        SELECT
+            *
+        FROM
+            project.comment
+        LIMIT #{pageStart}, #{perPageNum}
+    ]]>
+</select>
+
+
+
+
+</mapper>
+
+
+
+
+
+

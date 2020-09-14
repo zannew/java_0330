@@ -17,16 +17,5 @@ public class MainController {
 		return "main";
 	}
 	
-	@RequestMapping("/itemView/iidx={iidx}")
-	public ModelAndView getItemView(@PathVariable("iidx") int iidx, Model model) {
-		
-		model.addAttribute("iidx", iidx);
 
-		ModelAndView mandv = new ModelAndView();
-		
-		mandv.setViewName("items/itemView");
-		
-		
-		return mandv;
-	}
 }

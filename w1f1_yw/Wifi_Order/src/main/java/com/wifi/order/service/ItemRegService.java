@@ -62,7 +62,7 @@ public class ItemRegService {
 				item.setPhoto(newFileName);
 
 			} else {
-				item.setPhoto("defalult.png");
+				item.setPhoto("default.jpg");
 			}
 
 			result = dao.insertItem(item);

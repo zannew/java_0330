@@ -1,6 +1,7 @@
 package com.wifi.order.model;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -14,9 +15,9 @@ public class MyItem {
 	private int price;
 	private int count_m;
 	private int count_w;
-	@JsonFormat(pattern = "YYYY-MM-DD HH:mm:ss", timezone = "Asia/Seoul")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
 	private Timestamp regdate;
-	@JsonFormat(pattern = "YYYY-MM-DD HH:mm:ss", timezone = "Asia/Seoul")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
 	private Timestamp receive;
 	private String addr;
 	private String location;
@@ -34,12 +35,6 @@ public class MyItem {
 	
 	// 디폴트 생성자
 	public MyItem() {}
-
-
-
-
-
-
 
 
 	public MyItem(int midx, int iidx, int oidx, int pidx, String title, int price, int count_m, int count_w,
@@ -155,7 +150,7 @@ public class MyItem {
 		this.count_w = count_w;
 	}
 
-
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
 	public Timestamp getRegdate() {
 		return regdate;
 	}
@@ -165,12 +160,12 @@ public class MyItem {
 		this.regdate = regdate;
 	}
 
-
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
 	public Timestamp getReceive() {
 		return receive;
 	}
 
-
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
 	public void setReceive(Timestamp receive) {
 		this.receive = receive;
 	}
@@ -284,8 +279,12 @@ public class MyItem {
 		this.name = name;
 	}
 
+	
 
-
+//	@JsonFormat(pattern = "YYYY-MM-DD HH:mm:ss", timezone = "Asia/Seoul")
+//	public Date getToDate() {
+//		return new Date(receive.getTime());
+//	}
 
 
 	@Override

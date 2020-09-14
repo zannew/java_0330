@@ -165,7 +165,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<!-- 공구 등록 ok  -->
-
 	<insert id="insertItem" parameterType="com.wifi.order.model.Item">
 		insert into wifi.item (title, price, count_m, count_w, receive, addr, location, content, photo, state, view_count, category, midx) 
 		values (#{title}, #{price}, #{count_m}, #{count_w}, #{receive}, #{addr}, #{location}, #{content}, #{photo}, #{state}, #{view_count}, #{category}, #{midx})

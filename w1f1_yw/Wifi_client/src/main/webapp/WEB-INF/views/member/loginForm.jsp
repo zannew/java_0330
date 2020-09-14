@@ -17,7 +17,7 @@
 <body>
 
 
-
+<%@ include file="/WEB-INF/views/include/background.jsp" %>
 
 	<h1>IdCheck!!</h1>
 	<h3>전화번호</h3>

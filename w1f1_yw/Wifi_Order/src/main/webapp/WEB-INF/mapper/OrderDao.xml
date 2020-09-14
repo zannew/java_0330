@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 필수 : interface의 full name으로 설정 -->
+<mapper namespace="com.wifi.order.dao.OrderDao">
+		
+	<!-- 남은 대기 인원 체크 -->	
+	<select id="selectCount_w" resultType="int">
+		select count_w from wifi.item where iidx=#{iidx}
+	</select>
+
+	<!-- 요청 보내기 -->	
+	<insert id="insertOrder" parameterType="com.wifi.order.model.Order">
+		insert into wifi.order (midx, iidx) values (#{midx}, #{iidx});
+	</insert>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

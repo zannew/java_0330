@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 필수 : interface의 full name으로 설정 -->
+<mapper namespace="com.wifi.comment.dao.CommentDao">
+
+	<!-- 댓글 리스트 -->
+	<select id="selectCommentByiidx" parameterType="map" resultType="com.wifi.comment.model.Comment">
+		select * from wifi.comment where iidx=#{iidx} order by cidx desc
+		limit #{startRow}, #{count}
+	</select>
+	
+	<select id="totalCountByiidx" parameterType="map" resultType="int">
+		select count(*) from wifi.comment where iidx=#{iidx}		
+	</select>
+
+
+	<!-- 댓글 등록 -->
+	<insert id="insertComment" parameterType="com.wifi.comment.model.Comment">
+		insert into wifi.comment (content, state, midx, name, iidx) 
+		values (#{content}, #{state}, #{midx}, #{name}, #{iidx})
+	</insert>
+
+	<!-- 댓글 삭제 -->
+	<update id="deleteComment" parameterType="com.wifi.comment.model.Comment">
+		update wifi.comment set state=1 where cidx=#{cidx}
+	</update>
+	
+	<!-- 댓글 수정 -->
+	<update id="editComment" parameterType="com.wifi.comment.model.Comment">
+		update wifi.comment set content=#{content}, updated=now() where cidx=#{cidx}
+	</update>
+	
+
+</mapper>

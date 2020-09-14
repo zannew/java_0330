@@ -39,7 +39,6 @@ public class ItemViewService {
 
 		dao = sTemplate.getMapper(ItemDao.class);
 		
-		
 		return dao.selectMidx(iIdx);
 	}
 
