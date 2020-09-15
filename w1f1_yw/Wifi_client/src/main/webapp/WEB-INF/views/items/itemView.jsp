@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/itemView.css"/>">
 <link rel="stylesheet" href="<c:url value="/resources/css/comments.css"/>">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 </head>
 <body>
 
@@ -21,10 +22,14 @@
 
 <%-- <%@ include file="/WEB-INF/views/include/background.jsp" %> --%>
 <%@ include file="/WEB-INF/views/include/aside.jsp" %>
+<%@ include file="/WEB-INF/views/include/header.jsp" %>
+<%@ include file="/WEB-INF/views/include/storeMap.jsp" %>
 
-	<%@ include file="/WEB-INF/views/include/header.jsp" %>
 <h1> itemView 페이지</h1>
 
+
+<br>
+<br>
 
 <div id="itemDetails"></div>
 <br>
@@ -40,6 +45,9 @@
 	var imgUrl = 'http://localhost:8080/order/upload/';
 	var commentUrl='http://localhost:8080/comment/comments';
 	
+	var location_y=0.0;
+	var location_x=0.0;
+	
 	var pageNum = 1;
 
 
@@ -52,7 +60,9 @@
 			url : mainItemUrl+'/'+iidx,
 			type : 'GET',
 			success : function(data){
-				alert('상세보기의 결과 데이터 : '+data);
+				//alert('상세보기의 결과 데이터 : '+data);
+				location_y=data.location_y;
+				location_x=data.location_x;
 				 html += '<br><h2> [ 공구 상세 ] </h2>';
 				 html+='			<img src="'+imgUrl+data.photo+'" alt="" class="" style="float:left; width:50%; height:50%;"/>';
 				 //html += '<br>공구글번호 : '+data.iidx;
@@ -63,7 +73,8 @@
 				 html += '<br>등록일 : '+moment(data.regdate).format('YYYY-MM-DD');
 				 html += '<br>수령날짜 : '+moment(data.receive).format('YYYY-MM-DD HH:mm')+' 까지';
 				 html += '<br>판매처 : '+data.addr;
-				 html += '<br>판매처위치 : '+data.location;
+				 html += '<br>판매처좌표 : '+location_y+':'+data.location_x;
+				 html += '<br><div id="map" style="width:100%;height:350px;"></div>';
 				 html += '<br>내용 : '+data.content;
 				 html += '<br>사진 : '+data.photo;
 				 html += '<br>공구상태값 : '+data.state;
@@ -338,18 +349,11 @@
 		showDetails(${iidx});
 		
 		getCommentList(${iidx});
-	   	
-		
-			
-		
-		
 			
 	});	
 	
-	
 
 </script>
-
 
 </body>
 </html>

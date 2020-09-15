@@ -16,7 +16,8 @@ public class Item {
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
 	private Timestamp receive;
 	private String addr;
-	private String location;
+	private String location_y;
+	private String location_x;
 	private String content;
 	private String photo;
 	//거래중/거래완료/게시기간만료/수령대기중?/추천공구 / 일반공구 - 통합 상태값
@@ -38,7 +39,8 @@ public class Item {
 			int count_w, 
 			Timestamp receive, 
 			String addr, 
-			String location,
+			String location_y,
+			String location_x,
 			String content, 
 			int state, 
 			int view_count, 
@@ -46,12 +48,12 @@ public class Item {
 			int midx
 			) {
 		this(0, title, price, count_m, count_w, null, receive, addr, 
-				location, content, null, state, view_count, category, midx);
+				location_y, location_x, content, null, state, view_count, category, midx);
 	}
 
 
 	public Item(int iidx, String title, int price, int count_m, int count_w, Timestamp regdate, Timestamp receive,
-			String addr, String location, String content, String photo, int state, int view_count, int category,
+			String addr, String location_y, String location_x, String content, String photo, int state, int view_count, int category,
 			int midx) {
 		super();
 		this.iidx = iidx;
@@ -62,7 +64,8 @@ public class Item {
 		this.regdate = regdate;
 		this.receive = receive;
 		this.addr = addr;
-		this.location = location;
+		this.location_y = location_y;
+		this.location_x = location_x;
 		this.content = content;
 		this.photo = photo;
 		this.state = state;
@@ -158,12 +161,21 @@ public class Item {
 		this.addr = addr;
 	}
 
-	public String getLocation() {
-		return location;
+	public String getLocation_y() {
+		return location_y;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setLocation_y(String location_y) {
+		this.location_y = location_y;
+	}
+	
+
+	public String getLocation_x() {
+		return location_x;
+	}
+
+	public void setLocation_x(String location_x) {
+		this.location_x = location_x;
 	}
 
 	public String getContent() {
@@ -210,11 +222,12 @@ public class Item {
 	@Override
 	public String toString() {
 		return "Item [iidx=" + iidx + ", title=" + title + ", price=" + price + ", count_m=" + count_m + ", count_w="
-				+ count_w + ", regdate=" + regdate + ", receive=" + receive + ", addr=" + addr + ", location="
-				+ location + ", content=" + content + ", photo=" + photo + ", state=" + state + ", view_count="
-				+ view_count + ", category=" + category + ", midx=" + midx + "]";
+				+ count_w + ", regdate=" + regdate + ", receive=" + receive + ", addr=" + addr + ", location_y="
+				+ location_y + ", location_x=" + location_x + ", content=" + content + ", photo=" + photo + ", state="
+				+ state + ", view_count=" + view_count + ", category=" + category + ", midx=" + midx + "]";
 	}
 
+	
 
 	
 	
