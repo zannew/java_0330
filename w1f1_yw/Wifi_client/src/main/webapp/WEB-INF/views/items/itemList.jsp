@@ -27,7 +27,7 @@
 		</c:if>
 
 
-<%@ include file="/WEB-INF/views/include/background.jsp" %>
+<%-- <%@ include file="/WEB-INF/views/include/background.jsp" %> --%>
 <%@ include file="/WEB-INF/views/include/aside.jsp" %>
 
 	<%@ include file="/WEB-INF/views/include/header.jsp" %>
@@ -46,10 +46,14 @@
 		
 		<div id="searchList"></div>
 		<br>
-		
        
      </div>
+		<br>
      
+     <button type="button" class="btn btn-outline-secondary" id="showmore_btn" style="margin: auto; padding: 10px 30px; display: block; text-align: center; cursor:pointer;" onclick="getItemListView()">더보기 +</button>
+     
+		<br>
+		<br>
    </div>
    
 <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
@@ -254,7 +258,10 @@ function getItemListView(){
     			//alert('리스트뷰 불러오기 성공!!');
     			
     			if(pageNum>data.pageTotalCount) {
-    				$(window).off();
+    				//$(window).off();
+    				//document.getElementById('showmore_btn').style.display='none';
+    				alert('더이상 불러올 공구가 없습니다.');
+    				return false;
     	         } 
     			var itemTotalCount = data.itemTotalCount;
     			var currentPageNumber = data.currentPageNumber;
@@ -346,7 +353,7 @@ function getItemListView(){
 	      if($(window).scrollTop()+200>=$(document).height() - $(window).height()) {
 	    	  if(!loading) {
 	            loading=true;
-	            getItemListView();
+	            //getItemListView();
 	         } 
 	       } 
 	    });

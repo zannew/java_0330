@@ -11,7 +11,7 @@
 <body>
 
 	<br><br><br>
-
+<div class="commentWrap">
 	<div class="commentArea">
 	</div>
 	<br>
@@ -53,7 +53,7 @@
 		  </div>
 		</form>
 	</div>
-
+</div>
 	
 
 <script>

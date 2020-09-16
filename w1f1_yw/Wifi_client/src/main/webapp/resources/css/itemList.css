@@ -154,6 +154,10 @@ input[type="checkbox"] + label:before {
 
 /* Buttons */
 
+.showMore_btn {
+	z-index: 999999999999;
+}
+
 input[type="submit"],
 input[type="reset"],
 input[type="button"],

@@ -12,7 +12,34 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/itemView.css"/>">
 <link rel="stylesheet" href="<c:url value="/resources/css/comments.css"/>">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+<style>
+      p { 
+          margin:20px 0px; 
+        }
+        div.card {
+            width: 150px;
+            height: 200px;
+        }
+        
+        div.itemView {
+            border: 1px solid;
+            margin: 15% 10%;
+        }
+        
+        div.view_wrap {
+            border: 1px solid;
+            background-color: yellow;
+            width: 25%;
+            height: 40%;
+            float: left;
+            margin: 0 3%;
+        }
+        
+        
+        
+        
+    
+    </style>
 </head>
 <body>
 
@@ -23,21 +50,41 @@
 <%-- <%@ include file="/WEB-INF/views/include/background.jsp" %> --%>
 <%@ include file="/WEB-INF/views/include/aside.jsp" %>
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
-<%@ include file="/WEB-INF/views/include/storeMap.jsp" %>
+
 
 <h1> itemView 페이지</h1>
 
-
 <br>
 <br>
 
-<div id="itemDetails"></div>
+<div class="itemView">
+      
+        <div class="view_wrap photo" id="">
+        	
+        </div>
+        <div class="view_wrap details">
+        	<div id="itemDetails" style="float:left;"></div><br><br>
+        	<div id="map" style="width:300px;height:300px; float:left;"></div> 
+        </div>
+        <div class="view_wrap comments">
+        	<%@ include file="/WEB-INF/views/include/comments.jsp" %>
+        </div>
+        
+        
+</div>
 <br>
 <br>
+<div id="itemDetails" style="float:left;"></div>
+<br>
+
+<div id="map" style="width:300px;height:300px; float:left;"></div> 
+<br>
+
 <%@ include file="/WEB-INF/views/include/comments.jsp" %>
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c35fdaa3a50bc0c680e435eb402d8491"></script>
 
 <script>
 	var mainItemUrl ='http://localhost:8080/order/items';
@@ -73,8 +120,8 @@
 				 html += '<br>등록일 : '+moment(data.regdate).format('YYYY-MM-DD');
 				 html += '<br>수령날짜 : '+moment(data.receive).format('YYYY-MM-DD HH:mm')+' 까지';
 				 html += '<br>판매처 : '+data.addr;
-				 html += '<br>판매처좌표 : '+location_y+':'+data.location_x;
-				 html += '<br><div id="map" style="width:100%;height:350px;"></div>';
+				 html += '<br>판매처좌표 : '+location_y+':'+location_x;
+				 //html += '<br><div id="map" style="width:100%;height:350px;"></div>';
 				 html += '<br>내용 : '+data.content;
 				 html += '<br>사진 : '+data.photo;
 				 html += '<br>공구상태값 : '+data.state;
@@ -98,6 +145,10 @@
 				 $('#itemDetails').html(html);
 				 
 				 console.log('data.receive는 '+data.receive);
+				 
+				 getMap(location_y, location_x);
+				 
+				 
 			},
 			error : function(data){
 				alert(data);
@@ -107,7 +158,42 @@
 			
 	}
 	
+/*지도에 마커표시 */
+
+	//지도를 표시할 div
+	function getMap(location_y, location_x){
+		var mapContainer = document.getElementById('map'),  
+		 mapOption = { 
+		     center: new kakao.maps.LatLng(location_y, location_x), // 지도의 중심좌표
+		     level: 4 // 지도의 확대 레벨
+		 };
+		
+		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		
+		var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
+		 imageSize = new kakao.maps.Size(54, 59), // 마커이미지의 크기입니다
+		 imageOption = {offset: new kakao.maps.Point(17, 59)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+		   
+		//마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+		var markerImage = new kakao.maps.MarkerImage("${url}resources/images/marker.png", imageSize, imageOption),
+		 markerPosition = new kakao.maps.LatLng(location_y, location_x); // 마커가 표시될 위치입니다
+		
+		//마커를 생성합니다
+		var marker = new kakao.maps.Marker({
+		 position: markerPosition, 
+		 image: markerImage // 마커이미지 설정 
+		});
+		
+		 marker.setImage(markerImage);
+		//마커가 지도 위에 표시되도록 설정합니다
+		marker.setMap(map);  
+		
 	
+	}
+	
+/*지도에 마커표시 - end*/	
+	
+	// 공구 요청 - 대기인원 우선체크
 	function itemRequest(iidx, count_w){
 		
 		$.ajax({
@@ -132,6 +218,7 @@
 		
 	}
 	
+	// 공구 요청 - 대기 열려있을 시, 요청 보내기
 	function sendRequest(){
 		$.ajax({
 			url: mainOrderUrl,
