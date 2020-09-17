@@ -18,7 +18,8 @@ public class ItemDTO {
 	private Timestamp receive;		// 물품수령일시
 	private int receive_check;		// 오늘기준 마감 확인
 	private String addr;			// 판매처
-	private String location;		// 좌표
+	private String location_y;		// 좌표y
+	private String location_x;		// 좌표x
 	private String content;			// 게시글 본문
 	private String photo;			// 첨부사진
 	private int istate;				// 게시글 현황
@@ -37,7 +38,7 @@ public class ItemDTO {
 
 
 	public ItemDTO(int iidx, String title, int price, int count_m, int count_w, Timestamp regdate, Timestamp receive,
-			int receive_check, String addr, String location, String content, String photo, int istate, int view_count,
+			int receive_check, String addr, String location_y, String location_x, String content, String photo, int istate, int view_count,
 			int category, int midx, String name, float rvs_avg, int rvs_totalRow) {
 		this.iidx = iidx;
 		this.title = title;
@@ -48,7 +49,8 @@ public class ItemDTO {
 		this.receive = receive;
 		this.receive_check = receive_check;
 		this.addr = addr;
-		this.location = location;
+		this.location_y = location_y;
+		this.location_x = location_x;
 		this.content = content;
 		this.photo = photo;
 		this.istate = istate;
@@ -153,15 +155,31 @@ public class ItemDTO {
 		this.addr = addr;
 	}
 
+	
 
-	public String getLocation() {
-		return location;
+
+	public String getLocation_y() {
+		return location_y;
 	}
 
 
-	public void setLocation(String location) {
-		this.location = location;
+
+	public void setLocation_y(String location_y) {
+		this.location_y = location_y;
 	}
+
+
+
+	public String getLocation_x() {
+		return location_x;
+	}
+
+
+
+	public void setLocation_x(String location_x) {
+		this.location_x = location_x;
+	}
+
 
 
 	public String getContent() {
@@ -254,16 +272,17 @@ public class ItemDTO {
 	}
 
 
+
 	@Override
 	public String toString() {
 		return "ItemDTO [iidx=" + iidx + ", title=" + title + ", price=" + price + ", count_m=" + count_m + ", count_w="
 				+ count_w + ", regdate=" + regdate + ", receive=" + receive + ", receive_check=" + receive_check
-				+ ", addr=" + addr + ", location=" + location + ", content=" + content + ", photo=" + photo
-				+ ", istate=" + istate + ", view_count=" + view_count + ", category=" + category + ", midx=" + midx
-				+ ", name=" + name + ", rvs_avg=" + rvs_avg + ", rvs_totalRow=" + rvs_totalRow + "]";
+				+ ", addr=" + addr + ", location_y=" + location_y + ", location_x=" + location_x + ", content="
+				+ content + ", photo=" + photo + ", istate=" + istate + ", view_count=" + view_count + ", category="
+				+ category + ", midx=" + midx + ", name=" + name + ", rvs_avg=" + rvs_avg + ", rvs_totalRow="
+				+ rvs_totalRow + "]";
 	}
 
-	
 	
 	
 	

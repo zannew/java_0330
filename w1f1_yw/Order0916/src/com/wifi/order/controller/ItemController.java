@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.wifi.order.model.ItemDTO;
+import com.wifi.order.model.ItemDTOView;
 import com.wifi.order.item.service.ItemDelService;
 import com.wifi.order.item.service.ItemRegService;
 import com.wifi.order.item.service.ItemViewService;
@@ -96,12 +97,18 @@ public class ItemController {
 		return itemlistService.getRecomItemlist();
 	}
 	
-	
+	// 0917 윤원수정 : 검색을 위해 매개변수 request추가
 	// 일반 공구 리스트 : 최신순 정렬
 	@GetMapping
-	public List<ItemDTO> getItemlist(){
+	public ItemDTOView getItemlist(HttpServletRequest request){
 		
-		return itemlistService.getItemlist();
+		
+		ItemDTOView itemDTOView= itemlistService.getItemlist(request);
+		
+		System.out.println("request : "+request);
+		
+		
+		return itemDTOView;
 	}
 
 	

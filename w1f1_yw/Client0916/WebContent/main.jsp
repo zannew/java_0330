@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="css/item.css" type="text/css">
   <link rel="stylesheet" href="css/comment.css" type="text/css"> 
   <link rel="stylesheet" href="css/swiper.min.css" type="text/css"> <!-- swiper관련 -->
-  <link rel="stylesheet" href="package/swiper-bundle.min.css">  <!-- swiper관련 -->
+  <!-- <link rel="stylesheet" href="package/swiper-bundle.min.css"> -->  <!-- swiper관련 -->
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> <!-- 평점등록 시 별모양 나타내는  -->
 
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -81,7 +81,14 @@
             <!-- 검색영역 -->
             <div id="search_area" >
               <div class="inputSearch">
-                <input type="text" name="search" class="search" placeholder="Search.."><br>
+                <select name="searchType" id="searchType">
+					<option value="">선택</option>
+					<option value="title">제목</option>
+					<option value="name">게시자</option>
+					<option value="both">제목 + 게시자</option>
+				</select>
+				<input type="text" name="search" class="search" placeholder="Search.." id="keywordBox"><br>
+				<input type="submit" value="검색" onclick="searchList();">
               </div>
               <div class="CategorySearch">
                 <button type="button" class="btn_search_category" onclick="filterSelection('category3')">생필품/기타</button>
@@ -113,14 +120,19 @@
           </div>
           <div class="btn_sort_area">
             <button type="button" class="btn_sort sort_reg"  onclick="allItemlist()">Latest Sort</button>
-            <button type="button" class="btn_sort sort_rvs" onclick="allItemlist_sortRvs()">Rating Sort</button>
+            <button type="button" class="btn_sort sort_rvs" onclick="sortingRvs()">Rating Sort</button>
             <button type="button" class="btn_basic" onclick="regItemForm()">item +</button>
           </div>
           
           <!-- 일반글 리스트 -->
-          <div id="itemlist_small_area"></div> 
+          <div id="itemlist_small_area"></div>
+          
 
         </div>  <!-- Item area end -->
+          	<br><br>
+               <button type="button" class="btn btn-outline-secondary" id="showmore_btn" style="margin: auto; padding: 10px 30px; display: block; text-align: center; cursor:pointer; display: block;"  onclick="itemlist()">더보기 +</button>
+               <button type="button" class="btn btn-outline-secondary" id="showmore_btn" style="margin: auto; padding: 10px 30px; display: block; text-align: center; cursor:pointer; display: none;" onclick="ratingSort()">더보기 +</button>
+           	<br><br>
 
 
       </div> <!-- itemlist_area end -->

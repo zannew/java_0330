@@ -18,8 +18,11 @@ public interface ItemDao {
 	// 추천 공구 리스트 : 최신순 정렬 (기본정렬)
 	List<ItemDTO> getRecomItemlist();
 	
+	// 0917 추가 - totalCount
 	// 일반 공구 리스트 : 최신순 정렬 (기본정렬)
-	List<ItemDTO> getItemlist();
+	List<ItemDTO> getItemlist(Map<String, Object> search);
+	int totalCount(Map<String, Object> search);
+	
 	
 	// 공구 상세보기
 	ItemDTO viewItem(int iidx);
@@ -80,6 +83,9 @@ public interface ItemDao {
 	
 	// QR보기
 	String getQR(int oidx);
+
+
+
 	
 	// QR발급..
 

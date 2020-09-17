@@ -4,6 +4,7 @@ var domain = "http://localhost:8080/Order0916";
 //var domain = "http://ec2-54-180-98-41.ap-northeast-2.compute.amazonaws.com:8080/order";
 
 
+
 /***** item : 공구 검색 / 리스트 출력 / 정렬 / 등록 / 삭제  *****************************/
 
 // var loginInfo = sessionStorage.getItem("loginInfo");
@@ -16,8 +17,8 @@ var recomItems = [];    	// 추천리스트 담아두는 배열
 var items = [];				// 일반리스트 담아두는 배열
 var sortRecomItems = []; 	// 추천리스트 평점순 정렬 담아두는 배열
 var sortItems = []; 		// 일반리스트 평점순 정렬 담아두는 배열
-
-
+var itemView = [];				// itemView 담아두는 배열
+var pageNum = 1;
 
 
 $(document).ready(function(){
@@ -154,35 +155,114 @@ $(document).ready(function(){
 
 
 
+	/* 0917 윤원수정 */
 	/* 일반 공구 리스트 */
 	function itemlist(){
+
+		var html = '';
+		var category = '';
 
 		$('.sort_reg').css('background-color', 'teal');
 		$('.sort_rvs').css('background-color', 'aquamarine');
 		
+		
+		
+		
+		
 		$.ajax({
 			url: domain+'/items',
 			type: 'GET',
+			data: {
+				'istate': 0,
+				'page': pageNum,
+				'count': 10,
+				'searchType' :  $('#searchType').val(),
+				'keyword': $('#keywordBox').val()
+			},
 			success: function(data){
+			
+			
+			if(pageNum>data.pageTotalCount) {
+				//$(window).off();
+				//document.getElementById('showmore_btn').style.display='none';
+				alert('더이상 불러올 공구가 없습니다.');
+				return false;
+        	 }
 
-				// 배열 새로 비우고 담아야한다.. 안그러면 정렬하고 돌아오면 배열요소 추가로 담겨 평점정렬할 때 요소 2배로 나온다..
-				items=[]; 
+				alert('일반공구리스트성공');
+				console.log('일반공구리스트성공 : '+data);
+				
+				
 
-				// 일반 공구 리스트 ㅡ> 배열에 담기
-				for (i in data) {
-					items.push(data[i]);
-				}
+		console.log(data.itemList);
+		
+		// 배열 새로 비우고 담아야한다.. 안그러면 정렬하고 돌아오면 배열요소 추가로 담겨 평점정렬할 때 요소 2배로 나온다..
+			items=[]; 
+			itemView =[]; 
+            
+            html += '<div class="itemlist_buttons">';
+
+			// 일반 공구 리스트 ㅡ> 배열에 담기
+			for (i in data.itemList) {
+				items.push(data.itemList[i]);
+			}
+		
+            for(var i=0; i<data.itemList.length; i++){
+
+                switch(data.itemList[i].category){
+                    case 0: 
+                        category = '';
+                        break;
+
+                    case 1: 
+                        category = '과일/채소';
+                        break;
+
+                    case 2: 
+                        category = '육류/해산물';
+                        break;
+
+                    case 3:
+                        category = '생필품/기타';
+                        break;
+                }
+
+
+
+                html += '	<button type="button" class="item_card category'+data.itemList[i].category+'" onclick="showDetails('+data.itemList[i].iidx+','+loginMidx+')">';
+                //html += '		<input type="hidden" value="'+data[i].iidx+'">';
+                html += '		<img class="item_img" src="/order/upload/'+data.itemList[i].photo+'">';
+                html += '		<div class="item_info">';
+                //html += '				<h2 class="item_category">'+category+'</h2>';
+                html += '				<h2 ><b class="item_title">'+data.itemList[i].iidx+': '+data.itemList[i].title+'</b></h2>';
+                //html += '				<h4 class="seller_rating">view '+data[i].view_count+'</h4>';
+                html += '				<h3 class="item_price">price : '+data.itemList[i].price+'</h4> ';
+                html += '				<h3 class="item_limitDate">D-day : '+data.itemList[i].receive+'</h4>';
+                html += '				<h3 class="item_location">location : '+data.itemList[i].location+'</h4>';
+                html += '				<h3 class="seller_name">'+data.itemList[i].midx+'.'+data.itemList[i].name+' | 평균 ★ '+data.itemList[i].rvs_avg+'(총 '+data.itemList[i].rvs_totalRow+'건)</h4>';
+                html += '		</div>';
+                html += '	</button>';
+
+
+            } // for end
+
+            html += '</div>';
+				
+				
 				
 				// items = JSON.stringify(data);
 				// alert('items : '+items);
 				
-				itemlist_print(data);
+				itemlist_print(html, pageNum);
+				pageNum++;
 
 			} // success end
 
 		});
 
 	}; // itemlist() end
+	
+
 
 
 
@@ -224,7 +304,7 @@ $(document).ready(function(){
 			}
 			
 			html += '	<li class="swiper-slide ag-slide_item" data-swiper-autoplay="1500" data-swiper-slide-index="'+i+'">';
-			html += '		<button type="button"  class="item_card_big category'+data[i].category+'" onclick="itemView('+data[i].iidx+','+loginMidx+')">';
+			html += '		<button type="button"  class="item_card_big category'+data[i].category+'" onclick="showDetails('+data[i].iidx+','+loginMidx+')">';
 			html += '			<img src="/order/upload/'+data[i].photo+'" class="ag-slide_img" alt="">';
 			
 			html += '			<div class="ag-slide_info clearfix">';
@@ -325,79 +405,132 @@ $(document).ready(function(){
 
 	}; // recomItemlist_print(data) end
 
-
+	function searchList(){
+		pageNum=1;
+		itemlist();
+	}
 
 
 	/* 일반공구글 출력기능 */
-	function itemlist_print(data){
-
-
-		var html = '';
-		var category = '';
-
-		// 출력되어있는 일반 공구리스트 지우고 ㅡ> 다시 출력
-		$('#itemlist_small_area').html(' ');
+	function itemlist_print(html, pageNum){
+	
+		if(pageNum==1){
+			// 출력되어있는 일반 공구리스트 지우고 ㅡ> 다시 출력
+			$('#itemlist_small_area').html(' ');
+		}
 		
 		$('#itemlist_area').css('display','block');
 		$('#itemRegForm_area').css('display','none');
 		$('#itemView_area').css('display','none');
 		
-		html += '<div class="itemlist_buttons">';
-
-
-		for(var i=0; i<data.length; i++){
-
-			switch(data[i].category){
-				case 0: 
-					category = '';
-					break;
-				
-				case 1: 
-					category = '과일/채소';
-					break;
-
-				case 2: 
-					category = '육류/해산물';
-					break;
-
-				case 3:
-					category = '생필품/기타';
-					break;
-			}
-
-
-			
-			html += '	<button type="button" class="item_card category'+data[i].category+'" onclick="itemView('+data[i].iidx+','+loginMidx+')">';
-			//html += '		<input type="hidden" value="'+data[i].iidx+'">';
-			html += '		<img class="item_img" src="/order/upload/'+data[i].photo+'">';
-			html += '		<div class="item_info">';
-			//html += '				<h2 class="item_category">'+category+'</h2>';
-			html += '				<h2 ><b class="item_title">'+data[i].iidx+': '+data[i].title+'</b></h2>';
-			//html += '				<h4 class="seller_rating">view '+data[i].view_count+'</h4>';
-			html += '				<h3 class="item_price">price : '+data[i].price+'</h4> ';
-			html += '				<h3 class="item_limitDate">D-day : '+data[i].receive+'</h4>';
-			html += '				<h3 class="item_location">location : '+data[i].location+'</h4>';
-			html += '				<h3 class="seller_name">'+data[i].midx+'.'+data[i].name+' | 평균 ★ '+data[i].rvs_avg+'(총 '+data[i].rvs_totalRow+'건)</h4>';
-			html += '		</div>';
-			html += '	</button>';
-			
-			
-		} // for end
-			
-			html += '</div>';
-			
-
-			// 표시되는 위치
-			$("#itemlist_small_area").html(html);
+		 // 표시되는 위치
+        $("#itemlist_small_area").append(html);
+		
+		
 
 	}; // itemlist_print(data) end
 
+	function sortingRvs(){
+	
+		var html = '';
+		var category = '';
+		pageNum=1;
 
+		$('.sort_reg').css('background-color', 'teal');
+		$('.sort_rvs').css('background-color', 'aquamarine');
+		
+		$.ajax({
+			url: domain+'/items',
+			type: 'GET',
+			data: {
+				'istate':0,
+				'page':pageNum,
+				'count': 10,
+				'searchType' : 'rvs_avg',
+				'keyword': 'rvs_avg'
+			},
+			success: function(data){
+
+				alert('평점순 정렬 성공');
+				console.log('평점순 정렬 성공 : '+data);
+				
+
+		console.log(data.itemList);
+		
+		// 배열 새로 비우고 담아야한다.. 안그러면 정렬하고 돌아오면 배열요소 추가로 담겨 평점정렬할 때 요소 2배로 나온다..
+			items=[]; 
+			itemView =[]; 
+            
+            html += '<div class="itemlist_buttons">';
+
+			// 일반 공구 리스트 ㅡ> 배열에 담기
+			for (i in data.itemList) {
+				items.push(data.itemList[i]);
+			}
+		
+            for(var i=0; i<data.itemList.length; i++){
+
+                switch(data.itemList[i].category){
+                    case 0: 
+                        category = '';
+                        break;
+
+                    case 1: 
+                        category = '과일/채소';
+                        break;
+
+                    case 2: 
+                        category = '육류/해산물';
+                        break;
+
+                    case 3:
+                        category = '생필품/기타';
+                        break;
+                }
+
+                html += '	<button type="button" class="item_card category'+data.itemList[i].category+'" onclick="showDetails('+data.itemList[i].iidx+','+loginMidx+')">';
+                //html += '		<input type="hidden" value="'+data[i].iidx+'">';
+                html += '		<img class="item_img" src="/order/upload/'+data.itemList[i].photo+'">';
+                html += '		<div class="item_info">';
+                //html += '				<h2 class="item_category">'+category+'</h2>';
+                html += '				<h2 ><b class="item_title">'+data.itemList[i].iidx+': '+data.itemList[i].title+'</b></h2>';
+                //html += '				<h4 class="seller_rating">view '+data[i].view_count+'</h4>';
+                html += '				<h3 class="item_price">price : '+data.itemList[i].price+'</h4> ';
+                html += '				<h3 class="item_limitDate">D-day : '+data.itemList[i].receive+'</h4>';
+                html += '				<h3 class="item_location">location : '+data.itemList[i].location+'</h4>';
+                html += '				<h3 class="seller_name">'+data.itemList[i].midx+'.'+data.itemList[i].name+' | 평균 ★ '+data.itemList[i].rvs_avg+'(총 '+data.itemList[i].rvs_totalRow+'건)</h4>';
+                html += '		</div>';
+                html += '	</button>';
+
+
+            } // for end
+
+            html += '</div>';
+				
+				
+				// items = JSON.stringify(data);
+				// alert('items : '+items);
+				
+				itemlist_print(html, pageNum);
+				pageNum++;
+
+			} // success end
+
+		});
+		
+	}
+
+	function ratingSort(){
+	
+		pageNum=1;
+		itemlist();
+	}
 
 
 
 	/* 평점순 클릭시 ㅡ> 평점순 정렬 후 리스트 출력  */
 	function allItemlist_sortRvs(){
+
 
 		// 버튼 색상변경
 		$('.sort_rvs').css('background-color', 'teal');
@@ -408,10 +541,12 @@ $(document).ready(function(){
 		recomItemlist_print(recomItems);
 
 		sortRvs(items);
-		itemlist_print(items);
+		itemlist_print(html);
+		
 
 	};
 
+	
 
 
 	/* 평점순 정렬기능 */
@@ -532,7 +667,9 @@ $(document).ready(function(){
 
 
 	/* 공구글 상세보기 */
-	function itemView(iidx) {
+	function showDetails(iidx, midx) {
+	
+	alert('itemView!!');
 		
 
 		$.ajax({
@@ -550,6 +687,7 @@ $(document).ready(function(){
 				html += '<div class="w3-container" class="ItemView" style="margin-top:65px;" >';
 				html += '	<h2 class="w3-xlarge text-purple"><b>Item View</b></h2>';
 				html += '	<hr style="width:50px;border:5px solid purple;"  class="w3-round">';
+				html += '	<img class="item_img" src="/order/upload/'+data.photo+'" style="width: 350px; height:350px;">';
 				html += '</div>';
 				html += '<div class="itemView_table">';
 				html += '	<table border="1">';
