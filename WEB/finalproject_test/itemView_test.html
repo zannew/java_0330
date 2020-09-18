@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>itemView</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+ 
     <style>
       p { 
           margin:20px 0px; 
@@ -20,13 +20,13 @@
             height: 200px;
         }
         
-        div.itemView {
-            border: 1px solid;
+        div.itemView2 {
+            
             margin: 10% 20%;
         }
         
-        div.view_wrap {
-            border: 1px solid;
+        div.view_wrap2 {
+           
             
             width: 450px;
             height: 400px;
@@ -35,55 +35,72 @@
             
         }
         
-        div.photoAndDetails{
+        div.photoAndDetails2{
             height: 800px;
         }
         
-        div.details {
+        div.details2 {
             margin-top: 0%;
             border: 1px solid;
             height: 50%;
             background-color: yellow;
+            
         }
         
-        div.comments {
+        div.comments2 {
             
+            
+        }
+        
+          div.commentlist2 {
+            border: 1px solid green;
             overflow: scroll;
-            height: 800px;
+            height: 600px;
             position: relative;
             
         }
         
-        #itemImg {
+         div.comment_formWrap2 {
+            margin-top: 0%;
+            border: 1px solid;
+            width: 100%;
+            height: 50%;
+            background-color: yellow;
+            position: relative;
+            
+        }
+        
+       
+        #itemImg2 {
             
             width: 100%;
             height: 50%;
-            padding: 30px 0;
+            padding: 30px 30px;
         }
         
         /* width */
-::-webkit-scrollbar {
-  width: 10px;
-}
+        ::-webkit-scrollbar {
+          width: 10px;
+        }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: white; 
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: green; 
-    border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
-    border-bottom-left-radius: 50px;
-    border-bottom-right-radius: 50px;
-}
+        /* Track */
+        ::-webkit-scrollbar-track {
+          background: white; 
+        }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555; 
-}
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+          background: green; 
+            border-top-left-radius: 50px;
+            border-top-right-radius: 50px;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+          background: #555; 
+        }
         
         
     
@@ -91,49 +108,25 @@
   </head>
   <body>
       
-    <div class="itemView">
+    <div class="itemView2">
       
-        <div class="view_wrap photoAndDetails" id="">
-            <img id="itemImg" src="default.jpg" style="position: relative;">
-            <div class="details" style="color: blue; ">sum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elitsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elitsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elitsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+        <div class="view_wrap2 photoAndDetails2" id="">
+            <img id="itemImg2" src="default.jpg" style="position: relative;">
+            <div class="details2" style="color: blue; ">sum dolor sit amet,stas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
             
         </div>
-        <div class="view_wrap comments" style="color:green;">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
-            ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
-            ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
-            ur adipisciit amet, consectetur adipiscing elit. Nullam egestas sed ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
-            ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
-            m ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
-            ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
-            ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
-            ur adipisciit amet, consectetur adipiscing elit. Nullam egestas sed ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
-            ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
-            m ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
-            ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
-            ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
-            ur adipisciit amet, consectetur adipiscing elit. Nullam egestas sed ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
-            ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
-            m ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
-            ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
-            ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
-            ur adipisciit amet, consectetur adipiscing elit. Nullam egestas sed ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
-            ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
-            m ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
-            ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
-            ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
-            ur adipisciit amet, consectetur adipiscing elit. Nullam egestas sed ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
-            ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
-            m ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
-            ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
-            ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
-            ur adipisciit amet, consectetur adipiscing elit. Nullam egestas sed ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
-            ur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed 
+        <div class="view_wrap2 comments2" style="">
+            <div class="commentlist2"> 
+                LoLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+            <div class="comment_formWrap2"> 
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+       
             
         </div>
         
        
-        
+                
+
         
         
     </div>
@@ -143,9 +136,6 @@
       <br>
       
       
-  
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
   </body>
 </html>

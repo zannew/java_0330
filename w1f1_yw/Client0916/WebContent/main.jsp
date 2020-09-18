@@ -25,7 +25,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>  <!-- 평점등록 시 별 마우스오버 계속 반응  -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script> <!-- 날짜포멧 -->
   <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>   <!-- 데이터를 정렬/필터/색인할 수 있게 도와주는 오픈소스 Javascript Utility Library -->
-  
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c35fdaa3a50bc0c680e435eb402d8491"></script><!-- 판매처 지도표시를 위한 카카오 지도 api  -->
 </head>
 <body>
 
@@ -51,6 +51,8 @@
 
 
       <!-- content영역-2 : 공구상세영역  -->
+        
+      
       <div id="itemView_area" class="itemView_area">
         <!-- 공구상세 내용 -->
         <div id="itemView_context"></div>

@@ -20,6 +20,11 @@ var sortItems = []; 		// 일반리스트 평점순 정렬 담아두는 배열
 var itemView = [];				// itemView 담아두는 배열
 var pageNum = 1;
 
+/***** 지도를 위한 전역변수 선언  *****/
+var location_y=0.0;
+var location_x=0.0;
+	
+
 
 $(document).ready(function(){
 	profile();  // 기능코드는 buyer.js에 작성
@@ -175,7 +180,7 @@ $(document).ready(function(){
 			data: {
 				'istate': 0,
 				'page': pageNum,
-				'count': 10,
+				'count': 5,
 				'searchType' :  $('#searchType').val(),
 				'keyword': $('#keywordBox').val()
 			},
@@ -682,48 +687,68 @@ $(document).ready(function(){
 				$('#itemRegForm_area').css('display','none');
 				$('#itemView_area').css('display','block');
 				
+				var category = '';
+				location_y=data.location_y;
+				location_x=data.location_x;
+				
+				if(data.category==1){
+					category='과일 / 채소';
+				} else if (data.category==2){
+					category='육류 / 해산물';
+				} else {
+					category='생필품 / 기타'; 
+				}
+				
 				var html = '';
 					
 				html += '<div class="w3-container" class="ItemView" style="margin-top:65px;" >';
 				html += '	<h2 class="w3-xlarge text-purple"><b>Item View</b></h2>';
 				html += '	<hr style="width:50px;border:5px solid purple;"  class="w3-round">';
-				html += '	<img class="item_img" src="/order/upload/'+data.photo+'" style="width: 350px; height:350px;">';
-				html += '</div>';
-				html += '<div class="itemView_table">';
-				html += '	<table border="1">';
-				html += '		<tr><td>iidx</td><td>'+data.iidx+'</td></tr>';
-				html += '		<tr><td>제목</td><td>'+data.title+'</td></tr>';
-				html += '		<tr><td>작성자</td><td>'+data.midx+'</td></tr>';
-				html += '		<tr><td>작성자 평균평점</td><td>'+data.rvs_avg+'</td></tr>';
-				html += '		<tr><td>작성자 총평점수</td><td>'+data.rvs_totalRow+'</td></tr>';
-				html += '		<tr><td>조회수</td><td>'+data.view_count+'</td></tr>';
-				html += '		<tr><td>첨부사진</td><td><img class="item_img" src="/order/upload/'+data.photo+'"></td></tr>';
-				html += '		<tr><td>카테고리</td><td>'+data.category+'</td></tr>';
-				html += '		<tr><td>가격</td><td>'+data.price+'</td></tr>';
-				html += '		<tr><td>모집정원</td><td>'+data.count_m+'</td></tr>';
-				html += '		<tr><td>대기정원</td><td>'+data.count_m*2+'</td></tr>';
-				html += '		<tr><td>물품수령일시</td><td>'+data.receive+'</td></tr>';
-				html += '		<tr><td>판매처</td><td>'+data.addr+'</td></tr>';
-				html += '		<tr><td>좌표</td><td>'+data.location+'</td></tr>';
-				html += '		<tr><td>본문</td><td>'+data.content+'</td></tr>';
-				html += '		<tr><td clospan="2">';
-				html += '			<input type="button" class="btn_itmelist" value="목록으로" onclick="allItemlist()">'; 
-
+				html += '	<img class="detail_img" src="/order/upload/'+data.photo+'" style="">';
+				
+				html += '<div class="itemView_detail">';
+				
+				html +='		<h2 style="margin-top: 20px; padding-left: 20px;">'+data.title;
+				html +='		</h2>';
+				html +='		<h4>';
+				html +='			<span class="element" style="color: #8c5394; font-weight: bold; ">'+data.name+' 평균 : '+data.rvs_avg+' 점 / 총 평점 : '+data.rvs_totlaRow+'</span>';
+				//html +='			<span class="element">평균 : '+data.rvs_avg+' 점 / 총 평점 : '+data.rvs_totlaRow+' </span>';
+				html +='			<span class="element" style="color: grey;">조회수 : '+data.view_count+'</span>';
+				html +='		</h4>';
+				html +='		<h4 style="color: gray;"><span class="element"> 분류 : '+category+'</span></h4>';
+				html +='		<h3>';
+				html +='			<span class="element" style="color: red;">가격 : ￦ '+data.price+'</span>';
+				html +='			<span class="element">수령날짜 : '+data.receive+' 까지</span>';
+				html +='		</h3>';
+				html +='		<h3>';
+				html +='			<span class="element" style="color: red; ">모집정원 : '+data.count_m+' 명</span>';
+				html +='			<span class="element">대기정원 : '+(data.count_w)+' 명</span>';
+				html +='		</h3>';
+				html +='		<div class="item_content">';
+				html +='			<span>'+data.content+'</span>';
+				html +='		</div>';
+				html +='		<div class="map_area">';
+				html +='			<div id="map" style="width:400px; height:300px; padding-top: 20px; border-radius: 20px 20px 20px 20px;"></div> ';
+				html +='		</div>';
 				// 만약에 로그인한 사람이 작성자가 아니면, 참여신청버튼 활성화
 				if(loginMidx != data.midx){
-					html += '			<input type="button" class="btn_join" value="참여신청" onclick="regOrder('+loginMidx+','+data.iidx+')">';
+					html += '			<input type="button" class="btn_join request_btn" value="요청보내기" onclick="regOrder('+loginMidx+','+data.iidx+')">';
 				}
+					html += '		<input type="button" class="btn_itmelist" value="목록으로" onclick="allItemlist()">'; 
+
+				
 
 				// 만약에 로그인한 사람이 작성자와 같으면, 글수정. 글삭제 활성화
 				if(loginMidx == data.midx){
 					html += '			<input type="button" class="btn_itmelist" value="글수정" onclick="editItem('+data.iidx+')">'; 
 					html += '			<input type="button" class="btn_itmelist" value="글삭제" onclick="delItem('+data.iidx+')">'; 
 				}
-				html += '		</td></tr>'; 
-				html += '	</table>';
+				
+				html += '</div>';
 				html += '</div>';
 				
 				$('#itemView_context').html(html);
+				getMap(location_y, location_x);
 				
 				// 해당글의 댓글 리스트 호출 및 출력
 				getComment(iidx);
@@ -761,5 +786,36 @@ $(document).ready(function(){
 	};
 
 
+	/*지도에 마커표시 */
 
+	//지도를 표시할 div
+	function getMap(location_y, location_x){
+		var mapContainer = document.getElementById('map'),  
+		 mapOption = { 
+		     center: new kakao.maps.LatLng(location_y, location_x), // 지도의 중심좌표
+		     level: 4 // 지도의 확대 레벨
+		 };
+		
+		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		
+		var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
+		 imageSize = new kakao.maps.Size(54, 59), // 마커이미지의 크기입니다
+		 imageOption = {offset: new kakao.maps.Point(17, 59)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+		   
+		//마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+		 markerPosition = new kakao.maps.LatLng(location_y, location_x); // 마커가 표시될 위치입니다
+		
+		//마커를 생성합니다
+		var marker = new kakao.maps.Marker({
+		 position: markerPosition, 
+		 image: markerImage // 마커이미지 설정 
+		});
+		
+		 marker.setImage(markerImage);
+		//마커가 지도 위에 표시되도록 설정합니다
+		marker.setMap(map);  
+		
+	
+	}
 

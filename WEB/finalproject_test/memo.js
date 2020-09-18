@@ -1,91 +1,59 @@
-
-	/* 0917 윤원수정 */
-	/* 일반 공구 리스트 */
-	function itemlist(){
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>itemView</title>
+ 
+    <style>
+    
+   
         
-        var html = '';
-		var category = '';
+        div.itemView {
+            
+            margin: 10% 20%;
+            background-color: antiquewhite;
+            width:70%;
+            height: 50%;
+         
+        }
+        
+        div.commentView {
+            margin: 45% 20%;
+            background-color: azure;
+            position: absolute;
+        }
+        
+        div.details {
+            height: 50%;
+        }
+    
+    </style>
+  </head>
+  <body>
+      
+   <div class="itemView" style=" position:absolute;">
+       <div class="imgArea" style="float:left;">
+       <img src="default.jpg" style="margin: 20px 20px; width: 100%; height: 500px; ">
+        </div>   
+       <div class="detailArea" style="color: red; position:relative;">
+           <div class="details" style=" overflow: scroll; height: 550px; padding-left: 40px; ">
+                oLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ioLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amemet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam am egestas sed sem ut malesuada.Lorem ipsum dolor sit aelit. Nullam 0%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20ada.Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ioLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amemet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam am egestas sed sem ut malesuada.Lorem ipsum dolor sit aelit. Nullam 0%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;r adipiscing elitLorem ioLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit. Ng elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, conseada.Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ioLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amemet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam am egestas sed sem ut malesuada.Lorem ipsum dolor sit aelit. Nullam 0%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;r adipiscing elitLorem ioLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit. Ng elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, conseada.Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ioLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amemet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam am egestas sed sem ut malesuada.Lorem ipsum dolor sit aelit. Nullam 0%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;r adipiscing elitLorem ioLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit. Ng elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, conse%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;r adipiscing elitLorem ioLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit. Ng elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem i  
+               
+           </div>
+        </div>
+    </div>
+        <div class="commentView">
+            <div class="commentList" style="color: blue;">
+                lam 0%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;r adipiscing elitLorem ioLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit. Ng elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, conseada.Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ioLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amemet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam am egestas sed sem ut malesuada.Lorem ipsum dolor sit aelit. Nullam 0%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;r adipiscing elitLorem ioLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit. Ng elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, conseada.Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ioLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amemet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam am egestas sed sem ut malesuada.Lorem ipsum dolor sit aelit. Nullam 0%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;r adipiscing elitLorem ioLorem ipsum dolor sit amet, consectetur adipiscing elitLore
+            </div>
+            <div class="commentForm" style="color: green;">
+                lam 0%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;r adipiscing elitLorem ioLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit. Ng elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, conseada.Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ioLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amemet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam am egestas sed sem ut malesuada.Lorem ipsum dolor sit aelit. Nullam 0%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;r adipiscing elitLorem ioLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit. Ng elit. Nullam egestas sed sem ut malesuada.Lorem ipsum dolor sit amet, conseada.Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ioLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amemet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam am egestas sed sem ut malesuada.Lorem ipsum dolor sit aelit. Nullam 0%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;margin: 10% 20%;r adipiscing elitLorem ioLorem ipsum dolor sit amet, consectetur adipiscing elitLore
+            </div>
+        </div>
+      
 
-		$('.sort_reg').css('background-color', 'teal');
-		$('.sort_rvs').css('background-color', 'aquamarine');
-		
-		$.ajax({
-			url: domain+'/items',
-			type: 'GET',
-			data: {
-				
-				'page':pageNum,
-				'count': 10,
-				'searchType' :  $('#searchType').val(),
-				'keyword': $('#keywordBox').val()
-			},
-			success: function(data){
+      
 
-				// 배열 새로 비우고 담아야한다.. 안그러면 정렬하고 돌아오면 배열요소 추가로 담겨 평점정렬할 때 요소 2배로 나온다..
-				items=[]; 
-				itemView =[]; 
-                
-                html += '<div class="itemlist_buttons">';
-
-				// 일반 공구 리스트 ㅡ> 배열에 담기
-				for (i in data.itemList) {
-					items.push(data.itemList[i]);
-				}
-			
-                for(var i=0; i<data.itemList.length; i++){
-
-                    switch(data.itemList[i].category){
-                        case 0: 
-                            category = '';
-                            break;
-
-                        case 1: 
-                            category = '과일/채소';
-                            break;
-
-                        case 2: 
-                            category = '육류/해산물';
-                            break;
-
-                        case 3:
-                            category = '생필품/기타';
-                            break;
-                    }
-
-
-
-                    html += '	<button type="button" class="item_card category'+data.itemList[i].category+'" onclick="itemView('+data.itemList[i].iidx+','+loginMidx+')">';
-                    //html += '		<input type="hidden" value="'+data[i].iidx+'">';
-                    html += '		<img class="item_img" src="/order/upload/'+data.itemList[i].photo+'">';
-                    html += '		<div class="item_info">';
-                    //html += '				<h2 class="item_category">'+category+'</h2>';
-                    html += '				<h2 ><b class="item_title">'+data.itemList[i].iidx+': '+data.itemList[i].title+'</b></h2>';
-                    //html += '				<h4 class="seller_rating">view '+data[i].view_count+'</h4>';
-                    html += '				<h3 class="item_price">price : '+data.itemList[i].price+'</h4> ';
-                    html += '				<h3 class="item_limitDate">D-day : '+data.itemList[i].receive+'</h4>';
-                    html += '				<h3 class="item_location">location : '+data.itemList[i].location+'</h4>';
-                    html += '				<h3 class="seller_name">'+data.itemList[i].midx+'.'+data.itemList[i].name+' | 평균 ★ '+data.itemList[i].rvs_avg+'(총 '+data.itemList[i].rvs_totalRow+'건)</h4>';
-                    html += '		</div>';
-                    html += '	</button>';
-
-
-                } // for end
-
-                html += '</div>';
-
-
-                // 표시되는 위치
-                $("#itemlist_small_area").html(html);
-			   
-                
-				// items = JSON.stringify(data);
-				// alert('items : '+items);
-				
-				//itemlist_print(data);
-                itemlist_print();
-
-			} // success end
-
-		});
-
-	}; // itemlist() end
+  </body>
+</html>
