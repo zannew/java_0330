@@ -147,7 +147,7 @@
   <script src="js/comment.js"></script>  <!-- 댓글 -->
   <script src="js/seller.js"></script> <!-- aside 판매자 -->
   <script src="js/buyer.js"></script>  <!-- aside 구매자 -->
-  <script src="js/map.js"></script>  <!-- aside 구매자 -->
+  <script src="js/map.js"></script>  <!-- 장윤원 2020.09.20 공구 등록 시 지도, 좌표 저장-->
   <script src="js/item.js"></script>   <!-- 공구 검색 / 리스트 출력 / 정렬 / 등록 / 삭제 -->
     
     
