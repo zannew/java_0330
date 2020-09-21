@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wifi.order.dao.AlarmDao">
+
+	<!-- 판매현황 -->
+	<select id="getMyItem" resultType="com.wifi.order.model.Alarm">
+		select * from wifi.alarm_s where midx=#{midx}
+	</select>
+	
+	<update id="cancleSellerAlarm">
+		update wifi.alarm_s set state=0 where midx=#{param1} and iidx=#{param2}
+	</update>
+	
+	<insert id="insertSellerAlarm">
+		insert into wifi.alarm_s values(#{param1}, #{param2}, 1)
+	</insert>
+	
+	<delete id="deleteSellerAlarm">
+		delete from wifi.alarm_s where iidx=#{iidx}
+	</delete>
+	
+	<!-- 구매현황 -->
+	<select id="getMyOrder" resultType="com.wifi.order.model.Alarm">
+		select * from wifi.alarm_b where midx=#{midx}
+	</select>
+	
+	<update id="cancleBuyerAlarm">
+		update wifi.alarm_b set state=0 where midx=#{param1} and iidx=#{param2}
+	</update>
+	
+	<insert id="insertBuyerAlarm">
+		insert into wifi.alarm_b values(#{param1}, #{param2}, 1)
+	</insert>
+	
+	<delete id="deleteBuyerAlarm">
+		delete from wifi.alarm_b where midx=#{param1} iidx=#{param2}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+
+
+
