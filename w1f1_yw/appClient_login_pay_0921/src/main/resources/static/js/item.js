@@ -1,4 +1,5 @@
 document.write("<script src='js/_define.js'></script>");
+document.write("<script src='js/map.js'></script>");
 
 
 
@@ -16,11 +17,14 @@ var sortRecomItems = []; 	// 추천리스트 평점순 정렬 담아두는 배�
 var sortItems = []; 		// 일반리스트 평점순 정렬 담아두는 배열
 var itemView = [];				// itemView 담아두는 배열
 var pageNum = 1;
+var sortNum = 1;
 
 /***** 지도를 위한 전역변수 선언  *****/
 var location_y=0.0;
 var location_x=0.0;
 
+        
+        
 $(document).ready(function(){
 	//alert(loginName);
 	var openPay;
@@ -155,7 +159,13 @@ $(document).ready(function(){
 	/* 모든 공구글 리스트 */
 	function allItemlist(){
 		//alert('allItemlist'); //20200920
+		
+		$('#showmore_btn').css('display','block');
+		$('#showrating_btn').css('display','none');
+		
 		recomItemlist();
+		sortNum=1;
+		pageNum=1;
 		itemlist();
 	};
 
@@ -203,29 +213,24 @@ $(document).ready(function(){
 		$('.sort_reg').css('background-color', 'teal');
 		$('.sort_rvs').css('background-color', 'aquamarine');
 		
-		
-		
-		
-		
 		$.ajax({
 			url: domain+'/items',
 			type: 'GET',
 			data: {
 				'istate': 0,
 				'page': pageNum,
-				'count': 5,
+				'count': 8,
 				'searchType' :  $('#searchType').val(),
 				'keyword': $('#keywordBox').val()
 			},
 			success: function(data){
 			
-			
-			if(pageNum>data.pageTotalCount) {
-				//$(window).off();
-				//document.getElementById('showmore_btn').style.display='none';
-				alert('더이상 불러올 공구가 없습니다.');
-				return false;
-        	 }
+				if(pageNum>data.pageTotalCount) {
+					//$(window).off();
+					//document.getElementById('showmore_btn').style.display='none';
+					alert('더이상 불러올 공구가 없습니다.');
+					return false;
+	        	 }
 
 				//alert('일반공구리스트성공');
 				console.log('일반공구리스트성공 : '+data);
@@ -235,7 +240,7 @@ $(document).ready(function(){
 		console.log(data.itemList);
 		
 		// 배열 새로 비우고 담아야한다.. 안그러면 정렬하고 돌아오면 배열요소 추가로 담겨 평점정렬할 때 요소 2배로 나온다..
-			items=[]; 
+			//items=[]; 
 			itemView =[]; 
             
             html += '<div class="itemlist_buttons">';
@@ -243,6 +248,7 @@ $(document).ready(function(){
 			// 일반 공구 리스트 ㅡ> 배열에 담기
 			for (i in data.itemList) {
 				items.push(data.itemList[i]);
+				console.log('itemList[i] : '+data.itemList[i]);
 			}
 			
 			var imgPath;
@@ -284,7 +290,7 @@ $(document).ready(function(){
                 //html += '				<h4 class="seller_rating">view '+data[i].view_count+'</h4>';
                 html += '				<h3 class="item_price">price : '+data.itemList[i].price+'</h4> ';
                 html += '				<h3 class="item_limitDate">D-day : '+data.itemList[i].receive+'</h4>';
-                html += '				<h3 class="item_location">location : '+data.itemList[i].location+'</h4>';
+                html += '				<h3 class="item_addr">addr : '+data.itemList[i].addr+'</h4>';
                 html += '				<h3 class="seller_name">'+data.itemList[i].midx+'.'+data.itemList[i].name+' | 평균 ★ '+data.itemList[i].rvs_avg+'(총 '+data.itemList[i].rvs_totalRow+'건)</h4>';
                 html += '		</div>';
                 html += '	</button>';
@@ -360,7 +366,11 @@ $(document).ready(function(){
 			
 			html += '				<div class="ag-slide-info_descr">';
 			html += '					<small class="ag-slide-info_category">'+category+'</small>';
-			html += '					<h6 class="ag-slide-info_title"><b>'+data[i].iidx+': '+data[i].title+'</b></h6>';
+			if(data[i].title.length > 13){
+				html += '					<h6 class="ag-slide-info_title"><b>'+data[i].iidx+': '+data[i].title.substr(0,12)+'..</b></h6>';
+			}else {
+				html += '					<h6 class="ag-slide-info_title"><b>'+data[i].iidx+': '+data[i].title+'</b></h6>';
+			}
 			html += '					<h5 class="ag-slide-info_title">price : '+data[i].price+'</h6>';
 			html += '					<h5 class="ag-slide-info_title">D-day : '+data[i].receive+'</h6>';
 			html += '					<h5 class="ag-slide-info_title">location : '+data[i].location+'</h6>';
@@ -485,6 +495,9 @@ $(document).ready(function(){
 		var category = '';
 		pageNum=1;
 
+		$('#showmore_btn').css('display','none');
+		$('#showrating_btn').css('display','block');
+
 		$('.sort_reg').css('background-color', 'teal');
 		$('.sort_rvs').css('background-color', 'aquamarine');
 		
@@ -493,31 +506,41 @@ $(document).ready(function(){
 			type: 'GET',
 			data: {
 				'istate':0,
-				'page':pageNum,
-				'count': 10,
+				'page':sortNum,
+				'count': 8,
 				'searchType' : 'rvs_avg',
 				'keyword': 'rvs_avg'
 			},
 			success: function(data){
+			
+				if(sortNum>data.pageTotalCount) {
+					//$(window).off();
+					//document.getElementById('showmore_btn').style.display='none';
+					alert('더이상 불러올 평점별 공구가 없습니다.');
+					sortNum=1;
+					return false;
+					
+					
+	        	 }
 
 				alert('평점순 정렬 성공');
 				console.log('평점순 정렬 성공 : '+data);
 				
 
-		console.log(data.itemList);
+				console.log(data.itemList);
 		
-		// 배열 새로 비우고 담아야한다.. 안그러면 정렬하고 돌아오면 배열요소 추가로 담겨 평점정렬할 때 요소 2배로 나온다..
-			items=[]; 
-			itemView =[]; 
+				// 배열 새로 비우고 담아야한다.. 안그러면 정렬하고 돌아오면 배열요소 추가로 담겨 평점정렬할 때 요소 2배로 나온다..
+				items=[]; 
+				itemView =[]; 
             
-            html += '<div class="itemlist_buttons">';
+           		 html += '<div class="itemlist_buttons">';
 
-			// 일반 공구 리스트 ㅡ> 배열에 담기
-			for (i in data.itemList) {
-				items.push(data.itemList[i]);
-			}
+				// 일반 공구 리스트 ㅡ> 배열에 담기
+				for (i in data.itemList) {
+					items.push(data.itemList[i]);
+				}
 		
-            for(var i=0; i<data.itemList.length; i++){
+          		for(var i=0; i<data.itemList.length; i++){
 
                 switch(data.itemList[i].category){
                     case 0: 
@@ -536,6 +559,7 @@ $(document).ready(function(){
                         category = '생필품/기타';
                         break;
                 }
+                
                 imgPath = domain+'/upload/'+data.itemList[i].photo;				
 				console.log('imgPath : '+imgPath);
                        
@@ -556,16 +580,16 @@ $(document).ready(function(){
                 html += '	</button>';
 
 
-            } // for end
+            	} // for end
 
-            html += '</div>';
+            	html += '</div>';
 				
 				
 				// items = JSON.stringify(data);
 				// alert('items : '+items);
 				
-				itemlist_print(html, pageNum);
-				pageNum++;
+				itemlist_print(html, sortNum);
+				sortNum++;
 
 			} // success end
 
@@ -575,8 +599,8 @@ $(document).ready(function(){
 
 	function ratingSort(){
 	
-		pageNum=1;
-		itemlist();
+		//sortNum=1;
+		sortingRvs();
 	}
 
 	/* 평점순 클릭시 ㅡ> 평점순 정렬 후 리스트 출력  */
@@ -775,7 +799,7 @@ $(document).ready(function(){
 				html +='			<span>'+data.content+'</span>';
 				html +='		</div>';
 				html +='		<div class="map_area">';
-				html +='			<div id="map" style="width:400px; height:300px; padding-top: 20px; border-radius: 20px 20px 20px 20px;"></div> ';
+				html +='			<div id="show_map" style="width:400px; height:300px; padding-top: 20px; border-radius: 20px 20px 20px 20px;"></div> ';
 				html +='		</div>';
 				// 만약에 로그인한 사람이 작성자가 아니면, 참여신청버튼 활성화
 				if(loginMidx != data.midx){
@@ -797,7 +821,8 @@ $(document).ready(function(){
 				$('#itemView_context').html(html);
 				console.log('showDetails : '+iidx+' '+midx);
 				
-				//20200920		getMap(location_y, location_x);
+				//20200920		
+				getMap(location_y, location_x);
 				
 				console.log('--showDetails : '+iidx+midx);
 				// 해당글의 댓글 리스트 호출 및 출력
@@ -862,8 +887,15 @@ $(document).ready(function(){
 	  $('#food').load(location.href + " #food");
 	}
 	
+
+	
+	
 	// 공구 등록 함수
 	function regSubmit(){
+	
+	
+		console.log('arr_result.y : '+arr_result.y);
+		console.log('arr_result.x : '+arr_result.x);
 	
 	  var regFormData = new FormData();
 	  regFormData.append('title', $('#title').val());
@@ -873,8 +905,8 @@ $(document).ready(function(){
 	  regFormData.append('receive', moment($('#receive').val()).format('YYYY-MM-DD HH:mm:ss'));
 	  regFormData.append('addr', $('#addr').val());
 	  //regFormData.append('location', $('#location').val());
-	  regFormData.append('location_y', $('#location_y').val());
-	  regFormData.append('location_x', $('#location_x').val());
+	  regFormData.append('location_y', arr_result.y);
+	  regFormData.append('location_x', arr_result.x);
 	  regFormData.append('content', $('#content').val());
 	  // 파일 첨부
 	  if($('#photo')[0].files[0] != null){
@@ -923,7 +955,7 @@ $(document).ready(function(){
 	
 	//지도를 표시할 div
 	function getMap(location_y, location_x){		
-		var mapContainer = document.getElementById('map'),  
+		var mapContainer = document.getElementById('show_map'),  
 		 mapOption = { 
 		     center: new kakao.maps.LatLng(location_y, location_x), // 지도의 중심좌표
 		     level: 4 // 지도의 확대 레벨

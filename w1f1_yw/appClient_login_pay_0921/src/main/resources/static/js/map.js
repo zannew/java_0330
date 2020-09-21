@@ -9,16 +9,17 @@
 				체크포인트 2 ) Order서버 체크
 */
 
-
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+	// 좌표를 전역변수로 뺌
+    var coords=null;
+	var arr_result=null;
+	
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
             center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
             level: 5 // 지도의 확대 레벨
         };
 
-    // 좌표를 전역변수로 뺌
-    var coords=null;
-	var result=null;
+    
 
     //지도를 미리 생성
     var map = new daum.maps.Map(mapContainer, mapOption);
@@ -43,13 +44,13 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
                     // 정상적으로 검색이 완료됐으면
                     if (status === daum.maps.services.Status.OK) {
 
-                        result = results[0]; //첫번째 결과의 값을 활용
+                        arr_result = results[0]; //첫번째 결과의 값을 활용
 
                         // 해당 주소에 대한 좌표를 받아서
-                        coords = new daum.maps.LatLng(result.y, result.x);
+                        coords = new daum.maps.LatLng(arr_result.y, arr_result.x);
                         // 받은 좌표 확인
                         console.log('coords : '+coords);
- // ★result.y 와 result.x가 function regSubmit에서 formData에 넣어줄때 필요!!scope문제 발생..?
+ 						// ★arr_result.y 와 arr_result.x가 function regSubmit에서 formData에 넣어줄때 필요!!scope문제 발생..?
 
                         // 지도를 보여준다.
                         mapContainer.style.display = "block";

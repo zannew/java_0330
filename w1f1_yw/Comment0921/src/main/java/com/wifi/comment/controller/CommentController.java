@@ -13,13 +13,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wifi.comment.model.Comment;
+import com.wifi.comment.model.CommentDTO;
 import com.wifi.comment.service.CommentDelService;
 import com.wifi.comment.service.CommentEditService;
 import com.wifi.comment.service.CommentListService;
 import com.wifi.comment.service.CommentRegService;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/comments")
 public class CommentController {
 
@@ -41,7 +42,7 @@ public class CommentController {
 
 	/* 댓글 리스트 */
 	@GetMapping("/{iidx}")
-	public List<Comment> getComment(@PathVariable("iidx") int iidx) {
+	public List<CommentDTO> getComment(@PathVariable("iidx") int iidx) {
 
 		System.out.println("댓글리스트 controller");
 		return listService.getComment(iidx);

@@ -1,6 +1,6 @@
 
-//var domainC = "http://http://ec2-13-209-70-0.ap-northeast-2.compute.amazonaws.com:8080";
-var domainC = "http://localhost:8082/comments";
+var domainC = "http://ec2-13-209-70-0.ap-northeast-2.compute.amazonaws.com:8080/comments";
+//var domainC = "http://localhost:8082/comments";
 
 //var domain = 'http://localhost:8080/comments';
 
@@ -58,19 +58,19 @@ function getComment(iidx) {
 
 					html +='				<div class="comment_card comment_card_'+data[i].cidx+'">';
 					html +='				<input type="hidden" class="iidx_'+data[i].cidx+'" value="'+data[i].iidx+'">';
-					html +='					<div class="comment_imgWrap"><img src="/img/사과.jpg"></div>';
+					html +='					<div class="comment_imgWrap"><img src="/img/default-profile.png" style="background-color: #FEE500"></div>';
 					html +='					<div class="comment_box">';
 					html +='						<div class="comment_text comment_text_'+data[i].cidx+'">'+data[i].content+'</div>';
 					html +='						<div class="comment_footer">';
 					html +='							<div class="comment_info">';
-					html +='								<span class="comment_mname">'+data[i].midx+'</span>';
+					html +='								<span class="comment_mname">'+data[i].name+'</span>';
 					html +='								<span class="comment_date">'+data[i].regdate+'</span>';
 					html +='							</div>';
 					html +='							<div class="comment_actions comment_actions_'+data[i].cidx+'">';
 					
 					if(data[i].midx == loginMidx){
 						html +='								<button type="button" class="btn_editComment" onclick="editCommentForm('+data[i].cidx+')">수정</button>';
-						html +='								<button type="button" class="btn_delComment" onclick="delCommant('+data[i].cidx+')">삭제</button>';
+						html +='								<button type="button" class="btn_delComment" onclick="delCommant('+data[i].cidx+','+iidx+')">삭제</button>';
 					}
 
 //					html +='								<button type="button" onclick="">Reply</button>';
@@ -103,11 +103,11 @@ function regCommentForm(iidx){
 	chtml +='		<table width=100% border=0>';
 	chtml +='			<tr><td width=80px>';
 	chtml +='	   			     <div class="comment_imgWrapN">';
-	chtml +='					 <img src="http://lorempixel.com/200/200/people">';
+	chtml +='					 <img src="/img/default-profile.png" style="background-color: #8C5394; width: 100%; height:100%;">';
 	chtml +='				     </div>';
 	chtml +='				</td><td>';
 	chtml +='					<div class="formRow">';
-	chtml +='						<h4 class="comment_mname">'+loginName+'</h4>';
+	chtml +='						<h4 class="comment_mname">&nbsp&nbsp'+loginName+'</h4>';
 	chtml +='						<input type="hidden" class="comment_midx" value="2">';
 	chtml +='					</div>';
 	chtml +='				</td><td>';	
@@ -224,7 +224,7 @@ function editComment(cidx) {
 } // editComment() end
 
 /* 댓글 삭제 */
-function delCommant(cidx) {
+function delCommant(cidx, iidx) {
 
 	if (confirm('댓글을 삭제하시겠습니까?')) {
 
@@ -235,12 +235,14 @@ function delCommant(cidx) {
 
 				if (data == 1) {
 					alert('댓글을 삭제했습니다.');
-					getComment(cidx);
 
 				} else {
 					alert('댓글을 삭제하지 못했습니다. 다시 시도해주세요.');
 				}
 
+			},
+			complete: function(){
+				getComment(iidx);
 			}
 
 		});

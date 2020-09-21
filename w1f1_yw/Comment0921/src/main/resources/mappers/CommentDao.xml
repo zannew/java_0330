@@ -5,8 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.wifi.comment.dao.CommentDao">
 	
 	<!-- 댓글 리스트  -->
-	<select id="getComment" resultType="com.wifi.comment.model.Comment">
-		select * from wifi.comment where state != 1 and iidx=#{iidx}
+	<select id="getComment" resultType="com.wifi.comment.model.CommentDTO">
+		select * from wifi.commentlist where state != 1 and iidx=#{iidx}
 	</select>
 	
 	<!-- 댓글 등록 -->

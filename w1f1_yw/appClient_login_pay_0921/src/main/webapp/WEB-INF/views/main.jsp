@@ -25,9 +25,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>  <!-- 평점등록 시 별 마우스오버 계속 반응  -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script> <!-- 날짜포멧 -->
   <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>   <!-- 데이터를 정렬/필터/색인할 수 있게 도와주는 오픈소스 Javascript Utility Library -->
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c35fdaa3a50bc0c680e435eb402d8491"></script><!-- 판매처 지도표시를 위한 카카오 지도 api  -->
-  
-  
+  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script><!-- 판매처 지도표시를 위한 카카오 지도 api  -->
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c35fdaa3a50bc0c680e435eb402d8491&libraries=services"></script><!-- 공구 지도를 위한 카카오 지도 api  -->
 </head>
 <body>
 
@@ -139,8 +138,8 @@
         </div>  <!-- Item area end -->
         
         	<br><br>
-               <button type="button" class="btn btn-outline-secondary" id="showmore_btn" style="margin: auto; padding: 10px 30px; display: block; text-align: center; cursor:pointer; display: block;"  onclick="itemlist()">더보기 +</button>
-               <button type="button" class="btn btn-outline-secondary" id="showmore_btn" style="margin: auto; padding: 10px 30px; display: block; text-align: center; cursor:pointer; display: none;" onclick="ratingSort()">더보기 +</button>
+               <button type="button" class="btn btn-outline-secondary" id="showmore_btn" style="margin: auto; padding: 10px 30px; text-align: center; cursor:pointer; display: block;"  onclick="itemlist()">일반 더보기 +</button>
+               <button type="button" class="btn btn-outline-secondary" id="showrating_btn" style="margin: auto; padding: 10px 30px;  text-align: center; cursor:pointer; display: none;" onclick="sortingRvs()">평점순 더보기 +</button>
            	<br><br>
 
 
@@ -166,7 +165,7 @@
   <script src="js/swiper.min.js"></script>
   <script src="js/swiper.js"></script>
   <script src="js/_define.js"></script>
-  <script src="js/map.js"></script>  <!-- aside 구매자 -->
+  <!-- <script src="js/map.js"></script> -->  <!-- map -->
   
   <script text="text/javascript" src="js/comment.js"></script>  <!-- 댓글 -->
   <script text="text/javascript" src="js/seller.js"></script> <!-- aside 판매자 -->
