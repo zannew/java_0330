@@ -1,5 +1,5 @@
 
-var domainC = "http://ec2-13-209-70-0.ap-northeast-2.compute.amazonaws.com:8080/comments";
+var domainC = "http://ec2-13-209-70-0.ap-northeast-2.compute.amazonaws.com:8080/wifi/comments";
 //var domainC = "http://localhost:8082/comments";
 
 //var domain = 'http://localhost:8080/comments';

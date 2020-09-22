@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.wifi.order.alarm.service.AlarmService;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/alarm")
 public class AlarmController {
 

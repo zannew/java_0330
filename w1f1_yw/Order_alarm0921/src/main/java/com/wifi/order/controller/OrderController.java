@@ -28,7 +28,7 @@ import com.wifi.order.model.MyItemDTO;
 import com.wifi.order.model.Order;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/orders")
 public class OrderController {
 

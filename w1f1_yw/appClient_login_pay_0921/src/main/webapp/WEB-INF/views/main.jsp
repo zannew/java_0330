@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="css/swiper.css" type="text/css">
   <link rel="stylesheet" href="css/search.css" type="text/css">
   <link rel="stylesheet" href="css/aside.css" type="text/css">
+  <link rel="stylesheet" href="css/regItemForm.css" type="text/css">
   <link rel="stylesheet" href="css/item.css" type="text/css">
   <link rel="stylesheet" href="css/comment.css" type="text/css"> 
   <link rel="stylesheet" href="css/swiper.min.css" type="text/css"> <!-- swiper관련 -->

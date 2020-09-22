@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
+<link rel="stylesheet" href="css/regItemForm.css" type="text/css">
 <!-- 장윤원 2020. 09.20 추가 -->
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c35fdaa3a50bc0c680e435eb402d8491&libraries=services"></script>
@@ -15,24 +16,26 @@
 
       <form id="regForm" class="w3-container" onsubmit="return false;">
          <div class="w3-section">
-            <label><b>제목</b></label>
+            <label><b class="regForm_font">제목</b></label>
             <input class="w3-input w3-border w3-margin-bottom" type="text" name="title" id="title" required>
 
-            <label><b>가격</b></label>
+            <label><b class="regForm_font">가격</b></label>
             <input class="w3-halfInput w3-border w3-margin-bottom" type="text" pattern="[0-9]*" name="price" id="price" required>
 
-            <label><b>공구인원</b></label>
+            <label><b class="regForm_font">공구인원</b></label>
             <input class="w3-halfInput w3-border w3-margin-bottom" type="number" name="count_m" id="count_m" min="1" required> <br>
 
-            <label><b>수령날짜</b></label>
+            <label><b class="regForm_font">수령날짜</b></label>
             <input class="w3-input w3-border w3-margin-bottom" type="datetime-local" name="receive" id="receive" required>
 
             <!-- 장윤원 2020. 09. 20 : 주소와 좌표 입력 기능 추가-->
             <label><b>판매처 주소</b></label>
-            <input type="text" class="w3-input w3-border w3-margin-bottom" name="addr" id="addr" placeholder="주소">
-			<input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
+            <div class="w3-input w3-border w3-margin-bottom">
+            <input type="text" class="" name="addr" id="addr" onclick="sample5_execDaumPostcode()" placeholder="주소" style="float:left; border: none; width: 80%;">
+			<input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색" style="float: right;"><br>
+			</div>
 			<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
-
+	
             <!-- <label><b>판매처 주소</b></label>
             <input class="w3-input w3-border w3-margin-bottom" type="text" name="addr" id="addr" required> -->
 

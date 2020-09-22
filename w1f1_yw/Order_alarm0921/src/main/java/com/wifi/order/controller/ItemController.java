@@ -36,7 +36,7 @@ import com.wifi.order.model.MyBuyerDTO;
 import com.wifi.order.model.MyItemDTO;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/items")
 public class ItemController {
 
