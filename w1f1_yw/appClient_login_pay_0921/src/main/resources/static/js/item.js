@@ -31,6 +31,13 @@ $(document).ready(function(){
 	profile();  // 기능코드는 buyer.js에 작성
 	allItemlist();  // 전체 공구리스트 출력
 	
+	$('#keywordBox').keydown(function(key){
+		if(key.keyCode == 13){
+			searchList();
+			
+		}
+	})
+	
 
 	/* ing 검색기능 */
 	$("#myInput").on("keyup", function() {
@@ -467,6 +474,9 @@ $(document).ready(function(){
 	function searchList(){
 		pageNum=1;
 		itemlist();
+		$('#searchType').find('option:first').attr('selected','selected');
+		$('#keywordBox').val('');
+		
 	}
 
 
